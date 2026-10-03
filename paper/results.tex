@@ -1,4 +1,39 @@
-\paragraph*{Breakdown of the product-state description.}
+\paragraph*{Spontaneous persistent current in the microscopic model.}
+Figure~\ref{fig:main} contains the central result. Panel (a) follows the ground state of
+Eq.~\eqref{eq:H} at $U=2t$ as the coupling $g$ is increased. For $g<g_c\simeq0.12$ the mode
+stays close to its vacuum ($\langle a^\dagger a\rangle\lesssim1$) and the current is the linear
+response to the infinitesimal seed flux, $|\langle I\rangle|\lesssim10^{-4}et/\hbar$. At
+$g\simeq g_c$ the photon number jumps to $\langle a^\dagger a\rangle\simeq8$ and a persistent
+current $|\langle I\rangle|\simeq1.4\times10^{-2}et/\hbar\simeq0.93\,I_c$ appears. Reducing
+the seed by two orders of magnitude leaves the current above threshold unchanged, while the
+current below threshold scales to zero with the seed: the current is spontaneous.
+Full DMRG of the electron--photon problem (symbols) and the exact treatment of the photon in
+the adiabatic Hamiltonian~\eqref{eq:BO} with the DMRG $E(\varphi)$ (lines) agree within a few
+percent. Beyond the maximum the current decreases as $I\simeq\hbar\omega\varphi^\star/2g^2$,
+because the condensate flux saturates at $\Phi_0/2$ while the effective inductance
+$\propto g^2/\hbar\omega$ grows.
+
+Figure~\ref{fig:main}(b) shows the current in the $(U,g)$ plane at fixed
+$\hbar\omega=7.6\times10^{-4}t$. Its boundary has two parts. The lower edge,
+$U_c\simeq0.9t$, is the $0$--$\pi$ transition of the junction itself. For $U<U_c$ the ground
+state is a singlet with $E_2<0$, the orbital response is diamagnetic, and no current
+appears at any $g$. The left edge, $g_c(U)$, follows the classical criterion
+$\beta(U,g)=1$ and moves to stronger coupling as $E_2(U)$ decreases. Panel (c) is the
+same map from the mean-field theory of Ref.~\cite{notebook}: Hartree--Fock BdG electrons
+times a photon product state, with the same seed. For $U\lesssim5t$, i.e.\
+$E_J/\hbar\omega\gtrsim3$, mean field reproduces $U_c$ and $g_c(U)$ to within the grid
+resolution ($\delta g=0.01$). It underestimates the maximal current by $10$--$20\%$
+(the product state renormalizes the junction bond by $|\langle D\rangle|<1$). For
+$U\gtrsim6t$, where $E_2$ drops to $E_J\lesssim3\hbar\omega$, mean field predicts an ordered phase
+(dashed line in (b)) that is absent in the exact solution. Quantum fluctuations of the flux
+restore the symmetry there, and the ground state remains the cat state described below.
+In short, the product state is reliable only when $E_J\gg\hbar\omega$ and
+$g\ll1$. Both conditions are violated by the parameters of the original notebook, see
+Fig.~\ref{fig:notebook_omega}: at $\hbar\omega=0.02$ the exact ground state carries no
+current at any $g$, whereas at $\hbar\omega=0.002$ the same microscopic model orders at
+$g_c\simeq0.21$, while mean field predicts $g_c\simeq0.30$.
+
+\paragraph*{Breakdown of the product-state description for $E_J\simeq\hbar\omega$.}
 We first take the parameters of a Zeeman-polarized dot embedded in a short
 BCS ring ($t=2$, $\Delta=0.6$, $L=11$, $\epsilon_{d\uparrow}=-0.3$,
 $\epsilon_{d\downarrow}=3.7$, $t_J=0.5$, $\hbar\omega=0.02$). The
@@ -96,6 +131,28 @@ split only by $\delta$.
 
 \input{feasibility}
 
+
+\begin{figure*}
+  \includegraphics[width=\textwidth]{../figs/fig_main_phase_diagram.pdf}
+  \caption{\label{fig:main}%
+  Spontaneous persistent current in the microscopic model Eq.~\eqref{eq:H}
+  ($L=14$, $t=1$, $\Delta=t$, $t_J=0.5t$, $\epsilon_d=-U/2$, $\hbar\omega=7.6\times10^{-4}t$, no external flux).
+  (a) Current and photon number versus $g$ at $U=2t$: full DMRG (circles), exact
+  photon in the adiabatic Hamiltonian with DMRG $E(\varphi)$ (green; solid and dashed:
+  seeds $\varphi_{\rm cl}=10^{-3}$ and $10^{-5}$), and mean field (orange).
+  (b) Exact current in the $(U,g)$ plane (seed $10^{-3}$); black line: $|\langle I\rangle|=2\times10^{-3}et/\hbar$;
+  orange dashed: the same contour from mean field; arrows: $U$ values computed by DMRG.
+  (c) Mean field (Hartree--Fock BdG $\times$ photon product state), same color scale.}
+\end{figure*}
+
+\begin{figure*}
+  \includegraphics[width=\textwidth]{../figs/fig_notebook_omega.pdf}
+  \caption{\label{fig:notebook_omega}%
+  Model of the original notebook (Zeeman-polarized dot, $L=11$, $t=2$, $\Delta=0.6$):
+  current (top) and photon number (bottom) versus $g$ for (a) $\hbar\omega=0.02$ and
+  (b) $\hbar\omega=0.002$. Green: exact (adiabatic, seed $10^{-3}$); orange: mean field;
+  circles: full DMRG.}
+\end{figure*}
 % ------------------------------------------------------------------ figures
 \begin{figure*}
   \includegraphics[width=\textwidth]{../figs/fig_junctions.pdf}

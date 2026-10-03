@@ -279,8 +279,97 @@ def fig_overview():
     plt.close(fig)
 
 
+# ---------------------------------------------------------------- Fig. main: I(g) and (U,g) phase diagrams
+def _istar(c, g, om, Nph=160):
+    """magnitude of the spontaneous current |I*| = hbar*omega X*/2g, X* = flux eigenvalue in the lowest doublet
+    (rotation-invariant; equals |<I>| of the symmetry-broken state), and photon number; no seed."""
+    from bo import solve
+    if g == 0:
+        return 0.0, 0.0
+    o = solve(c, g, om, 0.0, Nphot=Nph)
+    return om * o['X01'] / (2 * g), o['n'][0]
+
+
+def fig_main():
+    ex = json.load(open(D + 'exact_phase_diagram.json'))
+    mff = D + 'mf_hf_grid_fine.json' if os.path.exists(D + 'mf_hf_grid_fine.json') else D + 'mf_hf_grid.json'
+    mf = json.load(open(mff)); mf2 = json.load(open(D + 'mf_hf_grid.json'))
+    om = ex['omega']; gs = np.array(ex['gs'])
+    Ue = np.array(ex['fine']['Us'])
+    Ie = np.abs(np.array(ex['fine']['I']))
+    Um = np.array(mf['Us'][:len(mf['I'])]); Im = np.abs(np.array(mf['I'])); gm = np.array(mf['gs'])
+    fig = plt.figure(figsize=(7.0, 2.6), constrained_layout=True)
+    gsp = fig.add_gridspec(2, 3, width_ratios=[1.0, 1, 1])
+    a, b = fig.add_subplot(gsp[0, 0]), fig.add_subplot(gsp[1, 0])
+    c = np.load(D + 'harmonics_udot_U2.npy')
+    gg = np.linspace(0.005, 0.4, 120)
+    from bo import solve
+    res = np.array([_istar(c, x, om) for x in gg])
+    for seed, ls, lab in ((1e-3, '-', r'exact, seed $10^{-3}$'), (1e-5, '--', r'exact, seed $10^{-5}$')):
+        a.plot(gg, [abs(solve(c, x, om, seed, Nphot=160)['I'][0]) for x in gg], color=C3, ls=ls, lw=1.3 if ls == '-' else 1.0, label=lab)
+    k = list(mf2['Us']).index(2.0)
+    a.plot(mf2['gs'], np.abs(mf2['I'][k]), color=C2, label='mean field')
+    b.plot(gg, res[:, 1], color=C3); b.plot(mf2['gs'], mf2['n'][k], color=C2)
+    sc = json.load(open(D + 'dmrg_udot_U2_r10.json'))['rows']
+    gsc = [r for r in json.load(open(D + 'gscan_udot_U2_seed1e-3_part1.json'))['rows']] + \
+          [r for r in json.load(open(D + 'gscan_udot_U2_seed1e-3_part2.json'))['rows']] if os.path.exists(D + 'gscan_udot_U2_seed1e-3_part2.json') else []
+    pts = [(r['g'], abs(r['I_vir'])) for r in gsc if r['n'] < 1.0] + \
+          [(r['g'], om * r['X01'] / (2 * r['g'])) for r in sc if (r['E1'] - r['E0']) < 0.05 * om]
+    a.plot(*zip(*sorted(pts)), 'o', ms=3.5, color=C1, label='full DMRG', zorder=5)
+    dm = sc + sum([json.load(open(D + f))['rows'] for f in ('gscan_udot_U2_seed1e-3_part1.json', 'gscan_udot_U2_seed1e-3_part2.json',
+                   'gscan_udot_U2_seed1e-5.json') if os.path.exists(D + f)], [])
+    b.plot([r['g'] for r in dm], [r.get('n0', r.get('n')) for r in dm], 'o', ms=3.0, color=C1, zorder=5)
+    a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7); a.set_xlim(0, 0.4); a.tick_params(labelbottom=False)
+    a.legend(fontsize=5.5, loc='upper right'); a.set_title(r'$U=2t$', fontsize=8); tag(a, '(a)')
+    b.set_xlabel('$g$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$', fontsize=7); b.set_xlim(0, 0.4)
+    vmax = max(Ie.max(), Im.max())
+    axm = []
+    for col, U, I, g, title, lab in ((1, Ue, Ie, gs, 'exact (DMRG + quantum photon)', '(b)'),
+                                      (2, Um, Im, gm, 'mean field (HF + product state)', '(c)')):
+        ax = fig.add_subplot(gsp[:, col]); axm.append(ax)
+        pc = ax.pcolormesh(g, U, I, cmap='Blues', vmin=0, vmax=vmax, shading='nearest', rasterized=True)
+        ax.set_xlabel('$g$'); ax.set_ylabel(r'$U/t$'); ax.set_title(title, fontsize=7.5, loc='right'); tag(ax, lab)
+        ax.set_xlim(0, 0.4); ax.set_ylim(0, 10)
+    axm[0].contour(gm, Um, Im, levels=[2e-3], colors=C2, linewidths=1.0, linestyles='--')
+    axm[0].contour(gs, Ue, Ie, levels=[2e-3], colors=INK, linewidths=0.7)
+    axm[1].contour(gs, Ue, Ie, levels=[2e-3], colors=INK, linewidths=0.7)
+    for U in ex['Us']:
+        axm[0].plot([0.4], [U], '<', ms=2.5, color=MUTED, clip_on=False)
+    axm[0].text(0.2, 0.3, 'no current (0-junction)', fontsize=5.5, color=MUTED)
+    cb = fig.colorbar(pc, ax=axm, pad=0.02, aspect=25); cb.set_label(r'$|\langle I\rangle|$  $(et/\hbar)$')
+    fig.savefig(F + 'fig_main_phase_diagram.pdf'); fig.savefig(F + 'fig_main_phase_diagram.png')
+    plt.close(fig)
+
+
+def fig_notebook_omega():
+    """Notebook model: is there a transition? omega = 0.02 (original) vs 0.002."""
+    c = np.load(D + 'harmonics_notebook_model.npy')
+    fig, axs = plt.subplots(2, 2, figsize=(7.0, 3.0), constrained_layout=True, sharex=True)
+    for j, (om, mff, dmfs, title) in enumerate(((0.02, 'mf_notebook_port.npy', ['dmrg_notebook_model.json'], r'$\hbar\omega=0.02$ (as in the notebook)'),
+                                                 (0.002, 'mf_notebook_om0.002.npy', ['gscan_notebook_om0.002_part1.json', 'gscan_notebook_om0.002_part2.json'], r'$\hbar\omega=0.002$'))):
+        a, b = axs[0, j], axs[1, j]
+        gg = np.linspace(0.01, 1.2, 120)
+        from bo import solve
+        res = [solve(c, x, om, 1e-3, Nphot=220) for x in gg]
+        a.plot(gg, [abs(o['I'][0]) for o in res], color=C3, label=r'exact, seed $10^{-3}$')
+        b.plot(gg, [o['n'][0] for o in res], color=C3)
+        m = np.load(D + mff).real
+        a.plot(m[:, 0], np.abs(m[:, 4]), color=C2, label='mean field (notebook)')
+        b.plot(m[:, 0], m[:, 3], color=C2)
+        rows = []
+        for f in dmfs:
+            if os.path.exists(D + f):
+                d = json.load(open(D + f)); rows += d['rows'] if isinstance(d, dict) else d
+        b.plot([r['g'] for r in rows], [r.get('n0', r.get('n')) for r in rows], 'o', ms=3.2, color=C1, label='full DMRG')
+        a.set_title(title, fontsize=8); a.set_ylabel(r'$|I|$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$'); b.set_xlabel('$g$')
+        a.legend(fontsize=6); b.legend(fontsize=6)
+    tag(axs[0, 0], '(a)'); tag(axs[0, 1], '(b)')
+    fig.savefig(F + 'fig_notebook_omega.pdf'); fig.savefig(F + 'fig_notebook_omega.png')
+    plt.close(fig)
+
+
 if __name__ == '__main__':
     import sys
-    for name in (sys.argv[1:] or ['overview', 'junctions', 'notebook', 'weaklink', 'udot']):
+    for name in (sys.argv[1:] or ['main', 'notebook_omega', 'overview', 'junctions', 'notebook', 'weaklink', 'udot']):
         globals()['fig_' + name]()
         print('done', name)
