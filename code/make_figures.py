@@ -324,7 +324,7 @@ def fig_main():
     b.set_xlabel('$g$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$', fontsize=7); b.set_xlim(0, 0.4)
     vmax = max(Ie.max(), Im.max())
     axm = []
-    for col, U, I, g, title, lab in ((1, Ue, Ie, gs, 'exact (DMRG + quantum photon)', '(b)'),
+    for col, U, I, g, title, lab in ((1, Ue, Ie, gs, 'exact: DMRG $E(\\varphi;U)$ + quantum photon', '(b)'),
                                       (2, Um, Im, gm, 'mean field (HF + product state)', '(c)')):
         ax = fig.add_subplot(gsp[:, col]); axm.append(ax)
         pc = ax.pcolormesh(g, U, I, cmap='Blues', vmin=0, vmax=vmax, shading='nearest', rasterized=True)
