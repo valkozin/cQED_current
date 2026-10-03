@@ -6,15 +6,19 @@ self-consistent product state predicts a current-carrying phase for
 $g\gtrsim0.75$, with $\langle a^\dagger a\rangle\simeq1$--$1.4$ and
 $|\langle I\rangle|\approx0.02$ [Fig.~\ref{fig:notebook}]. DMRG shows that this
 phase is an artefact. The exact ground-state energy decreases monotonically with
-$g$ and lies below the MF energy by up to $1.9\hbar\omega$ \TODO{update with
-DMRG g=1.2}. The gap to the first excited state stays a sizeable fraction of
-$\hbar\omega$ ($E_1-E_0=0.34\hbar\omega$ at $g=1.2$). The linear response to the
-seed flux $\varphi_{\rm cl}=10^{-3}$ remains $\langle I\rangle\lesssim
-4\times10^{-4}$, i.e.\ two orders of magnitude below the MF value. DMRG and
-the adiabatic theory~\eqref{eq:BO} agree to within
-$\lesssim2\%$ of $\hbar\omega$ in energy and to $<1\%$ in $E_1-E_0$.
-The residual difference is the non-adiabatic (diagonal Born--Oppenheimer)
-correction $\sim g^2\hbar\omega\,\hbar\omega/E_A$.
+$g$ and lies below the MF energy by up to $1.8\hbar\omega$ (at $g=1.2$).
+The gap to the first excited state stays a sizeable fraction of
+$\hbar\omega$ ($E_1-E_0=0.33\hbar\omega$ at $g=1.2$), and the photon number
+saturates at $\langle a^\dagger a\rangle\simeq0.36$. The response to the
+seed flux $\varphi_{\rm cl}=10^{-3}$ is linear: $\langle I\rangle\approx7\times10^{-5}$,
+more than two orders of magnitude below the MF value. Here and below we
+evaluate the current through the exact relation
+$\langle I\rangle=\hbar\omega\langle X\rangle/2g$, which follows from
+$\langle[H,P]\rangle=0$ and states that the persistent current \emph{is} the
+static displacement of the mode. DMRG and
+the adiabatic theory~\eqref{eq:BO} agree to within $0.06\hbar\omega$ in
+energy and $1.3\%$ in $E_1-E_0$. The residual difference is the non-adiabatic
+(diagonal Born--Oppenheimer) correction, of relative order $\hbar\omega/E_A\approx0.1$.
 
 Two effects make the product state fail. (i) It is not gauge invariant~\cite{Li2020,Dmytruk2021}: with the full
 Peierls phase on one bond, it renormalizes that bond by
@@ -33,9 +37,14 @@ Josephson physics we use rings with $L\gg\xi$ below
 \paragraph*{Half-flux-biased junction.}
 For an ordinary weak link ($t_J=0.5$, $E_2=-0.056\,t$, Andreev gap
 $0.77\,t$) biased by $\Phi_0/2$, Fig.~\ref{fig:halfflux} shows the full
-DMRG solution at $E_J/\hbar\omega=10$ as a function of $\beta$.
-\TODO{fill: DMRG current jumps to $|\langle I\rangle|\simeq I^\star$ at
-$\beta\simeq1$, follows BO within ..., MF ...}
+DMRG solution at $E_J/\hbar\omega=10$ as a function of $\beta$. The current
+rises steeply at $\beta\simeq1.1$ and saturates at $|\langle I\rangle|\simeq0.97I_c$ for
+$\beta\approx1.7$. It then decreases as the flux approaches $\Phi_0/2$, where the junction
+current vanishes. DMRG and the adiabatic theory agree to $0.003\hbar\omega$ in energy,
+to $\lesssim5\%$ in current and to $2\%$ in $E_1-E_0$ at all $\beta$. The product state is
+$0.2$--$0.4\hbar\omega$ too high in energy and overestimates the current
+threefold near threshold ($0.71I_c$ versus $0.21I_c$ at $\beta=1.13$). It becomes accurate only deep in the
+ordered phase, where the photon is a nearly coherent state.
 The flux distribution extracted from the photon reduced density matrix
 evolves from a Gaussian centred at zero to a single displaced peak at
 $\pm\Phi^\star$. The sign is fixed by the residual odd harmonic
@@ -67,8 +76,13 @@ transition without any static flux. Here $H_{\rm ring}$ is real and
 $\langle I\rangle=0$ in every eigenstate, so the order is diagnosed by the
 two lowest states. The splitting $\delta=E_1-E_0$ collapses and the
 flux operator projected onto the quasi-degenerate doublet acquires the eigenvalues
-$\pm\Phi^\star$. \TODO{fill DMRG numbers: at $E_J/\hbar\omega=10$, $\delta/\hbar\omega=$
-... at $\beta=2$ and ... at $\beta=3$; $\Phi^\star$ ...}. In the photon-number basis
+$\pm\Phi^\star$. At $E_J/\hbar\omega=10$, DMRG and the adiabatic theory give the same
+$\Phi^\star$ to within $3\%$ for all $\beta$ [e.g.\ $\Phi^\star=0.57\,\Phi_0/2$ at $\beta=2$]. They also agree on
+$\delta/\hbar\omega=0.71$ and $0.28$ at $\beta=0.5$ and $1$. Deeper in the ordered phase, $\delta$ drops below the DMRG
+resolution for excited-state energies ($\sim3\times10^{-5}t\approx0.04\hbar\omega$, estimated by comparing
+$\chi=256$ and $400$ at $\beta=1.5$). The adiabatic theory, validated above, then gives
+$\delta/\hbar\omega=7\times10^{-4}$, $2\times10^{-6}$ and $2\times10^{-8}$ at
+$\beta=1.5$, $2$ and $3$. In the photon-number basis
 the DMRG ground state is a cat state: $P(\Phi)$ is bimodal with peaks at
 $\pm\Phi^\star$, whose separation tracks the classical minimum. With
 increasing $E_J/\hbar\omega$ the crossover sharpens into a pitchfork at

@@ -3,6 +3,19 @@
 %  Compile with paper/main.tex (revtex4-2).
 % ------------------------------------------------------------------
 
+\begin{figure}[t]
+  \includegraphics[width=\columnwidth]{../figs/fig_overview.pdf}
+  \caption{\label{fig:overview}%
+  (a) A superconducting loop closed by a $\pi$ junction (here an interacting dot
+  with charging energy $U$) shares its inductance $L$ with an LC mode; the two
+  degenerate states carry opposite persistent currents $\pm I$.
+  (b) Tunnel splitting $\delta$ between the two current-carrying states in the
+  plane of the screening parameter $\beta$ and the quantum parameter $E_J/\hbar\omega$
+  [Eq.~\eqref{eq:BO} with the DMRG $E(\varphi)$ of the $U=2t$ junction]. White
+  lines: $\delta/\hbar\omega=10^{-6},10^{-3},10^{-1}$; dashed: classical threshold $\beta=1$.
+  Labels: typical regimes of the platforms discussed in the text.}
+\end{figure}
+
 \paragraph*{Model.}
 We consider a superconducting (SC) loop interrupted by a single Josephson
 element and threaded by the magnetic flux of one lumped LC mode
@@ -98,9 +111,10 @@ order next to a bosonic site (Fock cutoff $N_{\rm ph}$). Fermion parity and $S^z
 are conserved, and the electron--photon vertex is a three-site operator
 $D\,c^\dagger_{1\sigma}c_{0\sigma}$. Benchmarks against exact BdG energies of the
 non-interacting ring at $g=0$ agree to $10^{-14}$ at full bond dimension
-($\chi=1024$). In production ($\chi=256$--$512$) the energy error is below
-$3\times10^{-6}$ and the error in the current $\langle I\rangle$ below
-$10^{-7}$ \TODO{check}. Excited states are obtained by DMRG
+($\chi=1024$). In production ($\chi=256$--$320$, $N_{\rm ph}=30$--$50$, discarded
+Fock weight $<10^{-7}$) the ground-state energy error is $\lesssim3\times10^{-6}t$.
+For a $4$-site ring with a photon, DMRG reproduces exact diagonalization and the identity
+$\langle I\rangle=\hbar\omega\langle X\rangle/2g$ to $10^{-7}$. Excited states are obtained by DMRG
 orthogonal to the ground state. We compare with (i) the self-consistent
 electron$\times$photon product state (mean field, MF), and (ii) the adiabatic
 Hamiltonian~\eqref{eq:BO}, with $E(\varphi)$ from BdG or from DMRG at fixed
@@ -108,16 +122,3 @@ $\varphi$, diagonalized exactly.
 
 % RESULTS PARAGRAPHS ARE IN results.tex
 \input{results}
-
-\begin{figure}[t]
-  \includegraphics[width=\columnwidth]{../figs/fig_overview.pdf}
-  \caption{\label{fig:overview}%
-  (a) A superconducting loop closed by a $\pi$ junction (here an interacting dot
-  with charging energy $U$) shares its inductance $L$ with an LC mode; the two
-  degenerate states carry opposite persistent currents $\pm I$.
-  (b) Tunnel splitting $\delta$ between the two current-carrying states in the
-  plane of the screening parameter $\beta$ and the quantum parameter $E_J/\hbar\omega$
-  [Eq.~\eqref{eq:BO} with the DMRG $E(\varphi)$ of the $U=2t$ junction]. White
-  lines: $\delta/\hbar\omega=10^{-6},10^{-3},10^{-1}$; dashed: classical threshold $\beta=1$.
-  Labels: typical regimes of the platforms discussed in the text.}
-\end{figure}

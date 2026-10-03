@@ -1,0 +1,3 @@
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.59e-05
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=8.39e-02
+beta=1.50 g=0.1369 E0=-22.457185042 E1-E0=3.218e-05 I0=-3.7705e-05 I1=-5.8609e-04 |X01|=4.873 n=6.164 X=-1.353e-02 S_ph=-0.000 pmax=1.4e-09 t=1664s

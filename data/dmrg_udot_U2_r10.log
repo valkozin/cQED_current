@@ -1,4 +1,13 @@
-/usr/local/lib/python3.11/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
-  super().__init__(sites, bc, unit_cell_width)
-/usr/local/lib/python3.11/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
-  super().__init__(sites, bc, unit_cell_width)
+beta=0.50 g=0.0791 E0=-22.455977096 E1-E0=5.433e-04 I0=-1.2207e-07 I1=1.1453e-06 |X01|=1.182 n=0.029 X=-5.164e-05 S_ph=-0.000 pmax=2.0e-30 t=855s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.93e-05
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.21e-05
+beta=1.00 g=0.1118 E0=-22.456163470 E1-E0=2.145e-04 I0=1.0907e-06 I1=-1.0929e-05 |X01|=1.831 n=0.416 X=1.124e-04 S_ph=-0.000 pmax=9.9e-10 t=810s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.09e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=9.99e-03
+beta=1.50 g=0.1369 E0=-22.457183268 E1-E0=6.127e-06 I0=1.2116e-04 I1=-2.1549e-04 |X01|=4.966 n=6.157 X=8.328e-03 S_ph=-0.000 pmax=5.6e-08 t=674s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.84e-05
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.92e-03
+beta=2.00 g=0.1581 E0=-22.458805652 E1-E0=1.271e-08 I0=3.9674e-04 I1=-6.6812e-05 |X01|=5.702 n=8.120 X=2.141e-02 S_ph=-0.000 pmax=4.3e-09 t=812s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.46e-05
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.62e-05
+beta=3.00 g=0.1936 E0=-22.461317806 E1-E0=3.447e-07 I0=6.2541e-04 I1=4.7981e-06 |X01|=5.703 n=8.192 X=2.516e-02 S_ph=-0.000 pmax=7.9e-12 t=554s

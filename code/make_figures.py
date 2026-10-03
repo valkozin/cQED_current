@@ -47,19 +47,18 @@ def fig_notebook():
     a.plot(bo[:, 0], (bo[:, 1] - E00) / om, color=C3, label='adiabatic (BO)')
     if dm:
         a.plot([r['g'] for r in dm], [(r['E0'] - E00) / om for r in dm], 'o', ms=3.5, color=C1, label='DMRG')
-    a.set_xlabel('$g$'); a.set_ylabel(r'$(E_0-E_0^{g=0})/\hbar\omega$'); a.legend(fontsize=6.5, loc='lower left')
+    a.set_xlabel('$g$'); a.set_ylabel(r'$(E_0-E_0^{g=0})/\hbar\omega$')
     tag(a, '(a)')
     a = axs[0, 1]
     a.plot(mf[:, 0], mf[:, 4], color=C2)
     a.plot(bo[:, 0], bo[:, 6], color=C3)
     a.plot(bo[:, 0], np.sqrt(bo[:, 3]), color=C3, ls='--', lw=1)
     if dm:
-        a.plot([r['g'] for r in dm], [r['I0'] for r in dm], 'o', ms=3.5, color=C1)
+        a.plot([r['g'] for r in dm if r['g'] > 0], [om * r['X0'] / (2 * r['g']) for r in dm if r['g'] > 0], 'o', ms=3.5, color=C1)
     a.text(0.03, 0.0175, r'$\sqrt{\langle I^2\rangle}$ (BO)', color=MUTED, fontsize=6.5)
     a.set_xlabel('$g$'); a.set_ylabel(r'$\langle I\rangle$ $(e t/\hbar)$'); tag(a, '(b)')
     a = axs[1, 0]
     a.plot(bo[:, 0], bo[:, 2] / om, color=C3)
-    a.plot(mf[:, 0], mf[:, 8] / om, color=C2, lw=1, ls=':')
     if dm:
         a.plot([r['g'] for r in dm], [(r['E1'] - r['E0']) / om for r in dm], 'o', ms=3.5, color=C1)
     a.set_ylim(0, 1.1); a.set_xlabel('$g$'); a.set_ylabel(r'$(E_1-E_0)/\hbar\omega$'); tag(a, '(c)')
@@ -69,6 +68,7 @@ def fig_notebook():
     if dm:
         a.plot([r['g'] for r in dm], [r['n0'] for r in dm], 'o', ms=3.5, color=C1)
     a.set_xlabel('$g$'); a.set_ylabel(r'$\langle a^\dagger a\rangle$'); tag(a, '(d)')
+    a.legend(*axs[0, 0].get_legend_handles_labels(), fontsize=6.5, loc='upper left')
     fig.savefig(F + 'fig_notebook_model.pdf'); fig.savefig(F + 'fig_notebook_model.png')
     plt.close(fig)
 
@@ -97,8 +97,8 @@ def fig_weaklink(ratio=10):
     if dm:
         b = np.array([r['beta'] for r in dm]) * scale
         a.plot(b, [abs(r['I_mf']) / Ic for r in dm], 's', ms=3.5, mfc='none', color=C2, label='mean field')
-        a.plot(b, [abs(r['I0']) / Ic for r in dm], 'o', ms=3.5, color=C1, label='DMRG')
-    a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$|\langle I\rangle|/I_c$'); a.legend(fontsize=6, loc='upper left')
+        a.plot(b, [abs(om * r['X0'] / (2 * r['g'])) / Ic for r in dm], 'o', ms=3.5, color=C1, label='DMRG')
+    a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$|\langle I\rangle|/I_c$'); a.legend(fontsize=6, loc='lower right')
     a.set_xlim(0, betas.max()); tag(a, '(a)')
     a = axs[1]
     a.semilogy(betas, tilt[:, 2] / om, color=C3, label=r'BO, with $E_1$ tilt')
@@ -113,9 +113,9 @@ def fig_weaklink(ratio=10):
     for r in dm:
         if r['beta'] in (0.5, 1.0, 1.5, 3.0):
             x, p = photon_xdist(r['rho_ph'])
-            a.plot(r['g'] * x / (np.pi / 2), p, color=cols[k % 4], lw=1.2, label=r'$\beta=%.2f$' % (r['beta'] * scale))
+            a.plot(r['g'] * x / (np.pi / 2), p * (np.pi / 2) / r['g'], color=cols[k % 4], lw=1.2, label=r'$\beta=%.2f$' % (r['beta'] * scale))
             k += 1
-    a.set_xlim(-1.6, 1.6); a.set_xlabel(r'$gX/(\pi/2)$  (flux $/\,\Phi_0/2$)'); a.set_ylabel('$P(X)$')
+    a.set_xlim(-1.3, 1.3); a.set_xlabel(r'$\Phi/(\Phi_0/2)$'); a.set_ylabel(r'$P(\Phi)$ (DMRG)')
     a.legend(fontsize=6); tag(a, '(c)')
     fig.savefig(F + 'fig_weaklink_halfflux.pdf'); fig.savefig(F + 'fig_weaklink_halfflux.png')
     plt.close(fig)
@@ -207,9 +207,14 @@ def fig_udot():
         v = np.array(bo['runs'][r]); om = EJ / float(r)
         a.semilogy(betas, np.maximum(v[:, 2] / om, 3e-9), color=col, lw=1.2)
     if dm:
-        a.semilogy([r['beta'] for r in dm], [(r['E1'] - r['E0']) / (EJ / 10) for r in dm], 'o', ms=3.5, color=C2)
+        res = 4e-2  # DMRG resolution of excited-state energies (~3e-5 t, from chi=256 vs 400 at beta=1.5)
+        ok = [r for r in dm if (r['E1'] - r['E0']) / (EJ / 10) > 5 * res]
+        lim = [r for r in dm if (r['E1'] - r['E0']) / (EJ / 10) <= 5 * res]
+        a.semilogy([r['beta'] for r in ok], [(r['E1'] - r['E0']) / (EJ / 10) for r in ok], 'o', ms=3.5, color=C2)
+        a.semilogy([r['beta'] for r in lim], [res] * len(lim), 'v', ms=4, mfc='none', color=C2)
+        a.text(1.75, 1.2e-2, 'DMRG: below\nresolution', fontsize=5.5, color=C2)
     a.axhspan(1e-9, 1e-8, color=MUTED, alpha=0.08, lw=0)
-    a.text(0.1, 2e-9, 'numerical floor', fontsize=6, color=MUTED)
+    a.text(0.1, 2e-9, 'BO numerical floor', fontsize=6, color=MUTED)
     a.set_ylim(1e-9, 2); a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$\delta/\hbar\omega$'); tag(a, '(b)')
     a = axs[2]
     cols = ['#9ec5f0', '#5a9be3', C1, '#1a4f91', '#0d2a52']
