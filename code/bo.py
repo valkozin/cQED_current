@@ -39,6 +39,8 @@ def solve(c, g, omega, phi_cl=0.0, Nphot=200, nstates=4):
     obs['I2'] = np.einsum('ik,ij,jk->k', psi, cur @ cur, psi)
     obs['X'] = np.einsum('ik,ij,jk->k', psi, X, psi)
     obs['X2'] = np.einsum('ik,ij,jk->k', psi, X @ X, psi)
+    P2 = psi[:, :2].T @ X @ psi[:, :2]   # flux operator projected on the two lowest states
+    obs['X01'] = np.max(np.abs(np.linalg.eigvalsh(P2)))  # = |<0|X|1>| for a symmetric cat; rotation invariant
     obs['n'] = np.einsum('ik,i,ik->k', psi, n.astype(float), psi)
     obs['Pdist'] = (x, (U.T @ psi[:, 0]) ** 2)
     return obs
