@@ -117,7 +117,7 @@ def fig_udot_v2():
     lim = [r for r in dm if (r['E1'] - r['E0']) / (EJ / 10) <= 5 * res_]
     a.semilogy([r['beta'] for r in ok], [(r['E1'] - r['E0']) / (EJ / 10) for r in ok], 'o', ms=3.5, color=C2)
     a.semilogy([r['beta'] for r in lim], [res_] * len(lim), 'v', ms=4, mfc='none', color=C2)
-    a.text(1.75, 1.2e-2, 'DMRG: below\nresolution', fontsize=5.5, color=C2)
+    a.text(2.35, 1.5e-3, r'DMRG ($U=2t$): below resolution', fontsize=5.2, color=C2)
     a.axhspan(1e-9, 1e-8, color=MUTED, alpha=0.08, lw=0)
     a.text(0.1, 2e-9, 'BO numerical floor', fontsize=6, color=MUTED)
     a.set_ylim(1e-9, 2); a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$\delta/\hbar\omega$'); tag(a, '(b)')
