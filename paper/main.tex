@@ -58,9 +58,8 @@ transition of the dot and the classical screening criterion $\beta=1$; (ii) a ph
 $\langle a^\dagger a\rangle\simeq8$ carrying a current of $0.95\,I_c$, whose direction is chosen
 spontaneously because the Hamiltonian is time-reversal symmetric; (iii) a ground state that is, strictly, a
 cat of the two current directions, whose tunnel splitting $\delta$ vanishes as $e^{-E_J/\hbar\omega}$ and
-sets the only energy scale between them; and (iv) the condition $E_J\gg\hbar\omega$ under which mean field
-is reliable, together with an explicit example where it predicts a current that the exact solution does not
-have.
+sets the only energy scale between them; and (iv) the condition $E_J\gg\hbar\omega$ under which the product-state mean field is reliable, with
+explicit examples where it predicts a current that the exact solution does not have.
 
 \begin{figure}[t]
   \includegraphics[width=\columnwidth]{../figs/fig_overview.pdf}
@@ -79,18 +78,19 @@ We consider the circuit of Fig.~\ref{fig:overview}(a): a superconducting (SC) ch
 into a loop by a quantum dot (site 0), with the loop threaded by the flux of a single lumped LC mode,
 \begin{align}
   H &= \hbar\omega\, a^\dagger a
-     -t\!\!\sum_{r=1}^{L-2}\sum_\sigma\!\left(c^\dagger_{r+1\sigma}c_{r\sigma}+{\rm h.c.}\right)
-     +\Delta\!\sum_{r=1}^{L-1}\!\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
+     -t\!\sum_{r=1}^{L-2}\sum_\sigma\!\left(c^\dagger_{r+1\sigma}c_{r\sigma}+{\rm h.c.}\right)
      \nonumber\\
-    &\quad +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
-     -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
+    &\quad +\Delta\!\sum_{r=1}^{L-1}\!\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
+     +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
+     \nonumber\\
+    &\quad -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
      \nonumber\\
     &\quad -t_J\sum_\sigma\left(e^{i\varphi_{\rm cl}}\,e^{ig(a+a^\dagger)}\,c^\dagger_{1\sigma}c_{0\sigma}+{\rm h.c.}\right).
   \label{eq:H}
 \end{align}
-The first line is the mode and a BCS chain with hopping $t$ and a fixed pair field $\Delta$. The second line
-is the Anderson impurity (level $\epsilon_d=-U/2$, on-site repulsion $U$) coupled by $t_J$ to the two ends of
-the chain. The third line carries the total Peierls phase of the loop. Three remarks fix its meaning.
+The first two lines are the mode and a BCS chain with hopping $t$ and a fixed pair field $\Delta$, plus the
+Anderson impurity (level $\epsilon_d=-U/2$, on-site repulsion $U$) coupled by $t_J$ to the two ends of
+the chain. The last line carries the total Peierls phase of the loop. Three remarks fix its meaning.
 (i) The phase is a loop property and can be placed on a single bond by a gauge choice; Eq.~\eqref{eq:H} is
 identical to a uniform vector potential along the ring with the pair field transformed covariantly,
 $\Delta_r\to\Delta e^{-2i\theta_r}$~\cite{Li2020,Dmytruk2021}, whereas a uniform $A$ with a real $\Delta$
@@ -231,7 +231,7 @@ current rather than of the Josephson junction~\cite{SM}.
 Figure~\ref{fig:main} is the central result. Panel (a) follows the ground state at $U=2t$ as the coupling
 grows. For $g<g_c\simeq0.12$ the mode stays near its vacuum and the current is the linear response to the
 seed, $|\langle I\rangle|\lesssim10^{-4}\,et/\hbar$, scaling with it. At $g_c$ the photon number jumps to
-$\langle a^\dagger a\rangle\simeq8$ and a current $|\langle I\rangle|=1.4\times10^{-2}\,et/\hbar=0.95\,I_c$
+$\langle a^\dagger a\rangle\simeq8$ and a current $|\langle I\rangle|=1.4\times10^{-2}\,et/\hbar$, i.e.\ $0.95\,I_c$,
 appears; reducing the seed by two orders of magnitude leaves it unchanged. The current is spontaneous.
 Full DMRG of the electron--photon problem (circles) and the exact photon in Eq.~\eqref{eq:BO} (lines)
 agree to a few percent in $g_c$, current and photon number, so adiabaticity holds and the two-step
@@ -246,7 +246,7 @@ with $E''(0)>0$, the orbital response is diamagnetic and no current appears at a
 down slightly at large $g$, where the condensation energy of the doublet sector tips the parity balance].
 The left boundary, $g_c(U)$, follows the classical line $\beta(U,g)=1$ (white dashed), shifted to larger $g$
 by the zero-point energy, and moves to stronger coupling as $E_J(U)$ decreases. At $U=t$, $2t$, $4t$ we find
-$g_c=0.10$, $0.13$, $0.20$ against the classical $0.092$, $0.112$, $0.155$.
+$g_c=0.10$, $0.13$, $0.19$ against the classical $0.092$, $0.112$, $0.155$.
 
 The upper boundary of the coloured region is \emph{not} a phase boundary but a crossover controlled by the
 tunnel splitting, panel (c). Along the $U$ axis $E_J/\hbar\omega$ decreases, and $\delta$, which is
@@ -288,15 +288,17 @@ $\{\uparrow,\downarrow\}\otimes\{\cw,\ccw\}$ split only by $\delta$.
 \end{figure*}
 
 \paragraph*{When does mean field work?}
-Panel (d) of Fig.~\ref{fig:main} shows the same map in the product-state mean field. For $U\lesssim5t$,
-i.e.\ $E_J\gtrsim4\hbar\omega$, it reproduces $U_c$ and $g_c(U)$ to within the grid ($\delta g=0.01$) and
-underestimates the maximal current by $10$--$20\%$: the product state renormalizes the junction bond by
-$|\langle e^{ig(a+a^\dagger)}\rangle|<1$ and thereby loses phase-independent kinetic energy that the exact
-state recovers by following the flux adiabatically~\cite{Li2020,Dmytruk2021}. For $U\gtrsim6t$ mean field
-predicts an ordered phase up to $U\simeq8t$ (orange dashed contour) that the exact solution does not have:
-there $E_J\lesssim3\hbar\omega$, the double well is shallow, and the product state, which cannot describe a
-superposition of the two wells, breaks the symmetry by construction (self-trapping) where the exact ground
-state is a cat with $\delta\sim10^{-2}$--$10^{-1}\hbar\omega$. The same failure, in extreme form, occurs for the parameters of Ref.~\cite{notebook}, a short ring
+Panel (d) of Fig.~\ref{fig:main} shows the same map in the product-state mean field. It reproduces $U_c$
+and the condensate boundary $\langle a^\dagger a\rangle=1$ to within $0.03$ in $g$ over the whole plane
+(orange dashed versus black), and for $U\lesssim5t$ it also reproduces $g_c(U)$ to within the grid
+($\delta g=0.01$), while underestimating the maximal current by $10$--$20\%$: the product state renormalizes
+the junction bond by $|\langle e^{ig(a+a^\dagger)}\rangle|<1$ and loses phase-independent kinetic energy
+that the exact state recovers by following the flux adiabatically~\cite{Li2020,Dmytruk2021}. What it
+cannot capture is the coherence between the two wells. By construction it breaks the symmetry
+(self-trapping) and predicts a current of $0.5$--$0.7\,I_c$ for $U=6$--$8t$, where the exact ground state is
+a cat with $\delta\sim10^{-2}$--$10^{-1}\hbar\omega$ that carries no current for any flux offset below
+$\delta/I^\star\sim10^{-3}$--$10^{-2}\Phi_0$. The product-state current is therefore meaningful only where
+$\delta$ is negligible, $E_J\gtrsim4\hbar\omega$. The same failure, in extreme form, occurs for the parameters of Ref.~\cite{notebook}, a short ring
 ($L\lesssim\xi$) with a Zeeman-polarized dot and $E_J\simeq\hbar\omega$, $g\simeq1$: mean field predicts a
 current above $g\simeq0.75$, whereas the DMRG ground state lies $1.8\hbar\omega$ lower, keeps a gap of
 $0.33\hbar\omega$ and carries no current at any $g$~\cite{SM}. The product state is reliable when
@@ -339,8 +341,10 @@ qubit.
 \begin{center}{\large\bf Supplemental Material}\end{center}
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theHfigure}{S\arabic{figure}}
 \setcounter{equation}{0}
 \renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\theHequation}{S\arabic{equation}}
 
 \section*{S1. Gauge covariance and the kinetic inductance of the arms}
 \emph{Gauge.} With real $\Delta$ on every site, the BdG energy of the ring with the whole Peierls phase

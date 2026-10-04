@@ -246,9 +246,9 @@
   {2018})}\BibitemShut {NoStop}%
 \bibitem [{not()}]{notebook}%
   \BibitemOpen
-  \href@noop {} {}\bibinfo {note} {Mean-field notebook
-  \texttt{Optimised\_SC\_ring\_with\_JJ\_cavity\_mean\_field.nb} (this work,
-  earlier stage)}\BibitemShut {NoStop}%
+  \href@noop {} {}\bibinfo {note} {Self-consistent product-state (mean-field)
+  solution of the ring--cavity model, Mathematica notebook ``Optimised SC ring
+  with JJ cavity mean field'' (this work, earlier stage).}\BibitemShut {Stop}%
 \bibitem [{\citenamefont {Vecino}\ \emph {et~al.}(2003)\citenamefont {Vecino},
   \citenamefont {Mart\'{\i}n-Rodero},\ and\ \citenamefont
   {Yeyati}}]{Vecino2003}%
