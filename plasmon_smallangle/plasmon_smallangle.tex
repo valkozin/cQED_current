@@ -137,10 +137,12 @@ $N_0=\kF/2\pi\vF$ and $\Omega_{q_{\max}}^2=q_{\max}/2$,
 \begin{equation}
 \lambda(\nu)\equiv N_0\langle U\,\theta(|\nu|-c\vF q)\rangle_{\rm FS}
 =\frac{\alpha}{\pi}\int_{q_{\min}}^{q_{\max}(\nu)}\frac{dq}{q}\,\frac{\nu^2}{\nu^2+\Omega_q^2}
-=\frac{\alpha}{\pi}\ln\frac{q_{\max}(\nu)}{q_{\min}}
--\frac{\alpha}{\pi}\ln\Big(1+\frac{\Omega_{q_{\max}}^2}{\nu^2}\Big).
+\simeq\frac{\alpha}{\pi}\ln\frac{q_{\max}(\nu)}{q_{\min}}
+-\frac{\alpha}{\pi}\ln\Big(1+\frac{\Omega_{q_{\max}}^2}{\nu^2}\Big)
 \label{eq:lam}
 \end{equation}
+(the exact second term is $\frac{\alpha}{\pi}\ln\frac{\nu^2+\Omega_{q_{\max}}^2}{\nu^2+\Omega_{q_{\min}}^2}$;
+the form above assumes $q_{\min}\ll q_\nu$).
 For $|\nu|>c\vF K$ this is the familiar
 $\frac{\alpha}{\pi}[\ln(K/q_{\min})-\ln(1+\OK^2/\nu^2)]$; at lower $\nu$ the upper limit is
 $|\nu|/c\vF$ and both terms shrink (e.g.\ $K=0.3\kappa$, $c=1$: the dynamical term is
@@ -163,7 +165,7 @@ exists for any $\alpha$, with $T_c\sim\OK\exp(-c^2/\alpha^2)$
 repulsion in $M_{12}$, the Cooper logarithm in $M_{21}$---comes from transfers $q$ inside the
 window, hence from angles below $\phi_K$. Figure~\ref{fig:phi}b quantifies it: removing the
 angles $|\phi|<q_f/\kF$ from (\ref{eq:red}) (as an angular cut, with the $\xi$-window of
-Section~3.1) and recomputing the pairing eigenvalue $\mu$, one finds that removing the
+Section~3.1) and recomputing the pairing eigenvalue $\mu$ ($a=0.3$, $E=10^{-6}\kappa\vF$), one finds that removing the
 angles below $0.1\,\phi_K$ already reduces $|\mu|$ by $35\%$, below $0.45\,\phi_K$ by a
 factor $4.5$, and below $0.85\,\phi_K$ by a factor $30$.
 
@@ -180,12 +182,14 @@ the content of the next section.
 
 \paragraph{2.1 Which angles are ``small''.}
 Let $\Rs$ be the range of the interaction, so that it transfers momenta $q\lesssim1/\Rs$.
-A transfer $q$ at angle $\phi$ to a state on the Fermi surface changes its energy by
-$\vF q_\parallel+q_\perp^2/2m$ with $q_\perp\simeq\kF\phi$. The tangential (curvature)
-term is negligible against the longitudinal one, and the Fermi surface can be treated as
-locally flat (which is what makes the sector exactly solvable), when
+Linearize the dispersion on a patch of the Fermi surface around its central direction: a
+state at angle $\phi$ from the patch centre and radial distance $k_\parallel$ from the Fermi
+surface has energy $\vF k_\parallel+k_\perp^2/2m$ with $k_\perp\simeq\kF\phi$. The
+tangential (curvature) term is negligible against the radial energy scale probed by the
+interaction, $\vF/\Rs$, and the patch can be treated as flat (which is what makes the
+sector exactly solvable), when
 \begin{equation}
-\frac{\kF^2\phi^2}{2m}\ll\vF\,q_\parallel\sim\frac{\vF}{\Rs}
+\frac{\kF^2\phi^2}{2m}\ll\frac{\vF}{\Rs}
 \quad\Longleftrightarrow\quad
 \phi\ll\phi_0\equiv\frac{1}{\sqrt{\kF\Rs}} .
 \label{eq:phi0}
@@ -193,7 +197,9 @@ locally flat (which is what makes the sector exactly solvable), when
 The small parameter of the bosonization is $1/\kF\Rs\ll1$ (interaction range much longer
 than the Fermi wavelength), and $\phi_0=(\kF\Rs)^{-1/2}$ is the angle separating the
 exactly solvable small-angle sector from the large-angle sector where the Cooper ladder is
-legitimate. For the screened Coulomb problem $\Rs\sim1/\kappa$, i.e.\
+legitimate. (It is the largest admissible patch half-width; the scattering angle between
+two states, $\phi=\angle(\mathbf k,\mathbf p)$, is then ``small'' when both lie in the same
+flat patch, $|\phi|\lesssim\phi_0$.) For the screened Coulomb problem $\Rs\sim1/\kappa$, i.e.\
 $\phi_0\sim\sqrt{\kappa/\kF}=\sqrt{N\alpha}$; note that this is parametrically
 \emph{larger} than $\phi_K=aN\alpha$ at weak coupling---we come back to this in 3.5.
 
@@ -317,16 +323,20 @@ $q^2=\xi^2+2\kF(\kF+\xi)(1-\cos\phi)$ and measure $(\kF+\xi)\,d\xi\,d\phi$ ($\kF
 \toprule
 $w'$ & $\nu$ & $\phi_0$ & $q_{\max}$ & direct, exact & direct, small-angle & Eq.~(\ref{eq:arctan}) & plain $q>q_f$\\
 \midrule
-0.3 & 0.8 & 0.02 & 0.3 & 1.0246 & 1.0246 & 1.0245 & 1.605\\
-0.2 & 0.9 & 0.05 & 0.3 & 0.2443 & 0.2437 & 0.2437 & 0.629\\
-0.02 & 0.3 & 0.03 & 0.25 & 10.734 & 10.732 & 10.731 & 12.24\\
-0.01 & 0.5 & 0.02 & 0.3 & 76.566 & 76.561 & 76.548 & 80.92\\
-0.001 & 0.5 & 0.04 & 0.3 & 270.43 & 270.33 & 270.30 & 271.93\\
+0.3 & 0.8 & 0.02 & 0.3 & 1.02463 & 1.02454 & 1.02454 & 1.605\\
+0.2 & 0.9 & 0.05 & 0.3 & 0.24429 & 0.24368 & 0.24368 & 0.629\\
+0.02 & 0.3 & 0.03 & 0.25 & 10.7335 & 10.7306 & 10.7306 & 12.24\\
+0.01 & 0.5 & 0.02 & 0.3 & 76.5619 & 76.5479 & 76.5479 & 80.92\\
+0.001 & 0.5 & 0.04 & 0.3 & 270.434 & 270.303 & 270.303 & 271.93\\
 \bottomrule
 \end{tabular}\normalsize
 \end{center}
-The reduced formula reproduces the literal angular cut to $10^{-4}$ (the residual is the
-$O(\xi/\kF)$ curvature correction); a plain lower cut on $q$ is wrong by up to a factor
+With the small-angle kinematics (\ref{eq:q2}) the reduced formula is \emph{identical} to the
+literal angular cut (agreement to $10^{-15}$, i.e.\ Eq.~(\ref{eq:arctan}) is exact, not an
+approximation); with the exact kinematics the difference is $10^{-4}$--$3\times10^{-3}$,
+the curvature correction of relative order $q/\kF$, here $\le0.06$. (The direct integrals
+are done with the $\phi$-limit where $q$ reaches $q_{\max}$ computed at each $\xi$, so the
+integrand is smooth; with the exact kinematics this limit is $\xi$-dependent.) A plain lower cut on $q$ is wrong by up to a factor
 $2.6$ in the plasmon regime and becomes accurate only in the Cooper regime, exactly as the
 two limits above predict. In the gap equation the difference is quantitative, not
 qualitative: at $a=0.3$, $E=10^{-6}\kappa\vF$, $q_f=0.1K$ ($0.3K$) the angle cut gives
@@ -365,15 +375,16 @@ $\alpha=-1/\mu$). Since $A$ depends on $\alpha$ only through $q_f$, it is conven
 compute $\mu(q_f)$ once on a grid of $q_f/K$ and read off the curve parametrically:
 $\alpha_c=-1/\mu(q_f)$ and, from (\ref{eq:qf}), $\phi_0=N\alpha_c\,q_f$. Results for $N=2$,
 $a=0.3$ and $1$, and infrared scales $E=10^{-4},10^{-6},10^{-8}\,\kappa\vF$ are shown in
-Fig.~\ref{fig:phi}a and in the table.
+Fig.~\ref{fig:phi}a and in the table (table entries from solving
+$\alpha\,\mu(\phi_0/N\alpha)=-1$ directly at fixed $\phi_0$).
 
 \begin{figure}[t]
 \centering\includegraphics[width=\textwidth]{alphac_phi0.png}
 \caption{(a) Critical coupling of the gap equation (\ref{eq:ang}) as a function of the
 small-angle cutoff $\phi_0$, for $N=2$, two window sizes $a$ and three infrared scales
-$E$. Grey lines: the exact bound (\ref{eq:bound}). (b) The pairing eigenvalue of the naive
+$E$, plotted parametrically, $\alpha_c=-1/\mu(q_f)$, $\phi_0=N\alpha_c q_f$. Grey lines: the exact bound (\ref{eq:bound}). (b) The pairing eigenvalue of the naive
 equation (\ref{eq:red}) when the angles $|\phi|<q_f/\kF$ are removed (angular cut,
-Eq.~(\ref{eq:arctan})), relative to its value at $q_f=0.02K$: the solution of the naive
+Eq.~(\ref{eq:arctan})), relative to its value at $q_f=0.02K$ ($a=0.3$, $E=10^{-6}\kappa\vF$): the solution of the naive
 equation is built from the smallest angles.}
 \label{fig:phi}
 \end{figure}
@@ -383,12 +394,12 @@ equation is built from the smallest angles.}
 \toprule
 $\alpha_c$ ($N=2$) & $\phi_0=0.05$ & $0.1$ & $0.2$ & $0.3$\\
 \midrule
-$a=0.3$, $E=10^{-4}$ & 1.17 & 1.41 & 1.77 & 2.07\\
-$a=0.3$, $E=10^{-6}$ & 0.93 & 1.13 & 1.47 & 1.75\\
-$a=0.3$, $E=10^{-8}$ & 0.81 & 0.99 & 1.31 & 1.59\\
-$a=1.0$, $E=10^{-4}$ & 0.76 & 0.87 & 1.03 & 1.14\\
-$a=1.0$, $E=10^{-6}$ & 0.59 & 0.69 & 0.83 & 0.95\\
-$a=1.0$, $E=10^{-8}$ & 0.51 & 0.60 & 0.73 & 0.85\\
+$a=0.3$, $E=10^{-4}$ & 1.19 & 1.42 & 1.78 & 2.08\\
+$a=0.3$, $E=10^{-6}$ & 0.93 & 1.15 & 1.48 & 1.76\\
+$a=0.3$, $E=10^{-8}$ & 0.81 & 1.01 & 1.32 & 1.59\\
+$a=1.0$, $E=10^{-4}$ & 0.77 & 0.87 & 1.03 & 1.16\\
+$a=1.0$, $E=10^{-6}$ & 0.60 & 0.70 & 0.84 & 0.96\\
+$a=1.0$, $E=10^{-8}$ & 0.51 & 0.61 & 0.74 & 0.86\\
 bound (\ref{eq:bound}), $a=0.3$ & 0.08 & 0.17 & 0.33 & 0.50\\
 bound (\ref{eq:bound}), $a=1.0$ & 0.025 & 0.05 & 0.10 & 0.15\\
 \bottomrule
@@ -399,7 +410,9 @@ bound (\ref{eq:bound}), $a=1.0$ & 0.025 & 0.05 & 0.10 & 0.15\\
 Three features. (i) $\alpha_c$ is of order one for any reasonable $\phi_0$: at
 $\phi_0=0.1$ it is $0.6$--$1.4$ depending on $a$ and $E$. There is no plasmon-mediated
 superconductivity at weak coupling. (ii) $\alpha_c$ increases with $\phi_0$ roughly like
-$\phi_0^{1/2}$ over the plotted range, and with the size of the window like $a^{-1/2}$
+$\phi_0^{1/3}$ over the tabulated range (local exponent $0.23$--$0.36$ between $\phi_0=0.05$
+and $0.3$, larger for smaller $a$ and $E$), and decreases with the size of the window
+roughly like $a^{-1/2}$ (between $a^{-0.4}$ and $a^{-0.5}$)
 (from $\OK\propto\sqrt a$, as in the pure-window estimate of the earlier note). (iii) At fixed
 $\phi_0$, $\alpha_c$ still decreases slowly with the infrared scale $E$. This is the
 second-order Tolmachev--Anderson mechanism of Section 1.4 operating inside the
@@ -417,7 +430,7 @@ $\alpha>\sqrt{N\alpha}/Na\Leftrightarrow N\alpha>1/a^2$, i.e.
 \begin{equation}
 \alpha_c\gtrsim\frac{1}{Na^2}\qquad(\Rs\sim1/\kappa),
 \end{equation}
-which is $0.5$ for $N=2$, $a=1$ and $5$ for $a=0.3$---order one at best, and this is only the
+which is $0.5$ for $N=2$, $a=1$ and $5.6$ for $a=0.3$---order one at best, and this is only the
 $T=0$ bound; the finite-$E$ values of Fig.~\ref{fig:phi}a lie above it. Equivalently: at weak
 coupling $\phi_K=aN\alpha\ll\sqrt{N\alpha}=\phi_0$, so the \emph{entire} plasmon window is
 inside the bosonizable sector. The identification $\Rs\sim1/\kappa$ is the natural one for
