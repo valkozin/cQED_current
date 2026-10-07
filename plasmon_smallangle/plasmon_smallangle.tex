@@ -1,0 +1,447 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs}
+\usepackage[T1]{fontenc}
+\newcommand{\kF}{k_{\mathrm F}}
+\newcommand{\vF}{v_{\mathrm F}}
+\newcommand{\einf}{\epsilon_\infty}
+\newcommand{\OK}{\Omega_K}
+\newcommand{\Rs}{R_{\mathrm s}}
+\begin{document}\sloppy
+\begin{center}\large\textbf{Plasmon-mediated pairing in 2D:\\ the BCS gap equation lives at small angles,
+and what remains once the small-angle sector is removed}\end{center}
+
+\section*{0. Setup and the one number to keep in mind}
+Notation: $\alpha=e^2/\einf\vF$; $N$ flavours; screening momentum $\kappa=N\alpha\kF$;
+2D plasmon $\Omega_q^2=\tfrac12\kappa\vF^2q$; plasmon-window cutoff $K=a\kappa$, $a\lesssim1$.
+Plasmon-pole interaction, valid for $|\nu|\gg\vF q$:
+\begin{equation}
+U(i\nu,q)=\frac{2\pi e^2}{\einf q}\,\frac{\nu^2}{\nu^2+\Omega_q^2}.
+\label{eq:U}
+\end{equation}
+Linearized gap equation at $T=0$, $\mathbf k$ on the Fermi surface, external frequency $w$:
+\begin{equation}
+\Delta(w)=-\int\!\frac{dw'}{2\pi}\int\!\frac{d^2p}{(2\pi)^2}\,
+U(w-w',|\mathbf k-\mathbf p|)\,\frac{\Delta(w')}{w'^2+\xi_p^2}.
+\label{eq:gap}
+\end{equation}
+Units $\vF=\kappa=1$ (frequencies in $\kappa\vF$, momenta in $\kappa$), so $e^2/\einf=\alpha$,
+$\Omega_q^2=q/2$, $K=a$, $\OK^2=a/2$, and---this is the number to keep in mind---
+\begin{equation}
+\kF=\frac{\kappa}{N\alpha}=\frac{1}{N\alpha}\;\gg\;1\qquad(\text{weak coupling}).
+\label{eq:kF}
+\end{equation}
+A momentum transfer $q$ between two states on the Fermi surface is a scattering angle
+$\phi=q/\kF=N\alpha\,q$ (in units of $\kappa$); if one of the states is off the Fermi surface,
+$\phi<q/\kF$ (Section 1.1). Every momentum transfer that appears below
+is $q\le K=a$, hence every scattering angle is
+\begin{equation}
+\phi\;\le\;\phi_K\equiv\frac{K}{\kF}=aN\alpha\;\ll\;1 .
+\label{eq:phiK}
+\end{equation}
+Sections 1--2 make this explicit and explain why it is a problem; Section 3 removes the
+small-angle sector and computes the critical coupling that results.
+
+\section*{1. The naive (BCS-like) gap equation and where it lives}
+
+\paragraph{1.1 Momentum integral, done exactly.}
+Write $p=\kF+\xi/\vF$ and let $\phi$ be the angle between $\mathbf p$ and $\mathbf k$
+($|\mathbf k|=\kF$). For $\phi\ll1$ and $|\xi|\ll\vF\kF$,
+\begin{equation}
+q^2=|\mathbf k-\mathbf p|^2\simeq\xi^2+\kF^2\phi^2 .
+\label{eq:q2}
+\end{equation}
+The measure is $d^2p=p\,dp\,d\phi\simeq\kF\,d\xi\,d\phi$ (units $\vF=1$). Change variables
+$\phi\to q$ at fixed $\xi$: $\kF^2\phi\,d\phi=q\,dq$, i.e.\ $d\phi=q\,dq/\kF\sqrt{q^2-\xi^2}$,
+with two branches $\phi\gtrless0$. Therefore
+\begin{align}
+\int\!\frac{d^2p}{(2\pi)^2}\,\frac{U(\nu,q)}{w'^2+\xi^2}
+&=\frac{\kF}{(2\pi)^2}\int d\xi\int d\phi\,\frac{U}{w'^2+\xi^2}
+=\frac{2}{(2\pi)^2}\int d\xi\int_{|\xi|}^{K}\frac{dq\,q\,U(\nu,q)}{\sqrt{q^2-\xi^2}\,(w'^2+\xi^2)}
+\nonumber\\
+&=\frac{1}{2\pi^2}\int_0^{K}dq\,q\,U(\nu,q)\int_{-q}^{q}\frac{d\xi}{(w'^2+\xi^2)\sqrt{q^2-\xi^2}}
+=\frac{1}{2\pi}\int_0^{K}dq\,\frac{q\,U(\nu,q)}{|w'|\sqrt{w'^2+q^2}} .
+\label{eq:exact}
+\end{align}
+In the second line the order of integration was exchanged ($|\xi|<q<K$ is the same region
+as $0<q<K$, $|\xi|<q$), and the $\xi$-integral was done with $\xi=q\sin\theta$:
+$\int_{-\pi/2}^{\pi/2}d\theta/(w'^2+q^2\sin^2\theta)=\pi/|w'|\sqrt{w'^2+q^2}$.
+Note that $\kF$ cancelled: (\ref{eq:exact}) does not know about $\kF$, which is
+another way of saying that it is a small-angle expression.
+
+\emph{Caution: after the $\xi$-integration $q$ is no longer an angle.} The variable change
+$\phi\to q$ was made at fixed $\xi$, and by (\ref{eq:q2}) a given $q$ corresponds to
+\[
+|\phi|=\frac{\sqrt{q^2-\xi^2}}{\kF},\qquad 0\le|\phi|\le\frac{q}{\kF},
+\]
+with $|\phi|=q/\kF$ only on shell ($\xi=0$) and $\phi\to0$ at $|\xi|\to q$ (a transfer
+purely along the Fermi-surface normal). Once $\xi$ has been integrated out in
+(\ref{eq:exact}), every $q$ contains all angles between $0$ and $q/\kF$. Two consequences.
+(i) Upper bounds survive: $q\le K$ implies $|\phi|\le K/\kF=\phi_K$ for every term, so
+the statement ``everything is at angles below $\phi_K$'' is exact. Conditions on the full
+transfer $q$ (such as the plasmon condition $|\nu|>\vF q$) can likewise be imposed on the
+$q$-integral after the $\xi$-integration without error. (ii) A \emph{lower} cut on
+$q$ is \emph{not} a lower cut on the angle: $q>q_f$ keeps the forward region
+$|\phi|<q_f/\kF$ at large $|\xi|$. An angular cutoff has to be imposed before the
+$\xi$-integration, as a $q$-dependent restriction of the $\xi$-range; this is done in
+Section~3.1.
+
+\emph{The validity condition of the interaction.} Eq.~(\ref{eq:U}) holds only for
+$|\nu|\gg\vF q$, so it enters the gap equation as
+$U(i\nu,q)\,\theta(|\nu|-c\vF q)$, with $c\gtrsim1$ the constant in ``$\gg$'' (below $c=1$
+unless stated). The $\theta$-function depends on the full transfer $q$ and on
+$\nu=w-w'$, neither of which involves $\xi$ or $\phi$ separately, so it simply lowers the
+upper limit of the $q$-integral, $K\to q_{\max}(\nu)\equiv\min(K,|\nu|/c\vF)$. This is exact
+(point (i) above; I also checked it by imposing the $\theta$-function literally inside a
+two-dimensional $(\xi,\phi)$ integration, agreement to $10^{-4}$). With
+$qU=2\pi\alpha\,\nu^2/(\nu^2+q/2)$, Eq.~(\ref{eq:gap}) becomes
+\begin{equation}
+\boxed{\begin{aligned}
+&\Delta(w)=-\frac{\alpha}{2\pi}\int dw'\int_0^{q_{\max}(\nu)}\!dq\,
+\frac{\nu^2}{\nu^2+\Omega_q^2}\;\frac{\Delta(w')}{|w'|\sqrt{w'^2+q^2}},\\
+&\nu=w-w',\qquad q_{\max}(\nu)=\min\Big(K,\frac{|\nu|}{c\vF}\Big).
+\end{aligned}}
+\label{eq:red}
+\end{equation}
+Note which frequencies the condition constrains: the \emph{transfer} $\nu$, not the
+fermion frequency $w'$. Pairs with $|w'|\ll\vF q$ (where the pair weight is the Cooper
+weight $1/|w'|\vF q$) exchanging a plasmon with $|\nu|\simeq|w|\gg\vF q$ are inside the
+validity domain; the truncation addendum discusses the alternative of cutting $w'$ too.
+All numerical results in this note include the $\theta$-function.
+
+\paragraph{1.2 The momentum transfers that matter, translated into angles.}
+Take the frequency-dependent part of the interaction,
+$\frac{\nu^2}{\nu^2+\Omega_q^2}=1-\frac{\Omega_q^2}{\nu^2+\Omega_q^2}$. At fixed transfer
+frequency $\nu$ the retarded piece $\Omega_q^2/(\nu^2+\Omega_q^2)$ is $\simeq1$ for
+$q\gg q_\nu$ and $\simeq q/2\nu^2\to0$ for $q\ll q_\nu$, where
+\begin{equation}
+q_\nu\equiv\frac{2\nu^2}{\kappa\vF^2}\qquad(\Omega_{q_\nu}=|\nu|)
+\qquad\Longrightarrow\qquad
+\phi_\nu=\frac{q_\nu}{\kF}=2N\alpha\Big(\frac{\nu}{\kappa\vF}\Big)^2 .
+\end{equation}
+So the plasmon dynamics at frequency $\nu$ is carried by transfers between $q_\nu$ and
+$q_{\max}(\nu)=\min(K,|\nu|/c\vF)$; this window is non-empty only for $2\nu^2<|\nu|/c$,
+i.e.\ $|\nu|<\kappa\vF/2c$, which is the statement that the plasmon pole must itself satisfy
+$\Omega_q>c\vF q$. By the caution in 1.1 these are scattering angles below $q/\kF\le\phi_K=aN\alpha$
+($\phi_\nu$ is the on-shell angle of the transfer $q_\nu$). For the frequencies that
+matter, $\nu\sim\OK$, both $q_\nu$ and $q_{\max}$ are $\sim K$, so the relevant transfers
+correspond to on-shell angles $\sim aN\alpha$ and to all smaller angles off shell.
+Nothing in (\ref{eq:red}) reaches beyond $\phi_K$; nothing in it is large-angle scattering.
+
+\paragraph{1.3 The same statement from the angular average.}
+The Fermi-surface average that many papers use makes this visible in one line. With both
+momenta on the Fermi surface, $q=2\kF\sin(\theta/2)\simeq\kF|\theta|$, the cutoff
+$q<q_{\max}(\nu)$ restricts $|\theta|<q_{\max}/\kF\le\phi_K$, and
+$\int_{-\pi}^{\pi}\frac{d\theta}{2\pi}\to\frac{1}{\pi\kF}\int_0^{q_{\max}} dq$. With
+$N_0=\kF/2\pi\vF$ and $\Omega_{q_{\max}}^2=q_{\max}/2$,
+\begin{equation}
+\lambda(\nu)\equiv N_0\langle U\,\theta(|\nu|-c\vF q)\rangle_{\rm FS}
+=\frac{\alpha}{\pi}\int_{q_{\min}}^{q_{\max}(\nu)}\frac{dq}{q}\,\frac{\nu^2}{\nu^2+\Omega_q^2}
+=\frac{\alpha}{\pi}\ln\frac{q_{\max}(\nu)}{q_{\min}}
+-\frac{\alpha}{\pi}\ln\Big(1+\frac{\Omega_{q_{\max}}^2}{\nu^2}\Big).
+\label{eq:lam}
+\end{equation}
+For $|\nu|>c\vF K$ this is the familiar
+$\frac{\alpha}{\pi}[\ln(K/q_{\min})-\ln(1+\OK^2/\nu^2)]$; at lower $\nu$ the upper limit is
+$|\nu|/c\vF$ and both terms shrink (e.g.\ $K=0.3\kappa$, $c=1$: the dynamical term is
+$1.79$ instead of $2.77$ in units of $\alpha/\pi$ at $\nu=0.1\,\kappa\vF$). The integrand is
+$dq/q=d\phi/\phi$: the coupling is a logarithm over scattering angles, the instantaneous
+part diverging towards $\phi\to0$ and the dynamical part receiving equal weight from every
+e-fold of $\phi$ between $\phi_\nu$ and $q_{\max}(\nu)/\kF$. Again, all of it lives below
+$\phi_K=aN\alpha$.
+
+\paragraph{1.4 What the solution of (\ref{eq:red}) is built from.}
+The pair weight in (\ref{eq:red}) has two regimes: $1/w'^2$ for $|w'|\gg\vF q$ and the
+ordinary Cooper weight $1/|w'|\vF q$ for $|w'|\ll\vF q$ (the shell $|\xi|<\vF q$ integrated at
+low frequency). The kernel is positive at all frequencies, so any solution must change sign
+(Tolmachev--Anderson). Projecting on two frequency blocks, $\Delta_{\rm IR}$ below
+$w_1\simeq0.3\,\OK$ and $\Delta_{\rm H}$ above, gives
+$(1+\alpha M_{11})(1+\alpha M_{22})=\alpha^2M_{12}M_{21}$ with $M_{21}=m\ln(w_1/E)$,
+$E$ the infrared scale, and the solution $\alpha^2M_{12}m\ln(\OK/E)\simeq1$: a solution
+exists for any $\alpha$, with $T_c\sim\OK\exp(-c^2/\alpha^2)$
+(previous note; $c\simeq2.7$ at $a=0.3$). Every ingredient of this mechanism---the retarded
+repulsion in $M_{12}$, the Cooper logarithm in $M_{21}$---comes from transfers $q$ inside the
+window, hence from angles below $\phi_K$. Figure~\ref{fig:phi}b quantifies it: removing the
+angles $|\phi|<q_f/\kF$ from (\ref{eq:red}) (as an angular cut, with the $\xi$-window of
+Section~3.1) and recomputing the pairing eigenvalue $\mu$, one finds that removing the
+angles below $0.1\,\phi_K$ already reduces $|\mu|$ by $35\%$, below $0.45\,\phi_K$ by a
+factor $4.5$, and below $0.85\,\phi_K$ by a factor $30$.
+
+\paragraph{The clash with BCS.}
+The BCS/Cooper-ladder treatment of a pairing interaction is justified when the interaction
+transfers momenta of order $\kF$: then the ladder is the one-loop RG in the Cooper channel
+and the logarithm it produces is real. Equation (\ref{eq:red}) is such a ladder, but for an
+interaction whose transfers are all $\lesssim aN\alpha\,\kF$. For such small-angle
+scattering the ladder is \emph{not} the right resummation---this sector can be solved
+exactly, and the exact answer is that it does not produce a Cooper logarithm at all. That is
+the content of the next section.
+
+\section*{2. The small-angle sector: bosonization and the pair susceptibility}
+
+\paragraph{2.1 Which angles are ``small''.}
+Let $\Rs$ be the range of the interaction, so that it transfers momenta $q\lesssim1/\Rs$.
+A transfer $q$ at angle $\phi$ to a state on the Fermi surface changes its energy by
+$\vF q_\parallel+q_\perp^2/2m$ with $q_\perp\simeq\kF\phi$. The tangential (curvature)
+term is negligible against the longitudinal one, and the Fermi surface can be treated as
+locally flat (which is what makes the sector exactly solvable), when
+\begin{equation}
+\frac{\kF^2\phi^2}{2m}\ll\vF\,q_\parallel\sim\frac{\vF}{\Rs}
+\quad\Longleftrightarrow\quad
+\phi\ll\phi_0\equiv\frac{1}{\sqrt{\kF\Rs}} .
+\label{eq:phi0}
+\end{equation}
+The small parameter of the bosonization is $1/\kF\Rs\ll1$ (interaction range much longer
+than the Fermi wavelength), and $\phi_0=(\kF\Rs)^{-1/2}$ is the angle separating the
+exactly solvable small-angle sector from the large-angle sector where the Cooper ladder is
+legitimate. For the screened Coulomb problem $\Rs\sim1/\kappa$, i.e.\
+$\phi_0\sim\sqrt{\kappa/\kF}=\sqrt{N\alpha}$; note that this is parametrically
+\emph{larger} than $\phi_K=aN\alpha$ at weak coupling---we come back to this in 3.5.
+
+\paragraph{2.2 The bosonized pair susceptibility.}
+For $\phi<\phi_0$ the Fermi surface is divided into flat patches $n$ with velocities
+$\mathbf v_n$, the density on each patch is a free boson, and a small-angle density--density
+interaction $V(q,i\nu)$ is quadratic in the bosons: the sector is Gaussian and exactly solvable
+(multidimensional bosonization). A fermion on patch $n$ is $\psi_n\propto e^{i\Phi_n}$, and
+any correlator of fermion bilinears is a free-fermion correlator times a Debye--Waller
+factor. For the pair operator on opposite patches, $P=\psi_n\psi_{\bar n}$
+($\mathbf v_{\bar n}=-\mathbf v_n$), the phases add, $P\propto e^{i(\Phi_n+\Phi_{\bar n})}$, so
+\begin{equation}
+\chi_P(x,\tau)=\chi_P^{(0)}(x,\tau)\,e^{-Q_P(x,\tau)},\qquad
+Q_P=\tfrac12\big\langle(\Phi_n+\Phi_{\bar n})^2\big\rangle_{\rm conn}
+=Q_{nn}+Q_{\bar n\bar n}+2Q_{n\bar n},
+\label{eq:DW}
+\end{equation}
+with the standard patch propagators
+\begin{equation}
+Q_{nm}(x,\tau)=\int\!\frac{d^2q}{(2\pi)^2}\frac{d\nu}{2\pi}\,
+\frac{V_{\rm RPA}(q,i\nu)\,[1-\cos(\mathbf q\cdot\mathbf x-\nu\tau)]}
+{(i\nu-\mathbf v_n\!\cdot\!\mathbf q)(i\nu-\mathbf v_m\!\cdot\!\mathbf q)} .
+\label{eq:Qnm}
+\end{equation}
+(The particle--hole bilinear on a single patch, $\psi_n^\dagger\psi_n\propto e^{i(\Phi_n-\Phi_n)}$,
+has no Debye--Waller factor at all: the density is not renormalized by forward scattering,
+the Ward identity.) Whether the pair susceptibility is ``dressed'' is therefore the question
+whether $Q_P(x,\tau)$ grows without bound at large $x,\tau$ (a logarithm gives a power law,
+$\chi_P\propto\chi_P^{(0)}(r/\Rs)^{-\gamma}$) or saturates (a finite factor, $\chi_P$ equal to
+the bare bubble up to a constant).
+
+\paragraph{2.3 The plasmon window gives a finite $Q_P$.}
+In the window $|\nu|>c\vF q$ both denominators in (\ref{eq:Qnm}) are $\simeq(i\nu)^2=-\nu^2$
+for $m=n$ and for $m=\bar n$ alike, so the four terms of (\ref{eq:DW}) add up, and the large-distance limit
+(where the cosine averages to zero) is, up to the sign convention of (\ref{eq:Qnm}),
+\begin{equation}
+\begin{aligned}
+\big|Q_P^{\rm (pl)}\big|&\simeq4\int\!\frac{d^2q}{(2\pi)^2}\int_{|\nu|>c\vF q}\!\frac{d\nu}{2\pi}\,
+\frac{2\pi\alpha}{q}\,\frac{\nu^2}{\nu^2+\Omega_q^2}\,\frac{1}{\nu^2}
+=4\int_0^{K}\!\frac{q\,dq}{2\pi}\,\frac{2\pi\alpha}{q}\,
+\frac{1}{\pi\Omega_q}\arctan\frac{\Omega_q}{c\vF q}\\
+&=\frac{4\alpha}{\pi}\int_0^{K}\frac{dq}{\Omega_q}\arctan\frac{1}{c\sqrt{2q}}
+\;\le\;2\alpha\int_0^{K}\frac{dq}{\Omega_q}=4\sqrt2\,\alpha\sqrt a .
+\end{aligned}
+\label{eq:Qpl}
+\end{equation}
+The $\theta$-function removes $|\nu|<c\vF q$ from the frequency integral, which replaces
+$1/2\Omega_q$ by $\frac{1}{\pi\Omega_q}\arctan(\Omega_q/c\vF q)$; numerically
+$|Q_P|=2.4\,\alpha$ ($1.9\,\alpha$) for $a=0.3$, $c=1$ ($c=2$), compared with the bound
+$4\sqrt2\,\alpha\sqrt a=3.1\,\alpha$. Either way the $q$-integral converges at small $q$
+because the pair weight $1/\nu^2$ is combined with the plasmon propagator
+$1/(\nu^2+\Omega_q^2)$, whose frequency integral is $\propto q^{-1/2}$---the
+same $\int d\xi/\sqrt\xi$ convergence found in the first note for the pairing kernel. There
+is no logarithm and no power law: within the plasmon window the small-angle sector multiplies the
+pair bubble by the constant $e^{-Q_P}=1+O(\alpha\sqrt a)$. [The static part of the small-angle
+sector, $|\nu|<\vF q$, $V\to2\pi\alpha/(q+\kappa)$, should be inserted here from the earlier
+bosonization note; for a static finite-range repulsion the reference result is a power-law
+suppression of $\chi_P$ with exponent $\gamma\propto V_2/\vF$
+(Miserev, Schoeller, Klinovaja, Loss, arXiv:2312.17208, Eqs.~11, 29--30), i.e.\ a
+non-singular \emph{suppression}, again nothing that could seed an instability.]
+
+\paragraph{2.4 Consequence for the gap equation.}
+The exact treatment of the small-angle sector says: the pair susceptibility dressed by
+$\phi<\phi_0$ scattering is the bare particle--particle bubble times a finite constant. The
+Cooper ladder over the same sector---which is what (\ref{eq:red}) is---instead generates the
+$\ln(\OK/E)$ of Section 1.4 and with it $T_c\sim\exp(-c^2/\alpha^2)$. That logarithm is
+an artifact of applying the ladder where it does not apply. The correct procedure is
+therefore: subtract the small-angle sector from the gap equation (it has already been
+accounted for exactly, and it contributes nothing singular), and keep the Cooper ladder only
+for $\phi>\phi_0$, where it is equivalent to the one-loop RG. This is the gap equation of
+Section 3.
+
+\section*{3. Gap equation with the small-angle sector removed}
+
+\paragraph{3.1 Kinematics of an angular cutoff.}
+We integrate over $|\phi|>\phi_0$ in (\ref{eq:gap}). The cut must be imposed in the
+variables in which it is defined, $(\xi,\phi)$, and only then transformed. The integration
+region is
+\[
+\mathcal R=\big\{(\xi,\phi):\;|\phi|>\phi_0,\;\;q(\xi,\phi)<q_{\max}\big\},\qquad
+q^2=\xi^2+\kF^2\phi^2 .
+\]
+Step 1 (fixed $\xi$, $\phi\to q$): $|\phi|>\phi_0$ means $q^2>\xi^2+\kF^2\phi_0^2$, a
+\emph{$\xi$-dependent} lower limit $q>\sqrt{\xi^2+q_f^2}$, not $q>q_f$.
+Step 2 (exchange the order): $\{\sqrt{\xi^2+q_f^2}<q<q_{\max}\}$ is the same set as
+$\{q_f<q<q_{\max},\;|\xi|<b(q)\}$ with $b(q)\equiv\sqrt{q^2-q_f^2}$, where
+\begin{equation}
+q_f\equiv\kF\phi_0=\frac{\phi_0}{N\alpha}\qquad\text{(units of $\kappa$)},
+\label{eq:qf}
+\end{equation}
+Thus transfers $q<q_f$ drop out entirely, \emph{and} for $q>q_f$ the strips
+$b(q)<|\xi|<q$ drop out as well: these are the near-forward events at large $|\xi|$ that a
+plain lower cut $q>q_f$ would keep. The $\xi$-integral of (\ref{eq:exact}) with the
+reduced range is again elementary ($\xi=q\sin\theta$, $\sin\theta_b=b/q$,
+$\tan\theta_b=b/q_f$):
+\begin{equation}
+\int_{-b}^{b}\frac{d\xi}{(w'^2+\xi^2)\sqrt{q^2-\xi^2}}
+=2\int_0^{\theta_b}\frac{d\theta}{w'^2+q^2\sin^2\theta}
+=\frac{2}{|w'|\sqrt{w'^2+q^2}}\arctan\!\Big(\frac{\sqrt{w'^2+q^2}}{|w'|}\,\frac{b}{q_f}\Big),
+\label{eq:arctan}
+\end{equation}
+which reduces to $\pi/|w'|\sqrt{w'^2+q^2}$ for $q_f\to0$. The factor
+$\frac2\pi\arctan(\cdot)$ is the fraction of the $\xi$-weight at fixed $q$ that survives
+the angular cut. Its two limits show where the angle cut and a $q$-cut differ:
+\begin{itemize}
+\item $|w'|\ll q$ (Cooper regime): the $\xi$-integral is dominated by $|\xi|\lesssim|w'|\ll q$,
+i.e.\ by on-shell events with $|\phi|\simeq q/\kF$; the fraction $\to1$ for $q>q_f$, and the
+angle cut and the $q$-cut coincide. The Cooper logarithm of events with $|\phi|>\phi_0$ is
+therefore fully retained---as it should be, since that is large-angle scattering.
+\item $|w'|\gg q$ (plasmon regime): the weight $1/\sqrt{q^2-\xi^2}$ spreads $\xi$ over the whole
+interval $(-q,q)$ (uniformly in $\theta=\arcsin(\xi/q)$), so every angle from $0$ to $q/\kF$
+occurs, and the surviving fraction is $\frac2\pi\arccos(q_f/q)<1$. Here the angle cut
+removes more than the $q$-cut.
+\end{itemize}
+\emph{Check.} I compared (\ref{eq:arctan}) inserted into (\ref{eq:exact}) with a direct
+two-dimensional integration over $(\xi,\phi)$ with the cut $|\phi|>\phi_0$ imposed
+literally, both with the small-angle kinematics (\ref{eq:q2}) and with the exact ones,
+$q^2=\xi^2+2\kF(\kF+\xi)(1-\cos\phi)$ and measure $(\kF+\xi)\,d\xi\,d\phi$ ($\kF=5\kappa$):
+\begin{center}\small
+\begin{tabular}{cccc|cccc}
+\toprule
+$w'$ & $\nu$ & $\phi_0$ & $q_{\max}$ & direct, exact & direct, small-angle & Eq.~(\ref{eq:arctan}) & plain $q>q_f$\\
+\midrule
+0.3 & 0.8 & 0.02 & 0.3 & 1.0246 & 1.0246 & 1.0245 & 1.605\\
+0.2 & 0.9 & 0.05 & 0.3 & 0.2443 & 0.2437 & 0.2437 & 0.629\\
+0.02 & 0.3 & 0.03 & 0.25 & 10.734 & 10.732 & 10.731 & 12.24\\
+0.01 & 0.5 & 0.02 & 0.3 & 76.566 & 76.561 & 76.548 & 80.92\\
+0.001 & 0.5 & 0.04 & 0.3 & 270.43 & 270.33 & 270.30 & 271.93\\
+\bottomrule
+\end{tabular}\normalsize
+\end{center}
+The reduced formula reproduces the literal angular cut to $10^{-4}$ (the residual is the
+$O(\xi/\kF)$ curvature correction); a plain lower cut on $q$ is wrong by up to a factor
+$2.6$ in the plasmon regime and becomes accurate only in the Cooper regime, exactly as the
+two limits above predict. In the gap equation the difference is quantitative, not
+qualitative: at $a=0.3$, $E=10^{-6}\kappa\vF$, $q_f=0.1K$ ($0.3K$) the angle cut gives
+$\alpha=0.97$ ($1.84$), the $q$-cut $0.87$ ($1.47$). All results of this note use the angle
+cut (\ref{eq:arctan}). The gap equation becomes
+\begin{equation}
+\boxed{\;\Delta(w)=-\frac{\alpha}{2\pi}\int dw'\int_{q_f}^{q_{\max}(\nu)}\!dq\,
+\frac{\nu^2}{\nu^2+\Omega_q^2}\;
+\frac{2}{\pi}\arctan\!\Big(\frac{\sqrt{w'^2+q^2}\sqrt{q^2-q_f^2}}{|w'|\,q_f}\Big)
+\frac{\Delta(w')}{|w'|\sqrt{w'^2+q^2}},\;}
+\label{eq:ang}
+\end{equation}
+with $q_{\max}(\nu)=\min(K,|\nu|/\vF)$: the upper limit enforces the plasmon condition
+$|\nu|>\vF q$ on the transfer (in addition to $q<K$), and the frequencies are restricted
+to $|w|,|w'|<10\,\OK$. Note what (\ref{eq:qf}) does: the cutoff is fixed in angle but,
+measured in units of the screening momentum, it moves with the coupling. The
+equation therefore depends on $\alpha$ both through its prefactor and through $q_f$.
+
+\paragraph{3.2 An exact statement: the window must be open.}
+Equation (\ref{eq:ang}) has no solution unless $q_f<K$, i.e.
+\begin{equation}
+\boxed{\;\alpha\;>\;\alpha_{\min}(\phi_0)=\frac{\phi_0}{Na}\;}
+\label{eq:bound}
+\end{equation}
+For smaller $\alpha$ the screening momentum $\kappa=N\alpha\kF$ is so small that every
+plasmon transfer $q<a\kappa$ is a scattering angle below $\phi_0$: the whole plasmon
+window lies inside the exactly-solved sector, and there is simply nothing left for the
+ladder to act on. This is the origin of a critical coupling: it does not come from a
+competition of numbers in the kernel but from the kinematic fact that
+small-angle scattering, removed, takes the entire weak-coupling plasmon window with it.
+
+\paragraph{3.3 Solution.}
+For $q_f<K$, (\ref{eq:ang}) is solved as before (logarithmic grid in $w'$, Gauss--Legendre
+in $q$, lowest eigenvalue $\mu$ of the matrix $A$ defined by $\Delta=-\alpha A\Delta$;
+$\alpha=-1/\mu$). Since $A$ depends on $\alpha$ only through $q_f$, it is convenient to
+compute $\mu(q_f)$ once on a grid of $q_f/K$ and read off the curve parametrically:
+$\alpha_c=-1/\mu(q_f)$ and, from (\ref{eq:qf}), $\phi_0=N\alpha_c\,q_f$. Results for $N=2$,
+$a=0.3$ and $1$, and infrared scales $E=10^{-4},10^{-6},10^{-8}\,\kappa\vF$ are shown in
+Fig.~\ref{fig:phi}a and in the table.
+
+\begin{figure}[t]
+\centering\includegraphics[width=\textwidth]{alphac_phi0.png}
+\caption{(a) Critical coupling of the gap equation (\ref{eq:ang}) as a function of the
+small-angle cutoff $\phi_0$, for $N=2$, two window sizes $a$ and three infrared scales
+$E$. Grey lines: the exact bound (\ref{eq:bound}). (b) The pairing eigenvalue of the naive
+equation (\ref{eq:red}) when the angles $|\phi|<q_f/\kF$ are removed (angular cut,
+Eq.~(\ref{eq:arctan})), relative to its value at $q_f=0.02K$: the solution of the naive
+equation is built from the smallest angles.}
+\label{fig:phi}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+$\alpha_c$ ($N=2$) & $\phi_0=0.05$ & $0.1$ & $0.2$ & $0.3$\\
+\midrule
+$a=0.3$, $E=10^{-4}$ & 1.17 & 1.41 & 1.77 & 2.07\\
+$a=0.3$, $E=10^{-6}$ & 0.93 & 1.13 & 1.47 & 1.75\\
+$a=0.3$, $E=10^{-8}$ & 0.81 & 0.99 & 1.31 & 1.59\\
+$a=1.0$, $E=10^{-4}$ & 0.76 & 0.87 & 1.03 & 1.14\\
+$a=1.0$, $E=10^{-6}$ & 0.59 & 0.69 & 0.83 & 0.95\\
+$a=1.0$, $E=10^{-8}$ & 0.51 & 0.60 & 0.73 & 0.85\\
+bound (\ref{eq:bound}), $a=0.3$ & 0.08 & 0.17 & 0.33 & 0.50\\
+bound (\ref{eq:bound}), $a=1.0$ & 0.025 & 0.05 & 0.10 & 0.15\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{3.4 Reading the result.}
+Three features. (i) $\alpha_c$ is of order one for any reasonable $\phi_0$: at
+$\phi_0=0.1$ it is $0.6$--$1.4$ depending on $a$ and $E$. There is no plasmon-mediated
+superconductivity at weak coupling. (ii) $\alpha_c$ increases with $\phi_0$ roughly like
+$\phi_0^{1/2}$ over the plotted range, and with the size of the window like $a^{-1/2}$
+(from $\OK\propto\sqrt a$, as in the pure-window estimate of the earlier note). (iii) At fixed
+$\phi_0$, $\alpha_c$ still decreases slowly with the infrared scale $E$. This is the
+second-order Tolmachev--Anderson mechanism of Section 1.4 operating inside the
+\emph{surviving} part of the window, $q_f<q<K$ (angles between $\phi_0$ and $\phi_K$):
+for those transfers the Cooper ladder is legitimate, so the $\ln(\OK/E)$ is real, and
+$\alpha_c(E)$ approaches the bound (\ref{eq:bound}) as $E\to0$, but only like
+$[\ln(\OK/E)]^{-1/2}$, i.e.\ never in practice: at $\phi_0=0.1$, $a=0.3$ the bound is $0.17$,
+while $\alpha_c=1.0$ at $E=10^{-8}\kappa\vF$. The practical statement is therefore
+$\alpha_c\simeq1$, with the exact bound (\ref{eq:bound}) as the $T=0$ limit.
+
+\paragraph{3.5 Closing the loop: $\phi_0$ for the screened Coulomb problem.}
+With $\Rs\sim1/\kappa$ in (\ref{eq:phi0}), $\phi_0\sim\sqrt{\kappa/\kF}=\sqrt{N\alpha}$, and the
+bound (\ref{eq:bound}) becomes a condition on $\alpha$ alone:
+$\alpha>\sqrt{N\alpha}/Na\Leftrightarrow N\alpha>1/a^2$, i.e.
+\begin{equation}
+\alpha_c\gtrsim\frac{1}{Na^2}\qquad(\Rs\sim1/\kappa),
+\end{equation}
+which is $0.5$ for $N=2$, $a=1$ and $5$ for $a=0.3$---order one at best, and this is only the
+$T=0$ bound; the finite-$E$ values of Fig.~\ref{fig:phi}a lie above it. Equivalently: at weak
+coupling $\phi_K=aN\alpha\ll\sqrt{N\alpha}=\phi_0$, so the \emph{entire} plasmon window is
+inside the bosonizable sector. The identification $\Rs\sim1/\kappa$ is the natural one for
+the statically screened interaction; for the dynamically screened one the range at transfer
+frequency $\nu$ is $1/q_\nu$, which is longer still and only strengthens the conclusion.
+
+\section*{4. Conclusions}
+\begin{enumerate}
+\item The BCS-like gap equation for the plasmon interaction, Eq.~(\ref{eq:red}), is
+built entirely from scattering angles $\phi\le aN\alpha\ll1$ (Eqs.~\ref{eq:phiK},
+\ref{eq:lam}, Fig.~\ref{fig:phi}b). Its solution at arbitrarily weak coupling,
+$T_c\sim\OK e^{-c^2/\alpha^2}$, is a Cooper-ladder logarithm generated by small-angle
+scattering.
+\item Small-angle scattering, $\phi<\phi_0=(\kF\Rs)^{-1/2}$, is exactly solvable by
+bosonization, and the exact result is that it does not dress the pair susceptibility in any
+relevant way: in the plasmon window the Debye--Waller exponent of the pair correlator is the
+finite number (\ref{eq:Qpl}), $O(\alpha\sqrt a)$, with no logarithm. The Cooper ladder is the
+wrong resummation for this sector and must be replaced by the exact (trivial) answer; the
+ladder is kept only for $\phi>\phi_0$, where it is the one-loop RG.
+\item The resulting gap equation (\ref{eq:ang}) has no solution below
+$\alpha_{\min}=\phi_0/Na$ (the window closes), and in practice a critical coupling
+$\alpha_c\simeq1$ (Fig.~\ref{fig:phi}a). With $\Rs\sim1/\kappa$ the bound alone gives
+$\alpha_c\gtrsim1/Na^2$. Plasmon-mediated superconductivity at weak coupling is excluded;
+at $\alpha\gtrsim1$ the window reaches large angles and the one-loop treatment is no
+longer controlled.
+\end{enumerate}
+\end{document}
