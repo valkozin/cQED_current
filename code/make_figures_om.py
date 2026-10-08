@@ -48,7 +48,7 @@ def fig():
     a.semilogy(gs[1:], I5[k2][1:], color=C3, lw=1.0, ls='--', label=r'adiabatic, seed $10^{-5}$')
     a.semilogy(gs[1:], np.maximum(Im[km][1:], 1e-9), color=C2, label='mean field')
     if cut:
-        a.semilogy([r['g'] for r in cut], [r['I'] for r in cut], 'o', ms=3.3, color=C1, zorder=5,
+        a.semilogy([r['g'] for r in cut], [r['I'] for r in cut], 'o', ms=3.3, mfc='none', mew=0.8, color=C1, zorder=5,
                    label=r'full DMRG (fermionic $\hat I$)')
         b.plot([r['g'] for r in cut], [r['n'] for r in cut], 'o', ms=3.0, color=C1, zorder=5)
     a.set_ylim(1e-8, 5e-2); a.set_xlim(0, 1.2); a.tick_params(labelbottom=False)

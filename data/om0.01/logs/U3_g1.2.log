@@ -1,0 +1,3 @@
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.13e-05
+U=3.000 g=1.200 chi=64 E0=-22.9262421612 n=0.0765 I_bond=7.90827e-07 I_vir=-4.16061e-07 p_tail=4.7e-07 t=18s
+U=3.000 g=1.200 chi=128 E0=-22.9272968499 n=0.0772 I_bond=1.39496e-06 I_vir=1.38747e-06 p_tail=4.7e-07 t=38s
