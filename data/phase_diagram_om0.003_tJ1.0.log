@@ -1,0 +1,101 @@
+U=4.00  g_class=0.080  max|I_seed3|=0.0004  max n=4.18  min delta/om=1.0e+00
+U=4.10  g_class=0.081  max|I_seed3|=0.0004  max n=4.17  min delta/om=1.0e+00
+U=4.20  g_class=0.082  max|I_seed3|=0.0004  max n=4.16  min delta/om=1.0e+00
+U=4.30  g_class=0.083  max|I_seed3|=0.0004  max n=4.15  min delta/om=1.0e+00
+U=4.40  g_class=0.084  max|I_seed3|=0.0004  max n=4.14  min delta/om=1.0e+00
+U=4.50  g_class=0.085  max|I_seed3|=0.0004  max n=4.13  min delta/om=1.0e+00
+U=4.60  g_class=0.086  max|I_seed3|=0.0004  max n=4.12  min delta/om=1.0e+00
+U=4.70  g_class=0.087  max|I_seed3|=0.0056  max n=2.65  min delta/om=6.0e-06
+U=4.80  g_class=0.088  max|I_seed3|=0.0138  max n=3.95  min delta/om=3.1e-09
+U=4.90  g_class=0.089  max|I_seed3|=0.0234  max n=5.81  min delta/om=1.1e-10
+U=5.00  g_class=0.090  max|I_seed3|=0.0343  max n=7.76  min delta/om=9.8e-11
+U=5.10  g_class=0.090  max|I_seed3|=0.0457  max n=9.43  min delta/om=9.6e-11
+U=5.20  g_class=0.091  max|I_seed3|=0.0530  max n=10.22  min delta/om=9.7e-11
+U=5.30  g_class=0.092  max|I_seed3|=0.0613  max n=10.74  min delta/om=9.9e-11
+U=5.40  g_class=0.093  max|I_seed3|=0.0694  max n=10.59  min delta/om=1.0e-10
+U=5.50  g_class=0.094  max|I_seed3|=0.0724  max n=10.44  min delta/om=1.0e-10
+U=5.60  g_class=0.095  max|I_seed3|=0.0708  max n=10.28  min delta/om=1.1e-10
+U=5.70  g_class=0.096  max|I_seed3|=0.0692  max n=10.12  min delta/om=1.1e-10
+U=5.80  g_class=0.097  max|I_seed3|=0.0676  max n=9.96  min delta/om=1.2e-10
+U=5.90  g_class=0.098  max|I_seed3|=0.0659  max n=9.80  min delta/om=1.4e-10
+U=6.00  g_class=0.099  max|I_seed3|=0.0647  max n=9.65  min delta/om=1.6e-10
+U=6.10  g_class=0.100  max|I_seed3|=0.0639  max n=9.49  min delta/om=2.2e-10
+U=6.20  g_class=0.101  max|I_seed3|=0.0631  max n=9.32  min delta/om=3.0e-10
+U=6.30  g_class=0.102  max|I_seed3|=0.0622  max n=9.16  min delta/om=4.4e-10
+U=6.40  g_class=0.103  max|I_seed3|=0.0613  max n=8.99  min delta/om=6.5e-10
+U=6.50  g_class=0.104  max|I_seed3|=0.0604  max n=8.83  min delta/om=9.3e-10
+U=6.60  g_class=0.105  max|I_seed3|=0.0594  max n=8.66  min delta/om=1.4e-09
+U=6.70  g_class=0.106  max|I_seed3|=0.0585  max n=8.50  min delta/om=2.0e-09
+U=6.80  g_class=0.107  max|I_seed3|=0.0575  max n=8.38  min delta/om=2.8e-09
+U=6.90  g_class=0.108  max|I_seed3|=0.0565  max n=8.26  min delta/om=4.0e-09
+U=7.00  g_class=0.109  max|I_seed3|=0.0554  max n=8.13  min delta/om=5.7e-09
+U=7.10  g_class=0.110  max|I_seed3|=0.0544  max n=8.01  min delta/om=8.1e-09
+U=7.20  g_class=0.111  max|I_seed3|=0.0532  max n=7.89  min delta/om=1.2e-08
+U=7.30  g_class=0.112  max|I_seed3|=0.0521  max n=7.76  min delta/om=1.6e-08
+U=7.40  g_class=0.113  max|I_seed3|=0.0509  max n=7.63  min delta/om=2.3e-08
+U=7.50  g_class=0.114  max|I_seed3|=0.0499  max n=7.50  min delta/om=3.1e-08
+U=7.60  g_class=0.115  max|I_seed3|=0.0492  max n=7.37  min delta/om=4.2e-08
+U=7.70  g_class=0.116  max|I_seed3|=0.0486  max n=7.25  min delta/om=5.7e-08
+U=7.80  g_class=0.117  max|I_seed3|=0.0479  max n=7.12  min delta/om=7.6e-08
+U=7.90  g_class=0.118  max|I_seed3|=0.0473  max n=6.99  min delta/om=1.0e-07
+U=8.00  g_class=0.119  max|I_seed3|=0.0466  max n=6.88  min delta/om=1.3e-07
+U=8.10  g_class=0.120  max|I_seed3|=0.0460  max n=6.79  min delta/om=1.8e-07
+U=8.20  g_class=0.121  max|I_seed3|=0.0453  max n=6.69  min delta/om=2.3e-07
+U=8.30  g_class=0.122  max|I_seed3|=0.0445  max n=6.60  min delta/om=3.0e-07
+U=8.40  g_class=0.123  max|I_seed3|=0.0438  max n=6.50  min delta/om=4.0e-07
+U=8.50  g_class=0.124  max|I_seed3|=0.0430  max n=6.40  min delta/om=5.1e-07
+U=8.60  g_class=0.125  max|I_seed3|=0.0422  max n=6.30  min delta/om=6.5e-07
+U=8.70  g_class=0.126  max|I_seed3|=0.0413  max n=6.20  min delta/om=8.2e-07
+U=8.80  g_class=0.127  max|I_seed3|=0.0403  max n=6.10  min delta/om=1.0e-06
+U=8.90  g_class=0.128  max|I_seed3|=0.0397  max n=6.00  min delta/om=1.3e-06
+U=9.00  g_class=0.129  max|I_seed3|=0.0392  max n=5.90  min delta/om=1.7e-06
+U=9.10  g_class=0.131  max|I_seed3|=0.0387  max n=5.80  min delta/om=2.1e-06
+U=9.20  g_class=0.132  max|I_seed3|=0.0382  max n=5.70  min delta/om=2.7e-06
+U=9.30  g_class=0.133  max|I_seed3|=0.0376  max n=5.62  min delta/om=3.4e-06
+U=9.40  g_class=0.134  max|I_seed3|=0.0371  max n=5.55  min delta/om=4.2e-06
+U=9.50  g_class=0.135  max|I_seed3|=0.0365  max n=5.47  min delta/om=5.2e-06
+U=9.60  g_class=0.136  max|I_seed3|=0.0359  max n=5.39  min delta/om=6.4e-06
+U=9.70  g_class=0.137  max|I_seed3|=0.0353  max n=5.31  min delta/om=7.8e-06
+U=9.80  g_class=0.138  max|I_seed3|=0.0345  max n=5.23  min delta/om=9.5e-06
+U=9.90  g_class=0.139  max|I_seed3|=0.0337  max n=5.15  min delta/om=1.2e-05
+U=10.00  g_class=0.140  max|I_seed3|=0.0330  max n=5.07  min delta/om=1.4e-05
+U=10.10  g_class=0.141  max|I_seed3|=0.0326  max n=4.99  min delta/om=1.7e-05
+U=10.20  g_class=0.142  max|I_seed3|=0.0323  max n=4.90  min delta/om=2.0e-05
+U=10.30  g_class=0.143  max|I_seed3|=0.0319  max n=4.82  min delta/om=2.4e-05
+U=10.40  g_class=0.144  max|I_seed3|=0.0314  max n=4.76  min delta/om=2.9e-05
+U=10.50  g_class=0.145  max|I_seed3|=0.0310  max n=4.69  min delta/om=3.5e-05
+U=10.60  g_class=0.147  max|I_seed3|=0.0305  max n=4.63  min delta/om=4.1e-05
+U=10.70  g_class=0.148  max|I_seed3|=0.0299  max n=4.56  min delta/om=4.8e-05
+U=10.80  g_class=0.149  max|I_seed3|=0.0292  max n=4.50  min delta/om=5.7e-05
+U=10.90  g_class=0.150  max|I_seed3|=0.0284  max n=4.43  min delta/om=6.7e-05
+U=11.00  g_class=0.151  max|I_seed3|=0.0280  max n=4.36  min delta/om=7.9e-05
+U=11.10  g_class=0.152  max|I_seed3|=0.0276  max n=4.30  min delta/om=9.3e-05
+U=11.20  g_class=0.153  max|I_seed3|=0.0273  max n=4.23  min delta/om=1.1e-04
+U=11.30  g_class=0.154  max|I_seed3|=0.0269  max n=4.16  min delta/om=1.3e-04
+U=11.40  g_class=0.155  max|I_seed3|=0.0265  max n=4.10  min delta/om=1.5e-04
+U=11.50  g_class=0.156  max|I_seed3|=0.0260  max n=4.05  min delta/om=1.7e-04
+U=11.60  g_class=0.158  max|I_seed3|=0.0255  max n=3.99  min delta/om=1.9e-04
+U=11.70  g_class=0.159  max|I_seed3|=0.0248  max n=3.94  min delta/om=2.2e-04
+U=11.80  g_class=0.160  max|I_seed3|=0.0243  max n=3.89  min delta/om=2.5e-04
+U=11.90  g_class=0.161  max|I_seed3|=0.0240  max n=3.84  min delta/om=2.8e-04
+U=12.00  g_class=0.162  max|I_seed3|=0.0237  max n=3.79  min delta/om=3.2e-04
+MF U=4.00 max|I|=7.56e-02 max n=11.233
+MF U=4.25 max|I|=7.00e-02 max n=10.640
+MF U=4.50 max|I|=6.46e-02 max n=10.028
+MF U=4.75 max|I|=6.13e-02 max n=9.398
+MF U=5.00 max|I|=5.78e-02 max n=8.880
+MF U=5.25 max|I|=5.39e-02 max n=8.407
+MF U=5.50 max|I|=4.98e-02 max n=7.924
+MF U=5.75 max|I|=4.74e-02 max n=7.486
+MF U=6.00 max|I|=4.48e-02 max n=7.116
+MF U=6.25 max|I|=4.20e-02 max n=6.740
+MF U=6.50 max|I|=3.92e-02 max n=6.390
+MF U=6.75 max|I|=3.73e-02 max n=6.096
+MF U=7.00 max|I|=3.54e-02 max n=5.798
+MF U=7.25 max|I|=3.33e-02 max n=5.526
+MF U=7.50 max|I|=3.13e-02 max n=5.288
+MF U=7.75 max|I|=2.99e-02 max n=5.080
+MF U=8.00 max|I|=2.84e-02 max n=4.993
+MF U=8.25 max|I|=2.68e-02 max n=4.910
+MF U=8.50 max|I|=2.55e-02 max n=4.831
+MF U=8.75 max|I|=2.44e-02 max n=4.755
