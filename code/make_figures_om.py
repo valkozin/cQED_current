@@ -14,8 +14,8 @@ import phase_diagram_v2 as pdv2
 
 args = sys.argv[1:] + ['0.01', '1e-3', '2', '1.2', '0.5'][len(sys.argv[1:]):]
 OM, SEED, UCUT, GMAX, TJ = (float(x) for x in args[:5])
-TAG = '%g' % OM + ('' if TJ == 0.5 else '_tJ%g' % TJ)
-PATTERN = D + ('udot_phi*.json' if TJ == 0.5 else 'tJ%g/udot_phi*.json' % TJ)
+TAG = '%g' % OM + ('' if TJ == 0.5 else '_tJ%.1f' % TJ)
+PATTERN = D + ('udot_phi*.json' if TJ == 0.5 else 'tJ%.1f/udot_phi*.json' % TJ)
 
 
 def u_c():

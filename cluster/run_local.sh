@@ -14,4 +14,4 @@ grep -v '^\s*$' "$JOBS" | xargs -P "$P" -L 1 bash -c '
   D=../data/om${OM}${TJ:+_tJ$TJ}; mkdir -p $D/logs; OUT=$D/dmrg_U${U}_g${G}.json
   LAST=$(echo "$@" | sed -n "s/.*--chis [0-9,]*,\([0-9]*\).*/\1/p")
   if [ -f "$OUT" ] && grep -q "\"chi\": $LAST," "$OUT" && { ! echo "$@" | grep -q -- --excited || grep -q "\"excited\"" "$OUT"; }; then exit 0; fi
-  python run_dmrg_point.py "$U" "$G" "$OM" "$SEED" "$OUT" --Nph 30 --sweeps 20 "$@" > $D/logs/U${U}_g${G}.log 2>&1'
+  python run_dmrg_point.py "$U" "$G" "$OM" "$SEED" "$OUT" --sweeps 20 "$@" > $D/logs/U${U}_g${G}.log 2>&1'

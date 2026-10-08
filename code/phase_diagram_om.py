@@ -3,7 +3,7 @@
 These are the reference lines/maps for the full-DMRG runs of cluster/dmrg_om0.01.sbatch.
 
 usage: python phase_diagram_om.py [omega [tJ]]   -> ../data/phase_diagram_om<omega>[_tJ<tJ>].json
-tJ = 0.5 (default) uses data/udot_phi*.json; other tJ use data/tJ<tJ>/udot_phi*.json (U range = DMRG nodes).
+tJ = 0.5 (default) uses data/udot_phi*.json; other tJ use data/tJ<tJ:.1f>/udot_phi*.json (U range = DMRG nodes).
 """
 import sys, json
 import numpy as np
@@ -15,8 +15,8 @@ from hf_udot import hf_energy, mf_point
 
 omega = float(sys.argv[1]) if len(sys.argv) > 1 else 0.01
 tJ = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
-pattern = '../data/udot_phi*.json' if tJ == 0.5 else '../data/tJ%g/udot_phi*.json' % tJ
-suffix = '' if tJ == 0.5 else '_tJ%g' % tJ
+pattern = '../data/udot_phi*.json' if tJ == 0.5 else '../data/tJ%.1f/udot_phi*.json' % tJ
+suffix = '' if tJ == 0.5 else '_tJ%.1f' % tJ
 seed = 1e-3
 pd.omega = omega
 pd.gs = np.round(np.arange(0, 1.2001, 0.02), 4)
