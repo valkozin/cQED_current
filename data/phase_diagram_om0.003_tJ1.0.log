@@ -99,3 +99,16 @@ MF U=8.00 max|I|=2.84e-02 max n=4.993
 MF U=8.25 max|I|=2.68e-02 max n=4.910
 MF U=8.50 max|I|=2.55e-02 max n=4.831
 MF U=8.75 max|I|=2.44e-02 max n=4.755
+MF U=9.00 max|I|=2.32e-02 max n=4.682
+MF U=9.25 max|I|=2.19e-02 max n=4.611
+MF U=9.50 max|I|=2.10e-02 max n=4.544
+MF U=9.75 max|I|=2.01e-02 max n=4.479
+MF U=10.00 max|I|=1.92e-02 max n=4.416
+MF U=10.25 max|I|=1.83e-02 max n=4.355
+MF U=10.50 max|I|=1.76e-02 max n=4.297
+MF U=10.75 max|I|=1.68e-02 max n=4.241
+MF U=11.00 max|I|=1.61e-02 max n=4.186
+MF U=11.25 max|I|=1.54e-02 max n=4.133
+MF U=11.50 max|I|=1.48e-02 max n=4.083
+MF U=11.75 max|I|=1.42e-02 max n=4.033
+MF U=12.00 max|I|=1.36e-02 max n=3.985

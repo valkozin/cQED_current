@@ -3,7 +3,7 @@ evaluated as the expectation value of the microscopic fermionic current operator
 I = i t_J sum_s <e^{i phi_cl} D c^dag_1s c_0s - h.c.>  (code/run_dmrg_point.py, data/om<omega>/*.json).
 Reference lines/maps: adiabatic theory and mean field at the same omega (data/phase_diagram_om<omega>.json).
 
-usage: python make_figures_om.py [omega seed Ucut gmax [tJ]]   -> ../figs/fig_phase_diagram_om<omega>[_tJ<tJ>].{pdf,png}
+usage: python make_figures_om.py [omega seed Ucut gmax [tJ [lin|log]]]   -> ../figs/fig_phase_diagram_om<omega>[_tJ<tJ>].{pdf,png}
        defaults 0.01 1e-3 2 1.2 0.5;  e.g. python make_figures_om.py 0.003 1e-2 1 0.8
 """
 import glob, json, sys
@@ -12,8 +12,9 @@ from matplotlib.colors import LogNorm
 from make_figures import plt, C1, C2, C3, C4, INK, MUTED, D, F, tag
 import phase_diagram_v2 as pdv2
 
-args = sys.argv[1:] + ['0.01', '1e-3', '2', '1.2', '0.5'][len(sys.argv[1:]):]
+args = sys.argv[1:] + ['0.01', '1e-3', '2', '1.2', '0.5', 'log'][len(sys.argv[1:]):]
 OM, SEED, UCUT, GMAX, TJ = (float(x) for x in args[:5])
+YSCALE = args[5]           # current axis of panel (a)
 TAG = '%g' % OM + ('' if TJ == 0.5 else '_tJ%.1f' % TJ)
 PATTERN = D + ('udot_phi*.json' if TJ == 0.5 else 'tJ%.1f/udot_phi*.json' % TJ)
 
@@ -80,13 +81,17 @@ def fig():
     seeds = [SEED] + [s for s in (1e-3, 1e-5) if s != SEED]
     Ib, nb = bo_cut(UCUT, gl, seeds)
     for s, ls, lw in zip(seeds, ('-', ':', '--'), (1.3, 1.0, 1.0)):
-        a.semilogy(gl, Ib[s], color=C3, lw=lw, ls=ls, label=r'adiabatic, seed $%s$' % sci(s))
-    a.semilogy(gs[1:], np.maximum(Im[km][1:], 1e-9), color=C2, label='mean field')
+        a.plot(gl, Ib[s], color=C3, lw=lw, ls=ls, label=r'adiabatic, seed $%s$' % sci(s))
+    a.plot(gs[1:], np.maximum(Im[km][1:], 1e-9), color=C2, label='mean field')
     if cut:
-        a.semilogy([r['g'] for r in cut], [r['I'] for r in cut], 'o', ms=3.3, mfc='none', mew=0.8, color=C1, zorder=5,
+        a.plot([r['g'] for r in cut], [r['I'] for r in cut], 'o', ms=3.3, mfc='none', mew=0.8, color=C1, zorder=5,
                    label=r'full DMRG (fermionic $\hat I$), seed $%s$' % sci(SEED))
         b.plot([r['g'] for r in cut], [r['n'] for r in cut], 'o', ms=3.0, color=C1, zorder=5)
-    a.set_ylim(1e-8, 5e-2); a.set_xlim(0, GMAX); a.tick_params(labelbottom=False)
+    if YSCALE == 'log':
+        a.set_yscale('log'); a.set_ylim(1e-8, 5e-2)
+    else:
+        a.set_ylim(0, None)
+    a.set_xlim(0, GMAX); a.tick_params(labelbottom=False)
     a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7)
     a.set_title(r'$\hbar\omega=%g\,t$, $U=%gt$' % (OM, UCUT) + ('' if TJ == 0.5 else r', $t_J=%gt$' % TJ), fontsize=7.5); tag(a, '(a)')
     b.plot(gl, nb, color=C3); b.plot(gs, nm[km], color=C2)
@@ -95,11 +100,16 @@ def fig():
     norm = LogNorm(1e-2 * SEED, 3e-2)        # floor: far below the linear response to the seed
     axs = [fig.add_subplot(gsp[:, c]) for c in (1, 2, 3)]
     if rows:
-        Ug, gg = sorted(set(r['U'] for r in rows)), sorted(set(round(r['g'], 3) for r in rows if abs(r['g'] * 10 - round(r['g'] * 10)) < 1e-6))
+        # columns: the g values of the coarse map; the (finer) cut row takes its nearest point
+        Ug = sorted(set(r['U'] for r in rows))
+        gg = sorted(set(round(r['g'], 3) for r in rows if r['U'] != UCUT)) or sorted(set(round(r['g'], 3) for r in rows))
         M = np.full((len(Ug), len(gg)), np.nan)
-        for r in rows:
-            if round(r['g'], 3) in gg:
-                M[Ug.index(r['U']), gg.index(round(r['g'], 3))] = r['I']
+        for i, U in enumerate(Ug):
+            rU = [r for r in rows if r['U'] == U]
+            for j, gc in enumerate(gg):
+                r = min(rU, key=lambda r: abs(r['g'] - gc))
+                if abs(r['g'] - gc) < 0.011:
+                    M[i, j] = r['I']
         pc0 = axs[0].pcolormesh(gg, Ug, M, cmap='Blues', norm=norm, shading='nearest', rasterized=True)
         for U in Ug:
             axs[0].plot([GMAX], [U], '<', ms=2.3, color=MUTED, clip_on=False)
