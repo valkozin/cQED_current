@@ -77,12 +77,11 @@ def fig():
         b.plot([r['g'] for r in cut], [r['n'] for r in cut], 'o', ms=3.0, color=C1, zorder=5)
     a.set_ylim(1e-8, 5e-2); a.set_xlim(0, GMAX); a.tick_params(labelbottom=False)
     a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7)
-    b.legend(*a.get_legend_handles_labels(), fontsize=5.0, loc='upper left', frameon=False)
-    a.set_title(r'$U=%gt$' % UCUT, fontsize=8); tag(a, '(a)')
+    a.set_title(r'$\hbar\omega=%g\,t$, $U=%gt$' % (OM, UCUT), fontsize=7.5); tag(a, '(a)')
     b.plot(gl, nb, color=C3); b.plot(gs, nm[km], color=C2)
     b.set_xlabel('$g$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$', fontsize=7); b.set_xlim(0, GMAX)
     # ---- (b) full-DMRG map of the fermionic current (coarse grid)
-    norm = LogNorm(1e-6, 3e-2)
+    norm = LogNorm(1e-2 * SEED, 3e-2)        # floor: far below the linear response to the seed
     axs = [fig.add_subplot(gsp[:, c]) for c in (1, 2, 3)]
     if rows:
         Ug, gg = sorted(set(r['U'] for r in rows)), sorted(set(round(r['g'], 3) for r in rows if abs(r['g'] * 10 - round(r['g'] * 10)) < 1e-6))
@@ -120,7 +119,7 @@ def fig():
                         (pc2, axs[2], r'$|\langle I\rangle|_{\rm MF}$ $(et/\hbar)$')):
         cb = fig.colorbar(pc, ax=ax, pad=0.02, aspect=28, location='bottom', shrink=0.9)
         cb.set_label(lab, fontsize=6.5); cb.ax.tick_params(labelsize=6)
-    fig.suptitle(r'$\hbar\omega=%g\,t$' % OM, fontsize=8, x=0.02, ha='left')
+    fig.legend(*a.get_legend_handles_labels(), loc='outside upper center', ncol=5, fontsize=5.6, frameon=False)
     fig.savefig(F + 'fig_phase_diagram_om%s.pdf' % TAG); fig.savefig(F + 'fig_phase_diagram_om%s.png' % TAG)
     plt.close(fig)
     return rows
