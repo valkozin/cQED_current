@@ -97,11 +97,13 @@ def product_state(model, ring_states, photon=0):
     return MPS.from_product_state(model.lat.mps_sites(), st, bc='finite')
 
 
-def run_dmrg(model, ring_states, chi=300, sweeps=30, orthogonal_to=(), psi0=None, verbose=False):
+def run_dmrg(model, ring_states, chi=300, sweeps=30, orthogonal_to=(), psi0=None, verbose=False, chi_list=None):
+    """chi_list=None ramps the bond dimension 64 -> chi (the first 4 sweeps are truncated to 64, which also
+    erases what a warm start psi0 carried); pass e.g. {0: chi} to keep a warm start."""
     psi = psi0.copy() if psi0 is not None else product_state(model, ring_states)
     opts = {'mixer': True, 'max_E_err': 1e-10, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': 6,
             'trunc_params': {'chi_max': chi, 'svd_min': 1e-11},
-            'chi_list': {0: 64, 4: chi}}
+            'chi_list': chi_list if chi_list is not None else {0: 64, 4: chi}}
     info = dmrg.run(psi, model, opts, orthogonal_to=list(orthogonal_to))
     return info['E'], psi
 
