@@ -33,6 +33,8 @@ def fig():
     gs = np.array(ex['gs']); fe = ex['fine']; Ue = np.array(fe['Us']); mf = ex['mf']
     I3, I5 = np.abs(np.array(fe['I_seed3'])), np.abs(np.array(fe['I_seed5']))
     dl, gcl = np.array(fe['delta']), np.array(fe['g_class'])
+    odd = np.array([[sx == 'odd' for sx in row] for row in fe['sector']])
+    dl = np.where(odd, dl, np.nan)                   # tunnel splitting of the current states: doublet (pi) sector only
     Um, Im, nm = np.array(mf['Us']), np.abs(np.array(mf['I'])), np.array(mf['n'])
     rows = load_dmrg()
     cut = sorted([r for r in rows if r['U'] == 2.0], key=lambda r: r['g'])
@@ -47,10 +49,11 @@ def fig():
     a.semilogy(gs[1:], np.maximum(Im[km][1:], 1e-9), color=C2, label='mean field')
     if cut:
         a.semilogy([r['g'] for r in cut], [r['I'] for r in cut], 'o', ms=3.3, color=C1, zorder=5,
-                   label=r'full DMRG, $\langle\hat I\rangle_{c^\dagger c}$')
+                   label=r'full DMRG (fermionic $\hat I$)')
         b.plot([r['g'] for r in cut], [r['n'] for r in cut], 'o', ms=3.0, color=C1, zorder=5)
     a.set_ylim(1e-8, 5e-2); a.set_xlim(0, 1.2); a.tick_params(labelbottom=False)
-    a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7); a.legend(fontsize=5.0, loc='lower right')
+    a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7)
+    b.legend(*a.get_legend_handles_labels(), fontsize=5.0, loc='upper left', frameon=False)
     a.set_title(r'$U=2t$', fontsize=8); tag(a, '(a)')
     b.plot(gs, fe['n'][k2], color=C3); b.plot(gs, nm[km], color=C2)
     b.set_xlabel('$g$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$', fontsize=7); b.set_xlim(0, 1.2)
@@ -85,6 +88,7 @@ def fig():
         ax.plot(gcl[ok], Ue[ok], color=C4, ls='--', lw=0.9)
         ax.axhline(Uc, color=MUTED, lw=0.5, ls=':')
         ax.set_xlabel('$g$'); ax.set_xlim(0, 1.2); ax.set_ylim(0, 10); tag(ax, lab)
+        ax.text(0.6, 0.3, 'singlet (0-junction)', fontsize=5.3, color=MUTED, ha='center')
     axs[0].set_ylabel(r'$U/t$')
     for ax in axs[1:]:
         ax.tick_params(labelleft=False)
