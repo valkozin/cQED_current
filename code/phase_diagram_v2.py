@@ -26,9 +26,9 @@ gs = np.round(np.arange(0, 0.4001, 0.01), 4)
 Ufine = np.round(np.arange(0, 10.0001, 0.1), 3)
 
 
-def load_curves():
+def load_curves(pattern='../data/udot_phi*.json'):
     rows = []
-    for f in sorted(glob.glob('../data/udot_phi*.json')):
+    for f in sorted(glob.glob(pattern)):
         rows += json.load(open(f))
     curves = {}
     for U in sorted(set(round(r['U'], 6) for r in rows)):

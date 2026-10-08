@@ -15,7 +15,7 @@ current-carrying regime the seeded ground state is one well of a double well who
 ~2 I* phi_cl) are below the DMRG energy resolution, and a vacuum start converges to an unpolarized superposition.
 The energy of the run is stored, so vacuum and polarized starts can be compared.
 
-usage: python run_dmrg_point.py U g omega seed outfile [--chis 256,512,768] [--Nph 20] [--sweeps 30] [--excited] [--alpha A]
+usage: python run_dmrg_point.py U g omega seed outfile [--chis 256,512,768] [--Nph 20] [--sweeps 30] [--excited] [--alpha A] [--tJ 0.5]
 """
 import argparse, json, time, warnings
 import numpy as np
@@ -30,13 +30,13 @@ ap.add_argument('U', type=float); ap.add_argument('g', type=float)
 ap.add_argument('omega', type=float); ap.add_argument('seed', type=float); ap.add_argument('outfile')
 ap.add_argument('--chis', default='256,512,768'); ap.add_argument('--Nph', type=int, default=20)
 ap.add_argument('--sweeps', type=int, default=30); ap.add_argument('--excited', action='store_true')
-ap.add_argument('--alpha', type=float, default=0.0)
+ap.add_argument('--alpha', type=float, default=0.0); ap.add_argument('--tJ', type=float, default=0.5)
 a = ap.parse_args()
 
-p = dict(sc_ring(14, 1.0, 1.0, 0.5, Udot=a.U, dot=True), omega=a.omega, g=a.g, phi_cl=a.seed, Nph=a.Nph)
+p = dict(sc_ring(14, 1.0, 1.0, a.tJ, Udot=a.U, dot=True), omega=a.omega, g=a.g, phi_cl=a.seed, Nph=a.Nph)
 m = RingCavityModel(p)
 init = ['up'] + ['up', 'down'] * 6 + ['empty']            # odd fermion parity, S^z = 1/2 (doublet / pi sector)
-out = dict(U=a.U, g=a.g, omega=a.omega, seed=a.seed, Nph=a.Nph, L=14, t=1.0, Delta=1.0, tJ=0.5, alpha=a.alpha, stages=[])
+out = dict(U=a.U, g=a.g, omega=a.omega, seed=a.seed, Nph=a.Nph, L=14, t=1.0, Delta=1.0, tJ=a.tJ, alpha=a.alpha, stages=[])
 psi = None
 if a.alpha:
     k = np.arange(a.Nph)

@@ -3,8 +3,8 @@ evaluated as the expectation value of the microscopic fermionic current operator
 I = i t_J sum_s <e^{i phi_cl} D c^dag_1s c_0s - h.c.>  (code/run_dmrg_point.py, data/om<omega>/*.json).
 Reference lines/maps: adiabatic theory and mean field at the same omega (data/phase_diagram_om<omega>.json).
 
-usage: python make_figures_om.py [omega seed Ucut gmax]   -> ../figs/fig_phase_diagram_om<omega>.{pdf,png}
-       defaults 0.01 1e-3 2 1.2;  e.g. python make_figures_om.py 0.003 1e-2 1 0.8
+usage: python make_figures_om.py [omega seed Ucut gmax [tJ]]   -> ../figs/fig_phase_diagram_om<omega>[_tJ<tJ>].{pdf,png}
+       defaults 0.01 1e-3 2 1.2 0.5;  e.g. python make_figures_om.py 0.003 1e-2 1 0.8
 """
 import glob, json, sys
 import numpy as np
@@ -12,9 +12,20 @@ from matplotlib.colors import LogNorm
 from make_figures import plt, C1, C2, C3, C4, INK, MUTED, D, F, tag
 import phase_diagram_v2 as pdv2
 
-args = sys.argv[1:] + ['0.01', '1e-3', '2', '1.2'][len(sys.argv[1:]):]
-OM, SEED, UCUT, GMAX = float(args[0]), float(args[1]), float(args[2]), float(args[3])
-TAG = '%g' % OM
+args = sys.argv[1:] + ['0.01', '1e-3', '2', '1.2', '0.5'][len(sys.argv[1:]):]
+OM, SEED, UCUT, GMAX, TJ = (float(x) for x in args[:5])
+TAG = '%g' % OM + ('' if TJ == 0.5 else '_tJ%g' % TJ)
+PATTERN = D + ('udot_phi*.json' if TJ == 0.5 else 'tJ%g/udot_phi*.json' % TJ)
+
+
+def u_c():
+    """0-pi transition: E_odd - E_even at phi = 0 changes sign (linear interpolation between DMRG nodes)"""
+    rows = sum([json.load(open(f)) for f in glob.glob(PATTERN)], [])
+    r0 = sorted([(r['U'], r['odd'] - r['even']) for r in rows if abs(r['phi']) < 1e-9])
+    for (u1, d1), (u2, d2) in zip(r0, r0[1:]):
+        if d1 > 0 >= d2:
+            return u1 + (u2 - u1) * d1 / (d1 - d2)
+    return r0[0][0]
 
 
 def sci(x):
@@ -24,7 +35,7 @@ def sci(x):
 def bo_cut(U, gs, seeds):
     """adiabatic current and photon number along g at fixed U (doublet sector), for several seeds"""
     pdv2.omega = OM
-    c = pdv2.coeffs(pdv2.load_curves())['odd'][U].astype(complex)
+    c = pdv2.coeffs(pdv2.load_curves(PATTERN))['odd'][U].astype(complex)
     I = {s: [] for s in seeds}; n = []
     for g in gs:
         for s in seeds:
@@ -77,7 +88,7 @@ def fig():
         b.plot([r['g'] for r in cut], [r['n'] for r in cut], 'o', ms=3.0, color=C1, zorder=5)
     a.set_ylim(1e-8, 5e-2); a.set_xlim(0, GMAX); a.tick_params(labelbottom=False)
     a.set_ylabel(r'$|\langle I\rangle|$ $(et/\hbar)$', fontsize=7)
-    a.set_title(r'$\hbar\omega=%g\,t$, $U=%gt$' % (OM, UCUT), fontsize=7.5); tag(a, '(a)')
+    a.set_title(r'$\hbar\omega=%g\,t$, $U=%gt$' % (OM, UCUT) + ('' if TJ == 0.5 else r', $t_J=%gt$' % TJ), fontsize=7.5); tag(a, '(a)')
     b.plot(gl, nb, color=C3); b.plot(gs, nm[km], color=C2)
     b.set_xlabel('$g$'); b.set_ylabel(r'$\langle a^\dagger a\rangle$', fontsize=7); b.set_xlim(0, GMAX)
     # ---- (b) full-DMRG map of the fermionic current (coarse grid)
@@ -102,16 +113,16 @@ def fig():
     axs[1].set_title(r'tunnel splitting $\delta/\hbar\omega$', fontsize=7.0, loc='right')
     # ---- (d) mean field, same colour scale as (b)
     pc2 = axs[2].pcolormesh(gs, Um, np.maximum(Im, 1e-9), cmap='Blues', norm=norm, shading='nearest', rasterized=True)
-    nmf = np.where(Um[:, None] >= 0.9, nm, np.nan)
+    Uc = u_c(); Ulo, Uhi = (0, 10) if TJ == 0.5 else (Ue[0], Ue[-1])
+    nmf = np.where(Um[:, None] >= Uc, nm, np.nan)
     axs[2].contour(gs, Um, nmf, levels=[1.0], colors=C2, linewidths=0.9, linestyles='--')
     axs[2].set_title('mean field', fontsize=7.0, loc='right')
-    Uc = 0.91
     for ax, lab in zip(axs, ('(b)', '(c)', '(d)')):
         ok = Ue >= Uc
         ax.plot(gcl[ok], Ue[ok], color=C4, ls='--', lw=0.9)
         ax.axhline(Uc, color=MUTED, lw=0.5, ls=':')
-        ax.set_xlabel('$g$'); ax.set_xlim(0, GMAX); ax.set_ylim(0, 10); tag(ax, lab)
-        ax.text(GMAX / 2, 0.3, 'singlet (0-junction)', fontsize=5.3, color=MUTED, ha='center')
+        ax.set_xlabel('$g$'); ax.set_xlim(0, GMAX); ax.set_ylim(Ulo, Uhi); tag(ax, lab)
+        ax.text(GMAX / 2, Ulo + 0.3 * (Uc - Ulo) if TJ != 0.5 else 0.3, 'singlet (0-junction)', fontsize=5.3, color=MUTED, ha='center')
     axs[0].set_ylabel(r'$U/t$')
     for ax in axs[1:]:
         ax.tick_params(labelleft=False)
