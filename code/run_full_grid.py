@@ -98,7 +98,7 @@ for g in glist:
         psiC = prod(X0)
         for sd in anneal:
             pa = dict(p, phi_cl=sd)
-            Ea, psiC, _ = run(RingCavityModel(pa), psiC, 16, min_sweeps=6)
+            Ea, psiC, _ = run(RingCavityModel(pa), psiC, 10, min_sweeps=4)
         cands['C'] = run(m, psiC, max_sweeps, min_sweeps=6)
     best = min(cands, key=lambda k: cands[k][0])
     E0, psi, stat = cands[best]
