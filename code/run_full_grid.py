@@ -58,7 +58,7 @@ def rebind(psi, m):
 
 
 def run(m, psi, sweeps, min_sweeps=10):
-    opts = {'mixer': True, 'max_E_err': 1e-12, 'max_S_err': 1e-2, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': min_sweeps,
+    opts = {'mixer': True, 'max_E_err': 1e-11, 'max_S_err': 1e-2, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': min_sweeps,
             'trunc_params': {'chi_max': chi, 'svd_min': 1e-11}, 'chi_list': {0: 64, 2: chi},
             'mixer_params': {'amplitude': 1e-5, 'decay': 1.5, 'disable_after': 6}}
     info = dmrg.run(psi, m, opts)
@@ -93,7 +93,8 @@ for g in glist:
         return MPS.from_product_state(m.lat.mps_sites(), st, bc='finite')
     if 'B' in starts or not cands:
         cands['B'] = run(m, prod(X0), max_sweeps)
-    if 'C' in starts and X0 > 0.3:
+    XA = float(observables(m, cands['A'][1])['X']) if 'A' in cands else -1.0
+    if 'C' in starts and X0 > 0.3 and XA < 0.85 * X0:   # skip the annealed start when the warm start is already polarized
         psiC = prod(X0)
         for sd in anneal:
             pa = dict(p, phi_cl=sd)
