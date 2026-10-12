@@ -96,7 +96,7 @@ for g in glist:
     if 'B' in starts or not cands:
         cands['B'] = run(m, prod(X0), max_sweeps)
     XA = float(observables(m, cands['A'][1])['X']) if 'A' in cands else -1.0
-    if 'C' in starts and X0 > 0.3 and XA < 0.85 * X0:   # skip the annealed start when the warm start is already polarized
+    if 'C' in starts and X0 > 0.3 and XA < 0.95 * X0:   # skip the annealed start when the warm start is already polarized
         psiC = prod(X0)
         for sd in anneal:
             pa = dict(p, phi_cl=sd)
