@@ -144,6 +144,32 @@
   {Pollmann}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
   {SciPost Phys. Lect. Notes}\ ,\ \bibinfo {pages} {5}} (\bibinfo {year}
   {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Manucharyan}\ \emph {et~al.}(2009)\citenamefont
+  {Manucharyan}, \citenamefont {Koch}, \citenamefont {Glazman},\ and\
+  \citenamefont {Devoret}}]{Manucharyan2009}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~E.}\ \bibnamefont
+  {Manucharyan}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Koch}},
+  \bibinfo {author} {\bibfnamefont {L.~I.}\ \bibnamefont {Glazman}},\ and\
+  \bibinfo {author} {\bibfnamefont {M.~H.}\ \bibnamefont {Devoret}},\
+  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf
+  {\bibinfo {volume} {326}},\ \bibinfo {pages} {113} (\bibinfo {year}
+  {2009})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gr\"unhaupt}\ \emph {et~al.}(2019)\citenamefont
+  {Gr\"unhaupt} \emph {et~al.}}]{Grunhaupt2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
+  {Gr\"unhaupt}} \emph {et~al.},\ }\href@noop {} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nat. Mater.}\ }\textbf {\bibinfo {volume} {18}},\
+  \bibinfo {pages} {816} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Dmytruk}\ and\ \citenamefont
+  {Schir\'o}(2021)}]{Dmytruk2021}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {O.}~\bibnamefont
+  {Dmytruk}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Schir\'o}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
+  {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {103}},\ \bibinfo {pages}
+  {075131} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Li}\ \emph {et~al.}(2020)\citenamefont {Li},
   \citenamefont {Golez}, \citenamefont {Mazza}, \citenamefont {Millis},
   \citenamefont {Georges},\ and\ \citenamefont {Eckstein}}]{Li2020}%
@@ -157,14 +183,6 @@
   {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
   {101}},\ \bibinfo {pages} {205140} (\bibinfo {year} {2020})}\BibitemShut
   {NoStop}%
-\bibitem [{\citenamefont {Dmytruk}\ and\ \citenamefont
-  {Schir\'o}(2021)}]{Dmytruk2021}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {O.}~\bibnamefont
-  {Dmytruk}}\ and\ \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
-  {Schir\'o}},\ }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal}
-  {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {103}},\ \bibinfo {pages}
-  {075131} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Glazman}\ and\ \citenamefont
   {Matveev}(1989)}]{GlazmanMatveev1989}%
   \BibitemOpen
@@ -241,24 +259,6 @@
   {Bauer}} \emph {et~al.},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {92}},\ \bibinfo
   {pages} {217001} (\bibinfo {year} {2004})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Manucharyan}\ \emph {et~al.}(2009)\citenamefont
-  {Manucharyan}, \citenamefont {Koch}, \citenamefont {Glazman},\ and\
-  \citenamefont {Devoret}}]{Manucharyan2009}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.~E.}\ \bibnamefont
-  {Manucharyan}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Koch}},
-  \bibinfo {author} {\bibfnamefont {L.~I.}\ \bibnamefont {Glazman}},\ and\
-  \bibinfo {author} {\bibfnamefont {M.~H.}\ \bibnamefont {Devoret}},\
-  }\href@noop {} {\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf
-  {\bibinfo {volume} {326}},\ \bibinfo {pages} {113} (\bibinfo {year}
-  {2009})}\BibitemShut {NoStop}%
-\bibitem [{\citenamefont {Gr\"unhaupt}\ \emph {et~al.}(2019)\citenamefont
-  {Gr\"unhaupt} \emph {et~al.}}]{Grunhaupt2019}%
-  \BibitemOpen
-  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {L.}~\bibnamefont
-  {Gr\"unhaupt}} \emph {et~al.},\ }\href@noop {} {\bibfield  {journal}
-  {\bibinfo  {journal} {Nat. Mater.}\ }\textbf {\bibinfo {volume} {18}},\
-  \bibinfo {pages} {816} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
 \bibitem [{\citenamefont {Ioffe}\ \emph {et~al.}(1999)\citenamefont {Ioffe},
   \citenamefont {Geshkenbein}, \citenamefont {Feigel'man}, \citenamefont
   {Fauch\`ere},\ and\ \citenamefont {Blatter}}]{Ioffe1999}%
