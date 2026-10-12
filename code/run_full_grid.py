@@ -7,7 +7,9 @@ Two independent initial states are used at every g and the lower-energy result i
   A: warm start from the converged state at the previous g (the MPS sites are re-bound to the new model,
      so that the photon displacement operator D = exp(i g X) used in all observables carries the *current* g);
   B: product state with the photon in a coherent state |alpha>, 2 alpha = X_cl, where X_cl is the minimum of the
-     classical Landau energy omega X^2/4 + E_2 cos(2 g X) (E_2(U) taken from an earlier run; only a starting guess).
+     classical Landau energy omega X^2/4 + E_2 cos(2 g X) (E_2(U) taken from an earlier run; only a starting guess);
+  C: seed annealing: start B converged with a larger seed (1e-2, then 3e-3), then relaxed at the final seed.
+     A approaches the polarized state from the vacuum side, C from the polarized side; they bracket the ground state.
 Recorded for every g: E0, <X>, <X^2>, <n>, the gauge-invariant junction current
   I = -dH/dphi_cl = i tJ sum_s (e^{i phi_cl} D c^dag_{1s} c_{0s} - h.c.)                       ('I_bond'),
 the virial value omega <X>/(2 g) ('I_vir'; exact sum rule <[H,P]>=0 for any eigenstate), the Fock distribution,
@@ -28,7 +30,8 @@ glist = [float(x) for x in sys.argv[7].split(',')]
 chi, Nph0, outfile = int(sys.argv[8]), int(sys.argv[9]), sys.argv[10]
 max_sweeps = int(sys.argv[11]) if len(sys.argv) > 11 else 40
 Delta = float(os.environ.get('DELTA', 1.0))
-starts = os.environ.get('STARTS', 'AB')
+starts = os.environ.get('STARTS', 'AC')
+anneal = [float(x) for x in os.environ.get('ANNEAL', '1e-2,3e-3').split(',')]   # seeds used before the final one in start C
 
 hg = json.load(open(os.path.join(os.path.dirname(__file__), '../data/harm_guess_Nr14.json')))
 Ug = np.array(sorted(float(u) for u in hg)); E2g = PchipInterpolator(Ug, [hg[str(u) if str(u) in hg else repr(u)]['odd'][2] for u in Ug])
@@ -54,8 +57,8 @@ def rebind(psi, m):
     psi = psi.copy(); psi.sites = list(m.lat.mps_sites()); return psi
 
 
-def run(m, psi, sweeps):
-    opts = {'mixer': True, 'max_E_err': 1e-12, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': 10,
+def run(m, psi, sweeps, min_sweeps=10):
+    opts = {'mixer': True, 'max_E_err': 1e-12, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': min_sweeps,
             'trunc_params': {'chi_max': chi, 'svd_min': 1e-11}, 'chi_list': {0: 64, 2: chi},
             'mixer_params': {'amplitude': 1e-5, 'decay': 1.5, 'disable_after': 6}}
     info = dmrg.run(psi, m, opts)
@@ -82,13 +85,20 @@ for g in glist:
     cands = {}
     if psi_prev is not None and 'A' in starts and psi_prev.sites[0].dim == Nph:
         cands['A'] = run(m, rebind(psi_prev, m), max_sweeps)
-    if 'B' in starts or not cands:
-        ph0 = coherent(Nph, X0) if X0 > 0.3 else 0
+    def prod(X_init):
+        ph0 = coherent(Nph, X_init) if X_init > 0.3 else 0
         st = [ph0] + [None] * Nr
         for r, s in enumerate(init):
             st[m.pos[r]] = s
-        psiB = MPS.from_product_state(m.lat.mps_sites(), st, bc='finite')
-        cands['B'] = run(m, psiB, max_sweeps)
+        return MPS.from_product_state(m.lat.mps_sites(), st, bc='finite')
+    if 'B' in starts or not cands:
+        cands['B'] = run(m, prod(X0), max_sweeps)
+    if 'C' in starts and X0 > 0.3:
+        psiC = prod(X0)
+        for sd in anneal:
+            pa = dict(p, phi_cl=sd)
+            Ea, psiC, _ = run(RingCavityModel(pa), psiC, 16, min_sweeps=6)
+        cands['C'] = run(m, psiC, max_sweeps, min_sweeps=6)
     best = min(cands, key=lambda k: cands[k][0])
     E0, psi, stat = cands[best]
     o = observables(m, psi)
@@ -101,8 +111,8 @@ for g in glist:
                X_starts={k: float(observables(m, cands[k][1])['X']) for k in cands}, **stat,
                nd=float(psi.expectation_value('Ntot', [m.pos[0]])[0].real), time=time.time() - t0)
     out['rows'].append(rec)
-    print('U=%.3f g=%.4f E0=%.10f X=%.4f X2=%.3f n=%.3f I_bond=%.4e I_vir=%.4e dev=%.1e | Xcl=%.2f start=%s dE_AB=%.1e X_AB=%s | chi=%d terr=%.1e sw=%d dE=%.1e pmax=%.1e Nph=%d t=%.0fs' %
+    print('U=%.3f g=%.4f E0=%.10f X=%.4f X2=%.3f n=%.3f I_bond=%.4e I_vir=%.4e dev=%.1e | Xcl=%.2f start=%s dE_starts=%.1e X_starts=%s | chi=%d terr=%.1e sw=%d dE=%.1e pmax=%.1e Nph=%d t=%.0fs' %
           (U, g, E0, o['X'], o['X2'], o['n'], o['I'], Ivir, abs(o['I'] - Ivir), X0, best,
-           (cands['A'][0] - cands['B'][0]) if len(cands) == 2 else float('nan'),
+           (max(c[0] for c in cands.values()) - min(c[0] for c in cands.values())),
            ','.join('%.2f' % v for v in rec['X_starts'].values()), o['chi_max'], stat['trunc_err'], stat['sweeps'], stat['dE_last'], o['pn'][-1], Nph, rec['time']), flush=True)
     json.dump(out, open(outfile, 'w'))
