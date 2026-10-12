@@ -90,10 +90,14 @@ def fig_phase_diagram(full, eff, mf):
     norm = Normalize(0, 1)
     for ax, Z, ttl in zip(axs, (Zd, Ze, Zm), ('(a) DMRG, full model', '(b) effective circuit model', '(c) mean field')):
         im = ax.pcolormesh(Uf, gf, Z.T, cmap='Blues', norm=norm, shading='gouraud', rasterized=True)
-        ax.contour(Uf, gf, Zd.T, levels=[0.5], colors=C['dmrg'], linewidths=1.2)
         ax.contour(Uf, gf, Ze.T, levels=[0.5], colors=C['eff'], linewidths=1.2, linestyles='dashed')
         ax.contour(Uf, gf, Zm.T, levels=[0.5], colors=C['mf'], linewidths=1.2, linestyles='dotted')
-        ax.plot(Ucl[E2 > 0], gcl[E2 > 0], color='w', lw=0.9, ls=(0, (3, 2)))
+        ax.plot(Ucl[E2 > 0], gcl[E2 > 0], color='#7b3294', lw=0.9, ls=(0, (4, 2, 1, 2)))
+        # DMRG threshold at the computed U values: first g with |I| > 0.5 I_c (half a grid step as error bar)
+        gcd = [(U, full[U]['g'][np.argmax(np.abs(full[U]['I']) / Icf(U) > 0.5)]) for U in Us if np.max(np.abs(full[U]['I']) / Icf(U)) > 0.5]
+        if gcd:
+            ax.errorbar([u for u, _ in gcd], [g - 0.005 for _, g in gcd], yerr=0.005, fmt='o', color=C['dmrg'], ms=3, mfc='w', mew=0.8, elinewidth=0.7, capsize=0, zorder=5)
+            ax.plot([u for u, _ in gcd], [g - 0.005 for _, g in gcd], '-', color=C['dmrg'], lw=0.8, zorder=4)
         ax.set_xlabel(r'$U/\Delta$'); ax.set_title(ttl, fontsize=8.5, loc='left')
         ax.set_xlim(0.5, 8); ax.set_ylim(0.02, 0.40)
         ax2 = ax.secondary_xaxis('top', functions=(lambda u: u, lambda u: u)); ax2.set_xticks([])
