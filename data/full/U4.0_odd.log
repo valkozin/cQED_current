@@ -3,3 +3,4 @@
 U=4.000 g=0.0200 E0=-16.6876138329 X=0.0008 X2=1.009 n=0.000 I_bond=1.6209e-05 I_vir=1.5469e-05 dev=7.4e-07 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=8.1e-11 sw=12 dE=9.9e-14 pmax=4.7e-119 Nph=50 t=41s
 U=4.000 g=0.0300 E0=-16.6876178630 X=0.0013 X2=1.020 n=0.000 I_bond=1.6552e-05 I_vir=1.6172e-05 dev=3.8e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=8.9e-11 sw=11 dE=2.0e-13 pmax=2.4e-84 Nph=50 t=41s
 U=4.000 g=0.0400 E0=-16.6876235743 X=0.0018 X2=1.036 n=0.000 I_bond=1.7020e-05 I_vir=1.6254e-05 dev=7.7e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=9.5e-11 sw=11 dE=1.0e-12 pmax=1.6e-64 Nph=50 t=43s
+U=4.000 g=0.0500 E0=-16.6876310418 X=0.0024 X2=1.058 n=0.001 I_bond=1.7739e-05 I_vir=1.7430e-05 dev=3.1e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=9.9e-11 sw=11 dE=2.5e-14 pmax=7.5e-42 Nph=50 t=43s
