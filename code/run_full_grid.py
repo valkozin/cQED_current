@@ -74,7 +74,7 @@ if os.path.exists(outfile):  # resume
     glist = [g for g in glist if round(g, 6) not in done]
     print('resuming, %d points left' % len(glist), flush=True)
 init = init_states(Nr)[sector]
-psi_prev = None
+psi_prev = None; X_prev = 0.0
 for g in glist:
     X0 = X_classical(g)
     Nph = int(np.clip(1.6 * (X0 / 2) ** 2 + 36, Nph0, 90))
@@ -84,7 +84,9 @@ for g in glist:
     t0 = time.time()
     cands = {}
     if psi_prev is not None and 'A' in starts and psi_prev.sites[0].dim == Nph:
-        cands['A'] = run(m, rebind(psi_prev, m), max_sweeps)
+        # a warm start from an already polarized state is cheap when it works and creeps when it fails: cap its sweeps
+        swA = 16 if (X0 > 0.3 and X_prev > 0.5 * X0) else max_sweeps
+        cands['A'] = run(m, rebind(psi_prev, m), swA)
     def prod(X_init):
         ph0 = coherent(Nph, X_init) if X_init > 0.3 else 0
         st = [ph0] + [None] * Nr
@@ -103,7 +105,7 @@ for g in glist:
     best = min(cands, key=lambda k: cands[k][0])
     E0, psi, stat = cands[best]
     o = observables(m, psi)
-    psi_prev = psi
+    psi_prev = psi; X_prev = abs(o['X'])
     Ivir = omega * o['X'] / (2 * g) if g > 0 else float('nan')
     B = sum(psi.expectation_value_term([('D', 0), ('Cd' + s, m.pos[1]), ('C' + s, m.pos[0])]) for s in 'ud') * np.exp(1j * seed)
     rec = dict(g=g, E0=E0, X=o['X'], X2=o['X2'], n=o['n'], I_bond=o['I'], I_vir=Ivir, B=[B.real, B.imag],
