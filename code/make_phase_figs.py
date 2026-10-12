@@ -51,9 +51,14 @@ def load_mf():
     return json.load(open(os.path.join(D, 'mf_grid_Nr10.json')))
 
 
-def Ic_of(eff):
-    Us = np.array(eff['Us']); Ic = np.array(eff['Ic'])
-    return PchipInterpolator(Us, Ic)
+def Ic_of(eff, sector='odd'):
+    """critical current of the pi (doublet) sector junction, I_c = max_phi |dE_odd/dphi|, interpolated in U"""
+    Us = np.array(eff['Us']); ph = np.linspace(0, 2 * np.pi, 4001); m = np.arange(5)
+    Ic = []
+    for U in eff['Us']:
+        c = np.array(eff['harm'][str(U)][sector])
+        Ic.append(np.max(np.abs(np.sum(-m[None, :] * c[None, :] * np.sin(np.outer(ph, m)), 1))))
+    return PchipInterpolator(Us, np.array(Ic))
 
 
 def grid_map(Us, gs, vals, Uf, gf):
@@ -68,10 +73,11 @@ def fig_phase_diagram(full, eff, mf):
     Icf = Ic_of(eff)
     gf = np.linspace(0.02, 0.40, 191); Uf = np.linspace(0.5, 8.0, 301)
     # --- DMRG map
-    Us = sorted(full); rows = []
+    Us = sorted(U for U in full if len(full[U]['g']) >= 30 and full[U]['g'].max() >= 0.39); rows = []
     for U in Us:
         d = full[U]; rows.append(np.interp(gf, d['g'], np.abs(d['I'])) / Icf(U))
-    Zd = PchipInterpolator(np.array(Us), np.array(rows), axis=0)(Uf)
+    Zd = PchipInterpolator(np.array(Us), np.array(rows), axis=0)(np.clip(Uf, min(Us), max(Us)))
+    Zd[(Uf < min(Us)) | (Uf > max(Us))] = np.nan
     # --- effective & MF maps
     Ze = grid_map(eff['Us'], eff['gs'], [np.abs(r) / Icf(U) for U, r in zip(eff['Us'], eff['I'])], Uf, gf)
     gm = np.array(mf['gs']); Im = [np.abs(np.array(r)) for r in mf['I']]
@@ -155,14 +161,19 @@ def fig_convergence(full, eff):
     ax = axs[0]
     for U in sorted(full):
         d = full[U]
-        ax.semilogy(d['g'], np.abs(d['I'] - d['Ivir']) / Icf(U) + 1e-12, '.', ms=3)
+        ax.semilogy(d['g'], np.abs(d['I'] - d['Ivir']) / Icf(U) + 1e-12, '.', ms=3, color='0.3')
     ax.set_xlabel('$g$'); ax.set_ylabel(r'$|\langle I\rangle-\hbar\omega\langle X\rangle/2g|/I_c$'); ax.set_title('(a) current sum rule', fontsize=8.5, loc='left')
     # (b) bracket between the two starts
     ax = axs[1]
     for U in sorted(full):
-        d = full[U]
-        ax.plot(d['g'], (d['Xhi'] - d['Xlo']) * d['g'] / (np.pi / 2), '.', ms=3)
-    ax.set_xlabel('$g$'); ax.set_ylabel(r'$g(\langle X\rangle_{\rm C}-\langle X\rangle_{\rm A})/(\pi/2)$'); ax.set_title('(b) initial-state dependence', fontsize=8.5, loc='left')
+        d = full[U]; dPhi = (d['Xhi'] - d['Xlo']) * d['g'] / (np.pi / 2)
+        res = d['dEst'] > 3e-7
+        ax.plot(d['g'][res], dPhi[res], 'o', ms=3, mfc='w', mew=0.7, color='0.5')
+        ax.plot(d['g'][~res], dPhi[~res], 'o', ms=3, color='#c0392b')
+    ax.plot([], [], 'o', ms=3, mfc='w', mew=0.7, color='0.5', label=r'resolved by energy ($\Delta E>3\times10^{-7}$)')
+    ax.plot([], [], 'o', ms=3, color='#c0392b', label=r'bracket ($\Delta E<3\times10^{-7}$)')
+    ax.legend(loc='upper right'); ax.set_ylim(-0.02, 0.6)
+    ax.set_xlabel('$g$'); ax.set_ylabel(r'$|\Phi_{\rm C}-\Phi_{\rm A}|/(\Phi_0/2)$'); ax.set_title('(b) two initial states', fontsize=8.5, loc='left')
     # (c) chi dependence at U=2 if available
     ax = axs[2]
     for f, lab in (('bench/full2_Nr10_U2_chi300.json', r'$\chi=300$ (no annealing)'), ('full/U2.0_odd.json', r'$\chi=300$'), ('full_chi400/U2.0_odd.json', r'$\chi=400$'), ('full_seed1e-4/U2.0_odd.json', r'seed $10^{-4}$')):
