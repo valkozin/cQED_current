@@ -23,3 +23,15 @@ final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.41e-0
   super().__init__(sites, bc, unit_cell_width)
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.34e-02
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.14e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.44e-03
+U=3.000 g=0.1500 E0=-16.2125691449 X=1.0746 X2=12.713 n=2.791 I_bond=2.6504e-03 I_vir=2.6472e-03 dev=3.2e-06 | Xcl=3.99 start=A dE_starts=3.3e-07 X_starts=1.07,2.49 | chi=300 terr=3.0e-10 sw=41 dE=4.4e-09 pmax=1.9e-08 Nph=50 t=804s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.50e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.50e-02
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=7.54e-04
+U=3.000 g=0.1600 E0=-16.2129421915 X=4.1787 X2=19.102 n=4.481 I_bond=9.6492e-03 I_vir=9.6501e-03 dev=9.0e-07 | Xcl=4.54 start=C dE_starts=2.1e-06 X_starts=2.69,4.18 | chi=300 terr=2.1e-10 sw=23 dE=6.6e-12 pmax=1.6e-10 Nph=50 t=635s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.96e-04
+U=3.000 g=0.1700 E0=-16.2133879863 X=4.5719 X2=22.263 n=5.314 I_bond=9.9378e-03 I_vir=9.9371e-03 dev=6.9e-07 | Xcl=4.84 start=A dE_starts=0.0e+00 X_starts=4.57 | chi=300 terr=2.0e-10 sw=41 dE=2.1e-10 pmax=1.4e-10 Nph=50 t=253s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.71e-04
+U=3.000 g=0.1800 E0=-16.2138565259 X=4.7904 X2=24.061 n=5.798 I_bond=9.8337e-03 I_vir=9.8336e-03 dev=1.2e-07 | Xcl=5.01 start=A dE_starts=0.0e+00 X_starts=4.79 | chi=300 terr=1.8e-10 sw=41 dE=2.0e-10 pmax=1.5e-10 Nph=50 t=242s
