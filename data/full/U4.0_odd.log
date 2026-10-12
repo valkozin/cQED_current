@@ -39,3 +39,8 @@ final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.49e-0
   super().__init__(sites, bc, unit_cell_width)
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.67e-02
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.74e-04
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=8.00e-04
+U=4.000 g=0.1900 E0=-16.6884623624 X=3.3586 X2=14.509 n=3.329 I_bond=6.5308e-03 I_vir=6.5317e-03 dev=9.1e-07 | Xcl=4.03 start=C dE_starts=5.4e-07 X_starts=1.38,3.36 | chi=300 terr=1.6e-10 sw=41 dE=2.4e-09 pmax=2.4e-09 Nph=50 t=663s
+U=4.000 g=0.2000 E0=-16.6887405363 X=3.6654 X2=16.461 n=3.858 I_bond=6.7749e-03 I_vir=6.7718e-03 dev=3.1e-06 | Xcl=4.22 start=A dE_starts=0.0e+00 X_starts=3.67 | chi=300 terr=1.6e-10 sw=11 dE=9.0e-12 pmax=3.7e-11 Nph=50 t=48s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.00e-04
+U=4.000 g=0.2100 E0=-16.6890304040 X=3.8576 X2=17.637 n=4.185 I_bond=6.7901e-03 I_vir=6.7876e-03 dev=2.5e-06 | Xcl=4.32 start=A dE_starts=0.0e+00 X_starts=3.86 | chi=300 terr=1.6e-10 sw=17 dE=9.4e-10 pmax=1.1e-09 Nph=50 t=80s
