@@ -2,3 +2,5 @@
   super().__init__(sites, bc, unit_cell_width)
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.69e-05
 U=2.000 g=0.1000 E0=-15.7455212630 X=0.0356 X2=2.171 n=0.159 I_bond=1.3284e-04 I_vir=1.3169e-04 dev=1.1e-06 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.04 | chi=400 terr=7.8e-12 sw=27 dE=9.3e-12 pmax=8.3e-12 Nph=50 t=202s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=4.99e-05
+U=2.000 g=0.1100 E0=-15.7456028821 X=0.1014 X2=3.534 n=0.457 I_bond=3.4143e-04 I_vir=3.4058e-04 dev=8.5e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.10 | chi=400 terr=9.6e-12 sw=29 dE=9.7e-12 pmax=1.5e-11 Nph=50 t=252s
