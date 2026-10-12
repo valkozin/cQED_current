@@ -35,3 +35,8 @@ final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.96e-0
 U=3.000 g=0.1700 E0=-16.2133879863 X=4.5719 X2=22.263 n=5.314 I_bond=9.9378e-03 I_vir=9.9371e-03 dev=6.9e-07 | Xcl=4.84 start=A dE_starts=0.0e+00 X_starts=4.57 | chi=300 terr=2.0e-10 sw=41 dE=2.1e-10 pmax=1.4e-10 Nph=50 t=253s
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.71e-04
 U=3.000 g=0.1800 E0=-16.2138565259 X=4.7904 X2=24.061 n=5.798 I_bond=9.8337e-03 I_vir=9.8336e-03 dev=1.2e-07 | Xcl=5.01 start=A dE_starts=0.0e+00 X_starts=4.79 | chi=300 terr=1.8e-10 sw=41 dE=2.0e-10 pmax=1.5e-10 Nph=50 t=242s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.49e-04
+U=3.000 g=0.1900 E0=-16.2143235605 X=4.9006 X2=24.964 n=6.054 I_bond=9.5305e-03 I_vir=9.5304e-03 dev=1.0e-07 | Xcl=5.08 start=A dE_starts=0.0e+00 X_starts=4.90 | chi=300 terr=1.8e-10 sw=41 dE=1.3e-10 pmax=4.3e-11 Nph=50 t=240s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.04e-04
+U=3.000 g=0.2000 E0=-16.2147755391 X=4.9435 X2=25.267 n=6.158 I_bond=9.1331e-03 I_vir=9.1331e-03 dev=8.9e-09 | Xcl=5.10 start=A dE_starts=0.0e+00 X_starts=4.94 | chi=300 terr=1.7e-10 sw=41 dE=7.2e-11 pmax=7.8e-11 Nph=50 t=236s
+U=3.000 g=0.2100 E0=-16.2152051144 X=4.9414 X2=25.165 n=6.158 I_bond=8.6938e-03 I_vir=8.6945e-03 dev=7.0e-07 | Xcl=5.08 start=A dE_starts=0.0e+00 X_starts=4.94 | chi=300 terr=1.6e-10 sw=14 dE=2.5e-12 pmax=9.7e-12 Nph=50 t=79s
