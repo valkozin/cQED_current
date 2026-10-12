@@ -58,7 +58,7 @@ def rebind(psi, m):
 
 
 def run(m, psi, sweeps, min_sweeps=10):
-    opts = {'mixer': True, 'max_E_err': 1e-12, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': min_sweeps,
+    opts = {'mixer': True, 'max_E_err': 1e-12, 'max_S_err': 1e-2, 'max_trunc_err': 1.0, 'max_sweeps': sweeps, 'min_sweeps': min_sweeps,
             'trunc_params': {'chi_max': chi, 'svd_min': 1e-11}, 'chi_list': {0: 64, 2: chi},
             'mixer_params': {'amplitude': 1e-5, 'decay': 1.5, 'disable_after': 6}}
     info = dmrg.run(psi, m, opts)
