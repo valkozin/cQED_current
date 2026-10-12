@@ -2,3 +2,4 @@
   super().__init__(sites, bc, unit_cell_width)
 U=0.850 g=0.0200 E0=-15.2270550907 X=0.0023 X2=1.027 n=0.000 I_bond=5.0420e-05 I_vir=4.1811e-05 dev=8.6e-06 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=3.8e-10 sw=11 dE=1.4e-12 pmax=2.0e-121 Nph=50 t=42s
 U=0.850 g=0.0300 E0=-15.2270676575 X=0.0043 X2=1.063 n=0.001 I_bond=5.4335e-05 I_vir=5.2481e-05 dev=1.9e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=4.1e-10 sw=11 dE=4.9e-12 pmax=1.4e-65 Nph=50 t=47s
+U=0.850 g=0.0400 E0=-15.2270860311 X=0.0062 X2=1.123 n=0.004 I_bond=6.0054e-05 I_vir=5.7485e-05 dev=2.6e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=4.4e-10 sw=41 dE=3.5e-11 pmax=1.3e-15 Nph=50 t=148s
