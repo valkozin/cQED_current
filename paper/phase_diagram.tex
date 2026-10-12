@@ -98,9 +98,50 @@ with the same seed), is evaluated on the same grid.
 
 \paragraph*{Phase diagram.}
 Figure~\ref{fig:phaseUG} shows $|\langle I\rangle|/I_c(U)$, with $I_c(U)$ the critical current of
-the junction at $g=0$, from the full DMRG (a), the effective circuit model (b) and mean field (c).
-\TODO{Results: U_c, g_c(U), comparison, agreement levels, maximal current, photon number, the
-0'/pi' region, MF failures.}
+the $\pi$ junction at $g=0$, from the full DMRG (a), the effective circuit model (b) and mean field (c);
+Fig.~\ref{fig:phaseslices} shows cuts. The exact diagram has three regions.
+(i) For $U<U_c^{\pi'}=\TODO{0.83}\Delta$ the ground state of the loop is the singlet $0$ junction at every
+flux, the orbital response is diamagnetic and the mode stays in its vacuum for all
+$g\le0.4$ ($\langle a^\dagger a\rangle<\TODO{}$, $|\langle I\rangle|<\TODO{}I_c$, linear in the seed).
+(ii) For $U>U_c^{\pi'}$ and $g>g_c(U)$ the mode condenses: at $U=2\Delta$ the photon number rises from
+$0.5$ at $g=0.11$ to $5.7$ at $g=0.13$ and $7.3$ at $g=0.14$, where the current reaches
+$0.96\,I_c$; it then decreases as $I\simeq(2e/\hbar)\hbar\omega\varphi^\star/2g^2$, because the condensate
+flux saturates at $\Phi_0/2$ while the inductance $\propto g^2/\hbar\omega$ grows [Eq.~\eqref{eq:sumrule}].
+The threshold $g_c(U)$ (contour $|\langle I\rangle|=0.5I_c$) rises from $0.10$ at $U=\Delta$ to $0.13$, $0.19$ and $0.31$ at
+$U=2,4,6\Delta$, following the decrease of $E_J(U)$. It lies systematically \emph{above} the classical
+line $\beta=1$ (white), by $\Delta g=0.02$ at $U=2\Delta$ and $0.11$ at $U=6\Delta$: the zero-point
+motion of the flux opposes the condensation, and the shift grows as $E_J/\hbar\omega$ decreases
+from $10$ to $3.2$. For $U\ge7\Delta$ ($E_J/\hbar\omega\le2.6$) the ordered phase has disappeared
+from the window $g\le0.4$ although $\beta$ reaches $3.3$: there the ground state is the cat state
+with $\delta\simeq\hbar\omega$ and $\langle I\rangle\to0$ as the seed is removed, the finite-$E_J/\hbar\omega$
+remnant of the transition.
+(iii) In the window $U_c^{\pi'}<U<U_c^{0}=\TODO{0.94}\Delta$ the singlet is the ground state at zero flux but the
+doublet, whose energy minimum lies at $\varphi=\pi/2$, is lower by up to \TODO{}$\Delta$ once the flux is
+allowed to adjust: the mode drives the parity switch and the loop orders with the full $\pi$-junction
+current, at a threshold that moves to larger $g$ as $U\to U_c^{\pi'}$ [\TODO{DMRG numbers for U=0.85}].
+The $0$--$\pi$ boundary of the loop is therefore not the zero-flux crossing $U_c^0$ of the junction
+but the crossing of the global minima, $U_c^{\pi'}$, and it is essentially independent of $g$
+(the condensation energy, $\lesssim E_J/4\simeq2\times10^{-3}\Delta$, shifts it by $<0.01\Delta$).
+
+\paragraph*{Comparison with the effective model and with mean field.}
+Above threshold the full DMRG and the effective circuit model agree to $0.3\%$ in the current and
+to $0.1$ in the photon number at $U=2\Delta$ (and to $\TODO{}\%$ over the whole ordered region),
+which validates the adiabatic elimination of the fermions at $\hbar\omega/E_A\sim10^{-3}$. The only
+points where they differ by more are the single crossover point per $U$ ($g=0.12$ at $U=2\Delta$,
+$g=0.14$ at $U=2.5\Delta$), where the exact ground state is a partially polarized cat and the
+DMRG bracket from the two initial states is wide [Fig.~\ref{fig:phaseconv}(b)]. This is a statement
+about the convergence of a variational method on a flat energy landscape, not about the physics:
+the energy difference between the two starts is $<3\times10^{-6}\Delta$, while the effective model,
+which resolves it exactly, interpolates smoothly between them. Mean field locates $g_c(U)$ to within
+the grid step $0.01$ for $U\le4\Delta$, but underestimates the current by $10$--$20\%$
+($0.86$ versus $0.96\,I_c$ at $U=2\Delta$; $0.82$ versus $0.95\,I_c$ at $2.5\Delta$) because the product
+state renormalizes the junction bond by $|\langle D\rangle|<1$; it overestimates the photon number at
+large $g$ ($5.3$ versus $3.7$ at $U=2\Delta$, $g=0.4$), where the exact flux distribution is a displaced
+squeezed state rather than a coherent state; and it predicts an ordered phase at $U=7$--$8\Delta$ that
+the exact solution does not have, because a product state cannot describe the tunnelling between the
+two current directions that restores the symmetry when $E_J\lesssim3\hbar\omega$. Its threshold
+$U_c^{\rm MF}=0.82\Delta$ coincides with $U_c^{\pi'}$ only accidentally: in Hartree--Fock the dot
+becomes a static moment, whereas the exact doublet is a Kramers pair.
 
 \begin{figure*}
   \includegraphics[width=\textwidth]{../figs/fig_phase_UG.pdf}
