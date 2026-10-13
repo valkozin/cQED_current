@@ -232,7 +232,7 @@ def fig_udot():
         a.semilogy(betas, np.maximum(v[:, 2] / om, 3e-9), color=col, lw=1.2)
     if dm:
         # DMRG resolution of excited-state energies: spread between chi=300 and chi=400 where both exist
-        res = max([abs((r['E1'] - r['E0']) - (dm4[r['beta']]['E1'] - dm4[r['beta']]['E0'])) / om10 for r in dm if r['beta'] in dm4] + [1e-6])
+        res = max([max(abs(r['E0'] - dm4[r['beta']]['E0']), abs(r['E1'] - dm4[r['beta']]['E1'])) / om10 for r in dm if r['beta'] in dm4] + [1e-6])
         ok = [r for r in dm if (r['E1'] - r['E0']) / om10 > 5 * res]
         lim = [r for r in dm if (r['E1'] - r['E0']) / om10 <= 5 * res]
         a.semilogy([r['beta'] for r in ok], [(r['E1'] - r['E0']) / om10 for r in ok], 'o', ms=3.5, color=C2)
