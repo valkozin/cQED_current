@@ -48,11 +48,17 @@ def load_lf():
 
 
 def bo_surfaces():
+    """eff: harmonics of both sectors (effective_Nr10.json); fine: raw even-sector points per U node (the singlet
+    surface has a cusp at pi/2, so it is represented by a periodic spline through the raw DMRG points: 25 phases
+    where available, otherwise the 9 phases of ephi_Nr10_tJ0.5_A.json)"""
     eff = json.load(open(os.path.join(D, 'effective_Nr10.json')))
     fine = {}
+    for r in json.load(open(os.path.join(D, 'ephi_Nr10_tJ0.5_A.json'))):
+        fine.setdefault(r['U'], []).append((r['phi'], r['even']))
     for f in glob.glob(os.path.join(D, 'ephi_even_fine_*.json')):
-        for r in json.load(open(f)):
-            fine.setdefault(r['U'], []).append((r['phi'], r['even']))
+        rows = json.load(open(f))
+        for U in {r['U'] for r in rows}:
+            fine[U] = [(r['phi'], r['even']) for r in rows if r['U'] == U]
     return eff, fine
 
 
@@ -69,10 +75,13 @@ def harm_of(eff, U, s):
 
 
 def E_bo(eff, fine, U, s, g, omega):
+    if s == 'even' and U in fine:
+        V, dV = spline_V(fine[U])
+        if g == 0:
+            return float(V(np.array([0.0]))[0])
+        return float(solve_V(V, dV, g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
     if g == 0:
         return float(np.sum(harm_of(eff, U, s).real))
-    if s == 'even' and U in fine:
-        V, dV = spline_V(fine[U]); return float(solve_V(V, dV, g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
     return float(solve(harm_of(eff, U, s), g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
 
 
@@ -80,7 +89,7 @@ def main():
     grid = load_grid(); lf = load_lf(); eff, fine = bo_surfaces()
     omegas = sorted(grid)
     summary = dict(omegas=omegas, Uc={}, Uc_bo={}, Uc_lf={}, rows={})
-    Ueff = [0.4, 0.5, 0.6, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.1, 1.25]
+    Ueff = [0.5, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.1, 1.25]
     gs_all = sorted({r['g'] for om in grid for r in grid[om]})
     # exact
     for om in omegas:
@@ -142,7 +151,7 @@ def make_figure(grid, summary, eff, fine):
         ax.plot([p[0] for p in pb], [p[1] for p in pb], '--', color=col, lw=0.9)
     pl = [(float(g), v) for g, v in summary['Uc_lf'].items() if v is not None]; pl.sort()
     ax.plot([p[0] for p in pl], [p[1] for p in pl], 'k:', lw=1.0)
-    ax.set_xlabel(r'$g$'); ax.set_ylabel(r'$U_c(g)/\Delta$'); ax.set_title(r'(b) $0$--$\pi$ boundary', loc='left', fontsize=8.5)
+    ax.set_xlabel(r'$g$'); ax.set_ylabel(r'$U_c(g)/\Delta$'); ax.set_title('(b) 0\u2013\u03c0 boundary of the loop', loc='left', fontsize=8.5)
     ax.text(0.03, 0.06, r'$\pi$ (doublet) above, $0$ (singlet) below', transform=ax.transAxes, fontsize=6.5)
     # (c) dressing: |<D>| and photon entanglement entropy versus g at U = 0.9 (doublet sector)
     ax = axs[2]
