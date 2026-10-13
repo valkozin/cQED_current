@@ -32,13 +32,13 @@ harmonic is $|E_1|/E_2\le2\%$.
 \paragraph*{Gauge-invariant current operator.}
 Since the Peierls phase of the loop is placed on the dot--ring bond [Eq.~\eqref{eq:H}],
 the persistent current is the derivative of $H$ with respect to the total flux,
-$I=-(2e/\hbar)\,\partial H/\partial\varphi_{\rm cl}$,
+$I=-\partial H/\partial\Phi=-(e/\hbar)\,\partial H/\partial\varphi_{\rm cl}$ (the Peierls phase is the single-electron phase, $\Phi=\hbar\varphi/e$),
 \begin{equation}
-  I=\frac{2e}{\hbar}\,i\,t_J\sum_\sigma\!\left(e^{i\varphi_{\rm cl}}e^{ig(a+a^\dagger)}c^\dagger_{1\sigma}c_{0\sigma}
+  I=\frac{e}{\hbar}\,i\,t_J\sum_\sigma\!\left(e^{i\varphi_{\rm cl}}e^{ig(a+a^\dagger)}c^\dagger_{1\sigma}c_{0\sigma}
   -{\rm h.c.}\right)
   \label{eq:Iop}
 \end{equation}
-(below we quote $I$ in units of $2e\Delta/\hbar$). This is the particle current through the
+(below we quote $I$ in units of $e\Delta/\hbar$; in terms of the Cooper-pair phase $\theta=2\varphi$ the same operator reads $-(2e/\hbar)\partial H/\partial\theta$). This is the particle current through the
 dot--ring bond, dressed by the displacement operator of the mode: the combination
 $e^{i(\varphi_{\rm cl}+gX)}c^\dagger_1c_0$ is invariant under the simultaneous
 gauge transformation of the electrons and of the vector potential, and its
@@ -49,9 +49,9 @@ $H$ and the current entering the dot from site $L-1$ equals the current~\eqref{e
 leaving it; the same is not true of the bonds inside the BCS chain, where the
 fixed-phase pairing term acts as a condensate reservoir~\cite{Dmytruk2021}.
 Equation~\eqref{eq:Iop} obeys an exact sum rule. With $X=a+a^\dagger$ and
-$P=-i(a-a^\dagger)$, $[H,P]=i\hbar\omega X-2ig\,(\hbar/2e)I$, so that in any eigenstate
+$P=-i(a-a^\dagger)$, $[H,P]=i\hbar\omega X-2ig\,(\hbar/e)I$, so that in any eigenstate
 \begin{equation}
-  \langle I\rangle=\frac{2e}{\hbar}\,\frac{\hbar\omega}{2g}\,\langle a+a^\dagger\rangle :
+  \langle I\rangle=\frac{e}{\hbar}\,\frac{\hbar\omega}{2g}\,\langle a+a^\dagger\rangle :
   \label{eq:sumrule}
 \end{equation}
 the persistent current \emph{is} the static displacement of the mode (the dc flux
@@ -99,7 +99,7 @@ $E_s(\varphi;U)$ is computed by DMRG at $g=0$. The doublet surface is represente
 four harmonics (nine phases); the singlet surface has a cusp at $\varphi=\pi/2$ (a level crossing
 inside the even sector) and is represented by a spline through $25$ phases. $H_{\rm eff}$ is then
 diagonalized exactly in a Fock space of $200$ states, with the same seed. Its current is
-$I_{\rm eff}=-(2e/\hbar)\partial_\varphi E_s$, the classical current of the junction averaged over the flux
+$I_{\rm eff}=-(e/\hbar)\partial_\varphi E_s$, the classical current of the junction averaged over the flux
 distribution of the mode; the omitted terms are the non-adiabatic (Berry) corrections of relative
 order $\hbar\omega/E_A$. The mean-field theory of Ref.~\cite{notebook}, generalized to the
 interacting dot (Hartree--Fock BdG electrons $\times$ photon product state, swept upwards in $g$
@@ -121,7 +121,7 @@ of $E(\varphi)$ already belongs to the doublet, the switch occurs at a finite co
 ($g\simeq0.3$ at $U=0.9\Delta$ in the effective model).
 (ii) For $U>U_c$ and $g>g_c(U)$ the mode condenses: at $U=2\Delta$ the photon number rises from
 $0.5$ at $g=0.11$ to $5.7$ at $g=0.13$ and $7.3$ at $g=0.14$, where the current reaches
-$0.96\,I_c$; it then decreases as $I\simeq(2e/\hbar)\hbar\omega\varphi^\star/2g^2$, because the condensate
+$0.96\,I_c$; it then decreases as $I\simeq(e/\hbar)\hbar\omega\varphi^\star/2g^2$, because the condensate
 flux saturates at $\Phi_0/2$ while the inductance $\propto g^2/\hbar\omega$ grows [Eq.~\eqref{eq:sumrule}].
 The threshold $g_c(U)$ (first grid point with $|\langle I\rangle|>0.5I_c$) rises from $0.10$ at $U=\Delta$ to
 $0.13$, $0.19$, $0.24$ and $0.32$ at $U=2,4,5,6\Delta$, following the decrease of $E_J(U)$. It lies
