@@ -1,3 +1,12 @@
 resuming, 27 points left
 /usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
   super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.40e-05
+U=1.000 g=0.0900 E0=-15.2776471731 X=-0.0009 X2=0.425 n=0.196 I_bond=-1.8962e-04 I_vir=-3.7029e-06 dev=1.9e-04 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=-0.00 | chi=300 terr=1.5e-08 sw=41 dE=2.2e-10 pmax=1.2e-12 Nph=50 t=290s
+U=1.000 g=0.1000 E0=-15.2775673067 X=-0.0080 X2=0.390 n=0.241 I_bond=-4.1073e-05 I_vir=-2.9595e-05 dev=1.1e-05 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.5e-08 sw=41 dE=1.8e-10 pmax=1.1e-13 Nph=50 t=200s
+U=1.000 g=0.1100 E0=-15.2774860692 X=-0.0079 X2=0.359 n=0.289 I_bond=-2.6336e-05 I_vir=-2.6639e-05 dev=3.0e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.5e-08 sw=41 dE=2.1e-10 pmax=5.8e-14 Nph=50 t=196s
+U=1.000 g=0.1200 E0=-15.2774038493 X=-0.0074 X2=0.333 n=0.337 I_bond=-2.2168e-05 I_vir=-2.2902e-05 dev=7.3e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.5e-08 sw=41 dE=2.0e-10 pmax=2.1e-15 Nph=50 t=187s
+U=1.000 g=0.1300 E0=-15.2773208437 X=-0.0070 X2=0.310 n=0.388 I_bond=-1.9455e-05 I_vir=-1.9802e-05 dev=3.5e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.5e-08 sw=41 dE=1.9e-10 pmax=5.1e-15 Nph=50 t=180s
+U=1.000 g=0.1400 E0=-15.2772372018 X=-0.0066 X2=0.289 n=0.440 I_bond=-1.6956e-05 I_vir=-1.7302e-05 dev=3.5e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.5e-08 sw=41 dE=2.3e-10 pmax=2.0e-14 Nph=50 t=195s
+U=1.000 g=0.1500 E0=-15.2771530353 X=-0.0062 X2=0.272 n=0.492 I_bond=-1.4964e-05 I_vir=-1.5231e-05 dev=2.7e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.6e-08 sw=41 dE=2.8e-10 pmax=1.5e-14 Nph=50 t=196s
+U=1.000 g=0.1600 E0=-15.2770684324 X=-0.0058 X2=0.256 n=0.546 I_bond=-1.3269e-05 I_vir=-1.3505e-05 dev=2.4e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=-0.01 | chi=300 terr=1.6e-08 sw=41 dE=2.0e-10 pmax=7.4e-14 Nph=50 t=197s
