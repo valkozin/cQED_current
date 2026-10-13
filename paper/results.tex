@@ -5,30 +5,28 @@
 %  data/bo_udot_U2_Nr10.json, data/bo_weaklink.json; figures: code/make_figures.py
 % ------------------------------------------------------------------
 
-% placeholders, filled from data/rerun once the two-start scans are complete
-\newcommand{\PHISTARDEV}{\TODO{x\%}}\newcommand{\PHISTARTWO}{\TODO{0.57}}\newcommand{\DELTAHALF}{\TODO{0.71}}
-\newcommand{\DELTAONE}{\TODO{0.28}}\newcommand{\RESDELTA}{\TODO{res}}\newcommand{\DELTABOA}{\TODO{a}}\newcommand{\DELTABOB}{\TODO{b}}
-\newcommand{\DELTABOC}{\TODO{c}}\newcommand{\XCAT}{\TODO{x}}\newcommand{\ECAT}{\TODO{e}}\newcommand{\WLSUMRULE}{\TODO{s}}
-\newcommand{\WLIMAX}{\TODO{0.97}}\newcommand{\WLDE}{\TODO{de}}\newcommand{\WLDI}{\TODO{di}}\newcommand{\WLDGAP}{\TODO{dg}}
-\newcommand{\WLSTARTS}{\TODO{st}}\newcommand{\WLMF}{\TODO{mf}}
-
 \paragraph*{Cat state and macroscopic tunnelling of the $\pi$ loop.}
 Without a seed ($\varphi_{\rm cl}=0$ exactly) $H$ is real, $\langle I\rangle=0$ in every eigenstate, and the
 order is diagnosed by the two lowest states of the doublet sector [Fig.~\ref{fig:udot}, $U=2\Delta$,
 $E_J/\hbar\omega=10$, the parameters of the $U=2\Delta$ cut of Fig.~\ref{fig:phaseslices}].
 The splitting $\delta=E_1-E_0$ collapses and the flux operator projected onto the quasi-degenerate
 doublet acquires the eigenvalues $\pm\Phi^\star$. DMRG and the adiabatic theory give the same
-$\Phi^\star$ to within \PHISTARDEV\ at all $\beta$ [$\Phi^\star=\PHISTARTWO\,\Phi_0/2$ at $\beta=2$] and the same
-$\delta/\hbar\omega=\DELTAHALF$ and $\DELTAONE$ at $\beta=0.5$ and $1$. Deeper in the ordered phase $\delta$ drops
-below the DMRG resolution for excited-state energies ($\sim\RESDELTA\,\hbar\omega$, the spread between
-$\chi=300$ and $400$ at $\beta=1$ and $1.5$); the adiabatic theory, validated above, then gives
-$\delta/\hbar\omega=\DELTABOA$, $\DELTABOB$ and $\DELTABOC$ at $\beta=1.5$, $2$ and $3$.
-The seed-free DMRG ground state is the cat state itself: $\langle X\rangle=0$ to \XCAT, the flux
+$\Phi^\star$ to within $0.2\%$ at all $\beta$ [$\Phi^\star=0.59\,\Phi_0/2$ at $\beta=2$], the same photon
+number to $0.03$, and the same
+$\delta/\hbar\omega=0.70$, $0.24$ and $2.65\times10^{-4}$ at $\beta=0.5$, $1$ and $1.5$; at $\beta=1.5$ the
+DMRG values at $\chi=300$ and $400$ are $2.66$ and $2.65\times10^{-4}$, so that the macroscopic tunnelling
+of a condensate of seven photons ($\delta=2\times10^{-7}\Delta$) is resolved directly. Deeper in the ordered
+phase $\delta$ drops below the DMRG resolution for excited-state energies ($4\times10^{-5}\,\hbar\omega$,
+the change of the energies between $\chi=300$ and $400$); the adiabatic theory, validated above, then gives
+$\delta/\hbar\omega=8\times10^{-7}$ and $7\times10^{-9}$ at $\beta=2$ and $3$. The exact ground-state
+energy lies $(0.4$--$1.2)\times10^{-3}\hbar\omega$ above the adiabatic one, the non-adiabatic
+correction of relative order $\hbar\omega/E_A$.
+The seed-free DMRG ground state is the cat state itself: $|\langle\Phi\rangle|<10^{-3}\Phi^\star$, the flux
 distribution $P(\Phi)$ is bimodal with peaks at $\pm\Phi^\star$ whose separation tracks the classical
 minimum [Fig.~\ref{fig:udot}(c)], and a DMRG started from the polarized coherent state at $+\Phi^\star$
-relaxes to the same symmetric state (energy difference \ECAT). This is the opposite situation to the
-seeded scans of Fig.~\ref{fig:phaseUG}, where the seed selects one well and the two-start protocol is
-needed to reach it. With increasing $E_J/\hbar\omega$ the crossover sharpens into a pitchfork at
+relaxes to the same symmetric state (energy difference $<10^{-10}\Delta$). This is the opposite situation
+to the seeded scans of Fig.~\ref{fig:phaseUG}, where the seed selects one well and the two-start protocol
+is needed to reach it. With increasing $E_J/\hbar\omega$ the crossover sharpens into a pitchfork at
 $\beta=1$ and $\delta$ vanishes exponentially [Fig.~\ref{fig:udot}(b)]. The
 residual $\delta$ is the macroscopic tunnelling of a persistent current. Because
 it is protected by time-reversal symmetry, it is the only
@@ -41,15 +39,19 @@ split only by $\delta$.
 For an ordinary weak link ($L=14$, $t_J=0.5$, $E_2=-0.056\,\Delta$, $E_1=-5.4\times10^{-4}\Delta$, Andreev gap
 $0.77\,\Delta$) biased by $\Phi_0/2$, Fig.~\ref{fig:halfflux} shows the full
 DMRG solution at $E_J/\hbar\omega=10$ as a function of $\beta$, recomputed with the two-start protocol
-(the sum rule~\eqref{eq:sumrule} holds to \WLSUMRULE\ at every point). The current
-rises steeply at $\beta\simeq1.1$ and saturates at $|\langle I\rangle|\simeq\WLIMAX I_c$ for
-$\beta\approx1.7$. It then decreases as the flux approaches $\Phi_0/2$, where the junction
-current vanishes. DMRG and the adiabatic theory agree to \WLDE\ in energy,
-to \WLDI\ in current and to \WLDGAP\ in $E_1-E_0$ at all $\beta$; the two starts coincide
-(\WLSTARTS), because the tilt of the double well by the odd harmonic makes the landscape
-better conditioned than at the symmetric point. The product state is
+(the sum rule~\eqref{eq:sumrule} holds to $2\times10^{-4}I_c$ at every point and to $6\times10^{-5}I_c$ above
+threshold). The current
+rises steeply at $\beta\simeq1.1$ and saturates at $|\langle I\rangle|\simeq0.96I_c$ for
+$\beta\approx1.7$; the recomputed currents differ from the earlier warm-started runs by at most
+$0.02I_c$ (at $\beta=1.1$--$1.4$), so this result was not affected by the under-polarization that
+spoiled the seeded scans at the symmetric point. It then decreases as the flux approaches $\Phi_0/2$,
+where the junction current vanishes. DMRG and the adiabatic theory agree to $2\times10^{-3}\hbar\omega$ in
+energy, to $2\%$ of $I_c$ in current and to $1.3\%$ in $E_1-E_0$ at all $\beta$; the vacuum-side and
+polarized-side starts give the same flux to $0.3\%$ and the same energy to $10^{-6}\Delta$, because the
+tilt of the double well by the odd harmonic makes the landscape better conditioned than at the
+symmetric point. The product state is
 $0.2$--$0.4\hbar\omega$ too high in energy and overestimates the current
-near threshold (\WLMF). It becomes accurate only deep in the
+threefold near threshold ($0.71I_c$ versus $0.22I_c$ at $\beta=1.13$). It becomes accurate only deep in the
 ordered phase, where the photon is a nearly coherent state.
 The flux distribution extracted from the photon reduced density matrix
 evolves from a Gaussian centred at zero to a single displaced peak at

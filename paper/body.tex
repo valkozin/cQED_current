@@ -26,17 +26,18 @@ quantum dot (site $0$) and threaded by the magnetic flux of a single lumped LC m
 \begin{align}
   H &= \hbar\omega\, a^\dagger a
      -t\sum_{r=1}^{L-2}\sum_\sigma\left(c^\dagger_{r+1\sigma}c_{r\sigma}+{\rm h.c.}\right)
-     +\Delta\sum_{r=1}^{L-1}\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
      \nonumber\\
-    &\quad +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
-     -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
+    &\quad +\Delta\sum_{r=1}^{L-1}\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
+     +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
+     \nonumber\\
+    &\quad -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
      \nonumber\\
     &\quad -t_J\sum_\sigma\left(e^{i\varphi_{\rm cl}}\,e^{ig(a+a^\dagger)}\,c^\dagger_{1\sigma}c_{0\sigma}+{\rm h.c.}\right).
   \label{eq:H}
 \end{align}
-The first line is the resonator and an $s$-wave BCS chain (hopping $t$, pairing $\Delta$);
-the second line is the Anderson impurity (level $\epsilon_d=-U/2$, on-site
-repulsion $U$) tunnel-coupled ($t_J$) to the two ends of the chain; the third line
+The first two lines are the resonator, an $s$-wave BCS chain (hopping $t$, pairing $\Delta$)
+and the Anderson impurity (level $\epsilon_d=-U/2$, on-site
+repulsion $U$) tunnel-coupled ($t_J$) to the two ends of the chain; the last line
 carries the total Peierls phase of the loop, which by a gauge choice is placed on a
 single bond. The vector potential of the mode enters through the gauge-invariant
 displacement operator $D=e^{ig(a+a^\dagger)}$, so diamagnetic ($A^2$) terms are
