@@ -152,7 +152,7 @@ def make_figure(grid, summary, eff, fine):
     pl = [(float(g), v) for g, v in summary['Uc_lf'].items() if v is not None]; pl.sort()
     ax.plot([p[0] for p in pl], [p[1] for p in pl], 'k:', lw=1.0)
     ax.set_xlabel(r'$g$'); ax.set_ylabel(r'$U_c(g)/\Delta$'); ax.set_title('(b) 0\u2013\u03c0 boundary of the loop', loc='left', fontsize=8.5)
-    ax.text(0.03, 0.06, r'$\pi$ (doublet) above, $0$ (singlet) below', transform=ax.transAxes, fontsize=6.5)
+    ax.text(0.40, 0.90, r'$\pi$ (doublet) above, $0$ (singlet) below', transform=ax.transAxes, fontsize=6.5)
     # (c) dressing: |<D>| and photon entanglement entropy versus g at U = 0.9 (doublet sector)
     ax = axs[2]
     for om, col in zip(omegas, cols):

@@ -17,7 +17,7 @@
 For a static phase the position of the Peierls factor is a gauge choice: with the pairing transformed
 covariantly, $\Delta_j\to\Delta e^{-2i\theta_j}$, a uniform vector potential along the ring gives the same
 BdG spectrum as the full phase on the junction bond (prescription of Ref.~\cite{Dmytruk2021}; verified
-to $10^{-10}$ for $\varphi=0$--$\pi/2$ in \texttt{code/tests/test\_gauge\_covariance.py}; a uniform
+to $10^{-10}$ for $\varphi=0$--$\pi/2$; a uniform
 vector potential with a \emph{real} $\Delta$ is not equivalent). For the quantized flux the unitary
 $W=\exp[-ig(a+a^\dagger)\sum_j\lambda_jn_j]$ that moves a fraction $\lambda_j$ of the phase onto bond $j$
 does not commute with $\hbar\omega a^\dagger a$~\cite{DmytrukTrifSimon2016}: with $N=\sum_j\lambda_jn_j$
@@ -46,7 +46,7 @@ a spline through $25$ phases in the circuit model; the doublet surface is a smoo
 corrections. The strong junction used in the feasibility estimate ($t_J=t$, $\Gamma=2\Delta$) has
 $U_c^0=5.55\Delta$ and, at $U=6\Delta$, $E_2=0.034\Delta$, $E_{\rm odd}-E_{\rm even}=-0.044\Delta$ at zero flux
 and $|E_1|/E_2=1\%$ ($L=14$); its full-DMRG scan at $\hbar\omega=0.003t$ gives a condensate of $9.6$ photons
-and $0.94I_c$ at $g\simeq0.12$, in agreement with the circuit model to $1\%$ (\texttt{data/om0.003\_tJ1.0}).
+and $0.94I_c$ at $g\simeq0.12$, in agreement with the circuit model to $1\%$.
 
 \begin{figure*}
   \includegraphics[width=\textwidth]{../figs/fig_junctions.pdf}
@@ -80,7 +80,10 @@ $10^{-4}I_c$); and the current above threshold must be independent of the seed (
 $0.4\%$ above threshold, reduced by the factor $0.09$ below) [Fig.~\ref{fig:phaseconv}]. An earlier version
 of these scans evaluated the observables after a warm start with the displacement operator of the previous
 $g$; the sum rule exposed this error. For the seed-free runs (cat state, flux-driven switch) the symmetric
-state is the ground state in each sector and no such care is needed; the photon--electron entanglement
+state is the ground state in each sector and no such care is needed; on the grid of Fig.~2 ($\chi=200$,
+$N_{\rm ph}=20$--$48$) the truncation error is $<4\times10^{-7}$ and the last Fock weight $<4\times10^{-8}$, and the
+boundary $U_c$ is obtained by linear interpolation of $E_{\rm odd}-E_{\rm even}$ between $U$ nodes $0.1$--$0.2\Delta$ apart
+(the difference is linear in $U$ to $10^{-2}$); the photon--electron entanglement
 entropy is computed from the photon reduced density matrix. The circuit model is diagonalized in a Fock
 space of $200$ states (DVR in the eigenbasis of $X$); for the tunnel splitting below $10^{-6}\hbar\omega$ the
 two flux-parity blocks are diagonalized separately, which gives $\delta$ as a difference of two
@@ -156,10 +159,10 @@ $g_c\simeq0.21$, while mean field gives $0.30$.
 \paragraph*{S6. Physical units.}
 With $E_J/h=0.5\,{\rm GHz}\times I_c[{\rm nA}]$ and $\beta=2\pi(Z/R_Q)(E_J/\hbar\omega)$:
 
-\begin{center}
-\begin{tabular}{lcccccc}
+\begin{center}\scriptsize
+\begin{tabular}{lccccc}
 \hline
- & $E_J/h$ & $I_c$ & $\hbar\omega=E_J/10$ & $\hbar\omega/k_B$ & $L(\beta=1)$ \\
+ & $E_J/h$ & $I_c$ & $E_J/10h$ & $E_J/10k_B$ & $L(\beta{=}1)$ \\
 \hline
 $U=2\Delta$, $\Gamma=\Delta/2$, Al & 0.32 GHz & 0.65 nA & 32 MHz & 1.5 mK & 510 nH \\
 $U=2\Delta$, $\Gamma=\Delta/2$, NbTiN & 2.1 GHz & 4.3 nA & 210 MHz & 10 mK & 76 nH \\

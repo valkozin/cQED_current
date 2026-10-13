@@ -58,13 +58,12 @@ zero-point flux, $\varphi=\pi$ is one flux quantum $\Phi_0=h/2e$, and for a mode
 its inductance with the loop, $g^2=\pi Z/4R_Q$ ($R_Q=h/4e^2$). $\varphi_{\rm cl}$ is a static flux, used
 as the $\Phi_0/2$ bias of a weak link or as an infinitesimal seed. Placing the whole phase on the dot
 bond is a statement about the circuit, not a gauge choice: a static phase can be spread along the ring by
-a gauge transformation with the pairing transformed covariantly~\cite{Dmytruk2021} (verified to $10^{-10}$,
-Supplemental Material, SM), but the quantum part cannot~\cite{DmytrukTrifSimon2016}, since moving a
-fraction $\lambda$ of $gX$ onto other bonds generates $\hbar\omega(\lambda NP+\lambda^2N^2)$, a capacitive
-coupling of the displaced electron charge $N$ to the charge $P$ of the mode. Eq.~\eqref{eq:H} is the
-lumped circuit in which the voltage of the mode drops across the junction, the only high-impedance element
-of the loop; the omitted terms are of relative order $\hbar\omega g^2/E_A$ and vanish in the adiabatic
-limit. Unless stated otherwise, $\Delta=t$ (energies in $\Delta$, currents in $e\Delta/\hbar$),
+a gauge transformation with the pairing transformed covariantly~\cite{Dmytruk2021} (Supplemental Material,
+SM), but the quantum part cannot~\cite{DmytrukTrifSimon2016}, since moving a fraction $\lambda$ of $gX$ onto
+other bonds generates $\hbar\omega(\lambda NP+\lambda^2N^2)$, a capacitive coupling of the displaced charge $N$
+to the charge $P$ of the mode. Eq.~\eqref{eq:H} is the circuit in which the voltage of the mode drops across
+the junction, the only high-impedance element of the loop; the omitted terms are of relative order
+$\hbar\omega g^2/E_A$. Unless stated otherwise, $\Delta=t$ (energies in $\Delta$, currents in $e\Delta/\hbar$),
 $t_J=0.5\Delta$ ($\Gamma=2t_J^2/t=\Delta/2$), $L=10>\xi\simeq t/\Delta$ (finite-size and $h/e$
 corrections~\cite{LossGoldbart1991} are $\le2\%$, SM), $\varphi_{\rm cl}=0$.
 
@@ -74,8 +73,8 @@ $E_2<0$ (a $0$ junction), the doublet (odd) sector $E_2>0$ (a $\pi$ junction), a
 exactly because $H[\varphi_{\rm cl}=0]$ is real. The persistent current is
 $I=-(e/\hbar)\partial H/\partial\varphi_{\rm cl}$, the particle current through the dot bond dressed by $D$,
 and $\langle[H,P]\rangle=0$ gives the sum rule $\langle I\rangle=(e/\hbar)(\hbar\omega/2g)\langle a+a^\dagger\rangle$
-in every eigenstate: the current \emph{is} the static displacement of the mode. We evaluate both sides
-independently and use their difference as the acceptance test of every DMRG state.
+in every eigenstate: the current \emph{is} the static displacement of the mode, and the difference of the two
+sides is our acceptance test for every DMRG state.
 
 \paragraph*{Two limits.}
 If $\hbar\omega$ is small compared with the excitation gap $E_A$ of the ring at fixed phase and parity,

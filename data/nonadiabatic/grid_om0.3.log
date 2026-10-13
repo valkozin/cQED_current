@@ -59,3 +59,16 @@ om=0.3000 U=0.900 g=1.000 E_even=-15.159886587 E_odd=-15.241860994 odd-even=-0.0
 om=0.3000 U=1.000 g=0.000 E_even=-15.278144507 E_odd=-15.293100891 odd-even=-0.014956 n=0.000/0.000 S_ph=-0.0000/-0.0000 |D|=1.000/1.000 pn_last=0.0e+00 sw=13/11 t=38s
 om=0.3000 U=1.000 g=0.200 E_even=-15.272617339 E_odd=-15.293132881 odd-even=-0.020516 n=0.004/0.002 S_ph=0.0228/0.0164 |D|=0.981/0.980 pn_last=5.3e-15 sw=11/13 t=53s
 om=0.3000 U=1.000 g=0.400 E_even=-15.257052209 E_odd=-15.292980876 odd-even=-0.035929 n=0.016/0.009 S_ph=0.0626/0.0505 |D|=0.931/0.922 pn_last=1.6e-14 sw=31/15 t=79s
+om=0.3000 U=1.000 g=0.600 E_even=-15.233975769 E_odd=-15.292068240 odd-even=-0.058092 n=0.036/0.019 S_ph=0.0987/0.0901 |D|=0.864/0.832 pn_last=1.1e-14 sw=18/14 t=79s
+om=0.3000 U=1.000 g=0.800 E_even=-15.206533924 E_odd=-15.289868548 odd-even=-0.083335 n=0.062/0.030 S_ph=0.1260/0.1264 |D|=0.789/0.721 pn_last=2.2e-13 sw=31/16 t=91s
+om=0.3000 U=1.000 g=1.000 E_even=-15.177944183 E_odd=-15.286197474 odd-even=-0.108253 n=0.088/0.043 S_ph=0.1495/0.1538 |D|=0.706/0.601 pn_last=1.0e-12 sw=31/12 t=78s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+om=0.3000 U=1.200 g=0.000 E_even=-15.317423185 E_odd=-15.381999781 odd-even=-0.064577 n=0.000/0.000 S_ph=-0.0000/-0.0000 |D|=1.000/1.000 pn_last=0.0e+00 sw=31/11 t=42s
+om=0.3000 U=1.200 g=0.200 E_even=-15.311878106 E_odd=-15.382028489 odd-even=-0.070150 n=0.004/0.002 S_ph=0.0228/0.0154 |D|=0.981/0.980 pn_last=6.1e-15 sw=20/13 t=53s
+om=0.3000 U=1.200 g=0.400 E_even=-15.296248062 E_odd=-15.381883627 odd-even=-0.085636 n=0.016/0.008 S_ph=0.0628/0.0475 |D|=0.931/0.922 pn_last=8.7e-15 sw=30/13 t=74s
+om=0.3000 U=1.200 g=0.600 E_even=-15.273019273 E_odd=-15.381028322 odd-even=-0.108009 n=0.036/0.017 S_ph=0.0993/0.0849 |D|=0.864/0.832 pn_last=7.3e-14 sw=31/14 t=79s
+om=0.3000 U=1.200 g=0.800 E_even=-15.245261979 E_odd=-15.378972051 odd-even=-0.133710 n=0.063/0.028 S_ph=0.1271/0.1193 |D|=0.790/0.721 pn_last=1.7e-13 sw=24/18 t=73s
+om=0.3000 U=1.200 g=1.000 E_even=-15.216103284 E_odd=-15.375541557 odd-even=-0.159438 n=0.090/0.040 S_ph=0.1508/0.1454 |D|=0.709/0.602 pn_last=9.9e-13 sw=14/11 t=49s
