@@ -116,6 +116,7 @@ def observables(model, psi):
     rho = psi.get_rho_segment([0]).to_ndarray()
     out['pn'] = np.real(np.diag(rho))
     out['rho_ph'] = rho
-    out['S_ph'] = float(psi.entanglement_entropy(bonds=[0])[0])
+    w = np.linalg.eigvalsh(rho); w = w[w > 1e-15]
+    out['S_ph'] = float(-np.sum(w * np.log(w)))   # photon-electron entanglement entropy (from the photon reduced density matrix)
     out['chi_max'] = max(psi.chi)
     return out

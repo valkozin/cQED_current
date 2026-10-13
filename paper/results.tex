@@ -1,143 +1,39 @@
 % ------------------------------------------------------------------
-%  Results beyond the phase diagram: cat state of the pi loop (Fig. udot), half-flux-biased weak link
-%  (Fig. halfflux), breakdown of the product state for E_J ~ hbar omega (Figs. notebook, notebook_omega).
-%  Data: data/rerun/dmrg_udot_U2_Nr10_r10*.json, data/rerun/dmrg_weaklink_Nr14_r10_*.json (two-start protocol),
-%  data/bo_udot_U2_Nr10.json, data/bo_weaklink.json; figures: code/make_figures.py
+%  Section: cat state and macroscopic tunnelling (Fig. udot)
+%  Data: data/rerun/dmrg_udot_U2_Nr10_r10*.json, data/bo_udot_U2_Nr10.json, data/bo_parity_U2_Nr10.json
 % ------------------------------------------------------------------
+\paragraph*{Cat state and macroscopic tunnelling.}
+Without a seed $H$ is real, $\langle I\rangle=0$ in every eigenstate, and the order is carried by the two
+lowest states of the doublet sector [Fig.~\ref{fig:udot}, $U=2\Delta$, $E_J/\hbar\omega=10$]: their
+splitting $\delta$ collapses and the flux projected on them acquires the eigenvalues $\pm\Phi^\star$. DMRG
+and the circuit model give the same $\Phi^\star$ to $0.2\%$ ($0.59\,\Phi_0/2$ at $\beta=2$), the same photon
+number to $0.03$, and $\delta/\hbar\omega=0.70$, $0.24$, $2.65\times10^{-4}$ at $\beta=0.5$, $1$, $1.5$; at
+$\beta=1.5$ the DMRG values at $\chi=300$ and $400$ are $2.66$ and $2.65\times10^{-4}$, so the macroscopic
+tunnelling of a condensate of seven photons ($\delta=2\times10^{-7}\Delta$) is resolved directly. Deeper in
+the ordered phase $\delta$ falls below the DMRG resolution for excited states ($4\times10^{-5}\hbar\omega$) and
+the circuit model, diagonalized in the two flux-parity sectors separately, gives $8\times10^{-7}$ and
+$6.5\times10^{-9}$ at $\beta=2$ and $3$ (SM). The DMRG ground state is the cat state itself:
+$|\langle\Phi\rangle|<10^{-3}\Phi^\star$, $P(\Phi)$ is bimodal with peaks at $\pm\Phi^\star$
+[Fig.~\ref{fig:udot}(c)], and a DMRG started from the polarized coherent state relaxes to the same symmetric
+state to $10^{-10}\Delta$. With increasing $E_J/\hbar\omega$ the crossover sharpens into a pitchfork at
+$\beta=1$ and $\delta$ vanishes exponentially [Fig.~\ref{fig:udot}(b)].
 
-\paragraph*{Cat state and macroscopic tunnelling of the $\pi$ loop.}
-Without a seed ($\varphi_{\rm cl}=0$ exactly) $H$ is real, $\langle I\rangle=0$ in every eigenstate, and the
-order is diagnosed by the two lowest states of the doublet sector [Fig.~\ref{fig:udot}, $U=2\Delta$,
-$E_J/\hbar\omega=10$, the parameters of the $U=2\Delta$ cut of Fig.~\ref{fig:phaseslices}].
-The splitting $\delta=E_1-E_0$ collapses and the flux operator projected onto the quasi-degenerate
-doublet acquires the eigenvalues $\pm\Phi^\star$. DMRG and the adiabatic theory give the same
-$\Phi^\star$ to within $0.2\%$ at all $\beta$ [$\Phi^\star=0.59\,\Phi_0/2$ at $\beta=2$], the same photon
-number to $0.03$, and the same
-$\delta/\hbar\omega=0.70$, $0.24$ and $2.65\times10^{-4}$ at $\beta=0.5$, $1$ and $1.5$; at $\beta=1.5$ the
-DMRG values at $\chi=300$ and $400$ are $2.66$ and $2.65\times10^{-4}$, so that the macroscopic tunnelling
-of a condensate of seven photons ($\delta=2\times10^{-7}\Delta$) is resolved directly. Deeper in the ordered
-phase $\delta$ drops below the DMRG resolution for excited-state energies ($4\times10^{-5}\,\hbar\omega$,
-the change of the energies between $\chi=300$ and $400$); the adiabatic theory, validated above, then gives
-$\delta/\hbar\omega=8\times10^{-7}$ and $7\times10^{-9}$ at $\beta=2$ and $3$. The exact ground-state
-energy lies $(0.4$--$1.2)\times10^{-3}\hbar\omega$ above the adiabatic one, the non-adiabatic
-correction of relative order $\hbar\omega/E_A$.
-The seed-free DMRG ground state is the cat state itself: $|\langle\Phi\rangle|<10^{-3}\Phi^\star$, the flux
-distribution $P(\Phi)$ is bimodal with peaks at $\pm\Phi^\star$ whose separation tracks the classical
-minimum [Fig.~\ref{fig:udot}(c)], and a DMRG started from the polarized coherent state at $+\Phi^\star$
-relaxes to the same symmetric state (energy difference $<10^{-10}\Delta$). This is the opposite situation
-to the seeded scans of Fig.~\ref{fig:phaseUG}, where the seed selects one well and the two-start protocol
-is needed to reach it. With increasing $E_J/\hbar\omega$ the crossover sharpens into a pitchfork at
-$\beta=1$ and $\delta$ vanishes exponentially [Fig.~\ref{fig:udot}(b)]. The
-residual $\delta$ is the macroscopic tunnelling of a persistent current. Because
-it is protected by time-reversal symmetry, it is the only
-energy scale separating the two current directions. Each current state is
-additionally Kramers degenerate in the spin of the dot. The low-energy manifold is
-therefore a fourfold multiplet $\{\sigma=\uparrow,\downarrow\}\otimes\{\circlearrowright,\circlearrowleft\}$,
-split only by $\delta$.
+The two current directions are related by time reversal and $\delta$ is the only scale that separates
+them. In the spin-degenerate model each is also Kramers degenerate in the spin of the dot, giving the
+manifold $\{\uparrow,\downarrow\}\otimes\{\circlearrowright,\circlearrowleft\}$; with spin--orbit coupling,
+as in InAs or Ge, the doublet surfaces are spin dependent~\cite{Padurariu2010,Tosi2019,Hays2021}, the wells
+are spin locked and the manifold is one Kramers pair: the loop is then the inductively protected spin qubit
+of Ref.~\cite{delOlmo2026}, of which Eq.~\eqref{eq:H} with a spin-dependent $t_J$ is the microscopic model.
+A flux offset $\delta\Phi>\delta/2I^\star$ polarizes the loop in any realization; what the intrinsic $\pi$
+junction removes is the need for a $\Phi_0/2$ bias, not the sensitivity to the bias point. A weak link
+biased by $\Phi_0/2$ gives the same ordered state (SM), but its direction is selected by the residual $h/e$
+harmonic, which tilts the double well by $0.2\hbar\omega$ in a ring of $14$ sites.
 
-\paragraph*{Half-flux-biased weak link.}
-For an ordinary weak link ($L=14$, $t_J=0.5$, $E_2=-0.056\,\Delta$, $E_1=-5.4\times10^{-4}\Delta$, Andreev gap
-$0.77\,\Delta$) biased by $\Phi_0/2$, Fig.~\ref{fig:halfflux} shows the full
-DMRG solution at $E_J/\hbar\omega=10$ as a function of $\beta$, recomputed with the two-start protocol
-(the sum rule~\eqref{eq:sumrule} holds to $2\times10^{-4}I_c$ at every point and to $6\times10^{-5}I_c$ above
-threshold). The current
-rises steeply at $\beta\simeq1.1$ and saturates at $|\langle I\rangle|\simeq0.96I_c$ for
-$\beta\approx1.7$; the recomputed currents differ from the earlier warm-started runs by at most
-$0.02I_c$ (at $\beta=1.1$--$1.4$), so this result was not affected by the under-polarization that
-spoiled the seeded scans at the symmetric point. It then decreases as the flux approaches $\Phi_0/2$,
-where the junction current vanishes. DMRG and the adiabatic theory agree to $2\times10^{-3}\hbar\omega$ in
-energy, to $2\%$ of $I_c$ in current and to $1.3\%$ in $E_1-E_0$ at all $\beta$; the vacuum-side and
-polarized-side starts give the same flux to $0.3\%$ and the same energy to $10^{-6}\Delta$, because the
-tilt of the double well by the odd harmonic makes the landscape better conditioned than at the
-symmetric point. The product state is
-$0.2$--$0.4\hbar\omega$ too high in energy and overestimates the current
-threefold near threshold ($0.71I_c$ versus $0.22I_c$ at $\beta=1.13$). It becomes accurate only deep in the
-ordered phase, where the photon is a nearly coherent state.
-The flux distribution extracted from the photon reduced density matrix
-evolves from a Gaussian centred at zero to a single displaced peak at
-$\pm\Phi^\star$. The sign is fixed by the residual odd harmonic
-$E_1$, which tilts the double well by
-$2|E_1|\sin\varphi^\star\approx10^{-3}\Delta\approx0.2\hbar\omega$.
-This tilt sets the splitting $E_1-E_0$ for $\beta>1.2$ in DMRG and BO alike. Without it,
-$\delta/\hbar\omega$ would drop below $10^{-6}$ at $\beta=2$. The external-bias
-route thus provides a current-carrying state whose direction is \emph{selected}
-rather than spontaneously chosen. Its residual symmetry breaking is
-$\propto e^{-L/\xi}$ for a homogeneous ring, but in practice it is limited
-by the flux offset $\delta\Phi$.
-
-\paragraph*{Breakdown of the product-state description for $E_J\simeq\hbar\omega$.}
-The product state is reliable only when $E_J\gg\hbar\omega$ and $g\ll1$, and both conditions are
-violated by the parameters of the original mean-field solution~\cite{notebook}: a Zeeman-polarized
-dot embedded in a short BCS ring ($t=2$, $\Delta=0.6$, $L=11$, $\epsilon_{d\uparrow}=-0.3$,
-$\epsilon_{d\downarrow}=3.7$, $t_J=0.5$, $\hbar\omega=0.02$; energies in units of $t$ in this paragraph). The
-self-consistent product state predicts a current-carrying phase for
-$g\gtrsim0.75$, with $\langle a^\dagger a\rangle\simeq1$--$1.4$ and
-$|\langle I\rangle|\approx0.02$ [Fig.~\ref{fig:notebook}]. DMRG shows that this
-phase is an artefact. The exact ground-state energy decreases monotonically with
-$g$ and lies below the MF energy by up to $1.8\hbar\omega$ (at $g=1.2$).
-The gap to the first excited state stays a sizeable fraction of
-$\hbar\omega$ ($E_1-E_0=0.33\hbar\omega$ at $g=1.2$), and the photon number
-saturates at $\langle a^\dagger a\rangle\simeq0.36$. The response to the
-seed flux $\varphi_{\rm cl}=10^{-3}$ is linear: $\langle I\rangle\approx7\times10^{-5}$,
-more than two orders of magnitude below the MF value. DMRG and
-the adiabatic theory~\eqref{eq:BO} agree to within $0.06\hbar\omega$ in
-energy and $1.3\%$ in $E_1-E_0$. The residual difference is the non-adiabatic
-(diagonal Born--Oppenheimer) correction, of relative order $\hbar\omega/E_A\approx0.1$.
-At $\hbar\omega=0.002$ the same microscopic model does order, at
-$g_c\simeq0.21$, while mean field predicts $g_c\simeq0.30$ [Fig.~\ref{fig:notebook_omega}].
-
-Two effects make the product state fail. (i) It is not gauge invariant~\cite{Li2020,Dmytruk2021}: with the full
-Peierls phase on one bond, it renormalizes that bond by
-$|\langle D\rangle|<1$ and so loses phase-\emph{independent} kinetic energy,
-which the exact state recovers by following the flux adiabatically. (ii) Here
-$E_J\simeq\hbar\omega$. The Landau free energy does develop a double well
-for $g>0.58$, but its depth is below the zero-point energy, and the flux
-distribution $P(X)$ stays essentially unimodal. A further subtlety
-concerns ring size: since $L\lesssim\xi$, $E(\varphi)$ of this ring is dominated by the
-single-electron harmonic, $E_1=2.1\times10^{-2}\gg E_2=2.0\times10^{-3}$
-[Fig.~\ref{fig:junctions}(a)]. The instability would then be one of the normal
-$h/e$ persistent current rather than of the Josephson junction, which is why all
-other results use rings with $L\gg\xi$.
-
-% ------------------------------------------------------------------ figures
 \begin{figure*}
   \includegraphics[width=\textwidth]{../figs/fig_udot_cavity.pdf}
   \caption{\label{fig:udot}%
-  Interaction-driven $\pi$ loop ($U=2\Delta$, $L=10$, $\hbar\omega=E_J/10$, no external flux, no seed).
-  (a) Flux of the condensate $\Phi^\star$ (eigenvalue of the flux projected on the two
-  lowest states) versus $\beta$ for increasing $E_J/\hbar\omega$ (lines: adiabatic
-  theory with the DMRG $E(\varphi)$; circles: full DMRG at $E_J/\hbar\omega=10$;
-  dashed: classical). (b) Tunnel splitting $\delta$ between the two
-  current-carrying states (triangles: DMRG below its resolution). (c) Flux distribution of the DMRG ground state
-  (a cat state for $\beta>1$).}
-\end{figure*}
-
-\begin{figure*}
-  \includegraphics[width=\textwidth]{../figs/fig_weaklink_halfflux.pdf}
-  \caption{\label{fig:halfflux}%
-  Weak-link loop ($L=14$) biased by $\Phi_0/2$, $E_J/\hbar\omega=10$.
-  (a) Persistent current, Eq.~\eqref{eq:Iop}, versus $\beta$: DMRG with the two-start protocol (circles),
-  MF (squares), adiabatic theory with (solid) and without (dotted) the odd harmonics, classical
-  Landau theory (dashed). (b) Splitting of the two lowest levels.
-  (c) Flux distribution of the DMRG ground state, obtained from the photon reduced
-  density matrix.}
-\end{figure*}
-
-\begin{figure}
-  \includegraphics[width=\columnwidth]{../figs/fig_notebook_model.pdf}
-  \caption{\label{fig:notebook}%
-  Short ring with a Zeeman-polarized dot ($\hbar\omega=0.02$,
-  $\varphi_{\rm cl}=10^{-3}$): mean field (MF, orange), adiabatic
-  theory~\eqref{eq:BO} (green), and DMRG (symbols).
-  (a) Ground-state energy, (b) current (dashed: rms current of the BO
-  ground state), (c) gap to the first excited state, (d) photon number.}
-\end{figure}
-
-\begin{figure*}
-  \includegraphics[width=\textwidth]{../figs/fig_notebook_omega.pdf}
-  \caption{\label{fig:notebook_omega}%
-  Model of the original notebook (Zeeman-polarized dot, $L=11$, $t=2$, $\Delta=0.6$):
-  current (top) and photon number (bottom) versus $g$ for (a) $\hbar\omega=0.02$ and
-  (b) $\hbar\omega=0.002$. Green: exact (adiabatic, seed $10^{-3}$); orange: mean field;
-  circles: full DMRG (photon number; these older runs predate the two-start protocol).}
+  Cat state of the $\pi$ loop ($U=2\Delta$, $L=10$, $\hbar\omega=E_J/10$, no flux, no seed).
+  (a) Condensate flux $\Phi^\star$ versus $\beta$ for increasing $E_J/\hbar\omega$ (lines: circuit model with
+  the DMRG $E(\varphi)$; circles: full DMRG at $E_J/\hbar\omega=10$; dashed: classical). (b) Tunnel splitting
+  (triangles: DMRG below its resolution). (c) Flux distribution of the DMRG ground state.}
 \end{figure*}

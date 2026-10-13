@@ -1,0 +1,53 @@
+% ------------------------------------------------------------------
+%  Section: the zero-point flux of the mode moves the 0-pi boundary (new; data/nonadiabatic, fig_cavity_0pi)
+% ------------------------------------------------------------------
+\paragraph*{Flux-driven $0$--$\pi$ switch.}
+Figure~\ref{fig:cavity0pi} contains the first result. Without the mode the junction is a $0$ junction for
+$U<U_c^0=0.94\Delta$, where the singlet is the ground state at zero flux, and a $\pi$ junction above
+[Fig.~S1]. With the mode we compute the ground state of Eq.~\eqref{eq:H} in both parity sectors at
+$\varphi_{\rm cl}=0$, without any seed, and locate the boundary $U_c(g,\omega)$ of the \emph{loop} from the
+crossing $E_{\rm odd}=E_{\rm even}$. At $U=0.9\Delta$ and $\hbar\omega=0.1\Delta$ [Fig.~\ref{fig:cavity0pi}(a)]
+the doublet--singlet energy difference falls from $+0.010\Delta$ at $g=0$ to \TODO{xx} at $g=0.5$ and
+\TODO{xx} at $g=1$: the loop switches from $0$ to $\pi$ at $g\simeq\TODO{0.3}$, i.e.\ at a mode impedance
+$Z\simeq\TODO{1}\,{\rm k}\Omega$, with nothing but the vacuum of the mode acting on the junction. The
+boundary $U_c(g,\omega)$ [Fig.~\ref{fig:cavity0pi}(b)] moves down for every $\omega$, by
+\TODO{$0.1\Delta$} at $g=0.5$ and \TODO{$0.3\Delta$} at $g=1$, i.e.\ by up to \TODO{30\%} of $U_c^0$.
+
+The mechanism changes with $\hbar\omega$. For $\hbar\omega\ll E_A$ the exact result follows the circuit
+model~\eqref{eq:BO} (dashed): the zero-point motion of the flux samples $E_s(gX)$ around $\varphi=0$, where
+the singlet surface curves up ($E''_{\rm even}(0)=+0.20\Delta$) and the doublet surface curves down
+($E''_{\rm odd}(0)=-4E_2<0$), so that the singlet loses and the doublet gains zero-point energy,
+$\delta E_s\simeq\tfrac12g^2E''_s(0)\langle X^2\rangle$; for $gX$ of order one the doublet additionally
+lowers its energy by letting the flux relax towards $\Phi_0/2$, where its minimum lies. This is the quantum
+version of the parity switch by a free flux discussed below. For $\hbar\omega\gtrsim E_A$ the circuit model
+fails: it predicts \TODO{xx}, while the exact $U_c$ approaches the Lang--Firsov line (dotted), in which the
+level width is reduced to $\Gamma e^{-g^2}$ and the singlet, which is bound by $\Gamma$, loses against the
+doublet. The two limits predict the same sign and comparable magnitude, but a different dependence on
+$\omega$ and $U$: the adiabatic shift is set by the curvatures $E''_s(0)$ and saturates once the flux is
+localized in the $\pi$ well, the anti-adiabatic one by $\Gamma$ alone. The dressing of the junction is
+visible directly in the expectation value of the Peierls factor and in the photon--electron entanglement
+entropy [Fig.~\ref{fig:cavity0pi}(c)]: $|\langle D\rangle|$ follows $e^{-g^2/2}$ at large $\omega$ and
+stays close to one in the adiabatic regime, where the mode is displaced rather than squeezed by the
+junction.
+
+The effect is not an artefact of the one-bond vertex: the neglected capacitive terms are of relative order
+$\hbar\omega g^2/E_A$, and the shift of $U_c$ at $\hbar\omega=0.01\Delta$, where they are negligible, is
+already \TODO{xx}\% of the one at $\hbar\omega=0.3\Delta$. Nor is it a mean-field effect: the Hartree--Fock
+product state replaces the Kramers doublet by a static moment and places the boundary at $0.82\Delta$ for
+every $g$ (next section). The prediction is that a gate-tuned dot junction close to its singlet--doublet
+boundary, embedded in a loop whose inductance is a superinductor of impedance $Z\gtrsim R_Q$, is driven
+into the doublet, i.e.\ into the $\pi$ phase, by the impedance alone, and that the switch is visible as the
+jump of the resonator frequency that marks the parity transition in Refs.~\cite{Bargerbos2022,PitaVidal2023}.
+
+\begin{figure*}
+  \includegraphics[width=\textwidth]{../figs/fig_cavity_0pi.pdf}
+  \caption{\label{fig:cavity0pi}%
+  Zero-point flux and the $0$--$\pi$ transition ($L=10$, $t_J=0.5\Delta$, $\varphi_{\rm cl}=0$, no seed).
+  (a) Doublet--singlet energy difference versus coupling $g$ at $U=0.9\Delta$ for mode frequencies
+  $\hbar\omega=0.01$--$1\,\Delta$: full DMRG (symbols), circuit model~\eqref{eq:BO} with the $g=0$ surfaces
+  (dashed), Lang--Firsov ring with $t_Je^{-g^2/2}$ (dotted, the $\omega\to\infty$ limit). The sign change is
+  the switch of the loop from $0$ to $\pi$.
+  (b) Boundary $U_c(g,\omega)$ of the loop from the crossing $E_{\rm odd}=E_{\rm even}$ (same symbols and
+  lines). (c) Dressing of the junction in the doublet sector at $U=0.9\Delta$: $|\langle e^{ig(a+a^\dagger)}\rangle|$
+  (squares; dotted: $e^{-g^2/2}$) and the photon--electron entanglement entropy $S_{\rm ph}$ (triangles).}
+\end{figure*}

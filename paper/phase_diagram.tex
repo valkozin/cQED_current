@@ -1,155 +1,57 @@
 % ------------------------------------------------------------------
-%  Section: exact (U, g) phase diagram of the microscopic model
-%  Full DMRG of Eq. (H) vs effective circuit model vs mean field.
-%  Data: data/full (DMRG), data/effective_Nr10.json, data/mf_grid_Nr10.json; figures: code/make_phase_figs.py
+%  Section: adiabatic regime, (U, g) phase diagram of the loop (data/full, data/effective_Nr10.json,
+%  data/mf_grid_Nr10.json; figure code/make_fig_main.py; cuts in the SM, code/make_phase_figs.py)
 % ------------------------------------------------------------------
+\paragraph*{Persistent-current phase of the $\pi$ loop.}
+We now take $\hbar\omega=E_J(U=2\Delta)/10=7.39\times10^{-4}\Delta\ll E_A$, so that the classical line
+$\beta=1$ sweeps across $g\le0.4$ ($Z\le1.3\,{\rm k}\Omega$) as $U$ runs from $U_c$ to $8\Delta$ while
+$E_J/\hbar\omega$ falls from $15$ to $2$, and compute the ground state on a grid of $427$ points
+($g=0.02$--$0.40$, $14$ values of $U$, both sectors for $U\le\Delta$, seed $10^{-3}$, $\chi=300$).
+Figure~\ref{fig:phasemain} shows the seeded persistent current of the full DMRG (a), the seed-free order
+parameter of the circuit model, the tunnel splitting $\delta(U,g)$ between the two current directions (b),
+and the mean field (c); cuts are given in the SM.
 
-\paragraph*{Choice of regime and dimensionless variables.}
-The microscopic model~\eqref{eq:H} contains the energy scales $t,\Delta,t_J,U$
-of the junction and $\hbar\omega,g$ of the mode. Three dimensionless ratios
-control the physics. (i) $U/\Delta$ at fixed $\Gamma/\Delta$ 
-sets the magnetic state of the dot and hence the sign of the Josephson coupling:
-the loop is a $\pi$ loop only for $U>U_c$. (ii) The coupling $g$ is fixed by
-the impedance of the mode alone, $g^2=\pi Z/4R_Q$, i.e.\ $g=0.1$--$0.4$
-for $Z=80\,\Omega$--$1.3\,{\rm k}\Omega$, from ordinary lumped resonators to the high-kinetic-inductance
-(superinducting) ones~\cite{Manucharyan2009,Grunhaupt2019}.
-(iii) $E_J/\hbar\omega$, with $E_J\equiv E_2>0$ the Josephson energy of the $\pi$ junction,
-decides whether the transition is sharp: the two current states tunnel with
-$\delta\sim\hbar\omega e^{-S}$, $S\propto E_J/\hbar\omega$. We take
-$\hbar\omega=E_J(U=2\Delta)/10=7.39\times10^{-4}\Delta$. In physical units this is the regime of
-a multichannel or gate-tunable $\pi$ junction with $I_c\simeq100$\,nA ($E_J/h\simeq50$\,GHz)
-in a loop that shares its inductance with a $5$\,GHz mode: $g=0.1$--$0.4$ then corresponds to a loop
-inductance $L=Z/\omega=3$--$40$\,nH, and the screening condition $\beta=2\pi LI_c/\Phi_0=1$ is met at
-$L=\Phi_0/2\pi I_c=3.3$\,nH, i.e.\ at $g=0.11$ [class (iii) of the platforms discussed at the end].
-With this choice the classical threshold
-$\beta=8g^2E_J(U)/\hbar\omega=1$ lies at $g=0.11$ for $U=2\Delta$ and
-sweeps across the experimentally accessible window $g\le0.4$ as $U$ is varied
-from $U_c$ to $8\Delta$, while $E_J/\hbar\omega$ decreases from $15$ to $2$, so that
-the same diagram contains the sharp transition and its quantum washing-out. We present it in the
-plane $(U/\Delta,g)$; the right axis of Fig.~\ref{fig:phaseUG} converts $g$ to $Z/R_Q$.
+Three regions appear. (i) For $U<U_c(g)$ the loop is a $0$ loop: the singlet is the ground state, the
+response is diamagnetic and the mode is stiffened, $\omega'=\omega\sqrt{1+2g^2E''(0)/\hbar\omega}$, up to
+$9.4\omega$ at $g=0.4$, with the squeezed vacuum of the stiffened mode as ground state (its photon number
+$(\omega'/\omega+\omega/\omega')/4-\tfrac12$ reproduces the DMRG value, $1.89$ against $1.91$ at $g=0.4$).
+This is the inductive frequency shift that reads out the parity of dot junctions~\cite{Bargerbos2022,Hays2021}.
+The boundary is the adiabatic end of Fig.~\ref{fig:cavity0pi}: it moves from $U_c^0=0.94\Delta$ at
+$g\to0$ to $0.85\Delta$ at $g=0.4$, the crossing of the \emph{global} minima of the two surfaces,
+$E_{\rm odd}(\pi/2)=E_{\rm even}(0)$. The window between is the $\pi'$ phase of the
+junction~\cite{Vecino2003,Karrasch2008}, singlet at zero flux but doublet at $\Phi_0/2$, and a loop whose
+flux is free to adjust switches to the doublet by letting $\Phi_0/2$ in, at $g\simeq0.3$ for $U=0.9\Delta$.
+(ii) For $U>U_c$ and $g>g_c(U)$ the mode condenses: at $U=2\Delta$ the photon number rises from $0.5$ at
+$g=0.11$ to $7.3$ at $g=0.14$, where the current reaches $0.96I_c$, and then falls as
+$I\simeq(e/\hbar)\hbar\omega\varphi^\star/2g^2$ because the flux saturates at $\Phi_0/2$ while the inductance
+$\propto g^2/\hbar\omega$ grows. The threshold ($|\langle I\rangle|=0.5I_c$) lies \emph{above} $\beta=1$ by
+$\Delta g=0.02$, $0.04$ and $0.12$ at $U=2,4,6\Delta$ ($E_J/\hbar\omega=10$, $5$, $3.2$): the zero-point
+motion of the flux opposes the condensation, and the crossover broadens from one grid step to
+$\Delta g\simeq0.08$. (iii) At $U=8\Delta$ ($E_J/\hbar\omega=2.1$) no ordered phase is left for $g\le0.4$
+although $\beta$ reaches $2.7$: the ground state is the cat state with $\delta\simeq\hbar\omega$ and a current
+$\le0.04I_c$ proportional to the seed. Seeded currents are a crossover diagnostic at finite
+$E_J/\hbar\omega$; the seed-free map (b) has the same boundary as the contour $\delta=0.1\hbar\omega$ and shows
+the exponential collapse of $\delta$ inside the ordered region.
 
-\paragraph*{Grid.}
-The grid is $g=0.02$--$0.40$ in steps of $0.01$ ($0.02$ above $0.3$) and
-$U/\Delta=0,0.5,0.75,0.85,1,1.25,1.5,2,2.5,3,4,5,6,8$, $427$ ground states in all (about $20$ CPU hours),
-each obtained with the two-start protocol of the Methods ($\chi=300$, seed $\varphi_{\rm cl}=10^{-3}$).
-For $U\le\Delta$ both parity sectors are computed and the lower one is
-taken, which locates the $0$--$\pi$ boundary of the \emph{loop} without any assumption.
-The two starts differ by less than $3\times10^{-7}\Delta$ in energy at $47$ points ($11\%$ of the grid, all inside the
-crossover windows discussed below), which are reported as brackets
-[Fig.~\ref{fig:phaseconv}(b)]. The sum rule~\eqref{eq:sumrule} is satisfied to better than
-$10^{-3}I_c$ at every point with $g\ge0.04$ (the worst points are the first ones of each
-scan at $g\le0.03$, where the current itself is $<10^{-2}I_c$) [Fig.~\ref{fig:phaseconv}(a)].
-Increasing $\chi$ to $400$ changes the current by $<0.3\%$
-except at the crossover point; raising $N_{\rm ph}$ to $80$ changes the energy by $<10^{-9}\Delta$; and
-reducing the seed to $10^{-4}$ leaves the current above threshold unchanged to $0.4\%$ while the
-current below threshold scales down by the factor $0.09$ [Fig.~\ref{fig:phaseconv}(c)]: the
-current is spontaneous.
-
-\paragraph*{Effective circuit model.}
-When $\hbar\omega$ is small compared to the Andreev gap $E_A$ of the junction
-($\hbar\omega/E_A\simeq10^{-3}$ here), the fermions can be integrated out
-adiabatically: the mode moves in the exact ground-state energy of the ring at fixed phase and
-fixed parity, $H^{(s)}_{\rm eff}=\hbar\omega a^\dagger a+E_s(\varphi_{\rm cl}+gX;U)$, $s={\rm even,odd}$
-[Eq.~\eqref{eq:BO}], an rf-SQUID Hamiltonian whose inductive energy is supplied by the mode;
-parity conservation forbids any mixing of the two surfaces, and the ground state is the lower
-of the two sector ground states. The matching of parameters is unambiguous:
-$E_s(\varphi;U)$ is computed by DMRG at $g=0$. The doublet surface is represented by
-four harmonics (nine phases); the singlet surface, because of its cusp at $\varphi=\pi/2$
-[Fig.~\ref{fig:junctions}(a)], is represented by a spline through $25$ phases. $H_{\rm eff}$ is then
-diagonalized exactly in a Fock space of $200$ states, with the same seed. Its current is
-$I_{\rm eff}=-(e/\hbar)\partial_\varphi E_s$, the classical current of the junction averaged over the flux
-distribution of the mode; the omitted terms are the non-adiabatic (Berry) corrections of relative
-order $\hbar\omega/E_A$. The mean-field theory of Ref.~\cite{notebook}, generalized to the
-interacting dot (Hartree--Fock BdG electrons $\times$ photon product state, swept upwards in $g$
-with the same seed), is evaluated on the same grid.
-
-\paragraph*{Phase diagram.}
-Figure~\ref{fig:phaseUG} shows $|\langle I\rangle|/I_c(U)$, with $I_c(U)$ the critical current of
-the $\pi$ junction at $g=0$, from the full DMRG (a), the effective circuit model (b) and mean field (c);
-Fig.~\ref{fig:phaseslices} shows cuts. The exact diagram has three regions.
-(i) For $U<U_c(g)$ the loop is a $0$ loop: the singlet is the ground state at all $g$, the orbital response is
-diamagnetic and the mode is not softened but stiffened, $\omega\to\omega'=\omega\sqrt{1+2g^2E''(0)/\hbar\omega}$
-with $E''(0)=0.20\Delta$, i.e.\ $\omega'=9.4\,\omega$ at $g=0.4$. The ground state is the squeezed vacuum of the
-stiffened mode: its photon number $(\omega'/\omega+\omega/\omega')/4-1/2$ reproduces the DMRG value at every $g$
-($1.89$ versus $1.91$ virtual photons at $g=0.4$), while $|\langle I\rangle|<10^{-2}I_c$ and linear in the seed. The boundary is not the zero-flux $0$--$\pi$ crossing of the junction,
-$U_c^0=0.94\Delta$ [Fig.~\ref{fig:junctions}(b)]: the doublet gains the condensation energy of the $\pi$ loop
-(up to $2E_J$), so that $U_c(g)$ decreases from $0.94\Delta$ at $g\to0$ towards the crossing of the global
-minima, $0.85\Delta$, which it reaches at $g\simeq0.4$ [at $U=0.85\Delta$, $E_{\rm odd}-E_{\rm even}$
-falls from $2.3\times10^{-2}\Delta$ at $g=0.02$ to $9\times10^{-4}\Delta$ at $g=0.4$]. The flux of the mode thus drives a
-parity switch of the junction, and in the window $0.85\Delta<U<0.94\Delta$, where the global minimum
-of $E(\varphi)$ already belongs to the doublet, the switch occurs at a finite coupling
-($g\simeq0.3$ at $U=0.9\Delta$ in the effective model). This shift of $U_c$ by $0.09\Delta$ is a
-prediction specific to the microscopic treatment: the effective circuit model reproduces it only once
-the singlet surface, cusp included, is represented exactly.
-(ii) For $U>U_c$ and $g>g_c(U)$ the mode condenses: at $U=2\Delta$ the photon number rises from
-$0.5$ at $g=0.11$ to $5.7$ at $g=0.13$ and $7.3$ at $g=0.14$, where the current reaches
-$0.96\,I_c$; it then decreases as $I\simeq(e/\hbar)\hbar\omega\varphi^\star/2g^2$, because the condensate
-flux saturates at $\Phi_0/2$ while the inductance $\propto g^2/\hbar\omega$ grows [Eq.~\eqref{eq:sumrule}].
-The threshold $g_c(U)$ (first grid point with $|\langle I\rangle|>0.5I_c$) rises from $0.10$ at $U=\Delta$ to
-$0.13$, $0.19$, $0.24$ and $0.32$ at $U=2,4,5,6\Delta$, following the decrease of $E_J(U)$. It lies
-systematically \emph{above} the classical line $\beta=1$ (dash-dotted), by $\Delta g=0.02$ at
-$U=2\Delta$, $0.04$ at $4\Delta$ and $0.12$ at $6\Delta$: the zero-point motion of the flux opposes
-the condensation, and the shift grows as $E_J/\hbar\omega$ decreases from $10$ to $3.2$. At the same
-time the transition broadens: the width of the crossover in $g$ grows from one grid step at $U\le3\Delta$
-to $0.05$ at $U=5\Delta$ and $0.08$ at $U=6\Delta$, and the maximal current drops from $0.97I_c$ ($U=\Delta$)
-to $0.90$, $0.81$ and $0.61I_c$ ($U=4,5,6\Delta$). For $U=8\Delta$ ($E_J/\hbar\omega=2.1$) no ordered
-phase is left in the window $g\le0.4$ although $\beta$ reaches $2.7$: there the ground state is the
-cat state with $\delta\simeq\hbar\omega$ and $\langle I\rangle\le0.04I_c$, proportional to the seed. This is the
-finite-$E_J/\hbar\omega$ remnant of the transition, which becomes sharp only in the limit
-$E_J/\hbar\omega\to\infty$ at fixed $\beta$ (Fig.~\ref{fig:overview}).
-
-\paragraph*{Comparison with the effective model and with mean field.}
-Above threshold the full DMRG and the effective circuit model agree to $0.2\%$ of $I_c$ on average
-and to $2.4\%$ at worst over the whole ordered region, and to $0.1$ in the photon number
-(the doublet-sector energies agree to better than $10^{-5}\Delta$ at all $g$, to $10^{-6}\Delta$ for $g\le0.3$), which validates the adiabatic elimination
-of the fermions at $\hbar\omega/E_A\sim10^{-3}$. The only points where they differ by more are the
-bracket points inside the crossover windows, where the exact ground state is a partially polarized
-cat and the DMRG from the two initial states brackets the effective-model value from both sides
-[vertical bars in Fig.~\ref{fig:phaseslices}(a)]. This is a statement about the convergence of a
-variational method on a flat energy landscape, not about the physics: the energy difference between
-the two starts is $<3\times10^{-7}\Delta$, while the effective model, which resolves it exactly,
-interpolates smoothly between them. Mean field locates $g_c(U)$ to within the grid step for
-$U\le5\Delta$ ($0.27$ versus $0.32$ at $6\Delta$) but underestimates the current by $10$--$20\%$
-($0.86$ versus $0.96\,I_c$ at $U=2\Delta$; $0.72$ versus $0.90\,I_c$ at $4\Delta$) because the product
-state renormalizes the junction bond by $|\langle D\rangle|<1$; it overestimates the photon number at
-large $g$ ($5.2$ versus $3.7$ at $U=2\Delta$, $g=0.4$), where the exact flux distribution is a displaced
-squeezed state rather than a coherent state; it predicts an ordered phase with $0.6I_c$ at $U=7$--$8\Delta$
-that the exact solution does not have, because a product state cannot describe the tunnelling between
-the two current directions that restores the symmetry when $E_J\lesssim3\hbar\omega$; and, since
-its Hartree--Fock threshold $U_c^{\rm MF}=0.82\Delta$ replaces the Kramers doublet by a static moment,
-it orders the loop at $U=0.85\Delta$ with $0.95I_c$ where the exact ground state is the singlet $0$ loop.
-In short, mean field gives the right $g_c$ and a $10$--$20\%$ low current where $E_J\gg\hbar\omega$ and
-$U$ is well above $U_c$, and fails qualitatively at both ends of the diagram, $U\gtrsim7\Delta$ and
-$U\simeq U_c$.
+Above threshold the full DMRG and the circuit model agree to $0.2\%$ of $I_c$ on average ($2.4\%$ at
+worst), to $0.1$ in the photon number and to $10^{-5}\Delta$ in the doublet-sector energies: at
+$\hbar\omega/E_A\sim10^{-3}$ the elimination of the fermions is exact for all practical purposes and
+Eq.~\eqref{eq:BO} with the microscopic $E_s(\varphi)$ is the correct circuit model. Mean field locates $g_c$
+to within the grid step for $U\le5\Delta$ but underestimates the current by $10$--$20\%$ (the product state
+renormalizes the junction bond by $|\langle D\rangle|<1$), overestimates the photon number at large $g$ ($5.2$
+against $3.7$ at $U=2\Delta$, $g=0.4$), predicts an ordered phase with $0.6I_c$ at $U=7$--$8\Delta$ that does
+not exist, and, with its Hartree--Fock boundary $U_c^{\rm MF}=0.82\Delta$, orders the loop at $U=0.85\Delta$ with
+$0.95I_c$ where the exact ground state is the singlet $0$ loop. At the parameters of
+Ref.~\cite{Varrica2026}, $E_J\simeq\hbar\omega$, it predicts a time-reversal-breaking current that the exact
+solution does not have (SM).
 
 \begin{figure*}
-  \includegraphics[width=\textwidth]{../figs/fig_phase_UG.pdf}
-  \caption{\label{fig:phaseUG}%
-  Phase diagram of the microscopic model~\eqref{eq:H} in the plane of the dot charging
-  energy $U/\Delta$ and the mode coupling $g$ ($Z/R_Q=4g^2/\pi$, right axis), at
-  $\hbar\omega=7.39\times10^{-4}\Delta$, $t_J=0.5\Delta$, $L=10$, no external flux
-  (seed $\varphi_{\rm cl}=10^{-3}$). Colour: persistent current $|\langle I\rangle|$ from the
-  gauge-invariant operator~\eqref{eq:Iop} in units of the critical current $I_c(U)$ of the $\pi$ junction.
-  (a) Full DMRG of electrons and photon, both parity sectors (triangles: computed $U$ values; $g$ step $0.01$).
-  (b) Effective circuit model $H_{\rm eff}$ with the DMRG $E_s(\varphi;U)$. (c) Mean field.
-  Circles: DMRG threshold ($|\langle I\rangle|=0.5I_c$, bar: grid step); green dashed and orange dotted:
-  the same contour from the effective model and from mean field; purple dash-dotted: classical threshold $\beta=1$.}
-\end{figure*}
-
-\begin{figure*}
-  \includegraphics[width=\textwidth]{../figs/fig_phase_slices.pdf}
-  \caption{\label{fig:phaseslices}%
-  Cuts through Fig.~\ref{fig:phaseUG}. (a) Current versus $g$ at $U/\Delta=1.25,2,4,6$ and (b) versus
-  $U$ at $g=0.15,0.25$: full DMRG (symbols; vertical bars: bracket between the two initial states,
-  converted to a current with Eq.~\eqref{eq:sumrule}), effective circuit model (solid), mean field (dotted).
-  (c) Photon number at $U=2\Delta$.}
-\end{figure*}
-
-\begin{figure*}
-  \includegraphics[width=\textwidth]{../figs/fig_phase_convergence.pdf}
-  \caption{\label{fig:phaseconv}%
-  Convergence of the full DMRG. (a) Violation of the sum rule~\eqref{eq:sumrule} over the whole
-  grid. (b) Difference between the fluxes of the two initial states (vacuum side A and polarized side C) in
-  units of $\Phi_0/2$: open symbols, resolved by the energy; filled, reported as a bracket.
-  (c) $U=2\Delta$ near threshold: $\chi=300$ without and with the annealed start, $\chi=400$, and seed $10^{-4}$.}
+  \includegraphics[width=\textwidth]{../figs/fig_phase_main.pdf}
+  \caption{\label{fig:phasemain}%
+  Phase diagram of the loop in the plane of $U/\Delta$ and $g$ ($Z/R_Q=4g^2/\pi$, right axis) at
+  $\hbar\omega=7.39\times10^{-4}\Delta$, $\varphi_{\rm cl}=0$. (a) Persistent current $|\langle I\rangle|/I_c(U)$
+  from the full DMRG with seed $10^{-3}$ (triangles: computed $U$; circles: $|\langle I\rangle|=0.5I_c$).
+  (b) Seed-free order parameter of the circuit model~\eqref{eq:BO}: tunnel splitting $\delta$ between the two
+  current directions (white contours $\delta/\hbar\omega=10^{-1},10^{-3},10^{-6}$; grey: singlet $0$ loop).
+  (c) Mean field. Green dashed: $0.5I_c$ contour of the circuit model; purple dash-dotted: $\beta=1$.}
 \end{figure*}
