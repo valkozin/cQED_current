@@ -1,0 +1,21 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+U=0.500 g=0.0200 E0=-15.0752718758 X=0.0024 X2=1.032 n=0.000 I_bond=5.8997e-05 I_vir=4.3441e-05 dev=1.6e-05 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=4.5e-10 sw=11 dE=1.7e-12 pmax=6.9e-119 Nph=50 t=38s
+U=0.500 g=0.0300 E0=-15.0752866725 X=0.0052 X2=1.077 n=0.001 I_bond=6.5071e-05 I_vir=6.4184e-05 dev=8.9e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=4.9e-10 sw=12 dE=3.7e-13 pmax=4.6e-62 Nph=50 t=49s
+U=0.500 g=0.0400 E0=-15.0753084960 X=0.0079 X2=1.149 n=0.005 I_bond=7.3960e-05 I_vir=7.3202e-05 dev=7.6e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=5.4e-10 sw=12 dE=6.3e-12 pmax=3.0e-24 Nph=50 t=57s
+U=0.500 g=0.0500 E0=-15.0753388683 X=0.0113 X2=1.267 n=0.014 I_bond=8.7699e-05 I_vir=8.3727e-05 dev=4.0e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=5.7e-10 sw=12 dE=5.9e-12 pmax=1.6e-10 Nph=50 t=65s
+U=0.500 g=0.0600 E0=-15.0753807542 X=0.0180 X2=1.476 n=0.039 I_bond=1.1593e-04 I_vir=1.1097e-04 dev=5.0e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.02 | chi=300 terr=6.1e-10 sw=12 dE=5.3e-12 pmax=1.2e-10 Nph=50 t=67s
+U=0.500 g=0.0700 E0=-15.0754411165 X=0.0355 X2=1.926 n=0.112 I_bond=1.9226e-04 I_vir=1.8730e-04 dev=5.0e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.04 | chi=300 terr=6.5e-10 sw=19 dE=7.2e-12 pmax=4.6e-12 Nph=50 t=109s
+U=0.500 g=0.0800 E0=-15.0755466821 X=0.1263 X2=3.704 n=0.495 I_bond=5.9573e-04 I_vir=5.8325e-04 dev=1.2e-05 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.13 | chi=300 terr=7.4e-10 sw=41 dE=3.3e-11 pmax=1.5e-11 Nph=50 t=185s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.17e-03
+U=0.500 g=0.0900 E0=-15.0761174949 X=5.1234 X2=30.192 n=7.196 I_bond=2.1035e-02 I_vir=2.1034e-02 dev=7.4e-07 | Xcl=5.29 start=A dE_starts=0.0e+00 X_starts=5.12 | chi=300 terr=7.3e-10 sw=41 dE=1.9e-08 pmax=1.1e-09 Nph=50 t=312s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.39e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.06e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.43e-04
+U=0.500 g=0.1000 E0=-15.0777028955 X=7.0333 X2=50.577 n=12.372 I_bond=2.5982e-02 I_vir=2.5988e-02 dev=6.2e-06 | Xcl=7.14 start=C dE_starts=9.3e-07 X_starts=6.78,7.03 | chi=300 terr=5.6e-10 sw=12 dE=3.8e-12 pmax=2.6e-12 Nph=56 t=592s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
