@@ -24,6 +24,27 @@ def dV_of(c, phi):
     return np.real((1j * m) * np.exp(1j * np.outer(phi, m)) @ c)
 
 
+def solve_V(V, dV, g, omega, phi_cl=0.0, Nphot=200, nstates=4):
+    """same as solve() but for an arbitrary potential V(phi) (vectorized callable) with derivative dV"""
+    n = np.arange(Nphot)
+    X = np.diag(np.sqrt(n[1:]), 1) + np.diag(np.sqrt(n[1:]), -1)
+    x, U = eigh(X)
+    H = omega * np.diag(n) + (U * V(phi_cl + g * x)) @ U.T
+    E, psi = eigh(H)
+    psi = psi[:, :nstates]
+    cur = (U * (-dV(phi_cl + g * x))) @ U.T
+    obs = {}
+    obs['E'] = E[:nstates]
+    obs['I'] = np.einsum('ik,ij,jk->k', psi, cur, psi)
+    obs['I2'] = np.einsum('ik,ij,jk->k', psi, cur @ cur, psi)
+    obs['X'] = np.einsum('ik,ij,jk->k', psi, X, psi)
+    obs['X2'] = np.einsum('ik,ij,jk->k', psi, X @ X, psi)
+    P2 = psi[:, :2].T @ X @ psi[:, :2]
+    obs['X01'] = np.max(np.abs(np.linalg.eigvalsh(P2)))
+    obs['n'] = np.einsum('ik,i,ik->k', psi, n.astype(float), psi)
+    return obs
+
+
 def solve(c, g, omega, phi_cl=0.0, Nphot=200, nstates=4):
     n = np.arange(Nphot)
     X = np.diag(np.sqrt(n[1:]), 1) + np.diag(np.sqrt(n[1:]), -1)

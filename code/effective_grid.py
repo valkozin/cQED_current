@@ -3,16 +3,32 @@ with E(phi) = ground-state energy of the ring at fixed phase from DMRG (both par
 point by point).  Photon treated exactly (DVR, Nphot=200).  Same (U, g) grid as the full DMRG.
 usage: python effective_grid.py <ephi json(s) comma-separated> <omega> <seed> <g list> <outfile> [U list]"""
 import numpy as np, json, sys
-from bo import solve
+from bo import solve, solve_V
 from harm import harmonics
 
 files = sys.argv[1].split(','); omega, seed = float(sys.argv[2]), float(sys.argv[3])
 gs = [float(g) for g in sys.argv[4].split(',')]; outfile = sys.argv[5]
 rows = sum((json.load(open(f)) for f in files), [])
+# optional fine even-sector curves (spline instead of harmonics): files given in env EVEN_FINE (comma separated)
+import os, glob
+from scipy.interpolate import CubicSpline
+fine_even = {}
+for f in sum((glob.glob(x) for x in os.environ.get('EVEN_FINE', '').split(',') if x), []):
+    for r in json.load(open(f)):
+        fine_even.setdefault(r['U'], []).append((r['phi'], r['even']))
+
+
+def spline_V(pts):
+    """even E(phi) on [0, pi], extended by symmetry E(-phi) = E(phi), E(phi + 2pi) = E(phi) (electron phase period 2pi)"""
+    ph, E = map(np.array, zip(*sorted(pts)))
+    ph2 = np.concatenate([ph, 2 * np.pi - ph[-2::-1]]); E2 = np.concatenate([E, E[-2::-1]])
+    cs = CubicSpline(ph2, E2, bc_type='periodic')
+    return (lambda x: cs(np.mod(x, 2 * np.pi))), (lambda x: cs(np.mod(x, 2 * np.pi), 1))
+
 Us = sorted(set(r['U'] for r in rows))
 if len(sys.argv) > 6:
     Us = [u for u in Us if u in [float(x) for x in sys.argv[6].split(',')]]
-out = dict(omega=omega, seed=seed, gs=gs, Us=Us, I=[], n=[], X=[], X2=[], sector=[], delta=[], Phi=[], Irms=[], harm={}, Ic=[])
+out = dict(omega=omega, seed=seed, gs=gs, Us=Us, fine_even=sorted(fine_even), I=[], n=[], X=[], X2=[], sector=[], delta=[], Phi=[], Irms=[], harm={}, Ic=[])
 M = 4
 for U in Us:
     rr = sorted([r for r in rows if r['U'] == U], key=lambda r: r['phi'])
@@ -28,11 +44,17 @@ for U in Us:
     for g in gs:
         best = None
         for s in ('even', 'odd'):
-            o = solve(c[s].astype(complex), g, omega, seed, Nphot=200)
+            if s == 'even' and U in fine_even:
+                V, dV = spline_V(fine_even[U]); o = solve_V(V, dV, g, omega, seed, Nphot=200)
+            else:
+                o = solve(c[s].astype(complex), g, omega, seed, Nphot=200)
             if best is None or o['E'][0] < best[1]['E'][0]:
                 best = (s, o)
         s, o = best
-        o0 = solve(c[s].astype(complex), g, omega, 0.0, Nphot=200)
+        if s == 'even' and U in fine_even:
+            V, dV = spline_V(fine_even[U]); o0 = solve_V(V, dV, g, omega, 0.0, Nphot=200)
+        else:
+            o0 = solve(c[s].astype(complex), g, omega, 0.0, Nphot=200)
         rI.append(float(o['I'][0])); rn.append(float(o['n'][0])); rX.append(float(o['X'][0])); rX2.append(float(o['X2'][0])); rs.append(s)
         rd.append(float((o0['E'][1] - o0['E'][0]) / omega)); rP.append(float(o0['X01'] * g / (np.pi / 2))); rIr.append(float(np.sqrt(o0['I2'][0])))
     for k, v in zip(('I', 'n', 'X', 'X2', 'sector', 'delta', 'Phi', 'Irms'), (rI, rn, rX, rX2, rs, rd, rP, rIr)):
