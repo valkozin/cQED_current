@@ -9,6 +9,8 @@ and the body of a PRL draft.
 | `notebooks/` | Original Mathematica mean-field notebook |
 | `docs/01_review_ru.md` | Review of the approach, the physics and the mean-field solution (in Russian) |
 | `docs/02_dmrg_results_ru.md` | DMRG results and comparison with mean field (in Russian) |
+| `docs/03_phase_diagram_U_g_ru.md` | First (adiabatic) (U,g) diagram, L=14 (in Russian) |
+| `docs/04_phase_diagram_full_dmrg_ru.md` | Full-DMRG (U,g) phase diagram, protocol, convergence, comparison (in Russian) |
 | `paper/` | PRL body (`main.tex` → `body.tex`, `results.tex`, `feasibility.tex`, `refs.bib`); `main.pdf` |
 | `figs/` | Figures (pdf/png), produced by `code/make_figures.py` |
 | `data/` | All numerical results (json/npy) and run logs |
@@ -20,7 +22,11 @@ and the body of a PRL draft.
 * `dmrg_ring.py`: TeNPy model of the ring plus photon, i.e. the full electron–photon problem with the Peierls vertex e^{ig(a+a†)}.
 * `run_dmrg_notebook.py`, `run_dmrg_scan.py`, `run_udot_phase.py`: production DMRG runs.
 * `bo_scan.py`, `bo_udot.py`, `bo_phase_diagram.py`: adiabatic scans.
+* `run_full_grid.py`: production full-DMRG (U,g) grid with two initial states and seed annealing; `repair_points.py`, `validate_grid.py`.
+* `ring_ephi.py`, `ring_ephi_even.py`: E(phi;U) of the ring at g=0 in both parity sectors (input of the effective model).
+* `effective_grid.py`: effective circuit model (fermions integrated out) on the same grid; `mf_grid.py`: mean field on the same grid.
+* `make_phase_figs.py`: figures of the phase-diagram section (`figs/fig_phase_*.pdf`).
 * `tests/`: DMRG against exact BdG (g=0) and against exact diagonalization (small ring + photon).
 
-Requirements: `numpy scipy matplotlib physics-tenpy==1.1.1`. The runs took about 3 h on 4 cores.
+Requirements: `numpy scipy matplotlib physics-tenpy==1.1.1`. The first runs took about 3 h on 4 cores; the full-DMRG (U,g) grid about 20 CPU hours (`data/full/worker.sh`).
 Example: `cd code && python run_dmrg_scan.py udot:2 10 0.5,1,1.5,2,3 256 50 ../data/out.json 0.00761`.

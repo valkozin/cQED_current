@@ -136,7 +136,7 @@ def fig_slices(full, eff, mf):
             ax.plot(eff['gs'], np.abs(eff['I'][ke]) / ic, '-', color=col, lw=1.1)
         if km is not None:
             ax.plot(mf['gs'][1:], np.abs(mf['I'][km][1:]) / ic, ':', color=col, lw=1.1)
-    ax.set_xlabel(r'$g$'); ax.set_ylabel(r'$|\langle I\rangle|/I_c$'); ax.set_xlim(0.02, 0.40); ax.set_ylim(-0.03, 1.12); ax.legend(loc='upper right', ncol=2, columnspacing=0.8, handletextpad=0.3)
+    ax.set_xlabel(r'$g$'); ax.set_ylabel(r'$|\langle I\rangle|/I_c$'); ax.set_xlim(0.02, 0.40); ax.set_ylim(-0.03, 1.12); ax.legend(loc='upper right', ncol=1, fontsize=6.5, handletextpad=0.3, labelspacing=0.25, borderaxespad=0.2)
     ax.set_title('(a) cuts at fixed $U$', fontsize=8.5, loc='left')
     # (b) cuts at fixed g
     ax = axs[1]
@@ -189,7 +189,7 @@ def fig_convergence(full, eff):
         if os.path.exists(p):
             dd = json.load(open(p)); rr = dd['rows']
             ax.plot([r['g'] for r in rr], [abs(r['I_bond']) / Icf(2.0) for r in rr], 'o-', ms=3, mfc='w', lw=0.8, label=lab)
-    ax.set_xlabel('$g$'); ax.set_ylabel(r'$|\langle I\rangle|/I_c$'); ax.set_xlim(0.08, 0.2); ax.legend(); ax.set_title(r'(c) $U=2\Delta$', fontsize=8.5, loc='left')
+    ax.set_xlabel('$g$'); ax.set_ylabel(r'$|\langle I\rangle|/I_c$'); ax.set_xlim(0.08, 0.2); ax.legend(loc='lower right', fontsize=6.5); ax.set_title(r'(c) $U=2\Delta$', fontsize=8.5, loc='left')
     fig.savefig(os.path.join(F, 'fig_phase_convergence.pdf')); fig.savefig(os.path.join(F, 'fig_phase_convergence.png'))
 
 
