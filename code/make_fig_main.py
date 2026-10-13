@@ -40,7 +40,6 @@ def main():
             im = ax.pcolormesh(Uf, gf, Zp.T, cmap='Blues_r', vmin=-8, vmax=0, shading='gouraud', rasterized=True)
             ax.contour(Uf, gf, np.nan_to_num(Zp, nan=0.0).T, levels=[-6, -3, -1], colors='w', linewidths=0.7)
             ax.contourf(Uf, gf, Zsec.T, levels=[-0.5, 0.5], colors=['#f2f2f2'])
-            ax.text(2.5, 0.05, '0 loop (singlet)', fontsize=6.5, color='0.3')
         else:
             im = ax.pcolormesh(Uf, gf, (Zd if k == 0 else Zm).T, cmap='Blues', norm=Normalize(0, 1), shading='gouraud', rasterized=True)
         ims.append(im)

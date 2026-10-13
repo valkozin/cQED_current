@@ -56,20 +56,31 @@ def bo_surfaces():
     return eff, fine
 
 
+_harm_interp = {}
+
+
+def harm_of(eff, U, s):
+    """harmonics of E_s(phi; U), interpolated in U (pchip) between the DMRG nodes of effective_Nr10.json"""
+    if s not in _harm_interp:
+        from scipy.interpolate import PchipInterpolator
+        Us = np.array(eff['Us']); C = np.array([eff['harm'][str(u)][s] for u in eff['Us']])
+        _harm_interp[s] = PchipInterpolator(Us, C, axis=0)
+    return np.array(_harm_interp[s](U), complex)
+
+
 def E_bo(eff, fine, U, s, g, omega):
     if g == 0:
-        c = np.array(eff['harm'][str(U)][s]); return float(np.sum(c))
+        return float(np.sum(harm_of(eff, U, s).real))
     if s == 'even' and U in fine:
         V, dV = spline_V(fine[U]); return float(solve_V(V, dV, g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
-    c = np.array(eff['harm'][str(U)][s], complex)
-    return float(solve(c, g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
+    return float(solve(harm_of(eff, U, s), g, omega, 0.0, Nphot=120, nstates=1)['E'][0])
 
 
 def main():
     grid = load_grid(); lf = load_lf(); eff, fine = bo_surfaces()
     omegas = sorted(grid)
     summary = dict(omegas=omegas, Uc={}, Uc_bo={}, Uc_lf={}, rows={})
-    Ueff = [u for u in eff['Us'] if 0.3 <= u <= 1.5]
+    Ueff = [0.4, 0.5, 0.6, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, 1.1, 1.25]
     gs_all = sorted({r['g'] for om in grid for r in grid[om]})
     # exact
     for om in omegas:
