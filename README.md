@@ -11,17 +11,19 @@ and the body of a PRL draft.
 | `docs/02_dmrg_results_ru.md` | DMRG results and comparison with mean field (in Russian) |
 | `docs/03_phase_diagram_U_g_ru.md` | First (adiabatic) (U,g) diagram, L=14 (in Russian) |
 | `docs/04_phase_diagram_full_dmrg_ru.md` | Full-DMRG (U,g) phase diagram, protocol, convergence, comparison (in Russian) |
-| `paper/` | PRL body (`main.tex` → `body.tex`, `results.tex`, `feasibility.tex`, `refs.bib`); `main.pdf` |
-| `figs/` | Figures (pdf/png), produced by `code/make_figures.py` |
-| `data/` | All numerical results (json/npy) and run logs |
+| `docs/05_revision_ru.md` | October 2026 revision: what was recomputed with the two-start protocol, unified parameters (L=10), text merge (in Russian) |
+| `paper/` | PRL body (`main.tex` → `body.tex` → `junction.tex`, `phase_diagram.tex`, `results.tex`, `feasibility.tex`; `refs.bib`); `main.pdf` |
+| `figs/` | Figures (pdf/png), produced by `code/make_figures.py` and `code/make_phase_figs.py` (`fig_main_phase_diagram` is the superseded L=14 adiabatic diagram, kept for reference) |
+| `data/` | All numerical results (json/npy) and run logs; `data/full/` the full-DMRG (U,g) grid, `data/rerun/` the beta scans recomputed with the two-start protocol |
 
 ## Code (`code/`)
 * `model.py`, `mean_field.py`: line-by-line Python port of the notebook. It reproduces every curve of the notebook.
 * `bo.py`: adiabatic (Born–Oppenheimer) solution. The photon moves in the exact electronic E(φ_cl + gX).
 * `bdg_general.py`, `mf_general.py`: BdG and mean field for general rings (weak link / dot).
 * `dmrg_ring.py`: TeNPy model of the ring plus photon, i.e. the full electron–photon problem with the Peierls vertex e^{ig(a+a†)}.
-* `run_dmrg_notebook.py`, `run_dmrg_scan.py`, `run_udot_phase.py`: production DMRG runs.
-* `bo_scan.py`, `bo_udot.py`, `bo_phase_diagram.py`: adiabatic scans.
+* `run_dmrg_notebook.py`, `run_udot_phase.py`: production DMRG runs (notebook model, E(phi) at L=14); `run_dmrg_scan.py`: the original beta scans (superseded).
+* `run_beta_scan.py`: beta scans (half-flux weak link at L=14, seed-free cat state of the U=2 pi loop at L=10) with the two-start protocol, sum rule and excited state.
+* `bo_scan.py`, `bo_udot.py`, `bo_phase_diagram.py`: adiabatic scans (the last two default to the L=10 harmonics `data/harmonics_udot_U2_Nr10.npy`).
 * `run_full_grid.py`: production full-DMRG (U,g) grid with two initial states and seed annealing; `repair_points.py`, `validate_grid.py`.
 * `ring_ephi.py`, `ring_ephi_even.py`: E(phi;U) of the ring at g=0 in both parity sectors (input of the effective model).
 * `effective_grid.py`: effective circuit model (fermions integrated out) on the same grid; `mf_grid.py`: mean field on the same grid.

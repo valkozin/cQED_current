@@ -7,7 +7,7 @@
 \paragraph*{Choice of regime and dimensionless variables.}
 The microscopic model~\eqref{eq:H} contains the energy scales $t,\Delta,t_J,U$
 of the junction and $\hbar\omega,g$ of the mode. Three dimensionless ratios
-control the physics. (i) $U/\Delta$ at fixed $\Gamma/\Delta$ (here $\Gamma=2t_J^2/t=\Delta/2$)
+control the physics. (i) $U/\Delta$ at fixed $\Gamma/\Delta$ 
 sets the magnetic state of the dot and hence the sign of the Josephson coupling:
 the loop is a $\pi$ loop only for $U>U_c$. (ii) The coupling $g$ is fixed by
 the impedance of the mode alone, $g^2=\pi Z/4R_Q$, i.e.\ $g=0.1$--$0.4$
@@ -16,74 +16,30 @@ for $Z=80\,\Omega$--$1.3\,{\rm k}\Omega$, from ordinary lumped resonators to the
 (iii) $E_J/\hbar\omega$, with $E_J\equiv E_2>0$ the Josephson energy of the $\pi$ junction,
 decides whether the transition is sharp: the two current states tunnel with
 $\delta\sim\hbar\omega e^{-S}$, $S\propto E_J/\hbar\omega$. We take
-$\hbar\omega=E_J(U=2\Delta)/10=7.39\times10^{-4}\Delta$: for a dot junction with
-$I_c^\pi\simeq10$\,nA ($E_J/h\simeq5$\,GHz) this is a $500$\,MHz mode with a loop inductance
-$L=Z/\omega=30$--$400$\,nH, consistent with the screening condition $\beta=2\pi LI_c/\Phi_0\sim1$
-at $L\simeq\Phi_0/2\pi I_c=33$\,nH. With this choice the classical threshold
+$\hbar\omega=E_J(U=2\Delta)/10=7.39\times10^{-4}\Delta$. In physical units this is the regime of
+a multichannel or gate-tunable $\pi$ junction with $I_c\simeq100$\,nA ($E_J/h\simeq50$\,GHz)
+in a loop that shares its inductance with a $5$\,GHz mode: $g=0.1$--$0.4$ then corresponds to a loop
+inductance $L=Z/\omega=3$--$40$\,nH, and the screening condition $\beta=2\pi LI_c/\Phi_0=1$ is met at
+$L=\Phi_0/2\pi I_c=3.3$\,nH, i.e.\ at $g=0.11$ [class (iii) of the platforms discussed at the end].
+With this choice the classical threshold
 $\beta=8g^2E_J(U)/\hbar\omega=1$ lies at $g=0.11$ for $U=2\Delta$ and
 sweeps across the experimentally accessible window $g\le0.4$ as $U$ is varied
 from $U_c$ to $8\Delta$, while $E_J/\hbar\omega$ decreases from $15$ to $2$, so that
 the same diagram contains the sharp transition and its quantum washing-out. We present it in the
 plane $(U/\Delta,g)$; the right axis of Fig.~\ref{fig:phaseUG} converts $g$ to $Z/R_Q$.
-The ring has $L=10$ sites ($L\gg\xi\simeq t/\Delta$): the $\pi$-sector Josephson
-energy is converged to $0.2\%$ between $L=8$ and $L=14$
-($E_2=7.403,7.392,7.391,7.391\times10^{-3}\Delta$ for $L=8,10,12,14$) and the single-electron
-harmonic is $|E_1|/E_2\le2\%$.
 
-\paragraph*{Gauge-invariant current operator.}
-Since the Peierls phase of the loop is placed on the dot--ring bond [Eq.~\eqref{eq:H}],
-the persistent current is the derivative of $H$ with respect to the total flux,
-$I=-\partial H/\partial\Phi=-(e/\hbar)\,\partial H/\partial\varphi_{\rm cl}$ (the Peierls phase is the single-electron phase, $\Phi=\hbar\varphi/e$),
-\begin{equation}
-  I=\frac{e}{\hbar}\,i\,t_J\sum_\sigma\!\left(e^{i\varphi_{\rm cl}}e^{ig(a+a^\dagger)}c^\dagger_{1\sigma}c_{0\sigma}
-  -{\rm h.c.}\right)
-  \label{eq:Iop}
-\end{equation}
-(below we quote $I$ in units of $e\Delta/\hbar$; in terms of the Cooper-pair phase $\theta=2\varphi$ the same operator reads $-(2e/\hbar)\partial H/\partial\theta$). This is the particle current through the
-dot--ring bond, dressed by the displacement operator of the mode: the combination
-$e^{i(\varphi_{\rm cl}+gX)}c^\dagger_1c_0$ is invariant under the simultaneous
-gauge transformation of the electrons and of the vector potential, and its
-expectation value does not change if the Peierls phase is distributed along the
-ring with the pairing amplitude transformed covariantly~\cite{Dmytruk2021}.
-Because the dot carries no pairing term, the particle number of site $0$ is conserved by
-$H$ and the current entering the dot from site $L-1$ equals the current~\eqref{eq:Iop}
-leaving it; the same is not true of the bonds inside the BCS chain, where the
-fixed-phase pairing term acts as a condensate reservoir~\cite{Dmytruk2021}.
-Equation~\eqref{eq:Iop} obeys an exact sum rule. With $X=a+a^\dagger$ and
-$P=-i(a-a^\dagger)$, $[H,P]=i\hbar\omega X-2ig\,(\hbar/e)I$, so that in any eigenstate
-\begin{equation}
-  \langle I\rangle=\frac{e}{\hbar}\,\frac{\hbar\omega}{2g}\,\langle a+a^\dagger\rangle :
-  \label{eq:sumrule}
-\end{equation}
-the persistent current \emph{is} the static displacement of the mode (the dc flux
-it generates, $\Phi=LI$). We evaluate both sides independently in DMRG and use their
-difference as a convergence measure: $\langle I\rangle$ is a local fermionic observable,
-$\langle X\rangle$ a photonic one, and only an eigenstate satisfies Eq.~\eqref{eq:sumrule}.
-
-\paragraph*{DMRG protocol.}
-At each $(U,g)$ we obtain the ground state of Eq.~\eqref{eq:H} on the full
-electron--photon Hilbert space by two-site DMRG with bond dimension $\chi=300$
-(truncation error $<2\times10^{-8}$), a photon cutoff $N_{\rm ph}=50$--$62$ chosen such that
-the population of the last Fock state is $<10^{-7}$, and a seed
-$\varphi_{\rm cl}=10^{-3}$ that selects one of the two degenerate current states. The grid
-is $g=0.02$--$0.40$ in steps of $0.01$ ($0.02$ above $0.3$) and $U/\Delta=0,0.5,0.75,0.85,1,1.25,1.5,2,2.5,3,4,5,6,8$,
-$427$ ground states in all (about $20$ CPU hours). Fermion
-parity and $S^z$ are conserved; for $U\le\Delta$ both parity sectors are computed and the lower one is
+\paragraph*{Grid.}
+The grid is $g=0.02$--$0.40$ in steps of $0.01$ ($0.02$ above $0.3$) and
+$U/\Delta=0,0.5,0.75,0.85,1,1.25,1.5,2,2.5,3,4,5,6,8$, $427$ ground states in all (about $20$ CPU hours),
+each obtained with the two-start protocol of the Methods ($\chi=300$, seed $\varphi_{\rm cl}=10^{-3}$).
+For $U\le\Delta$ both parity sectors are computed and the lower one is
 taken, which locates the $0$--$\pi$ boundary of the \emph{loop} without any assumption.
-The two current-carrying states are split only by the exponentially small $\delta$ and by the seed,
-$2I^\star\varphi_{\rm cl}\sim10^{-5}\Delta$, so that the energy landscape between them is flat and
-local DMRG updates drift towards the polarized state over tens of sweeps. We therefore use two
-independent initial states at every point and keep the lower-energy result: (A) the converged
-state of the neighbouring $g$, which approaches the transition from the vacuum side, and (C)
-a product state with the mode in a coherent state at the classical flux, converged first with a
-large seed ($\varphi_{\rm cl}=10^{-2}$, then $3\times10^{-3}$) and then relaxed at $10^{-3}$, which
-approaches it from the polarized side. Where the two differ, the energy decides whenever the
-difference exceeds $3\times10^{-7}\Delta$; the $47$ points ($11\%$ of the grid, all inside the
-crossover windows discussed below) where it does not are reported as brackets
+The two starts differ by less than $3\times10^{-7}\Delta$ in energy at $47$ points ($11\%$ of the grid, all inside the
+crossover windows discussed below), which are reported as brackets
 [Fig.~\ref{fig:phaseconv}(b)]. The sum rule~\eqref{eq:sumrule} is satisfied to better than
-$10^{-3}I_c$ at every point with $g\ge0.04$ (median $10^{-4}I_c$; the worst points are the first ones of each
+$10^{-3}I_c$ at every point with $g\ge0.04$ (the worst points are the first ones of each
 scan at $g\le0.03$, where the current itself is $<10^{-2}I_c$) [Fig.~\ref{fig:phaseconv}(a)].
-Increasing $\chi$ to $400$ changes the energies by $<4\times10^{-8}\Delta$ and the current by $<0.3\%$
+Increasing $\chi$ to $400$ changes the current by $<0.3\%$
 except at the crossover point; raising $N_{\rm ph}$ to $80$ changes the energy by $<10^{-9}\Delta$; and
 reducing the seed to $10^{-4}$ leaves the current above threshold unchanged to $0.4\%$ while the
 current below threshold scales down by the factor $0.09$ [Fig.~\ref{fig:phaseconv}(c)]: the
@@ -98,8 +54,8 @@ fixed parity, $H^{(s)}_{\rm eff}=\hbar\omega a^\dagger a+E_s(\varphi_{\rm cl}+gX
 parity conservation forbids any mixing of the two surfaces, and the ground state is the lower
 of the two sector ground states. The matching of parameters is unambiguous:
 $E_s(\varphi;U)$ is computed by DMRG at $g=0$. The doublet surface is represented by
-four harmonics (nine phases); the singlet surface has a cusp at $\varphi=\pi/2$ (a level crossing
-inside the even sector) and is represented by a spline through $25$ phases. $H_{\rm eff}$ is then
+four harmonics (nine phases); the singlet surface, because of its cusp at $\varphi=\pi/2$
+[Fig.~\ref{fig:junctions}(a)], is represented by a spline through $25$ phases. $H_{\rm eff}$ is then
 diagonalized exactly in a Fock space of $200$ states, with the same seed. Its current is
 $I_{\rm eff}=-(e/\hbar)\partial_\varphi E_s$, the classical current of the junction averaged over the flux
 distribution of the mode; the omitted terms are the non-adiabatic (Berry) corrections of relative
@@ -116,12 +72,15 @@ diamagnetic and the mode is not softened but stiffened, $\omega\to\omega'=\omega
 with $E''(0)=0.20\Delta$, i.e.\ $\omega'=9.4\,\omega$ at $g=0.4$. The ground state is the squeezed vacuum of the
 stiffened mode: its photon number $(\omega'/\omega+\omega/\omega')/4-1/2$ reproduces the DMRG value at every $g$
 ($1.89$ versus $1.91$ virtual photons at $g=0.4$), while $|\langle I\rangle|<10^{-2}I_c$ and linear in the seed. The boundary is not the zero-flux $0$--$\pi$ crossing of the junction,
-$U_c^0=0.94\Delta$: the doublet gains the condensation energy of the $\pi$ loop (up to $2E_J$), so that
-$U_c(g)$ decreases from $0.94\Delta$ at $g\to0$ to $0.85\Delta$ at $g=0.4$ [at $U=0.85\Delta$, $E_{\rm odd}-E_{\rm even}$
-falls from $2.3\times10^{-2}\Delta$ to $9\times10^{-4}\Delta$]. The flux of the mode thus drives a
-parity switch of the junction, and in the window $0.83\Delta<U<0.94\Delta$, where the global minimum
+$U_c^0=0.94\Delta$ [Fig.~\ref{fig:junctions}(b)]: the doublet gains the condensation energy of the $\pi$ loop
+(up to $2E_J$), so that $U_c(g)$ decreases from $0.94\Delta$ at $g\to0$ towards the crossing of the global
+minima, $0.85\Delta$, which it reaches at $g\simeq0.4$ [at $U=0.85\Delta$, $E_{\rm odd}-E_{\rm even}$
+falls from $2.3\times10^{-2}\Delta$ at $g=0.02$ to $9\times10^{-4}\Delta$ at $g=0.4$]. The flux of the mode thus drives a
+parity switch of the junction, and in the window $0.85\Delta<U<0.94\Delta$, where the global minimum
 of $E(\varphi)$ already belongs to the doublet, the switch occurs at a finite coupling
-($g\simeq0.3$ at $U=0.9\Delta$ in the effective model).
+($g\simeq0.3$ at $U=0.9\Delta$ in the effective model). This shift of $U_c$ by $0.09\Delta$ is a
+prediction specific to the microscopic treatment: the effective circuit model reproduces it only once
+the singlet surface, cusp included, is represented exactly.
 (ii) For $U>U_c$ and $g>g_c(U)$ the mode condenses: at $U=2\Delta$ the photon number rises from
 $0.5$ at $g=0.11$ to $5.7$ at $g=0.13$ and $7.3$ at $g=0.14$, where the current reaches
 $0.96\,I_c$; it then decreases as $I\simeq(e/\hbar)\hbar\omega\varphi^\star/2g^2$, because the condensate
@@ -159,6 +118,9 @@ that the exact solution does not have, because a product state cannot describe t
 the two current directions that restores the symmetry when $E_J\lesssim3\hbar\omega$; and, since
 its Hartree--Fock threshold $U_c^{\rm MF}=0.82\Delta$ replaces the Kramers doublet by a static moment,
 it orders the loop at $U=0.85\Delta$ with $0.95I_c$ where the exact ground state is the singlet $0$ loop.
+In short, mean field gives the right $g_c$ and a $10$--$20\%$ low current where $E_J\gg\hbar\omega$ and
+$U$ is well above $U_c$, and fails qualitatively at both ends of the diagram, $U\gtrsim7\Delta$ and
+$U\simeq U_c$.
 
 \begin{figure*}
   \includegraphics[width=\textwidth]{../figs/fig_phase_UG.pdf}

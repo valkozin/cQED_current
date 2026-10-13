@@ -86,9 +86,12 @@ def fig_weaklink(ratio=10):
     betas = np.array(bo['betas']) * scale
     om = EJ / ratio
     tilt = np.array(bo['runs']['tilt_%d' % ratio]); sym = np.array(bo['runs']['sym_%d' % ratio])
-    fn = D + 'dmrg_weaklink_r%d.json' % ratio
-    dm = json.load(open(fn))['rows'] if os.path.exists(fn) else []
-    dm = [r for r in dm if r['beta'] > 0]
+    dm = []
+    for part in ('a', 'b'):
+        fn = D + 'rerun/dmrg_weaklink_Nr14_r%d_%s.json' % (ratio, part)
+        if os.path.exists(fn):
+            dm += json.load(open(fn))['rows']
+    dm = sorted([r for r in dm if r['beta'] > 0], key=lambda r: r['beta'])
     fig, axs = plt.subplots(1, 3, figsize=(7.0, 2.1), constrained_layout=True)
     a = axs[0]
     a.plot(betas, np.abs(tilt[:, 6]) / Ic, color=C4, lw=1, ls='--', label='classical (Landau)')
@@ -97,7 +100,7 @@ def fig_weaklink(ratio=10):
     if dm:
         b = np.array([r['beta'] for r in dm]) * scale
         a.plot(b, [abs(r['I_mf']) / Ic for r in dm], 's', ms=3.5, mfc='none', color=C2, label='mean field')
-        a.plot(b, [abs(om * r['X0'] / (2 * r['g'])) / Ic for r in dm], 'o', ms=3.5, color=C1, label='DMRG')
+        a.plot(b, [abs(r['I0']) / Ic for r in dm], 'o', ms=3.5, color=C1, label='DMRG')
     a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$|\langle I\rangle|/I_c$'); a.legend(fontsize=6, loc='lower right')
     a.set_xlim(0, betas.max()); tag(a, '(a)')
     a = axs[1]
@@ -108,12 +111,12 @@ def fig_weaklink(ratio=10):
     a.set_ylim(1e-9, 2); a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$(E_1-E_0)/\hbar\omega$')
     a.legend(fontsize=6, loc='lower left'); a.set_xlim(0, betas.max()); tag(a, '(b)')
     a = axs[2]
-    cols = ['#9ec5f0', '#5a9be3', C1, '#1a4f91']
+    cols = ['#9ec5f0', '#5a9be3', '#3a7fd0', C1, '#1a4f91']
     k = 0
     for r in dm:
-        if r['beta'] in (0.5, 1.0, 1.5, 3.0):
+        if r['beta'] in (0.5, 1.0, 1.25, 1.5, 3.0):
             x, p = photon_xdist(r['rho_ph'])
-            a.plot(r['g'] * x / (np.pi / 2), p * (np.pi / 2) / r['g'], color=cols[k % 4], lw=1.2, label=r'$\beta=%.2f$' % (r['beta'] * scale))
+            a.plot(r['g'] * x / (np.pi / 2), p * (np.pi / 2) / r['g'], color=cols[k % 5], lw=1.2, label=r'$\beta=%.2f$' % (r['beta'] * scale))
             k += 1
     a.set_xlim(-1.3, 1.3); a.set_xlabel(r'$\Phi/(\Phi_0/2)$'); a.set_ylabel(r'$P(\Phi)$ (DMRG)')
     a.legend(fontsize=6); tag(a, '(c)')
@@ -121,10 +124,19 @@ def fig_weaklink(ratio=10):
     plt.close(fig)
 
 
-# ---------------------------------------------------------------- Fig. junction physics
+# ---------------------------------------------------------------- Fig. junction physics (L=10 ring, DMRG at g=0)
+def load_ephi10():
+    """E(phi;U) of the L=10 interacting-dot ring in both parity sectors (DMRG, chi=300, 9 phases)"""
+    rows = json.load(open(D + 'ephi_Nr10_tJ0.5_A.json')) + json.load(open(D + 'bench/ephi_Nr10_U2_tJ0.5.json'))
+    return rows
+
+
 def fig_junctions():
     from bdg_general import sc_ring, bdg_energy
-    from udot_harmonics import load, harmonics_from_half
+    from harm import harmonics as harm_fit
+    rows = load_ephi10()
+    Us = np.array(sorted(set(r['U'] for r in rows)))
+    get = lambda U, p, s: [r[s] for r in rows if abs(r['U'] - U) < 1e-9 and abs(r['phi'] - p) < 1e-3][0]
     fig, axs = plt.subplots(1, 3, figsize=(7.0, 2.2), constrained_layout=True,
                             gridspec_kw=dict(width_ratios=[1.45, 1, 1]))
     a = axs[0]
@@ -135,41 +147,50 @@ def fig_junctions():
     pw = sc_ring(14, 1.0, 1.0, 0.5)
     E = np.array([bdg_energy(pw, x + np.pi / 2) for x in ph]); E -= E[120]
     a.plot(ph / np.pi, E / np.abs(E).max(), color=C3, label=r'weak link + $\Phi_0/2$')
-    phi, Eu = load(D + 'udot_phi_tJ0.5.json', 2.0)
-    cu = harmonics_from_half(phi, Eu)
+    d2 = sorted([r for r in rows if abs(r['U'] - 2.0) < 1e-9], key=lambda r: r['phi'])
+    phi = np.array([r['phi'] for r in d2]); Eu = np.array([r['odd'] for r in d2])
+    cu = harm_fit(phi, Eu, M=6).astype(complex)
     E = V_of(cu, ph); E -= E[120]
     sc = np.abs(E).max()
-    a.plot(ph / np.pi, E / sc, color=C1, lw=1, label=r'interacting dot $U=2t$' + '\n(DMRG, no flux)')
+    a.plot(ph / np.pi, E / sc, color=C1, lw=1, label=r'interacting dot $U=2\Delta$' + '\n(DMRG, no flux)')
     a.plot(np.r_[-phi[::-1], phi] / np.pi, (np.r_[Eu[::-1], Eu] - Eu[0]) / sc, 'o', ms=2.2, color=C1)
+    # singlet (even-sector) surface at U=0.9: level crossing inside the sector at phi = pi/2 (cusp)
+    fe = sorted([r for r in json.load(open(D + 'ephi_even_fine_0.85_0.9.json')) if abs(r['U'] - 0.9) < 1e-9], key=lambda r: r['phi'])
+    pf = np.array([r['phi'] for r in fe]); Ef = np.array([r['even'] for r in fe]); Ef -= Ef[0]
+    a.plot(np.r_[-pf[::-1], pf] / np.pi, np.r_[Ef[::-1], Ef] / np.abs(Ef).max(), color=MUTED, lw=0.9, ls=':', label=r'singlet sector, $U=0.9\Delta$' + '\n' + r'(cusp at $\pm\pi/2$)')
     a.axhline(0, color=MUTED, lw=0.4)
-    a.set_ylim(-1.05, 1.0)
+    a.set_ylim(-1.05, 1.25)
     a.set_xlabel(r'$\varphi/\pi$  (flux $/\,\Phi_0$)'); a.set_ylabel(r'$[E(\varphi)-E(0)]/\max|\Delta E|$')
-    a.legend(fontsize=5.6, loc='upper center', ncol=3, handlelength=1.0, columnspacing=0.6, borderaxespad=0.1); tag(a, '(a)')
-    rows = json.load(open(D + 'udot_scan_tJ0.5.json')) + json.load(open(D + 'udot_scan2_tJ0.5.json'))
-    Us = np.array(sorted(set(r['U'] for r in rows)))
-    get = lambda U, p, s: [r[s] for r in rows if r['U'] == U and abs(r['phi'] - p) < 1e-3][0]
+    a.legend(fontsize=5.3, loc='upper center', ncol=2, handlelength=1.0, columnspacing=0.6, borderaxespad=0.1); tag(a, '(a)')
     a = axs[1]
     g0 = np.array([get(U, 0, 'odd') - get(U, 0, 'even') for U in Us])
     g1 = np.array([get(U, np.pi / 2, 'odd') - get(U, np.pi / 2, 'even') for U in Us])
+    gm = np.array([get(U, np.pi / 2, 'odd') - get(U, 0, 'even') for U in Us])   # global minima: doublet at phi=pi/2 (Cooper-pair phase pi) vs singlet at 0
     a.plot(Us, g0, 'o-', ms=3, color=C1, label=r'$\varphi=0$')
-    a.plot(Us, g1, 's-', ms=3, color=C4, label=r'$\varphi=\pi/2$ ($\Phi_0/2$)')
+    a.plot(Us, g1, 's-', ms=3, color=C4, label=r'$\varphi=\pi/2$')
+    a.plot(Us, gm, '^-', ms=3, color=C3, label=r'global minima: $E_{\rm odd}(\pi/2)-E_{\rm even}(0)$')
     a.axhline(0, color=MUTED, lw=0.4)
-    Uc = np.interp(0, -g0, Us)
-    a.axvline(Uc, color=MUTED, lw=0.6, ls='--')
-    a.text(Uc + 0.25, -0.95, r'$U_c\approx%.1f\,t$' % Uc, fontsize=6.5, color=MUTED)
-    a.set_xlabel(r'$U/t$'); a.set_ylabel(r'$E_{\rm odd}-E_{\rm even}$  $(t)$')
-    a.legend(fontsize=6, loc='upper right', borderaxespad=0.1); tag(a, '(b)')
+    Uc0 = np.interp(0, -g0, Us); Ucm = np.interp(0, -gm, Us)
+    a.axvspan(Ucm, Uc0, color=C1, alpha=0.12, lw=0)
+    a.axvline(Uc0, color=MUTED, lw=0.6, ls='--'); a.axvline(Ucm, color=MUTED, lw=0.6, ls='--')
+    a.text(Uc0 + 0.02, 0.25, r'$U_c^0=%.2f\Delta$' % Uc0, fontsize=6, color=MUTED)
+    a.text(Ucm - 0.02, 0.22, r'$%.2f\Delta$' % Ucm, fontsize=6, color=MUTED, ha='right')
+    a.annotate(r'$U_c(g)$', xy=(0.5 * (Uc0 + Ucm), 0.1), xytext=(1.25, 0.2), fontsize=6.5, color=C1,
+               arrowprops=dict(arrowstyle='->', color=C1, lw=0.6))
+    a.set_xlim(0.4, 1.6); a.set_ylim(-0.4, 0.3)
+    a.set_xlabel(r'$U/\Delta$'); a.set_ylabel(r'$E_{\rm odd}-E_{\rm even}$  $(\Delta)$')
+    a.legend(fontsize=5.3, loc='lower left', borderaxespad=0.1, handlelength=1.2); tag(a, '(b)')
     a = axs[2]
     dEe = np.array([get(U, np.pi / 2, 'even') - get(U, 0, 'even') for U in Us]) / 2
     dEo = np.array([get(U, np.pi / 2, 'odd') - get(U, 0, 'odd') for U in Us]) / 2
     a.semilogy(Us, dEe, 'o-', ms=3, color=C3, label=r'singlet: $0$-junction')
     a.semilogy(Us, -dEo, 's-', ms=3, color=C1, label=r'doublet: $\pi$-junction')
-    a.axvspan(Uc, Us.max(), color=C1, alpha=0.07, lw=0)
-    a.set_xlabel(r'$U/t$'); a.set_ylabel(r'$|E_2|\simeq|E(\pi/2)-E(0)|/2$  $(t)$')
+    a.axvspan(Uc0, Us.max(), color=C1, alpha=0.07, lw=0)
+    a.set_xlabel(r'$U/\Delta$'); a.set_ylabel(r'$|E_2|\simeq|E(\pi/2)-E(0)|/2$  $(\Delta)$')
     a.legend(fontsize=6, loc='lower left'); tag(a, '(c)')
     fig.savefig(F + 'fig_junctions.pdf'); fig.savefig(F + 'fig_junctions.png')
     plt.close(fig)
-    print('U_c(phi=0) ~ %.2f' % Uc, 'E2 odd:', dict(zip(Us, np.round(-dEo, 5))))
+    print('U_c^0(phi=0) = %.3f, crossing of global minima = %.3f' % (Uc0, Ucm), 'E2 odd:', dict(zip(Us, np.round(-dEo, 5))))
 
 
 # ---------------------------------------------------------------- Fig. interaction-driven pi ring + cavity
@@ -184,11 +205,14 @@ def classical_theta(c, betas, EJ, om):
 
 
 def fig_udot():
-    bo = json.load(open(D + 'bo_udot_U2.json'))
-    c = np.load(D + 'harmonics_udot_U2.npy')
+    bo = json.load(open(D + 'bo_udot_U2_Nr10.json'))
+    c = np.load(D + 'harmonics_udot_U2_Nr10.npy')
     EJ = bo['EJ']; betas = np.array(bo['betas'])
-    fn = D + 'dmrg_udot_U2_r10.json'
-    dm = json.load(open(fn))['rows'] if os.path.exists(fn) else []
+    fn = D + 'rerun/dmrg_udot_U2_Nr10_r10.json'
+    dm = sorted(json.load(open(fn))['rows'], key=lambda r: r['beta']) if os.path.exists(fn) else []
+    fn4 = D + 'rerun/dmrg_udot_U2_Nr10_r10_chi400.json'
+    dm4 = {r['beta']: r for r in json.load(open(fn4))['rows']} if os.path.exists(fn4) else {}
+    om10 = dm[0]['g'] ** 2 * 8 * EJ / dm[0]['beta'] if dm else EJ / 10
     fig, axs = plt.subplots(1, 3, figsize=(7.0, 2.2), constrained_layout=True)
     ratios = ['2', '5', '10', '40']
     shades = ['#bcd6f5', '#7fb0ec', C1, '#163f75']
@@ -207,12 +231,14 @@ def fig_udot():
         v = np.array(bo['runs'][r]); om = EJ / float(r)
         a.semilogy(betas, np.maximum(v[:, 2] / om, 3e-9), color=col, lw=1.2)
     if dm:
-        res = 4e-2  # DMRG resolution of excited-state energies (~3e-5 t, from chi=256 vs 400 at beta=1.5)
-        ok = [r for r in dm if (r['E1'] - r['E0']) / (EJ / 10) > 5 * res]
-        lim = [r for r in dm if (r['E1'] - r['E0']) / (EJ / 10) <= 5 * res]
-        a.semilogy([r['beta'] for r in ok], [(r['E1'] - r['E0']) / (EJ / 10) for r in ok], 'o', ms=3.5, color=C2)
+        # DMRG resolution of excited-state energies: spread between chi=300 and chi=400 where both exist
+        res = max([abs((r['E1'] - r['E0']) - (dm4[r['beta']]['E1'] - dm4[r['beta']]['E0'])) / om10 for r in dm if r['beta'] in dm4] + [1e-3])
+        ok = [r for r in dm if (r['E1'] - r['E0']) / om10 > 5 * res]
+        lim = [r for r in dm if (r['E1'] - r['E0']) / om10 <= 5 * res]
+        a.semilogy([r['beta'] for r in ok], [(r['E1'] - r['E0']) / om10 for r in ok], 'o', ms=3.5, color=C2)
         a.semilogy([r['beta'] for r in lim], [res] * len(lim), 'v', ms=4, mfc='none', color=C2)
-        a.text(1.75, 1.2e-2, 'DMRG: below\nresolution', fontsize=5.5, color=C2)
+        a.text(1.75, 2.5 * res, 'DMRG: below\nresolution', fontsize=5.5, color=C2)
+        print('udot: DMRG excited-state resolution delta/omega = %.1e' % res)
     a.axhspan(1e-9, 1e-8, color=MUTED, alpha=0.08, lw=0)
     a.text(0.1, 2e-9, 'BO numerical floor', fontsize=6, color=MUTED)
     a.set_ylim(1e-9, 2); a.set_xlabel(r'$\beta$'); a.set_ylabel(r'$\delta/\hbar\omega$'); tag(a, '(b)')
@@ -233,7 +259,7 @@ def fig_udot():
 # ---------------------------------------------------------------- Fig. 1: schematic + phase diagram
 def fig_overview():
     from matplotlib.patches import Circle, FancyArrowPatch, Rectangle
-    pdg = json.load(open(D + 'bo_phase_diagram_U2.json'))
+    pdg = json.load(open(D + 'bo_phase_diagram_U2_Nr10.json'))
     fig, axs = plt.subplots(1, 2, figsize=(3.4, 1.75), constrained_layout=True, gridspec_kw=dict(width_ratios=[0.8, 1.2]))
     a = axs[0]; a.set_aspect('equal'); a.axis('off')
     a.set_xlim(-1.45, 1.35); a.set_ylim(-1.3, 1.3)
@@ -370,6 +396,6 @@ def fig_notebook_omega():
 
 if __name__ == '__main__':
     import sys
-    for name in (sys.argv[1:] or ['main', 'notebook_omega', 'overview', 'junctions', 'notebook', 'weaklink', 'udot']):
+    for name in (sys.argv[1:] or ['notebook_omega', 'overview', 'junctions', 'notebook', 'weaklink', 'udot']):   # 'main' (L=14 adiabatic diagram) is superseded by make_phase_figs.py
         globals()['fig_' + name]()
         print('done', name)
