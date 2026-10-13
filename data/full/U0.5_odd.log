@@ -40,3 +40,6 @@ final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.14e-0
   super().__init__(sites, bc, unit_cell_width)
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.75e-03
 final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.45e-04
+U=0.500 g=0.1400 E0=-15.0851057593 X=7.8297 X2=61.924 n=15.388 I_bond=2.0665e-02 I_vir=2.0665e-02 dev=1.2e-07 | Xcl=7.97 start=C dE_starts=3.2e-06 X_starts=6.62,7.83 | chi=300 terr=4.4e-10 sw=11 dE=9.2e-12 pmax=1.5e-12 Nph=61 t=618s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)

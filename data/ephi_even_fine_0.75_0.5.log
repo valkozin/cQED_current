@@ -82,3 +82,4 @@ U=0.75 phi=3.1416 E_even=-15.215302590 (fresh -15.215302590) t=31s
 U=0.50 phi=0.0000 E_even=-15.190344273 (fresh -15.190344273) t=59s
 /usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
   super().__init__(sites, bc, unit_cell_width)
+U=0.50 phi=0.1309 E_even=-15.188638144 (fresh -15.188638144) t=62s
