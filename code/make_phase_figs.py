@@ -118,16 +118,20 @@ def fig_phase_diagram(full, eff, mf):
 
 def fig_slices(full, eff, mf):
     Icf = Ic_of(eff)
-    Uslices = [u for u in (1.25, 2.0, 4.0) if u in full]
+    Uslices = [u for u in (1.25, 2.0, 4.0, 6.0) if u in full]
     fig, axs = plt.subplots(1, 3, figsize=(7.0, 2.2), constrained_layout=True)
     ax = axs[0]
-    marks = ['o', 's', 'D']
+    marks = ['o', 's', 'D', '^']
     for U, mk in zip(Uslices, marks):
         d = full[U]; ic = Icf(U)
         ke = eff['Us'].index(U) if U in eff['Us'] else None
         km = mf['Us'].index(U) if U in mf['Us'] else None
         ln, = ax.plot(d['g'], np.abs(d['I']) / ic, mk, ms=3.2, mfc='w', mew=0.9, label=r'$U=%g\Delta$' % U)
         col = ln.get_color()
+        # bracket of the two initial states, converted to a current with the sum rule I = omega X / 2g
+        lo = OMEGA * d['Xlo'] / (2 * d['g']) / ic; hi = OMEGA * d['Xhi'] / (2 * d['g']) / ic; br = (hi - lo) > 0.02
+        if br.any():
+            ax.vlines(d['g'][br], lo[br], hi[br], color=col, lw=1.0, alpha=0.8)
         if ke is not None:
             ax.plot(eff['gs'], np.abs(eff['I'][ke]) / ic, '-', color=col, lw=1.1)
         if km is not None:
