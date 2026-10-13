@@ -87,3 +87,11 @@ final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.08e-0
 U=0.750 g=0.1900 E0=-15.1967308413 X=6.6658 X2=44.909 n=11.268 I_bond=1.2965e-02 I_vir=1.2963e-02 dev=2.1e-06 | Xcl=6.75 start=C dE_starts=7.6e-06 X_starts=2.77,6.67 | chi=300 terr=3.6e-10 sw=13 dE=4.1e-13 pmax=5.4e-13 Nph=54 t=428s
 /usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
   super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.61e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.05e-02
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=6.18e-04
+U=0.750 g=0.2000 E0=-15.1975148376 X=6.4617 X2=42.245 n=10.631 I_bond=1.1942e-02 I_vir=1.1938e-02 dev=4.1e-06 | Xcl=6.54 start=C dE_starts=7.5e-06 X_starts=2.44,6.46 | chi=300 terr=3.9e-10 sw=10 dE=1.9e-12 pmax=1.5e-12 Nph=53 t=403s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
