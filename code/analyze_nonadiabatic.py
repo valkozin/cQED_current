@@ -40,9 +40,12 @@ def load_grid():
 
 
 def load_lf():
+    """Lang-Firsov reference: ring at g = 0 with t_J exp(-g^2/2) on the dressed bond (0,1) only (lf1_g*.json,
+    rows with keys 'even'/'odd' from run_nonadiabatic.py with TJ_PH).  The earlier files lf_g*.json reduced both
+    dot bonds and are not the omega -> infinity limit of Eq. (1)."""
     lf = {0.0: None}
-    for f in glob.glob(os.path.join(D, 'nonadiabatic', 'lf_g*.json')):
-        g = float(os.path.basename(f)[4:-5])
+    for f in glob.glob(os.path.join(D, 'nonadiabatic', 'lf1_g*.json')):
+        g = float(os.path.basename(f)[5:-5])
         lf[g] = json.load(open(f))
     return lf
 
@@ -134,8 +137,8 @@ def make_figure(grid, summary, eff, fine):
         gb = np.linspace(0, 1, 26)
         ax.plot(gb, [E_bo(eff, fine, U0, 'odd', g, om) - E_bo(eff, fine, U0, 'even', g, om) for g in gb], '--', color=col, lw=0.9)
     lfpts = []
-    for f in glob.glob(os.path.join(D, 'nonadiabatic', 'lf_g*.json')):
-        g = float(os.path.basename(f)[4:-5]); rows = [r for r in json.load(open(f)) if r['U'] == U0]
+    for f in glob.glob(os.path.join(D, 'nonadiabatic', 'lf1_g*.json')):
+        g = float(os.path.basename(f)[5:-5]); rows = [r for r in json.load(open(f)) if r['U'] == U0]
         if rows:
             lfpts.append((g, rows[0]['odd'] - rows[0]['even']))
     if lfpts:

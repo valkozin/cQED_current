@@ -45,6 +45,8 @@ for U in Us:
             continue
         p = sc_ring(Nr, 1.0, Delta, tJ, Udot=U, dot=True)
         p.update(omega=omega, g=g, phi_cl=0.0, Nph=Nph)
+        if os.environ.get('TJ_PH'):          # Lang-Firsov reference: reduced hopping on the dressed bond (0,1) only
+            p['tJ'] = float(os.environ['TJ_PH'])
         m = RingCavityModel(p)
         rec = dict(Nr=Nr, U=U, g=g, omega=omega, tJ=tJ, Delta=Delta, chi=chi, Nph=Nph)
         t0 = time.time()
