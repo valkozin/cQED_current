@@ -27,6 +27,9 @@ def load_ephi(alpha):
     for f in glob.glob(os.path.join(D, 'so', 'ephi_U2_a%s_*.json' % alpha)):
         rows += json.load(open(f))
     rows = sorted({r['phi']: r for r in rows}.values(), key=lambda r: r['phi'])
+    if alpha == '0' and rows and min(r['phi'] for r in rows) >= 0:   # alpha = 0: E(-phi) = E(phi), mirror the half range
+        mirrored = [dict(r, phi=-r['phi']) for r in rows if r['phi'] > 0]
+        rows = sorted(mirrored + rows, key=lambda r: r['phi'])
     return rows
 
 
@@ -40,18 +43,19 @@ def main():
         if not rows:
             continue
         phi = np.array([r['phi'] for r in rows])
-        for sec, col, lab in (('odd_up', '#1f77b4', r'doublet $\uparrow$'), ('odd_dn', '#d62728', r'doublet $\downarrow$'), ('even', '#2ca02c', 'singlet')):
+        for sec, col, lab in (('odd_up', '#1f77b4', r'$S^z=+\tfrac12$'), ('odd_dn', '#d62728', r'$S^z=-\tfrac12$'), ('even', '#2ca02c', 'singlet')):
             if sec not in rows[0]:
                 continue
             E = np.array([r[sec] for r in rows]); E0 = np.array([r['odd_up'] for r in rows]).min()
-            ax.plot(phi / np.pi, E - E0, ls, color=col, label=(lab + (r', $\alpha=%s$' % alpha if alpha == '0.6' else r', $\alpha=0$')) if sec != 'even' or alpha == '0.6' else None)
+            if sec != 'even':
+                ax.plot(phi / np.pi, 1e3 * (E - E0), ls, color=col, label=lab + (r', $\alpha=0.6$' if alpha == '0.6' else r', $\alpha=0$'))
             a, b = fit_series(phi, E)
             res['harm_%s_a%s' % (sec, alpha)] = dict(cos=a.tolist(), sin=b.tolist())
             if sec == 'odd_up':
                 phi_min = phi[np.argmin(E)]
                 res['phimin_%s_a%s' % (sec, alpha)] = float(phi_min)
-    ax.set_xlabel(r'$\varphi/\pi$'); ax.set_ylabel(r'$E_s(\varphi)-E_{\rm min}$  $(\Delta)$'); ax.legend(loc='upper center', ncol=1)
-    ax.set_title(r'(a) two-orbital dot, $U=2\Delta$', loc='left', fontsize=8.5)
+    ax.set_xlabel(r'$\varphi/\pi$'); ax.set_ylabel(r'$E_\sigma(\varphi)-E_{\rm min}$  $(10^{-3}\Delta)$'); ax.legend(loc='upper center', ncol=2)
+    ax.set_title(r'(a) doublet surfaces, two-orbital dot', loc='left', fontsize=8.5)
     # (b)
     ax = axs[1]
     for f in sorted(glob.glob(os.path.join(D, 'so', 'cat_*.json'))):

@@ -160,6 +160,44 @@ $g_c\simeq0.21$, while mean field gives $0.30$.
   state), (c) gap to the first excited state, (d) photon number.}
 \end{figure}
 
+\paragraph*{S7. Spin--orbit coupling and gate detuning.}
+In a single-channel ring a spin-dependent phase on one bond can be gauged away and the Josephson energy of
+the doublet stays spin independent; the spin-dependent Andreev levels of real dot junctions require a second
+channel~\cite{Padurariu2010,Tosi2019}. We therefore add a second dot orbital $b$ (level $\epsilon_b=\epsilon_a+0.5\Delta$,
+same $U$ and inter-orbital $U_{ab}=U$), couple both orbitals to both ends of the chain ($t_a=t_b=0.5\Delta$),
+and put the spin-dependent phase $e^{i\alpha\sigma^z}$ on the bond $b\to1$ only: a non-abelian flux on one of two
+interfering paths, invariant under time reversal and conserving $S^z$. With $\alpha=0.6$ the zero-flux crossing
+moves to $U_c^0=1.36\Delta$ (the level width is doubled) and the doublet surface at $U=2\Delta$ becomes
+$E_\sigma(\varphi)=E_0+E_2\cos(2\varphi-2\sigma\varphi_{\rm so})$ with $E_2=7.8\times10^{-3}\Delta$ and
+$\varphi_{\rm so}=0.42$, i.e.\ a spin-dependent phase shift of $24^\circ$ [Fig.~\ref{fig:so}(a)];
+$E_\downarrow(\varphi)=E_\uparrow(-\varphi)$ holds to $10^{-7}\Delta$ and the shift vanishes to $10^{-13}\Delta$ at
+$\alpha=0$. The singlet surface is spin independent. With the mode ($\hbar\omega=E_2/10$, $\beta=2$) the two wells
+of a given spin are no longer degenerate: the well closer to zero flux is lower by $2E_2\sin2\varphi_{\rm so}$, so
+the $\uparrow$ ground state is localized at $-\Phi^\star$ and the $\downarrow$ ground state at $+\Phi^\star$
+[Fig.~\ref{fig:so}(b)], \TODO{XPHI}. The persistent current is then locked to the spin and the low-energy manifold
+is the Kramers pair $\{|{\uparrow},{\circlearrowleft}\rangle,|{\downarrow},{\circlearrowright}\rangle\}$, the
+inductively protected spin qubit of Ref.~\cite{delOlmo2026}; the cat state of the spin-degenerate model is
+replaced by a spin-locked persistent current without any applied flux. The flux-driven switch survives:
+at $\hbar\omega=0.1\Delta$ the boundary of the two-orbital loop moves from $U_c^0=1.36\Delta$ to \TODO{UCSO}$\Delta$ at $g=0.6$.
+
+The shift of the boundary is read in gate voltage as a widening of the doublet window. At $U=1.1\Delta$ and
+$\hbar\omega=0.1\Delta$ the singlet takes over at a detuning $|\epsilon_d+U/2|=0.229\Delta$ without the mode and
+$0.310\Delta$ at $g=0.6$ [Fig.~\ref{fig:so}(c)]: the window widens by $0.16\Delta$, i.e.\ by $35\%$. For an Al
+dot ($\Delta=180\,\mu$eV) this is $29\,\mu$eV in $\epsilon_d$, or $0.1$--$0.3$\,mV in gate voltage for lever arms
+of $0.1$--$0.3$; for NbTiN it is $0.2$\,meV, $0.6$--$2$\,mV. Both are large compared with the gate resolution and
+with the width of the parity transition in Refs.~\cite{Bargerbos2022,PitaVidal2023}.
+
+\begin{figure*}
+  \includegraphics[width=\textwidth]{../figs/fig_so.pdf}
+  \caption{\label{fig:so}%
+  (a) Energy surfaces of the two-orbital dot with the spin-dependent phase $\alpha=0.6$ ($U=2\Delta$, $g=0$):
+  doublet with $S^z=\pm\tfrac12$ (shifted by $\mp\varphi_{\rm so}$) and singlet; dashed: $\alpha=0$.
+  (b) Flux distributions of the $S^z=\pm\tfrac12$ ground states with the mode ($\hbar\omega=E_2/10$, $\beta=2$,
+  no flux, no seed): spin-locked wells instead of a cat state.
+  (c) $E_{\rm odd}-E_{\rm even}$ versus the gate detuning of the dot level from the particle--hole symmetric point
+  ($U=1.1\Delta$, $\hbar\omega=0.1\Delta$) without the mode and at $g=0.6$; dotted: the boundaries of the doublet window.}
+\end{figure*}
+
 \paragraph*{S6. Physical units.}
 With $E_J/h=0.5\,{\rm GHz}\times I_c[{\rm nA}]$ and $\beta=2\pi(Z/R_Q)(E_J/\hbar\omega)$:
 
