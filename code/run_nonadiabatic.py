@@ -45,6 +45,8 @@ for U in Us:
             continue
         p = sc_ring(Nr, 1.0, Delta, tJ, Udot=U, dot=True)
         p.update(omega=omega, g=g, phi_cl=0.0, Nph=Nph)
+        if os.environ.get('EPS_SHIFT'):      # gate detuning of the dot level from the particle-hole symmetric point
+            p['eps_up'][0] = p['eps_dn'][0] = -U / 2 + float(os.environ['EPS_SHIFT'])
         if os.environ.get('TJ_PH'):          # Lang-Firsov reference: reduced hopping on the dressed bond (0,1) only
             p['tJ'] = float(os.environ['TJ_PH'])
         m = RingCavityModel(p)
