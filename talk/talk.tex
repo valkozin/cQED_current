@@ -1,0 +1,988 @@
+% ==================================================================
+%  Group-seminar talk:  "Cavity-induced persistent current in a pi loop"
+%  Build:  cd talk && latexmk -pdf talk.tex      (handout: talk_handout.tex)
+%  Figures: ../figs/*  (paper figures) and figs/* (make_talk_figs.py)
+% ==================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[progressbar=frametitle,numbering=fraction,block=fill]{metropolis}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{physics}
+\usepackage{booktabs,array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,positioning,calc,shapes.geometric}
+\usepackage[american,siunitx]{circuitikz}
+\usepackage[most]{tcolorbox}
+\usepackage{appendixnumberbeamer}
+
+% ---------------------------------------------------------------- colours
+\definecolor{ink}{HTML}{1F2A44}
+\definecolor{accent}{HTML}{2A6FDB}
+\definecolor{warm}{HTML}{E8692B}
+\definecolor{good}{HTML}{1AA37A}
+\definecolor{purp}{HTML}{5B3FA8}
+\definecolor{paper}{HTML}{FAFAF7}
+\setbeamercolor{normal text}{fg=ink,bg=paper}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{frametitle}{bg=ink,fg=white}
+\setbeamercolor{progress bar}{fg=warm,bg=ink!30}
+\setbeamercolor{example text}{fg=good}
+\setbeamercolor{block title}{bg=accent!15,fg=ink}
+\setbeamercolor{block body}{bg=accent!5}
+\setbeamercolor{block title alerted}{bg=warm!20,fg=ink}
+\setbeamercolor{block body alerted}{bg=warm!6}
+\setbeamercolor{block title example}{bg=good!18,fg=ink}
+\setbeamercolor{block body example}{bg=good!6}
+\setbeamertemplate{itemize items}{\color{accent}$\blacktriangleright$}
+
+\newtcolorbox{keybox}[1][]{enhanced,colback=accent!6,colframe=accent,boxrule=0.8pt,arc=2mm,
+  left=2mm,right=2mm,top=1mm,bottom=1mm,before upper=\raggedright,#1}
+\newtcolorbox{warnbox}[1][]{enhanced,colback=warm!7,colframe=warm,boxrule=0.8pt,arc=2mm,
+  left=2mm,right=2mm,top=1mm,bottom=1mm,before upper=\raggedright,#1}
+\newtcolorbox{calcbox}[1][]{enhanced,colback=white,colframe=ink!40,boxrule=0.5pt,arc=1mm,
+  left=2mm,right=2mm,top=0.5mm,bottom=0.5mm,before upper=\raggedright,fonttitle=\small\bfseries,coltitle=ink,colbacktitle=ink!8,#1}
+
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\Hring}{H_{\rm ring}}
+\newcommand{\pcl}{\varphi_{\rm cl}}
+\newcommand{\cw}{\circlearrowright}
+\newcommand{\ccw}{\circlearrowleft}
+\newcommand{\hl}[1]{\textcolor{accent}{#1}}
+\renewcommand{\cite}[1]{{\scriptsize\textcolor{ink!60}{[#1]}}}
+\newcommand{\figsrc}[1]{\par\vspace{-1mm}{\tiny\hfill\textcolor{ink!50}{#1}}}
+
+\graphicspath{{../figs/}{figs/}}
+
+\title{Cavity-induced persistent current in a $\pi$ loop}
+\subtitle{Photon condensation, macroscopic quantum tunnelling, and when mean field lies}
+\author{Group seminar}
+\date{}
+
+\begin{document}
+
+% ==================================================================
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The story in one slide}
+  \begin{columns}[c]
+    \column{0.47\textwidth}
+    \centering
+    \begin{circuitikz}[scale=0.85,transform shape]
+      \draw[blue!70!black,line width=1.1pt] (0,0) to[L,l=$L$,color=blue!70!black] (0,2.6);
+      \draw[blue!70!black] (0,2.6) -- (-1.3,2.6) to[C,l_=$C$,color=blue!70!black] (-1.3,0) -- (0,0);
+      \draw[line width=2pt] (0,2.6) -- (3,2.6) -- (3,1.65);
+      \draw[line width=2pt] (3,0.95) -- (3,0) -- (0,0);
+      \draw[thick,fill=white] (2.7,0.95) rectangle (3.3,1.65);
+      \fill[warm] (3,1.3) circle (0.09);
+      \node[right] at (3.35,1.55) {$\pi$};
+      \node[right,warm] at (3.35,1.05) {$U$};
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (1.95,1.85) arc (60:120:0.9);
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (1.05,0.75) arc (240:300:0.9);
+      \node at (1.5,1.3) {$\pm I$};
+      \node[blue!70!black] at (-0.6,3.0) {$\hw\,a^\dagger a$};
+    \end{circuitikz}
+    \column{0.53\textwidth}
+    \begin{enumerate}\small
+      \item A superconducting loop closed by a \alert{$\pi$ junction} shares its inductance with a \hl{quantum LC mode}.
+      \item The $\pi$ junction makes the orbital response \alert{paramagnetic} $\Rightarrow$ for $\beta>1$ the mode \emph{softens} and condenses:
+            $\langle a\rangle\neq0$, a persistent current $\pm I$ flows \emph{without any applied flux}.
+      \item Quantum fluctuations of the flux \emph{oppose} it: the true ground state is a
+            \alert{cat} $|\cw\rangle+|\ccw\rangle$, split by an instanton gap $\delta\sim\hw\,e^{-S}$.
+      \item Full electron--photon DMRG: the effect is real for $E_J\gg\hw$; the \emph{mean-field} (product-state) prediction
+            is an artefact when $E_J\sim\hw$.
+    \end{enumerate}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Outline}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents
+\end{frame}
+
+% ==================================================================
+\section{Motivation: can a cavity make a current?}
+
+\begin{frame}{Photon condensation and the no-go theorem}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{Question:} can coupling matter to a cavity vacuum produce a \emph{static} field / current in the ground state?
+    \begin{itemize}\small
+      \item Dicke ``superradiant'' transition: predicted, then forbidden by the $A^2$ term.
+      \item \textbf{No-go} \cite{Andolina 2019; Nataf 2019}: for a \emph{uniform} cavity field, gauge invariance
+            (f-sum rule) makes the total orbital response diamagnetic $\Rightarrow$ no condensation.
+      \item \textbf{Loophole} \cite{Andolina 2020}: a \emph{non-uniform} field (finite $\mathbf q$, coupling to
+            $\nabla\times\mathbf A$) condenses if the orbital response is \alert{paramagnetic} and beats the field stiffness.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{keybox}[title={This talk}]
+      The minimal realization of the loophole:
+      \begin{itemize}\small
+        \item ``non-uniform field'' $\to$ \hl{flux through one loop};
+        \item ``paramagnetic response'' $\to$ a \alert{$\pi$ junction};
+        \item solve it \emph{exactly} (DMRG on electrons + photon), and
+              ask what is quantum and what is classical.
+      \end{itemize}
+    \end{keybox}
+    \vspace{2mm}
+    {\small Classical cousin: spontaneous $\Phi_0/2$ currents in $\pi$ rings
+    \cite{Bulaevskii--Kuzii--Sobyanin 1977} seen in $d$-wave and SFS loops \cite{Tsuei--Kirtley 2000; Bauer 2004}.}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Warm-up: 0 and $\pi$ Josephson junctions}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    \begin{tikzpicture}[scale=0.95]
+      \draw[->] (-2.6,0) -- (2.8,0) node[right] {$\theta$};
+      \draw[->] (0,-1.3) -- (0,1.5) node[above] {$E$};
+      \draw[accent,very thick,domain=-2.5:2.5,samples=80] plot (\x,{-cos(deg(\x*1.257))});
+      \draw[warm,very thick,domain=-2.5:2.5,samples=80] plot (\x,{cos(deg(\x*1.257))});
+      \node[accent] at (1.9,-1.1) {\small $0$: $-E_J\cos\theta$};
+      \node[warm] at (1.9,1.25) {\small $\pi$: $+E_J\cos\theta$};
+      \foreach \x/\l in {-2.5/-\pi,2.5/\pi} \node[below] at (\x,0) {\small$\l$};
+    \end{tikzpicture}
+    \par\small $\theta$ = gauge-invariant Cooper-pair phase difference.
+    \column{0.5\textwidth}
+    \begin{itemize}\small
+      \item \textbf{0 junction:} minimum at $\theta=0$. Curvature $E''>0$: the junction is an \emph{inductance}
+            $L_J=(\Phi_0/2\pi)^2/E_J$ $\Rightarrow$ diamagnetic.
+      \item \textbf{$\pi$ junction:} minimum at $\theta=\pi$; at $\theta=0$ it sits on a \emph{maximum}:
+            a \alert{negative inductance} $\Rightarrow$ paramagnetic.
+      \item Realizations: SFS ($\pi$ from exchange field), $d$-wave corners, and
+            \alert{quantum dots with a local moment} (this talk).
+    \end{itemize}
+    \begin{calcbox}[title={Classical $\pi$ rf-SQUID}]
+      \small $U(\theta)=\frac{E_L}{2}\theta^2+E_J\cos\theta$, \ $E_L=\frac{(\Phi_0/2\pi)^2}{L}$.\\
+      $U''(0)=E_L-E_J<0$ iff $\beta\equiv\frac{E_J}{E_L}=\frac{2\pi LI_c}{\Phi_0}>1$.
+    \end{calcbox}
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{The microscopic model}
+
+\begin{frame}{Step 1: flux enters as a Peierls phase}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    Tight binding in a vector potential:
+    \[
+      c^\dagger_{j+1}c_j\;\longrightarrow\;e^{i\theta_j}\,c^\dagger_{j+1}c_j,\qquad
+      \theta_j=\frac{e}{\hbar}\int_j^{j+1}\!\mathbf A\cdot d\mathbf l .
+    \]
+    Gauge transformation $c_j\to e^{i\chi_j}c_j$ moves phase between bonds; only the
+    \alert{loop sum} is physical:
+    \[
+      \varphi\equiv\sum_j\theta_j=\frac{e}{\hbar}\oint\mathbf A\cdot d\mathbf l=\frac{e}{\hbar}\,\Phi .
+    \]
+    $\Rightarrow$ put the whole $\varphi$ on \emph{one} bond (next to the junction).
+    \column{0.46\textwidth}
+    \begin{calcbox}[title={Dictionary (keep this in mind!)}]
+      \small
+      \begin{tabular}{@{}ll@{}}
+        electron phase & $\varphi=e\Phi/\hbar$\\
+        Cooper-pair phase & $\theta=2\varphi$\\
+        $\Phi=\Phi_0=h/2e$ & $\varphi=\pi$\\
+        $\Phi=\Phi_0/2$ & $\varphi=\pi/2$\\
+        current & $I=-\tfrac{e}{\hbar}\,\partial_\varphi E$
+      \end{tabular}
+    \end{calcbox}
+    \begin{warnbox}
+      \small With a real pairing $\Delta$ the ``one-bond'' gauge is \emph{not} the same as a uniform $\mathbf A$;
+      it equals uniform $\mathbf A$ with covariant $\Delta_j\to\Delta e^{-2i\chi_j}$ (checked to $10^{-10}$; backup).
+    \end{warnbox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Step 2: quantize the flux of the LC mode}
+  \begin{columns}[T]
+    \column{0.47\textwidth}
+    \[
+      H_{LC}=\frac{Q^2}{2C}+\frac{\Phi^2}{2L}=\hw\left(a^\dagger a+\tfrac12\right)
+    \]
+    \[
+      \Phi=\Phi_{\rm zpf}\,(a+a^\dagger),\qquad \Phi_{\rm zpf}=\sqrt{\hbar Z/2}
+    \]
+    ($Z=\sqrt{L/C}$). The loop phase becomes an operator:
+    \[
+      \varphi\;\to\;\pcl+g\,(a+a^\dagger),\qquad g=\frac{e\,\Phi_{\rm zpf}}{\hbar}
+    \]
+    \begin{calcbox}[title={$g$ in circuit language}]
+      \small $g^2=\dfrac{e^2Z}{2\hbar}=\pi\dfrac{e^2}{h}Z\ \Rightarrow\ (2g)^2=\pi\dfrac{Z}{R_Q}$,\\[0.5mm]
+      $R_Q=h/4e^2\simeq6.45\,\mathrm{k}\Omega$.\quad
+      $Z=50\,\Omega\Rightarrow g\approx0.08$;\ \ $Z\approx120\,\Omega\Rightarrow g\approx0.12$.
+    \end{calcbox}
+    \column{0.5\textwidth}
+    \textbf{The junction hopping becomes a photon displacement:}
+    \[
+      -t_J\,e^{i\pcl}\,\underbrace{e^{ig(a+a^\dagger)}}_{D(ig)}\,c^\dagger_{1\sigma}c_{0\sigma}+\text{h.c.}
+    \]
+    \begin{itemize}\small
+      \item each tunnelling electron kicks the oscillator (displacement $D$);
+      \item expanding: $e^{igX}=1+igX\underbrace{-\tfrac{g^2}{2}X^2}_{A^2\text{ term}}+\dots$\\
+            $\Rightarrow$ diamagnetic terms included \alert{to all orders};
+      \item manifestly gauge invariant: no $A^2$ ``bookkeeping'' errors possible.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The full Hamiltonian}
+  \vspace{-4mm}
+  \begin{align*}
+    H={}&\textcolor{blue!70!black}{\hw\,a^\dagger a}
+      \;\underbrace{-\,t\sum_{r=1}^{L-2}\sum_\sigma\big(c^\dagger_{r+1\sigma}c_{r\sigma}+\text{h.c.}\big)
+      +\Delta\sum_{r=1}^{L-1}\big(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+\text{h.c.}\big)}_{s\text{-wave BCS chain (the ``leads'')}}\\
+     &+\underbrace{\epsilon_d\,n_0+\textcolor{warm}{U\,n_{0\uparrow}n_{0\downarrow}}}_{\text{Anderson dot, site }0}
+      \;-\;t_J\sum_\sigma\big(c^\dagger_{0\sigma}c_{L-1\,\sigma}+\text{h.c.}\big)\\
+     &-\,t_J\sum_\sigma\Big(e^{i\pcl}\,\textcolor{blue!70!black}{e^{ig(a+a^\dagger)}}\,c^\dagger_{1\sigma}c_{0\sigma}+\text{h.c.}\Big)
+     \;\equiv\;\hw\,a^\dagger a+\Hring\big[\pcl+g(a+a^\dagger)\big]
+  \end{align*}
+  \vspace{-3mm}
+  \begin{columns}[T]
+    \column{0.56\textwidth}
+    \begin{calcbox}[title={Default parameters}]
+      \footnotesize $t=1,\ \Delta=t,\ t_J=0.5t,\ L=14\ (\gg\xi\simeq2t/\Delta)$, $\hw=7.6\times10^{-4}t$,\\
+      $\epsilon_d=-U/2$ (p--h symmetric); \alert{no external flux}: $\pcl=10^{-3}$ seed only.
+    \end{calcbox}
+    \column{0.42\textwidth}
+    \footnotesize Auxiliary versions: (i) weak link ($U=0$) biased by $\Phi_0/2$;
+    (ii) short ring with a Zeeman-polarized dot (the original mean-field notebook).
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{All the ring physics is in one function: $E(\varphi)$}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    Ground-state energy of $\Hring$ at fixed (classical) phase:
+    \[
+      E(\varphi)=\sum_{m\ge0}E_m\cos m\varphi
+    \]
+    \begin{itemize}\small
+      \item \textbf{Only cosines:} $\Hring[\varphi]^*=\Hring[-\varphi]$ (time reversal) $\Rightarrow E(\varphi)=E(-\varphi)$.
+      \item \textbf{$m=2,4,\dots$}: charge $2e$ crossing $\Rightarrow$ $h/2e$ periodicity (Josephson).
+      \item \textbf{$m=1$}: a single electron encircling the ring \cite{Loss--Goldbart 1991}, $\propto e^{-L/\xi}$:
+            a mesoscopic nuisance.
+      \item Define $E_J\equiv|E_2|$, \ $I_c=2eE_J/\hbar$.
+    \end{itemize}
+    \column{0.46\textwidth}
+    \begin{keybox}[title={Sign convention}]
+      \small
+      \centering
+      \begin{tabular}{@{}lcc@{}}
+        & $E_2$ & $E''(0)$ \\ \midrule
+        0 junction & $<0$ & $>0$ (diamagnetic)\\
+        $\pi$ junction & $>0$ & $<0$ (\alert{paramagnetic})
+      \end{tabular}
+    \end{keybox}
+    \vspace{1mm}
+    \small For a pure $\pi$ junction, $E(\varphi)=E_J\cos2\varphi$:
+    \[
+      I(\varphi)=-\frac{e}{\hbar}E'(\varphi)=\underbrace{\frac{2eE_J}{\hbar}}_{I_c}\sin2\varphi .
+    \]
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Two routes to a $\pi$ loop --- and why they differ}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{Route A: 0 junction + external $\Phi_0/2$} ($\pcl=\pi/2$):
+    \begin{align*}
+      E_2\cos2(\varphi+\tfrac\pi2)&=-E_2\cos2\varphi\quad\checkmark\\
+      E_1\cos(\varphi+\tfrac\pi2)&=\alert{-E_1\sin\varphi}\quad\text{(odd!)}
+    \end{align*}
+    The $h/e$ harmonic becomes a \alert{tilt} of the double well: it \emph{selects} the current direction.
+    Also needs a flux stable to $|\delta\Phi|\ll\delta/2I^\star$.
+    \par\centering
+    \begin{tikzpicture}[yscale=0.5,xscale=0.75]
+      \draw[->,ink!60] (-1.9,0) -- (2.0,0) node[right,font=\scriptsize] {$\Phi$};
+      \draw[warm,very thick,domain=-1.7:1.7,samples=80] plot (\x,{0.9*\x*\x*\x*\x/2-1.6*\x*\x/2*1.1+0.35*\x+0.6});
+      \node[font=\scriptsize,warm] at (0,-0.45) {tilted: one well wins};
+    \end{tikzpicture}
+    \column{0.5\textwidth}
+    \textbf{Route B: intrinsic $\pi$ junction} ($\pcl=0$):
+    \begin{itemize}\small
+      \item $\Hring[0]$ is real $\Rightarrow$ $E(\varphi)=E(-\varphi)$ \emph{exactly}.
+      \item The two current directions are related by time reversal: a genuine $\mathbb Z_2$ symmetry,
+            spontaneously broken (or tunnelling-restored).
+      \item Our choice: an interacting dot, $U>U_c$.
+    \end{itemize}
+    \begin{keybox}
+      \small Up to odd harmonics the two routes give the \emph{same} $E(\varphi)$ (shown later, DMRG).
+    \end{keybox}
+    \centering
+    \begin{tikzpicture}[yscale=0.5,xscale=0.75]
+      \draw[->,ink!60] (-1.9,0) -- (2.0,0) node[right,font=\scriptsize] {$\Phi$};
+      \draw[accent,very thick,domain=-1.7:1.7,samples=80] plot (\x,{0.9*\x*\x*\x*\x/2-1.6*\x*\x/2*1.1+0.6});
+      \node[font=\scriptsize,accent] at (0,-0.45) {symmetric: $\mathbb Z_2$ intact};
+    \end{tikzpicture}
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{Theory: adiabatic reduction and Landau theory}
+
+\begin{frame}{Born--Oppenheimer: electrons are fast, the flux is slow}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    Scales: $\hw\sim10^{-3}t\ \ll\ E_A$ (Andreev gap $\sim0.1$--$1\,t$).\\[1mm]
+    Introduce flux quadratures:
+    \[
+      X=a+a^\dagger,\quad P=i(a^\dagger-a),\quad [X,P]=2i
+    \]
+    \[
+      \hw\,a^\dagger a=\tfrac{\hw}{4}\left(X^2+P^2\right)-\tfrac{\hw}{2}.
+    \]
+    Ansatz $|\Psi\rangle=\int\!dX\,\chi(X)\,|X\rangle\otimes|\psi_0(\pcl+gX)\rangle$ with
+    $\Hring[\varphi]|\psi_0(\varphi)\rangle=E(\varphi)|\psi_0(\varphi)\rangle$:
+    \begin{keybox}
+      \centering$\displaystyle H_{\rm BO}=\frac{\hw}{4}\left(P^2+X^2\right)+E(\pcl+gX)$
+    \end{keybox}
+    \column{0.43\textwidth}
+    \begin{itemize}\small
+      \item A 1D Schr\"odinger problem for the flux; $P=-2i\,\partial_X$.
+      \item The photon is treated \alert{exactly} (all Fock states, all correlations); only adiabaticity is assumed.
+      \item Neglected: diagonal BO term $\propto\hw\,g^2\langle\partial_\varphi\psi_0|\partial_\varphi\psi_0\rangle$,
+            relative size $\sim\hw/E_A$.
+      \item Uses the \emph{full} $E(\varphi)$, not only the first harmonic.
+      \item Checked against full DMRG: $\lesssim$ few \% everywhere.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{It is an rf-SQUID (fluxonium) whose inductance is the mode}
+  Change variables to the Cooper-pair phase and its conjugate charge:
+  \[
+    \theta=2gX,\qquad n=\frac{P}{4g},\qquad [\theta,n]=i .
+  \]
+  \vspace{-4mm}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \begin{calcbox}[title={Two lines of algebra}]
+      \small
+      $\dfrac{\hw}{4}X^2=\dfrac{\hw}{16g^2}\theta^2\equiv\dfrac12E_L\theta^2,\quad E_L=\dfrac{\hw}{8g^2}$\\[1mm]
+      $\dfrac{\hw}{4}P^2=4\hw g^2\,n^2\equiv4E_Cn^2,\quad E_C=\hw\,g^2$\\[1mm]
+      Consistency: $\sqrt{8E_CE_L}=\hw$\ \checkmark
+    \end{calcbox}
+    \begin{keybox}
+      \centering$\displaystyle H_{\rm BO}=4E_C\,n^2+\tfrac12E_L\,\theta^2+E(\theta/2)$
+    \end{keybox}
+    \column{0.43\textwidth}
+    \begin{itemize}\small
+      \item Pure $\pi$ junction: $E(\theta/2)=+E_J\cos\theta$ $\Rightarrow$ a \alert{$\pi$-fluxonium}.
+      \item $g$ controls the \emph{ratio} $E_L/E_C=1/(8g^4)$: small $g$ = heavy, classical flux.
+      \item Two dimensionless knobs:
+        \[\beta=\frac{E_J}{E_L},\qquad\frac{E_J}{\hw}.\]
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Landau theory: when does the mode condense?}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    Classical energy (drop $P$): \
+    $\mathcal F(X)=\dfrac{\hw}{4}X^2+E(gX)$
+    \[
+      \mathcal F''(0)=\frac{\hw}{2}+g^2E''(0)=\frac{\hw}{2}\,(1-\beta)
+    \]
+    \begin{keybox}[title={Instability criterion}]
+      \centering$\displaystyle \beta\equiv\frac{2g^2|E''(0)|}{\hw}>1\quad\text{with}\quad E''(0)<0$
+    \end{keybox}
+    \small Pure $\pi$ junction, $E''(0)=-4E_J$:
+    \[
+      \beta=\frac{8g^2E_J}{\hw}=\frac{E_J}{E_L}=\frac{2\pi LI_c}{\Phi_0}
+    \]
+    = the textbook screening parameter of the loop.
+    \column{0.5\textwidth}
+    \begin{itemize}\small
+      \item Needs \alert{paramagnetic} response ($E''<0$): a 0 junction only \emph{stiffens} the mode.
+      \item This is the single-loop version of the photon-condensation criterion of Andolina \emph{et al.}
+      \item Why the no-go theorem does not apply: the mode couples to the \emph{flux} (curl of $\mathbf A$), and
+            the $\pi$ shift supplies the paramagnetism.
+    \end{itemize}
+    \begin{calcbox}[title={Numbers ($U=2t$ dot)}]
+      \small $E_J=7.39\times10^{-3}t$, $\hw=7.6\times10^{-4}t$ $\Rightarrow E_J/\hw\simeq9.7$\\
+      $\beta=1\Rightarrow g_c^{\rm cl}=\sqrt{\hw/8E_J}=0.113$\\
+      DMRG: $g_c\simeq0.12$\ \checkmark
+    \end{calcbox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The classical double well and the pitchfork}
+  \centering
+  \includegraphics[width=0.92\textwidth]{landau.pdf}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \small $\mathcal F'(X)=0$ with $\theta=2gX$:\quad
+    $\dfrac{\hw}{2g}\,\varphi=2gE_J\sin2\varphi\ \Rightarrow\ \boxed{\theta^\star=\beta\sin\theta^\star}$
+    \column{0.5\textwidth}
+    \small $I^\star=I_c\sin\theta^\star$. Large $\beta$: $\theta^\star\to\pi$ (flux $\to\Phi_0/2$) and
+    $I^\star\simeq\pi I_c/\beta\propto\hw/g^2$ \emph{decreases}.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{An exact identity: the current \emph{is} the displacement of the mode}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    In any eigenstate $\langle[H,P]\rangle=0$. Compute the commutator:
+    \begin{align*}
+      [a^\dagger a,P]&=i\,(a^\dagger+a)=iX,\\
+      [\Hring(\pcl+gX),P]&=2i\,g\,\partial_\varphi\Hring .
+    \end{align*}
+    With $I\equiv-\frac{e}{\hbar}\partial_\varphi\Hring$:
+    \begin{keybox}
+      \centering$\displaystyle \langle I\rangle=\frac{e}{\hbar}\,\frac{\hw\,\langle X\rangle}{2g}
+        \qquad\Longleftrightarrow\qquad \langle I\rangle=\frac{\langle\Phi\rangle}{L}$
+    \end{keybox}
+    \small (use $2\Phi_{\rm zpf}^2=\hw L$). Kirchhoff's law, but exact for the full quantum problem.
+    \column{0.43\textwidth}
+    \textbf{Why it matters}
+    \begin{itemize}\small
+      \item Current flows $\Leftrightarrow$ the field has a static part, $\langle a\rangle\neq0$: a \alert{photon condensate}.
+      \item Condensate size: $\langle a^\dagger a\rangle\gtrsim\langle X\rangle^2/4=(gI\hbar/e\hw)^2$.\\
+            $U=2t$, $g=0.14$: $\approx6.5$ photons (DMRG: $\approx8$).
+      \item Numerically: $\langle X\rangle$ converges much better in DMRG than the bond current
+            (a small difference of large terms) $\Rightarrow$ we measure $I$ through $X$.
+      \item Verified in ED to $10^{-7}$.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Below threshold: the soft mode}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    Expand to second order around $X=0$ ($\beta<1$):
+    \[
+      H_{\rm BO}\simeq\frac{\hw}{4}\Big(P^2+(1-\beta)X^2\Big)
+    \]
+    \begin{itemize}\small
+      \item Excitation gap: $\boxed{\hw\sqrt{1-\beta}}$ \ (mode softening).
+      \item Vacuum flux is squeezed: $\langle X^2\rangle=(1-\beta)^{-1/2}$.
+      \item Photons in the ground state:
+        $\langle n\rangle=\tfrac14\big[(1-\beta)^{-\frac12}+(1-\beta)^{\frac12}\big]-\tfrac12$.
+    \end{itemize}
+    \begin{calcbox}[title={Check against full DMRG}]
+      \small $\beta=0.5$: \ $\sqrt{0.5}=0.707$ \ vs \ DMRG $0.71$\\
+      $\beta=0.57$: \ $\langle n\rangle=0.045$ \ vs \ DMRG $0.04$
+    \end{calcbox}
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{soft_mode.pdf}
+    \par\small At $\beta\to1$ the quadratic theory fails (quartic oscillator); above it, the gap
+    becomes the \alert{tunnel splitting} and collapses exponentially.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Quantum fluctuations oppose the transition}
+  \centering
+  \includegraphics[width=0.93\textwidth]{quantum_well.pdf}
+  \vspace{-1mm}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \small Exact eigenstates of $H_{\rm BO}$ (pure $\pi$ junction). For $\beta>1$:
+    $\psi_{0,1}\simeq(|\ccw\rangle\pm|\cw\rangle)/\sqrt2$ --- \alert{cat states} of macroscopic current, split by $\delta$.
+    \column{0.5\textwidth}
+    \small Zero-point fluctuations \emph{restore} the symmetry: if the barrier is below $\sim\hw$ (middle) there is no
+    current-carrying state at all.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{How small is $\delta$? An instanton estimate}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    Particle of mass $M=\hbar^2/8E_C$ in $U(\theta)=E_J\,u(\theta)$,
+    $u=\frac{\theta^2}{2\beta}+\cos\theta$. WKB:
+    \[
+      \delta\sim\hw\,e^{-S},\quad
+      S=\int_{-\theta^\star}^{\theta^\star}\!d\theta\,\sqrt{\frac{U-U_{\min}}{4E_C}}
+    \]
+    \begin{calcbox}[title={Scaling}]
+      \small $\dfrac{E_J}{4E_C}=\dfrac{E_J}{4g^2\hw}=\dfrac{2}{\beta}\Big(\dfrac{E_J}{\hw}\Big)^2$
+      $\ \Rightarrow\ \boxed{S=\dfrac{E_J}{\hw}\,s(\beta)}$\\[1mm]
+      $s(\beta)=\sqrt{2/\beta}\int\!d\theta\,\sqrt{u-u_{\min}}$.\\
+      Near threshold ($\epsilon=1-1/\beta$): $u\simeq1-\frac{\epsilon}{2}\theta^2+\frac{\theta^4}{24}$,
+      minima at $\theta^2=6\epsilon$, depth $\frac32\epsilon^2$ $\Rightarrow s\propto(\beta-1)^{3/2}$.
+    \end{calcbox}
+    \column{0.43\textwidth}
+    \begin{keybox}[title={Sharp transition only in a scaling limit}]
+      \small $E_J/\hw\to\infty$ at fixed $\beta$:
+      \[
+        \frac{E_C}{E_J}=\frac{\beta}{8}\Big(\frac{\hw}{E_J}\Big)^2\to0 ,
+      \]
+      flux becomes classical, $\delta\to0$, pitchfork with mean-field exponents.
+    \end{keybox}
+    \small Cf.\ quantum Rabi model: QPT only for $\Omega/\omega\to\infty$ \cite{Hwang--Puebla--Plenio 2015}.
+    Finite $E_J/\hw$: a crossover; $\delta$ = macroscopic quantum tunnelling of the current.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{What the cavity does and does not do}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{Static threshold is set by the loop inductance.}\\[1mm]
+    \small Loop with its own $L_r$, mutual $M\le\sqrt{L_rL_c}$ to the resonator: minimizing the static energy
+    over the resonator flux leaves $\Phi_r^2/2L_r$.
+    \begin{itemize}\small
+      \item A resonator cannot push the static threshold below what the loop's own inductance gives.
+      \item Our model is the galvanic limit $k=M/\sqrt{L_rL_c}\to1$ (resonator inductance \emph{is} the loop inductance, as in fluxonium).
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{warnbox}[title={Honest framing}]
+      \small
+      \begin{itemize}
+        \item The instability is \emph{classical}: a static field, $\beta>1$.
+        \item Vacuum fluctuations do \alert{not} drive it, they oppose it (tunnelling $\delta$).
+        \item The mode supplies the \emph{quantum dynamics} of the flux ($E_C$), the condensate's photons, and a readout channel.
+      \end{itemize}
+    \end{warnbox}
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{Methods: three levels of description}
+
+\begin{frame}{Three ways to solve $H=\hw a^\dagger a+\Hring[\pcl+gX]$}
+  \centering
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{@{}>{\raggedright}m{0.17\textwidth}>{\raggedright}m{0.4\textwidth}>{\raggedright}m{0.14\textwidth}m{0.16\textwidth}@{}}
+    \toprule
+    & ansatz & photon & cost \\ \midrule
+    \textbf{Mean field} (MF) & $|\psi_{\rm el}\rangle\otimes|\chi_{\rm ph}\rangle$, self-consistent (HF--BdG for $U$) &
+      product state & trivial \\
+    \textbf{Adiabatic} (BO) & $\chi(X)\,|\psi_0(gX)\rangle$, $E(\varphi)$ from BdG or DMRG &
+      \alert{exact} & 1D Schr\"odinger \\
+    \textbf{Full DMRG} & MPS on electrons $\otimes$ photon, no approximation &
+      \alert{exact} & $\sim$h on 4 cores \\ \bottomrule
+  \end{tabular}
+  \vspace{4mm}
+  \begin{keybox}
+    \small Strategy: DMRG is the referee. Once BO is validated against DMRG, use BO to map whole phase diagrams and
+    to reach $\delta\ll$ DMRG resolution.
+  \end{keybox}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Mean field and its two hidden assumptions}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    \small Product state $\Rightarrow$ two coupled problems:
+    \begin{align*}
+      \text{el.:}&\ \Hring\ \text{with}\ t_J\to t_J\,\alpha,\quad \alpha=\langle\chi|e^{igX}|\chi\rangle\\
+      \text{ph.:}&\ \hw a^\dagger a-\big(\eta\,e^{igX}+\text{h.c.}\big),\\
+      &\ \eta=t_Je^{i\pcl}\textstyle\sum_\sigma\langle c^\dagger_{1\sigma}c_{0\sigma}\rangle\\
+      E_{\rm MF}&=E_{\rm el}+E_{\rm ph}+2\,\mathrm{Re}(\eta\alpha)\ \ \text{(double counting)}
+    \end{align*}
+    For a coherent state $|X_0\rangle$: \ $\alpha=e^{igX_0}\,\alert{e^{-g^2/2}}$ (Debye--Waller).
+    \column{0.46\textwidth}
+    \begin{warnbox}[title={(i) Not gauge invariant}]
+      \small All phase on one bond: that bond is shrunk by $e^{-g^2/2}$ and loses \emph{phase-independent} kinetic
+      energy. Spread over $N$ bonds: loss $\sim N\cdot g^2/2N^2\to0$. The exact state recovers it by following the flux
+      adiabatically. \cite{Li \emph{et al.} 2020; Dmytruk--Schir\`o 2021}
+    \end{warnbox}
+    \begin{warnbox}[title={(ii) Self-trapping}]
+      \small A product state must pick one well: it breaks the $\mathbb Z_2$ by construction, even when the
+      barrier is below the zero-point energy.
+    \end{warnbox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{DMRG for electrons + photon}
+  \begin{columns}[c]
+    \column{0.55\textwidth}
+    \centering
+    \begin{tikzpicture}[x=0.95cm,
+        site/.style={circle,draw=ink,fill=accent!20,minimum size=6.5mm,inner sep=0pt,font=\scriptsize},
+        dot/.style={circle,draw=ink,fill=warm!35,minimum size=6.5mm,inner sep=0pt,font=\scriptsize},
+        bos/.style={rectangle,draw=ink,fill=blue!15,minimum size=7mm,inner sep=0pt,font=\scriptsize}]
+      \node[bos] (b) at (0,0) {$a$};
+      \node[dot] (s0) at (1,0) {$0$};
+      \node[site] (s1) at (2,0) {$1$};
+      \node[site] (sL) at (3,0) {\tiny$L\!-\!1$};
+      \node[site] (s2) at (4,0) {$2$};
+      \node[site] (sL2) at (5,0) {\tiny$L\!-\!2$};
+      \node at (6,0) {$\cdots$};
+      \draw[thick] (b)--(s0)--(s1)--(sL)--(s2)--(sL2)--(5.6,0);
+      % physical bonds of the ring
+      \draw[good,thick,bend left=50] (s0) to (s1);
+      \draw[good,thick,bend left=50] (s1) to (s2);
+      \draw[good,thick,bend right=50] (s0) to (sL);
+      \draw[good,thick,bend right=50] (sL) to (sL2);
+      \draw[blue!70!black,very thick,dashed,bend left=60] (b) to node[above,font=\scriptsize] {$D\,c^\dagger_1c_0$} (s1);
+      \node[font=\scriptsize,good] at (3.5,-1.05) {ring bonds: range $\le2$ (folded order)};
+    \end{tikzpicture}
+    \column{0.43\textwidth}
+    \begin{itemize}\small
+      \item TeNPy; photon = bosonic site, Fock cutoff $N_{\rm ph}=30$--$50$ (discarded weight $<10^{-7}$).
+      \item Conserved: fermion parity, $S^z$ (not $N$: $\Delta$ breaks U(1)).
+      \item Vertex $e^{igX}c^\dagger_{1\sigma}c_{0\sigma}$ = three-site MPO term.
+      \item $\chi=256$--$400$; $E_0$ error $\lesssim3\times10^{-6}t$.
+      \item Excited states: DMRG orthogonal to $|\Psi_0\rangle$.
+    \end{itemize}
+  \end{columns}
+  \begin{calcbox}[title={Benchmarks}]
+    \small $g=0$ vs exact BdG: $10^{-14}$ ($\chi=1024$) \quad$\cdot$\quad 4-site ring + photon vs ED: $10^{-15}$
+    \quad$\cdot$\quad $\langle I\rangle=\hw\langle X\rangle/2g$ to $10^{-7}$
+  \end{calcbox}
+\end{frame}
+
+% ==================================================================
+\section{Results}
+
+\begin{frame}{The junction: a $\pi$ shift from Coulomb repulsion}
+  \centering
+  \includegraphics[width=\textwidth]{fig_junctions.pdf}
+  \begin{columns}[T]
+    \column{0.36\textwidth}
+    \small (a) After normalization, a $U=2t$ dot at \emph{zero} flux $\equiv$ weak link + $\Phi_0/2$.
+    The short-ring notebook model is dominated by the $h/e$ harmonic.
+    \column{0.32\textwidth}
+    \small (b) Parity crossing at $U_c\simeq0.9t$: for $U>U_c$ the \alert{doublet} (local moment) is the ground state at all $\varphi$.
+    \column{0.32\textwidth}
+    \small (c) $E_2(U=2t)=+7.39\times10^{-3}t$, $|E_1|,|E_4|<10^{-4}t$; \ $E_2\propto U^{-1.3}$ (cotunnelling).
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Why a local moment gives a $\pi$ junction}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    \small Singly occupied dot ($U\gg t_J,\Delta$): a Cooper pair crosses by \emph{fourth-order cotunnelling},
+    one electron at a time, through virtual states.
+    \begin{itemize}\small
+      \item The dot's own electron must leave and be replaced; the pair arrives with its two spins in \alert{reversed order}.
+      \item Singlet: $c^\dagger_{\downarrow}c^\dagger_{\uparrow}=-c^\dagger_{\uparrow}c^\dagger_{\downarrow}$
+            $\Rightarrow$ the pair-transfer amplitude changes sign: $E_J\to-E_J$.
+      \item \cite{Glazman--Matveev 1989; Spivak--Kivelson 1991}; seen in nanowire and CNT dots \cite{van Dam 2006; Cleuziou 2006}.
+    \end{itemize}
+    \column{0.46\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.9]
+      \draw[thick,fill=accent!12] (-2.6,-0.8) rectangle (-1.1,0.8); \node at (-1.85,1.05) {\small SC};
+      \draw[thick,fill=accent!12] (1.1,-0.8) rectangle (2.6,0.8); \node at (1.85,1.05) {\small SC};
+      \draw[thick,fill=warm!20] (0,0) circle (0.45);
+      \node at (0,0) {$\uparrow$};
+      \node at (-1.85,0) {$\uparrow\!\downarrow$};
+      \draw[-{Stealth},thick] (-1.0,0.25) to[bend left=30] node[above,font=\scriptsize]{$t_J$} (-0.45,0.25);
+      \draw[-{Stealth},thick] (0.45,0.25) to[bend left=30] node[above,font=\scriptsize]{$t_J$} (1.0,0.25);
+      \node[font=\scriptsize,align=center] at (0,-1.35) {4 hops, intermediate energies $\sim U,\Delta$};
+      \node[font=\scriptsize,align=center] at (1.85,0) {$\downarrow\!\uparrow$};
+    \end{tikzpicture}
+    \vspace{2mm}
+    \begin{keybox}
+      \small Bonus: the low-energy manifold is \emph{fourfold},
+      $\{\uparrow,\downarrow\}_{\rm dot}\otimes\{\cw,\ccw\}$, split only by $\delta$.
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Central result: spontaneous current at $U=2t$, no applied flux}
+  \begin{columns}[c]
+    \column{0.36\textwidth}
+    \includegraphics[width=0.95\textwidth]{main_a.pdf}
+    \column{0.62\textwidth}
+    \begin{itemize}\small
+      \item $g<g_c\simeq0.12$: mode near vacuum, $|\langle I\rangle|\lesssim10^{-4}\,et/\hbar$ = linear response to the seed.
+      \item $g\simeq g_c$: photon number jumps to $\simeq8$, current $1.4\times10^{-2}\,et/\hbar$.
+      \item \textbf{Spontaneous:} seed $10^{-3}\to10^{-5}$: current above threshold unchanged, below threshold $\propto$ seed.
+      \item Full DMRG (dots) and exact-photon BO (lines) agree within a few \%.
+    \end{itemize}
+    \begin{calcbox}[title={Sanity check with the formulas}]
+      \small $I_c=2E_J=0.0148\,et/\hbar$ $\Rightarrow$ $I_{\max}\simeq0.93\,I_c$.\\
+      Tail: $\langle I\rangle=\hw\varphi^\star/2g^2$; at $g=0.4$, $\varphi^\star\to\pi/2$:
+      $\;7.6\cdot10^{-4}\cdot1.57/0.32=3.7\times10^{-3}$ \checkmark
+    \end{calcbox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The $(U,g)$ phase diagram: exact vs mean field}
+  \begin{columns}[c]
+    \column{0.6\textwidth}
+    \includegraphics[width=\textwidth]{main_bc.pdf}
+    \par\scriptsize Black: $|\langle I\rangle|=2\times10^{-3}\,et/\hbar$ (exact); orange dashed: same contour from MF; arrows: $U$ values computed by DMRG.
+    \column{0.4\textwidth}
+    \small
+    \begin{itemize}\small
+      \item Lower edge $U_c\simeq0.9t$: the 0--$\pi$ transition of the dot. No current for $U<U_c$ at \emph{any} $g$.
+      \item Left edge $g_c(U)$: follows $\beta(U,g)=1$; moves right as $E_2(U)$ drops.
+    \end{itemize}
+    \centering\scriptsize
+    \begin{tabular}{@{}ccccc@{}}
+      \toprule
+      $U/t$ & $g_c$ ex. & $g_c$ MF & $I_{\max}$ ex. & MF \\ \midrule
+      2 & 0.13 & 0.13 & 0.0141 & 0.0128\\
+      4 & 0.19 & 0.19 & 0.0070 & 0.0057\\
+      6 & 0.32 & 0.27 & 0.0023 & 0.0031\\
+      7 & \alert{none} & 0.32 & $6\!\cdot\!10^{-4}$ & 0.0024\\
+      8 & \alert{none} & 0.4 & $2\!\cdot\!10^{-4}$ & 0.0019\\ \bottomrule
+    \end{tabular}
+    \par\raggedright\small MF fine for $E_J\gtrsim3\hw$; for $U\gtrsim6t$ it invents an ordered phase.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Route A: weak link biased by $\Phi_0/2$ ($E_J/\hw=10$)}
+  \centering
+  \includegraphics[width=\textwidth]{fig_weaklink_halfflux.pdf}
+  \begin{columns}[T]
+    \column{0.36\textwidth}
+    \small (a) Current rises at $\beta\simeq1.1$, peaks at $0.97I_c$. MF: $3\times$ too large near threshold
+    ($0.71$ vs $0.21\,I_c$ at $\beta=1.13$), $0.2$--$0.4\hw$ too high in energy.
+    \column{0.32\textwidth}
+    \small (b) Splitting saturates at $\sim0.15\hw$: it is the \alert{tilt}
+    $2|E_1|\sin\varphi^\star\approx0.2\hw$, not tunnelling. Without $E_1$: $\delta<10^{-6}\hw$ at $\beta=2$.
+    \column{0.32\textwidth}
+    \small (c) $P(\Phi)$ from the photon reduced density matrix: a \emph{single} displaced peak --- direction
+    \emph{selected}, not spontaneous.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Route B: interaction-driven $\pi$ loop ($U=2t$, $\pcl=0$)}
+  \centering
+  \includegraphics[width=\textwidth]{fig_udot_cavity.pdf}
+  \begin{columns}[T]
+    \column{0.36\textwidth}
+    \small (a) $\langle I\rangle=0$ in every eigenstate (TRS)! Order parameter: eigenvalues $\pm\Phi^\star$ of the flux
+    projected on the lowest doublet. DMRG vs BO within 3\%.
+    \column{0.32\textwidth}
+    \small (b) $\delta/\hw=0.71,\,0.28$ at $\beta=0.5,1$ (both methods); then BO: $7\cdot10^{-4}$, $2\cdot10^{-6}$,
+    $2\cdot10^{-8}$ at $\beta=1.5,2,3$.
+    \column{0.32\textwidth}
+    \small (c) DMRG ground state is a \alert{cat}: symmetric, bimodal $P(\Phi)$ with peaks at $\pm\Phi^\star$
+    tracking the classical minimum.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Cautionary tale: the original mean-field prediction}
+  \begin{columns}[c]
+    \column{0.42\textwidth}
+    \includegraphics[width=\textwidth]{fig_notebook_model.pdf}
+    \column{0.56\textwidth}
+    \small Short ring, Zeeman-polarized dot, $\hw=0.02$:
+    \begin{itemize}\small
+      \item MF: current-carrying phase for $g\gtrsim0.75$, $\langle n\rangle\simeq1.4$.
+      \item DMRG: \alert{no current} (only linear response, $7\times10^{-5}$), energy $1.8\hw$ \emph{below} MF,
+            gap stays $0.33\hw$, $\langle n\rangle\simeq0.36$.
+      \item BO $\approx$ DMRG to $0.06\hw$ in energy and $1.3\%$ in gap.
+    \end{itemize}
+    \begin{warnbox}[title={Three reasons}]
+      \small (1) gauge non-invariance of the product state;
+      (2) $E_J\simeq\hw$: double well shallower than zero-point energy;
+      (3) $L\lesssim\xi$: $E_1=2.1\times10^{-2}\gg E_2=2.0\times10^{-3}$ --- the instability would be of the
+      \emph{normal} $h/e$ current, not Josephson.
+    \end{warnbox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Same model, ten times smaller $\hw$: the effect comes back}
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig_notebook_omega.pdf}
+  \par\small At $\hw=0.02$ the exact ground state carries no current at any $g$. At $\hw=0.002$ the same model
+  orders: exact $g_c\simeq0.21$, MF $g_c\simeq0.30$. \alert{The control parameter is $E_J/\hw$}, not $g$ alone.
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{When can we trust the product state?}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{exampleblock}{MF works}
+      \small
+      \begin{itemize}
+        \item $E_J\gg\hw$ \emph{and} $g\ll1$;
+        \item deep in the ordered phase (photon $\approx$ coherent state);
+        \item gets $U_c$ and $g_c(U)$ right for $U\lesssim5t$; current low by $10$--$20\%$
+              (bond renormalized by $|\langle D\rangle|<1$).
+      \end{itemize}
+    \end{exampleblock}
+    \column{0.5\textwidth}
+    \begin{alertblock}{MF fails}
+      \small
+      \begin{itemize}
+        \item near threshold (overestimates current $\times3$);
+        \item $E_J\lesssim3\hw$: predicts order where the exact state is a symmetric cat;
+        \item always: energy too high by $0.2$--$2\hw$; misses $\delta$ and cat structure entirely.
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}
+  \vspace{3mm}
+  \begin{keybox}
+    \small Cheap and safe alternative: \textbf{BO with exact photon} --- one ring calculation $E(\varphi)$ plus a 1D
+    Schr\"odinger equation. Agrees with full DMRG to a few \% throughout.
+  \end{keybox}
+\end{frame}
+
+% ==================================================================
+\section{Experimental outlook}
+
+\begin{frame}{Where are real devices on the map?}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    \includegraphics[width=0.95\textwidth]{overview_b.pdf}
+    \par\small $\delta$ from BO with the DMRG $E(\varphi)$, $U=2t$.
+    \column{0.5\textwidth}
+    \small $\beta=2\pi\dfrac{Z}{R_Q}\dfrac{E_J}{\hw}$, \quad $E_J/h\simeq0.5\,\mathrm{GHz}\times I_c[\mathrm{nA}]$
+    \begin{itemize}\small
+      \item \textbf{SFS} ($I_c\sim1$--$100\,\mu$A): $E_J/\hw\sim10^2$--$10^4$. Classical limit; spontaneous currents
+            already observed.
+      \item \textbf{QD $\pi$ junctions} ($I_c\sim0.1$--$10$\,nA): need superinductances ($0.03$--$3\,\mu$H);
+            $E_J/\hw\sim1$, cat with $\delta\sim0.1\hw$ --- the $\pi$-qubit regime. Signature: dip of the $0\to1$
+            frequency, jump of $\langle0|\Phi|1\rangle$ (two-tone spectroscopy).
+      \item \textbf{Sweet spot}: multichannel / gate-tunable $\pi$ JJ, $I_c\sim50$--$200$\,nA, $L\sim2$--$10$\,nH,
+            $\omega/2\pi\sim2$--$5$\,GHz: $\beta\sim1$--$3$, $E_J/\hw\sim10$--$30$, $\delta/\hw\sim10^{-4}$--$10^{-8}$.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{Summary}
+
+\begin{frame}{Take-home messages}
+  \begin{enumerate}
+    \item A $\pi$ junction in a loop is the \alert{minimal photon condensate}: paramagnetic orbital response +
+          flux coupling evade the no-go theorem. Criterion: $\beta=2g^2|E''(0)|/\hw>1$.
+    \item Everything reduces to a \hl{$\pi$-fluxonium} $4E_Cn^2+\frac12E_L\theta^2+E(\theta/2)$ with
+          $E_C=g^2\hw$, $E_L=\hw/8g^2$; exact identity $\langle I\rangle=\langle\Phi\rangle/L$.
+    \item The transition is classical in origin; quantum fluctuations restore symmetry via a
+          \alert{cat state} with $\delta\sim\hw\,e^{-(E_J/\hw)s(\beta)}$. Sharp only for $E_J/\hw\to\infty$.
+    \item An \emph{interacting} dot ($U>U_c\simeq0.9t$) gives a TRS-protected $\pi$ loop: current direction
+          chosen spontaneously, no flux bias to stabilize; fourfold spin$\otimes$current multiplet.
+    \item Full electron--photon DMRG confirms it for $E_J\gg\hw$ and shows that MF \alert{invents} the effect when
+          $E_J\sim\hw$. BO with an exact photon is the reliable cheap tool.
+  \end{enumerate}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Open questions}
+  \begin{itemize}
+    \item \textbf{Kondo regime} ($T_K\gg\Delta$): the junction returns to 0 --- how does the condensate disappear?
+    \item \textbf{Self-consistent leads}: with a rigid order parameter all phase drops on the junction; a
+          self-consistent BdG ring puts most of it in the leads (backup). How does lead kinetic inductance renormalize $\beta$?
+    \item \textbf{Spin $\otimes$ current multiplet}: can the $\{\uparrow,\downarrow\}\otimes\{\cw,\ccw\}$ quartet be used/read out?
+    \item \textbf{Dissipation and readout}: what does a real resonator measure --- $\langle0|\Phi|1\rangle$, dispersive shift?
+    \item \textbf{Beyond one mode}: multimode / transmission-line resonators, finite $k<1$.
+  \end{itemize}
+  \vfill
+  \centering\Large Thank you!
+\end{frame}
+
+% ==================================================================
+\appendix
+\section*{Backup}
+
+\begin{frame}{Backup: gauge covariance of the Peierls placement}
+  \small Non-interacting ring with a dot ($L=14$, $\Delta=t$, $t_J=0.5t$); BdG ground-state energy:
+  \vspace{2mm}
+  \centering
+  \begin{tabular}{@{}cccc@{}}
+    \toprule
+    $\varphi$ & all phase on one bond & uniform $\mathbf A$ + covariant $\Delta_j$ & uniform $\mathbf A$ + \alert{real} $\Delta$\\ \midrule
+    $0$ & $-21.82094$ & $-21.82094$ & $-21.82094$\\
+    $0.5$ & $-21.79739$ & $-21.79739$ & $-21.81251$\\
+    $1.0$ & $-21.72957$ & $-21.72957$ & $-21.78725$\\
+    $\pi/2$ & $-21.61009$ & $-21.61009$ & $-21.73791$\\ \bottomrule
+  \end{tabular}
+  \vspace{3mm}
+  \begin{keybox}
+    \small First two columns agree to $10^{-10}$ (\texttt{code/tests/test\_gauge\_covariance.py}). A uniform $\mathbf A$
+    with a \emph{real} $\Delta$ is a different (current-non-conserving) model --- compare Dmytruk \& Schir\`o.
+  \end{keybox}
+\end{frame}
+
+\begin{frame}{Backup: where does the phase drop? (self-consistent BdG)}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \small Model assumption: fixed real $\Delta$ $\Rightarrow$ rigid phase in the leads (zero lead kinetic inductance),
+    \emph{all} phase drops on the junction.\\[1mm]
+    Check: weak link ($t_J=0.5$, $U=0$, $L=14$) with $\Delta_j=-U_a\langle c_{j\downarrow}c_{j\uparrow}\rangle$ solved
+    self-consistently (complex), $U_a=3.07$ tuned to $|\Delta|=1$:\\[1mm]
+    \hspace*{\fill}\begin{tabular}{@{}ccc@{}}
+      \toprule
+      pair flux $2\varphi$ & junction drop & fraction \\ \midrule
+      0.4 & 0.110 & 0.275\\
+      0.8 & 0.221 & 0.277\\
+      1.2 & 0.335 & 0.279\\ \bottomrule
+    \end{tabular}\hspace*{\fill}
+    \column{0.43\textwidth}
+    \begin{itemize}\small
+      \item Current is conserved bond by bond (as it must be self-consistently).
+      \item In this short ring only $\approx28\%$ of the gauge-invariant phase drops on the junction:
+            the 13 lead bonds act as a series \alert{kinetic inductance}.
+      \item In lumped language this adds to the loop inductance; for wide/macroscopic leads it is small.
+            Worth quantifying for the paper.
+    \end{itemize}
+    \figsrc{\texttt{code/selfconsistent\_phase.py}}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Backup: DMRG numbers}
+  \small
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \textbf{Weak link $+\Phi_0/2$}, $E_J/\hw=10$, $\chi=256$, $N_{\rm ph}=40$\\[1mm]
+    \scriptsize
+    \begin{tabular}{@{}cccccc@{}}
+      \toprule
+      $\beta$ & $I/I_c$ DMRG & BO & MF & $\delta/\hw$ & $\langle n\rangle$\\ \midrule
+      0.57 & 0.013 & 0.014 & 0.014 & 0.670 & 0.04\\
+      1.13 & 0.207 & 0.223 & \alert{0.711} & 0.159 & 1.2\\
+      1.41 & 0.869 & 0.908 & 0.962 & 0.113 & 5.2\\
+      1.70 & 0.963 & 0.967 & 0.993 & 0.138 & 7.0\\
+      2.26 & 0.908 & 0.909 & 0.921 & 0.156 & 8.3\\
+      3.39 & 0.732 & 0.732 & 0.737 & 0.168 & 8.1\\ \bottomrule
+    \end{tabular}
+    \column{0.5\textwidth}
+    \textbf{$U=2t$ dot}, $\pcl=0$, $E_J/\hw=10$, $\chi=256$, $N_{\rm ph}=50$\\[1mm]
+    \scriptsize
+    \begin{tabular}{@{}ccc@{}}
+      \toprule
+      $\beta$ & $\Phi^\star/(\Phi_0/2)$ DMRG / BO & $\delta/\hw$ DMRG / BO\\ \midrule
+      0.5 & 0.060 / 0.060 & 0.71 / 0.71\\
+      1.0 & 0.130 / 0.134 & 0.28 / 0.28\\
+      1.5 & 0.433 / 0.438 & ($<0.04$) / $7\cdot10^{-4}$\\
+      2.0 & 0.574 / 0.575 & ($<0.04$) / $2\cdot10^{-6}$\\
+      3.0 & 0.703 / 0.704 & ($<0.04$) / $2\cdot10^{-8}$\\ \bottomrule
+    \end{tabular}
+    \par\vspace{1mm}\scriptsize DMRG excited-state resolution $\sim3\times10^{-5}t\approx0.04\hw$ (from $\chi=256$ vs $400$).
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Backup: references}
+  \scriptsize
+  \begin{itemize}
+    \item L.\,N. Bulaevskii, V.\,V. Kuzii, A.\,A. Sobyanin, JETP Lett. \textbf{25}, 290 (1977)
+    \item C.\,C. Tsuei, J.\,R. Kirtley, RMP \textbf{72}, 969 (2000); V.\,V. Ryazanov \emph{et al.}, PRL \textbf{86}, 2427 (2001); A. Bauer \emph{et al.}, PRL \textbf{92}, 217001 (2004)
+    \item G.\,M. Andolina \emph{et al.}, PRB \textbf{100}, 121109(R) (2019); PRB \textbf{102}, 125137 (2020); P. Nataf \emph{et al.}, PRL \textbf{123}, 207402 (2019)
+    \item M.-J. Hwang, R. Puebla, M.\,B. Plenio, PRL \textbf{115}, 180404 (2015)
+    \item L.\,I. Glazman, K.\,A. Matveev, JETP Lett. \textbf{49}, 659 (1989); B.\,I. Spivak, S.\,A. Kivelson, PRB \textbf{43}, 3740 (1991)
+    \item E. Vecino \emph{et al.}, PRB \textbf{68}, 035105 (2003); C. Karrasch \emph{et al.}, PRB \textbf{77}, 024517 (2008)
+    \item J.\,A. van Dam \emph{et al.}, Nature \textbf{442}, 667 (2006); J.-P. Cleuziou \emph{et al.}, Nat. Nano. \textbf{1}, 53 (2006); R. Delagrange \emph{et al.}, PRB \textbf{91}, 241401(R) (2015)
+    \item L.\,B. Ioffe \emph{et al.}, Nature \textbf{398}, 679 (1999); T. Yamashita \emph{et al.}, PRL \textbf{95}, 097001 (2005); A.\,K. Feofanov \emph{et al.}, Nat. Phys. \textbf{6}, 593 (2010)
+    \item J.\,R. Friedman \emph{et al.}, Nature \textbf{406}, 43 (2000); V.\,E. Manucharyan \emph{et al.}, Science \textbf{326}, 113 (2009); L. Gr\"unhaupt \emph{et al.}, Nat. Mater. \textbf{18}, 816 (2019)
+    \item J. Li \emph{et al.}, PRB \textbf{101}, 205140 (2020); O. Dmytruk, M. Schir\`o, PRB \textbf{103}, 075131 (2021)
+    \item D. Loss, P. Goldbart, PRB \textbf{43}, 13762 (1991); J. Hauschild, F. Pollmann, SciPost Phys. Lect. Notes 5 (2018)
+  \end{itemize}
+\end{frame}
+
+\end{document}

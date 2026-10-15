@@ -5,3 +5,12 @@ paper/*.log
 paper/*.blg
 paper/*.out
 paper/*Notes.bib
+talk/*.aux
+talk/*.log
+talk/*.nav
+talk/*.out
+talk/*.snm
+talk/*.toc
+talk/*.vrb
+talk/*.fls
+talk/*.fdb_latexmk

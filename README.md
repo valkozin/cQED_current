@@ -12,6 +12,7 @@ and the body of a PRL draft.
 | `paper/` | PRL body (`main.tex` → `body.tex`, `results.tex`, `feasibility.tex`, `refs.bib`); `main.pdf` |
 | `figs/` | Figures (pdf/png), produced by `code/make_figures.py` |
 | `data/` | All numerical results (json/npy) and run logs |
+| `talk/` | Beamer seminar talk (`talk.tex` → `talk.pdf`); extra teaching figures from `make_talk_figs.py`, slide panels from `make_slide_panels.py` |
 
 ## Code (`code/`)
 * `model.py`, `mean_field.py`: line-by-line Python port of the notebook. It reproduces every curve of the notebook.
