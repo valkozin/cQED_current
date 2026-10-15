@@ -43,18 +43,22 @@ def main():
         if not rows:
             continue
         phi = np.array([r['phi'] for r in rows])
-        for sec, col, lab in (('odd_up', '#1f77b4', r'$S^z=+\tfrac12$'), ('odd_dn', '#d62728', r'$S^z=-\tfrac12$'), ('even', '#2ca02c', 'singlet')):
+        for sec, col, lab in (('odd_up', '#1f77b4', r'$S^z=+\frac{1}{2}$'), ('odd_dn', '#d62728', r'$S^z=-\frac{1}{2}$'), ('even', '#2ca02c', 'singlet')):
             if sec not in rows[0]:
                 continue
             E = np.array([r[sec] for r in rows]); E0 = np.array([r['odd_up'] for r in rows]).min()
-            if sec != 'even':
-                ax.plot(phi / np.pi, 1e3 * (E - E0), ls, color=col, label=lab + (r', $\alpha=0.6$' if alpha == '0.6' else r', $\alpha=0$'))
             a, b = fit_series(phi, E)
+            if sec != 'even':
+                ph = np.linspace(-np.pi, np.pi, 400)
+                Efit = sum(a[m] * np.cos(m * ph) + b[m] * np.sin(m * ph) for m in range(len(a)))
+                ax.plot(ph / np.pi, 1e3 * (Efit - E0), ls, color=col, lw=1.1, label=lab + (r', $\alpha=0.6$' if alpha == '0.6' else r', $\alpha=0$'))
+                if alpha == '0.6':
+                    ax.plot(phi / np.pi, 1e3 * (E - E0), 'o', color=col, ms=2.5, mfc='w', mew=0.7)
             res['harm_%s_a%s' % (sec, alpha)] = dict(cos=a.tolist(), sin=b.tolist())
             if sec == 'odd_up':
                 phi_min = phi[np.argmin(E)]
                 res['phimin_%s_a%s' % (sec, alpha)] = float(phi_min)
-    ax.set_xlabel(r'$\varphi/\pi$'); ax.set_ylabel(r'$E_\sigma(\varphi)-E_{\rm min}$  $(10^{-3}\Delta)$'); ax.legend(loc='upper center', ncol=2)
+    ax.set_xlabel(r'$\varphi/\pi$'); ax.set_ylabel(r'$E_\sigma(\varphi)-E_{\rm min}$  $(10^{-3}\Delta)$'); ax.set_ylim(-0.5, 24); ax.legend(loc='upper center', ncol=2, fontsize=6.2, handlelength=1.6, columnspacing=0.8)
     ax.set_title(r'(a) doublet surfaces, two-orbital dot', loc='left', fontsize=8.5)
     # (b)
     ax = axs[1]
@@ -91,7 +95,7 @@ def main():
             i = idx[0]; dc = d[i] - dE[i] * (d[i + 1] - d[i]) / (dE[i + 1] - dE[i]); res['gate_crossing_g%g' % g] = float(dc)
             ax.axvline(dc, color=col, lw=0.6, ls=':')
     ax.axhline(0, color='0.6', lw=0.6); ax.set_xlabel(r'$\epsilon_d+U/2$  $(\Delta)$'); ax.set_ylabel(r'$E_{\rm odd}-E_{\rm even}$  $(\Delta)$'); ax.legend()
-    ax.set_title(r'(c) gate detuning, $U=1.1\Delta$, $\hbar\omega=0.1\Delta$', loc='left', fontsize=8.5)
+    ax.set_title(r'(c) gate detuning, $U=1.1\Delta$', loc='left', fontsize=8.5)
     fig.savefig(os.path.join(F, 'fig_so.pdf')); fig.savefig(os.path.join(F, 'fig_so.png'))
     json.dump(res, open(os.path.join(D, 'so', 'summary_so_gate.json'), 'w'), indent=1)
     for k, v in res.items():
