@@ -78,7 +78,7 @@ for r, c in zip([2, 10, 40], SEQ[1:]):
     ax.semilogy(bb, [np.diff(bo_levels(b, r)[3])[0] for b in bb], color=c, lw=2, label=r'$E_J/\hbar\omega=%d$' % r)
 bc = np.linspace(0, 0.999, 200)
 ax.semilogy(bc, np.sqrt(1 - bc), color=PURPLE, ls='--', lw=1.6, label=r'classical soft mode $\sqrt{1-\beta}$')
-ax.plot([0.5, 1.0], [0.71, 0.28], 'o', color=ORANGE, ms=7, label=r'full DMRG, $U=2t$')
+ax.plot([0.5, 1.0, 1.5], [0.70, 0.24, 2.65e-4], 'o', color=ORANGE, ms=7, label=r'full DMRG, $U=2\Delta$')
 ax.set_ylim(1e-8, 2); ax.set_xlabel(r'$\beta$'); ax.set_ylabel(r'$(E_1-E_0)/\hbar\omega$')
 ax.legend(frameon=False, fontsize=9.5, loc='lower left')
 fig.tight_layout(); fig.savefig('figs/soft_mode.pdf'); plt.close(fig)
