@@ -16,7 +16,7 @@ and the body of a PRL draft.
 | `docs/10_prl_revision_ru.md` | PRL revision: novelty audit with prior art, the new flux-driven 0–π switch, list of fixes (in Russian) |
 | `paper/` | PRL manuscript (`main.tex` → `body.tex`, `cavity0pi.tex`, `phase_diagram.tex`, `results.tex`, `feasibility.tex`, `supplement.tex`; `refs.bib`); `main.pdf` (main text + Supplemental Material) |
 | `figs/` | Figures (pdf/png), produced by `code/make_figures.py` and `code/make_phase_figs.py` (`fig_main_phase_diagram` is the superseded L=14 adiabatic diagram, kept for reference) |
-| `talk/` | Beamer group-seminar talk (`talk.tex` → `talk.pdf`; extra teaching figures from `make_talk_figs.py`) |
+| `talk/` | Beamer seminar talks: full version `talk.tex` → `talk.pdf`, short version `talk_short.tex` → `talk_short.pdf`; teaching figures from `make_talk_figs.py`, `make_short_figs.py` |
 | `data/` | All numerical results (json/npy) and run logs; `data/full/` the full-DMRG (U,g) grid, `data/rerun/` the beta scans with the two-start protocol, `data/nonadiabatic/` the flux-driven 0–π switch (full DMRG at ħω = 0.01–1 Δ, both parity sectors, plus the Lang–Firsov reference), `data/om0.003_tJ1.0/`, `data/tJ1.0/` the strong junction |
 
 ## Code (`code/`)

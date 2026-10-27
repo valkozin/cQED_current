@@ -1,0 +1,311 @@
+% ==================================================================
+%  Short seminar version: circuit -> current vs coupling -> microscopic model -> phase diagram
+%  Build: cd talk && pdflatex talk_short.tex (twice).  Figures: ../figs/*, figs/* (make_talk_figs.py, make_short_figs.py)
+% ==================================================================
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme[progressbar=frametitle,numbering=fraction,block=fill]{metropolis}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[american]{circuitikz}
+\usepackage[most]{tcolorbox}
+\usepackage{appendixnumberbeamer}
+
+\definecolor{ink}{HTML}{1F2A44}
+\definecolor{accent}{HTML}{2A6FDB}
+\definecolor{warm}{HTML}{E8692B}
+\definecolor{good}{HTML}{1AA37A}
+\definecolor{paper}{HTML}{FAFAF7}
+\setbeamercolor{normal text}{fg=ink,bg=paper}
+\setbeamercolor{alerted text}{fg=warm}
+\setbeamercolor{frametitle}{bg=ink,fg=white}
+\setbeamercolor{progress bar}{fg=warm,bg=ink!30}
+\setbeamertemplate{itemize items}{\color{accent}$\blacktriangleright$}
+\newtcolorbox{keybox}[1][]{enhanced,colback=accent!6,colframe=accent,boxrule=0.8pt,arc=2mm,
+  left=2mm,right=2mm,top=1mm,bottom=1mm,before upper=\raggedright,#1}
+\newtcolorbox{warnbox}[1][]{enhanced,colback=warm!7,colframe=warm,boxrule=0.8pt,arc=2mm,
+  left=2mm,right=2mm,top=1mm,bottom=1mm,before upper=\raggedright,#1}
+
+\newcommand{\hw}{\hbar\omega}
+\newcommand{\Hring}{H_{\rm ring}}
+\newcommand{\pcl}{\varphi_{\rm cl}}
+\newcommand{\cw}{\circlearrowright}
+\newcommand{\ccw}{\circlearrowleft}
+\renewcommand{\cite}[1]{{\scriptsize\textcolor{ink!60}{[#1]}}}
+\graphicspath{{../figs/}{figs/}}
+
+\title{A $\pi$ loop in a cavity: spontaneous persistent current, exactly}
+\subtitle{Quantum-dot Josephson loop sharing its inductance with an $LC$ mode, solved by DMRG}
+\author{Group seminar}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ==================================================================
+\section{The circuit}
+
+\begin{frame}{The circuit}
+  \begin{columns}[c]
+    \column{0.45\textwidth}
+    \centering
+    \begin{circuitikz}[scale=1.1,transform shape]
+      \draw[blue!70!black,line width=1.1pt] (0,0) to[L,l=$L$,color=blue!70!black] (0,2.6);
+      \draw[blue!70!black] (0,2.6) -- (-1.3,2.6) to[C,l_=$C$,color=blue!70!black] (-1.3,0) -- (0,0);
+      \draw[line width=2pt] (0,2.6) -- (3,2.6) -- (3,1.65);
+      \draw[line width=2pt] (3,0.95) -- (3,0) -- (0,0);
+      \draw[thick,fill=white] (2.7,0.95) rectangle (3.3,1.65);
+      \fill[warm] (3,1.3) circle (0.09);
+      \node[right] at (3.35,1.55) {$\pi$};
+      \node[right,warm] at (3.35,1.05) {$U$};
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (1.95,1.85) arc (60:120:0.9);
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (1.05,0.75) arc (240:300:0.9);
+      \node at (1.5,1.3) {$\pm I$};
+      \node[blue!70!black] at (-0.6,3.0) {$\hw\,a^\dagger a$};
+    \end{circuitikz}
+    \column{0.55\textwidth}
+    \begin{itemize}
+      \item A superconducting loop closed by a \alert{$\pi$ junction}: a quantum dot with one unpaired electron
+            (doublet), energy $+E_J\cos\theta$ instead of $-E_J\cos\theta$.
+      \item The loop shares its inductance $L$ with a microwave $LC$ mode of impedance $Z=\sqrt{L/C}$.
+      \item No external flux.
+    \end{itemize}
+    \begin{keybox}
+      \textbf{Question:} does a persistent current appear spontaneously, and what is the quantum state of the mode?
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The circuit Hamiltonian}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    The flux of the mode is an operator,
+    \[
+      \Phi=\Phi_{\rm zpf}\,(a+a^\dagger),\qquad \Phi_{\rm zpf}=\sqrt{\hbar Z/2},
+    \]
+    and the Cooper-pair phase across the junction is $\theta=2\pi\Phi/\Phi_0\equiv2g\,(a+a^\dagger)$:
+    \begin{keybox}
+      \centering$\displaystyle H=\hw\,a^\dagger a+E_J\cos\!\big[2g\,(a+a^\dagger)\big]$
+    \end{keybox}
+    \small $g^2=\dfrac{\pi}{4}\dfrac{Z}{R_Q}$, $R_Q=h/4e^2=6.45\,$k$\Omega$: $Z=50\,\Omega\to g=0.08$, $Z=1\,$k$\Omega\to g=0.35$.
+    \column{0.5\textwidth}
+    In the phase $\theta$ and its conjugate charge $n$ this is an rf-SQUID (a fluxonium with a $\pi$ element):
+    \[
+      H=4E_C\,n^2+\tfrac12E_L\,\theta^2+E_J\cos\theta,
+    \]
+    \[
+      E_L=\frac{\hw}{8g^2},\qquad E_C=\hw g^2 .
+    \]
+    \begin{itemize}\small
+      \item Two knobs: $\beta=\dfrac{E_J}{E_L}=\dfrac{8g^2E_J}{\hw}=\dfrac{2\pi LI_c}{\Phi_0}$ and $E_J/\hw$.
+      \item $\theta=0$ is a \emph{maximum} of $E_J\cos\theta$: a negative inductance. For $\beta>1$ it beats the
+            mode's $\frac12E_L\theta^2$ and the potential becomes a double well.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Classical picture: a double well and a pitchfork}
+  \centering
+  \includegraphics[width=0.9\textwidth]{landau.pdf}
+  \par\vspace{1mm}
+  Minima at $\theta^\star=\beta\sin\theta^\star$ carry the current $I^\star=I_c\sin\theta^\star$ and a static flux
+  $\langle\Phi\rangle=LI^\star$: a ``photon condensate'' $\langle a\rangle\neq0$.
+  The exact identity $\langle I\rangle=\langle\Phi\rangle/L$ holds in every quantum eigenstate.
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The persistent current that emerges}
+  \centering
+  \includegraphics[width=0.84\textwidth]{current_vs_g.pdf}
+  \begin{itemize}\small
+    \item Above $g_c\simeq0.13$: a current of $0.96\,I_c$ and a condensate of $7$--$9$ photons. The threshold lies slightly
+          \alert{above} the classical $\beta=1$; beyond it the current falls as $\hw/g^2$ (the flux saturates at $\Phi_0/2$).
+    \item Circles: full microscopic solution (next part); line: circuit Hamiltonian with an exact photon -- they agree to $0.2\%$ of $I_c$.
+  \end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{What is the quantum ground state? A cat}
+  \centering
+  \includegraphics[width=0.85\textwidth]{quantum_well.pdf}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \small Exact eigenstates of the circuit Hamiltonian. For $\beta>1$ the ground state is the symmetric superposition
+    $(|\cw\rangle+|\ccw\rangle)/\sqrt2$ of the two current directions, split from its partner by a tunnel gap
+    $\delta\sim\hw\,e^{-(E_J/\hw)\,s(\beta)}$.
+    \column{0.45\textwidth}
+    \small A tiny flux offset ($\delta\Phi>\delta/2I^\star$) selects one direction. If $E_J\lesssim\hw$ the well is
+    shallower than the zero-point energy and no current state exists at all (middle panel).
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{Where does \texorpdfstring{$E_J\cos\theta$}{EJ cos theta} come from? The microscopic model}
+
+\begin{frame}{The microscopic model: a quantum dot in a BCS ring, plus the mode}
+  \vspace{-3mm}
+  \begin{align*}
+    H={}&\textcolor{blue!70!black}{\hw\,a^\dagger a}
+      \;\underbrace{-\,t\sum_{r,\sigma}\big(c^\dagger_{r+1\sigma}c_{r\sigma}+\text{h.c.}\big)
+      +\Delta\sum_{r}\big(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+\text{h.c.}\big)}_{\text{BCS ring, }L-1\text{ sites}}
+      +\underbrace{\epsilon_d\,n_0+\textcolor{warm}{U\,n_{0\uparrow}n_{0\downarrow}}}_{\text{Anderson dot}}\\
+     &-\,t_J\sum_\sigma\big(c^\dagger_{0\sigma}c_{L-1\,\sigma}+\text{h.c.}\big)
+      -t_J\sum_\sigma\Big(\textcolor{blue!70!black}{e^{ig(a+a^\dagger)}}\,c^\dagger_{1\sigma}c_{0\sigma}+\text{h.c.}\Big)
+  \end{align*}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+    \begin{itemize}\small
+      \item The flux is a Peierls phase on the dot bond; quantized, it becomes the displacement operator
+            $e^{ig(a+a^\dagger)}$ (diamagnetic terms to all orders).
+      \item Parity is conserved: \textbf{even} = singlet, a $0$ junction; \textbf{odd} = Kramers doublet, a $\pi$ junction
+            (a Cooper pair crosses the singly occupied dot with its spins reversed).
+    \end{itemize}
+    \column{0.45\textwidth}
+    \begin{keybox}
+      \small Solved \alert{exactly} by DMRG on the full electron$\otimes$photon space ($\chi=300$, Fock cutoff $50$--$60$,
+      sum rule $\langle I\rangle=\langle\Phi\rangle/L$ as acceptance test).\\[1mm]
+      $\Delta=t$, $t_J=0.5\Delta$, $\epsilon_d=-U/2$, $L=10$, $\hw=E_J(2\Delta)/10$.
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The junction alone: $0$ or $\pi$ is decided by $U$}
+  \centering
+  \includegraphics[width=0.95\textwidth]{fig_junctions.pdf}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \small (a) Ring energy vs flux. The doublet at $U=2\Delta$ is a pure $\pi$ junction, $E_2=7.39\times10^{-3}\Delta$;
+    at zero flux it looks exactly like an ordinary weak link biased by $\Phi_0/2$.
+    \column{0.5\textwidth}
+    \small (b) Singlet--doublet crossing at $U_c^0=0.94\Delta$ (zero flux); the \emph{global} minima cross already at $0.85\Delta$.
+    (c) $E_J$ of the $\pi$ junction falls as $U^{-1.3}$: $E_J/\hw$ runs from $15$ to $2$ across the phase diagram.
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{The phase diagram}
+
+\begin{frame}{Phase diagram in the $(U,g)$ plane -- full DMRG}
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig_phase_main.pdf}
+  \begin{columns}[T]
+    \column{0.34\textwidth}
+    \small (a) Full DMRG, 427 ground states, seed $10^{-3}$: persistent current $|\langle I\rangle|/I_c(U)$.
+    Triangles: computed $U$; circles: $0.5I_c$.
+    \column{0.33\textwidth}
+    \small (b) Seed-free order parameter: tunnel splitting $\delta$ of the circuit model with the DMRG $E(\varphi)$.
+    Grey: singlet $0$ loop.
+    \column{0.33\textwidth}
+    \small (c) Mean field (product state). Green dashed: $0.5I_c$ of the circuit model; purple: classical $\beta=1$.
+    Right axis: $Z/R_Q$.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{How to read it}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{keybox}[title={$U<U_c$: a $0$ loop}]
+      \small Singlet ground state, diamagnetic: the mode is \emph{stiffened}, no current. The boundary moves from
+      $0.94\Delta$ to $0.85\Delta$ with $g$: the zero-point flux itself drives a $0\to\pi$ switch.
+    \end{keybox}
+    \begin{keybox}[title={$U>U_c$, $g>g_c(U)$: the condensate}]
+      \small Current $\simeq I_c$, $7$--$9$ photons. $g_c$ follows $\beta=1$ but lies above it by
+      $\Delta g=0.02$, $0.04$, $0.12$ at $E_J/\hw=10$, $5$, $3.2$: zero-point motion opposes the condensation.
+    \end{keybox}
+    \column{0.5\textwidth}
+    \begin{keybox}[title={$E_J\lesssim2.5\,\hw$ ($U\gtrsim8\Delta$): no order}]
+      \small $\beta$ reaches $2.7$, yet the ground state is the cat, $\delta\simeq\hw$, current $\propto$ seed.
+    \end{keybox}
+    \begin{warnbox}[title={Mean field (c) fails where it matters}]
+      \small Orders at $U=7$--$8\Delta$ with $0.6I_c$ (absent) and at $U=0.85\Delta$ with $0.95I_c$ where the exact state is a
+      $0$ loop: a product state cannot be a cat, and replaces the Kramers doublet by a static moment.
+    \end{warnbox}
+    \small Full DMRG = circuit Hamiltonian to $0.2\%$ of $I_c$: here the loop \emph{is} a $\pi$-fluxonium with the
+    microscopic $E(\varphi)$.
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Cuts through the diagram}
+  \centering
+  \includegraphics[width=0.95\textwidth]{fig_phase_slices.pdf}
+  \par\small Symbols: full DMRG; solid: circuit model; dotted: mean field. The sharp step at $U=1.25$, $2\Delta$
+  ($E_J/\hw\simeq13$, $10$) becomes a broad crossover at $U=6\Delta$ ($E_J/\hw=3.2$).
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Bonus: the vacuum of the mode switches the junction from $0$ to $\pi$}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    \includegraphics[width=0.78\textwidth,trim=0 0 340 0,clip]{fig_cavity_0pi.pdf}
+    \par\small $U=0.9\Delta$: a $0$ junction without the mode becomes a $\pi$ junction at $g\simeq0.3$ ($Z\simeq0.6\,$k$\Omega$).
+    \column{0.5\textwidth}
+    \begin{itemize}\small
+      \item Both parity sectors by full DMRG, no seed, $\hw=0.01$--$3\,\Delta$: $U_c$ of the loop moves down by
+            $12\%$ at $g=0.5$ and $30$--$40\%$ at $g=1$.
+      \item Slow mode: zero-point flux costs the singlet energy (its surface curves up) and pays the doublet.
+            Fast mode: the vacuum average $e^{-g^2/2}$ of the Peierls factor reduces the level width (Franck--Condon).
+      \item Observable as the resonator-frequency jump of a gate-tuned dot junction, driven by the impedance alone.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ==================================================================
+\section{Summary}
+
+\begin{frame}{Summary}
+  \begin{enumerate}
+    \item A $\pi$ junction sharing its inductance with an $LC$ mode is a $\pi$-fluxonium,
+          $H=4E_Cn^2+\frac12E_L\theta^2+E_J\cos\theta$: for $\beta=8g^2E_J/\hw>1$ a persistent current and a photon
+          condensate appear; the exact ground state is a \alert{cat} of the two current directions.
+    \item The \alert{full-DMRG phase diagram} of the microscopic model (dot + BCS ring + photon) confirms it without
+          approximation: condensate for $U>U_c$, $g>g_c(U)$; threshold pushed above $\beta=1$ by zero-point motion; no
+          order for $E_J\lesssim2.5\,\hw$; mean field fails exactly there and at $U\simeq U_c$.
+    \item The zero-point flux of the mode is itself a control parameter of the $0$--$\pi$ transition.
+  \end{enumerate}
+  \vfill
+  \centering Thank you!
+\end{frame}
+
+\appendix
+\begin{frame}{Backup: physical units}
+  \centering\small
+  $E_J/h\simeq0.5\,{\rm GHz}\times I_c[{\rm nA}]$, \ $\beta=2\pi(Z/R_Q)(E_J/\hw)$\\[2mm]
+  \begin{tabular}{@{}lccccc@{}}
+    \toprule
+    $U$, $\Gamma$, material & $E_J/h$ & $I_c$ & $E_J/10h$ & $E_J/10k_B$ & $L_{\beta=1}$\\ \midrule
+    $2\Delta$, $\Delta/2$, Al & 0.32 GHz & 0.65 nA & 32 MHz & 1.5 mK & 510 nH\\
+    $2\Delta$, $\Delta/2$, NbTiN & 2.1 GHz & 4.3 nA & 210 MHz & 10 mK & 76 nH\\
+    $6\Delta$, $2\Delta$, NbTiN & 9.9 GHz & 20 nA & 0.99 GHz & 47 mK & 17 nH\\
+    $6\Delta$, $2\Delta$, Nb & 11.5 GHz & 23 nA & 1.15 GHz & 55 mK & 14 nH\\ \bottomrule
+  \end{tabular}
+  \par\vspace{3mm}
+  \begin{itemize}\small
+    \item Condensate and cat need $E_J/\hw\gtrsim5$ and $\hw>k_BT$: a strong dot junction in NbTiN/Nb with a $\simeq1\,$GHz mode,
+          $L\simeq17\,$nH, $Z\simeq160\,\Omega$ (full DMRG: $9.6$ photons, $0.94I_c$).
+    \item The flux-driven $0$--$\pi$ switch needs only $\hw=0.03$--$0.3\Delta$ and $Z=0.7$--$3\,$k$\Omega$: Al, $1$--$13$\,GHz, granular-Al superinductors.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Backup: how the current was computed}
+  \begin{itemize}
+    \item Current operator $I=-(e/\hbar)\partial H/\partial\pcl$ through the dot bond, dressed by $D$; checked against the sum rule
+          $\langle I\rangle=(e/\hbar)(\hw/2g)\langle a+a^\dagger\rangle$ at every point (median violation $10^{-4}I_c$).
+    \item Seed $\pcl=10^{-3}$ to select a direction; two independent DMRG starts (vacuum side / polarized side) with seed
+          annealing, because the two current states are split only by $\delta$ and by $2I^\star\pcl\sim10^{-5}\Delta$.
+    \item Seed $10^{-4}$: current unchanged above threshold, reduced $\times0.09$ below -- it is spontaneous.
+    \item $\chi=400$ changes energies by $<4\times10^{-8}\Delta$ and the current by $<0.3\%$ away from the crossover.
+  \end{itemize}
+\end{frame}
+
+\end{document}
