@@ -92,9 +92,9 @@
             $\langle a\rangle\neq0$, a persistent current $\pm I$ flows \emph{without any applied flux}.
       \item Quantum fluctuations of the flux \emph{oppose} it: the true ground state is a
             \alert{cat} $|\cw\rangle+|\ccw\rangle$, split by an instanton gap $\delta\sim\hw\,e^{-S}$.
-      \item Full electron--photon DMRG at $E_J/\hw=10$ confirms the adiabatic theory to a few \%;
-            phase diagrams are then built on it. The \emph{mean-field} (product-state) prediction
-            is an artefact when $E_J\sim\hw$.
+      \item \textbf{Central result:} the $(U,g)$ phase diagram from \alert{full electron--photon DMRG}, no approximation:
+            a condensate for $U>U_c$ and $g>g_c(U)$. The adiabatic theory reproduces it; the \emph{mean-field}
+            (product-state) prediction is an artefact when $E_J\sim\hw$.
     \end{enumerate}
   \end{columns}
 \end{frame}
@@ -568,13 +568,13 @@
       product state & trivial \\
     \textbf{Adiabatic} (BO) & $\chi(X)\,|\psi_0(gX)\rangle$, $E(\varphi)$ from BdG or DMRG; used for all $(U,g)$ and $\delta$ maps &
       \alert{exact} & 1D Schr\"odinger \\
-    \textbf{Full DMRG} & MPS on electrons $\otimes$ photon, no approximation &
-      \alert{exact} & $\sim$h on 4 cores \\ \bottomrule
+    \textbf{Full DMRG} & MPS on electrons $\otimes$ photon, no approximation; the $(U,g)$ map &
+      \alert{exact} & $\sim$10 min/point, 4 cores \\ \bottomrule
   \end{tabular}
   \vspace{4mm}
   \begin{keybox}
-    \small Strategy: DMRG is the referee. Once BO is validated against DMRG, use BO to map whole phase diagrams and
-    to reach $\delta\ll$ DMRG resolution.
+    \small Strategy: full DMRG gives the phase diagram and is the referee; BO, validated against it, fills in fine
+    grids and reaches $\delta\ll$ DMRG resolution.
   \end{keybox}
 \end{frame}
 
@@ -694,7 +694,26 @@
 \end{frame}
 
 % ------------------------------------------------------------------
-\begin{frame}{Central result: spontaneous current at $U=2t$, no applied flux}
+\begin{frame}{Central result: the $(U,g)$ phase diagram from full DMRG}
+  \begin{columns}[c]
+    \column{0.66\textwidth}
+    \includegraphics[width=\textwidth]{fig_dmrg_phase_diagram.pdf}
+    \column{0.34\textwidth}
+    \begin{keybox}[title={No approximation}]
+      \footnotesize Ground state of Eq.~(H) on the full electron$\otimes$photon Hilbert space (DMRG, $\chi=256$,
+      $N_{\rm ph}=50$), $\pcl=0$, odd-parity sector ($U>U_c$) / even sector ($U<U_c$).
+    \end{keybox}
+    \begin{itemize}\footnotesize
+      \item Order parameter read off the \emph{flux distribution} $P(\Phi)$ of the ground state:
+            unimodal at $0$ $\to$ bimodal at $\pm\Phi^\star$ (cat); $I^\star=\hw X^\star/2g$.
+      \item Green: $|\langle I\rangle|=2\cdot10^{-3}$ contour of the adiabatic theory; orange dashed: mean field.
+      \item Numbers: filled in from \texttt{data/pd/summary.json}.
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{Anatomy of the transition: the $U=2t$ line}
   \begin{columns}[c]
     \column{0.33\textwidth}
     \includegraphics[width=\textwidth]{main_a.pdf}
@@ -718,11 +737,11 @@
 \end{frame}
 
 % ------------------------------------------------------------------
-\begin{frame}{The $(U,g)$ phase diagram: adiabatic theory on DMRG $E(\varphi;U)$ vs mean field}
+\begin{frame}{Fine-grid maps: adiabatic theory on DMRG $E(\varphi;U)$ vs mean field}
   \begin{columns}[c]
     \column{0.6\textwidth}
     \includegraphics[width=0.9\textwidth]{main_bc.pdf}
-    \begin{warnbox}[title={How the left panel was made (not full DMRG)},top=0.5mm,bottom=0.5mm]
+    \begin{warnbox}[title={How the left panel was made (not full DMRG; see previous slide for that)},top=0.5mm,bottom=0.5mm]
       \scriptsize DMRG $E(\varphi;U)$ of the ring, both parity sectors, at 12 values of $U$ (arrows);
       cosine fit ($m\le6$); harmonics interpolated in $U$ (PCHIP, step $0.1t$); photon exact in $H_{\rm BO}$, seed $10^{-3}$.
       Only approximation: adiabaticity ($\hw/E_A\sim10^{-3}$), checked against full DMRG at $U=2t$ only.
@@ -880,9 +899,9 @@
           \alert{cat state} with $\delta\sim\hw\,e^{-(E_J/\hw)s(\beta)}$. Sharp only for $E_J/\hw\to\infty$.
     \item An \emph{interacting} dot ($U>U_c\simeq0.9t$) gives a TRS-protected $\pi$ loop: current direction
           chosen spontaneously, no flux bias to stabilize; fourfold spin$\otimes$current multiplet.
-    \item Full electron--photon DMRG confirms it at $E_J/\hw=10$ ($U=2t$ dot, weak link) and shows that MF \alert{invents}
-          the effect when $E_J\sim\hw$. The $(U,g)$ and $\delta$ maps are adiabatic theory built on DMRG $E(\varphi;U)$,
-          the reliable cheap tool.
+    \item \alert{Full electron--photon DMRG} gives the $(U,g)$ phase diagram without approximation: condensate for
+          $U>U_c\simeq0.9t$, $g>g_c(U)$, none for $U\gtrsim8t$. Adiabatic theory on DMRG $E(\varphi;U)$ reproduces it
+          on a fine grid; MF \alert{invents} order when $E_J\sim\hw$.
   \end{enumerate}
 \end{frame}
 
