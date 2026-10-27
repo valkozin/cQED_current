@@ -92,7 +92,8 @@
             $\langle a\rangle\neq0$, a persistent current $\pm I$ flows \emph{without any applied flux}.
       \item Quantum fluctuations of the flux \emph{oppose} it: the true ground state is a
             \alert{cat} $|\cw\rangle+|\ccw\rangle$, split by an instanton gap $\delta\sim\hw\,e^{-S}$.
-      \item Full electron--photon DMRG: the effect is real for $E_J\gg\hw$; the \emph{mean-field} (product-state) prediction
+      \item Full electron--photon DMRG at $E_J/\hw=10$ confirms the adiabatic theory to a few \%;
+            phase diagrams are then built on it. The \emph{mean-field} (product-state) prediction
             is an artefact when $E_J\sim\hw$.
     \end{enumerate}
   \end{columns}
@@ -270,7 +271,7 @@
       \item \textbf{$m=2,4,\dots$}: charge $2e$ crossing $\Rightarrow$ $h/2e$ periodicity (Josephson).
       \item \textbf{$m=1$}: a single electron encircling the ring \cite{Loss--Goldbart 1991}, $\propto e^{-L/\xi}$:
             a mesoscopic nuisance.
-      \item Define $E_J\equiv|E_2|$, \ $I_c=2eE_J/\hbar$.
+      \item Define $E_J\equiv|E''(\varphi_0)|/4$ ($=|E_2|$ up to $4E_4$), \ $I_c=2eE_J/\hbar$.
     \end{itemize}
     \column{0.46\textwidth}
     \begin{keybox}[title={Sign convention}]
@@ -411,9 +412,8 @@
             the $\pi$ shift supplies the paramagnetism.
     \end{itemize}
     \begin{calcbox}[title={Numbers ($U=2t$ dot)}]
-      \small $E_J=7.39\times10^{-3}t$, $\hw=7.6\times10^{-4}t$ $\Rightarrow E_J/\hw\simeq9.7$\\
-      $\beta=1\Rightarrow g_c^{\rm cl}=\sqrt{\hw/8E_J}=0.113$\\
-      DMRG: $g_c\simeq0.12$\ \checkmark
+      \footnotesize $E_J=|E''(0)|/4=7.61\times10^{-3}t$ ($E_2=7.39\times10^{-3}t$), $\hw=E_J/10$\\
+      $\Rightarrow g_c^{\rm cl}=\sqrt{\hw/8E_J}=0.112$. Full DMRG: $g=0.117$ linear, $0.129$ ordered \checkmark
     \end{calcbox}
   \end{columns}
 \end{frame}
@@ -451,8 +451,8 @@
     \textbf{Why it matters}
     \begin{itemize}\small
       \item Current flows $\Leftrightarrow$ the field has a static part, $\langle a\rangle\neq0$: a \alert{photon condensate}.
-      \item Condensate size: $\langle a^\dagger a\rangle\gtrsim\langle X\rangle^2/4=(gI\hbar/e\hw)^2$.\\
-            $U=2t$, $g=0.14$: $\approx6.5$ photons (DMRG: $\approx8$).
+      \item Condensate size: $\langle a^\dagger a\rangle\ge\langle X\rangle^2/4=(gI\hbar/e\hw)^2$.\\
+            $U=2t$, $g=0.137$, $I^\star=0.0138$: $X^\star=4.97$, $\ge6.2$ photons (DMRG: $X^\star=4.97$, $\langle n\rangle=6.2$).
       \item Numerically: $\langle X\rangle$ converges much better in DMRG than the bond current
             (a small difference of large terms) $\Rightarrow$ we measure $I$ through $X$.
       \item Verified in ED to $10^{-7}$.
@@ -470,17 +470,17 @@
     \]
     \begin{itemize}\small
       \item Excitation gap: $\boxed{\hw\sqrt{1-\beta}}$ \ (mode softening).
-      \item Vacuum flux is squeezed: $\langle X^2\rangle=(1-\beta)^{-1/2}$.
+      \item Flux fluctuations grow: $\langle X^2\rangle=(1-\beta)^{-1/2}$.
       \item Photons in the ground state:
         $\langle n\rangle=\tfrac14\big[(1-\beta)^{-\frac12}+(1-\beta)^{\frac12}\big]-\tfrac12$.
     \end{itemize}
     \begin{calcbox}[title={Check against full DMRG}]
-      \small $\beta=0.5$: \ $\sqrt{0.5}=0.707$ \ vs \ DMRG $0.71$\\
-      $\beta=0.57$: \ $\langle n\rangle=0.045$ \ vs \ DMRG $0.04$
+      \footnotesize $U=2t$, $\beta=0.5$: gap $\sqrt{0.5}=0.707$ vs DMRG $0.714$; $\langle n\rangle=0.030$ vs DMRG $0.029$.
+      ($\beta=1$: DMRG $0.28$; quartic regime.)
     \end{calcbox}
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{soft_mode.pdf}
+    \includegraphics[width=0.93\textwidth]{soft_mode.pdf}
     \par\small At $\beta\to1$ the quadratic theory fails (quartic oscillator); above it, the gap
     becomes the \alert{tunnel splitting} and collapses exponentially.
   \end{columns}
@@ -566,7 +566,7 @@
     & ansatz & photon & cost \\ \midrule
     \textbf{Mean field} (MF) & $|\psi_{\rm el}\rangle\otimes|\chi_{\rm ph}\rangle$, self-consistent (HF--BdG for $U$) &
       product state & trivial \\
-    \textbf{Adiabatic} (BO) & $\chi(X)\,|\psi_0(gX)\rangle$, $E(\varphi)$ from BdG or DMRG &
+    \textbf{Adiabatic} (BO) & $\chi(X)\,|\psi_0(gX)\rangle$, $E(\varphi)$ from BdG or DMRG; used for all $(U,g)$ and $\delta$ maps &
       \alert{exact} & 1D Schr\"odinger \\
     \textbf{Full DMRG} & MPS on electrons $\otimes$ photon, no approximation &
       \alert{exact} & $\sim$h on 4 cores \\ \bottomrule
@@ -696,29 +696,38 @@
 % ------------------------------------------------------------------
 \begin{frame}{Central result: spontaneous current at $U=2t$, no applied flux}
   \begin{columns}[c]
-    \column{0.36\textwidth}
-    \includegraphics[width=0.95\textwidth]{main_a.pdf}
-    \column{0.62\textwidth}
-    \begin{itemize}\small
-      \item $g<g_c\simeq0.12$: mode near vacuum, $|\langle I\rangle|\lesssim10^{-4}\,et/\hbar$ = linear response to the seed.
-      \item $g\simeq g_c$: photon number jumps to $\simeq8$, current $1.4\times10^{-2}\,et/\hbar$.
-      \item \textbf{Spontaneous:} seed $10^{-3}\to10^{-5}$: current above threshold unchanged, below threshold $\propto$ seed.
-      \item Full DMRG (dots) and exact-photon BO (lines) agree within a few \%.
+    \column{0.33\textwidth}
+    \includegraphics[width=\textwidth]{main_a.pdf}
+    \column{0.65\textwidth}
+    \begin{itemize}\footnotesize
+      \item \textbf{Lines = BO}, seed $10^{-3}$: $I$ jumps from $1.9\cdot10^{-3}$ ($g=0.117$) to $0.0141$ ($g=0.14$).
+            Seed $10^{-5}$ (dashed): same above threshold, $\propto$ seed below $\Rightarrow$ \alert{spontaneous}.
+      \item \textbf{Circles = full DMRG.} Below threshold (seeded runs): $\langle n\rangle=0.005\to0.86$,
+            $\langle I\rangle=3\cdot10^{-5}\to4\cdot10^{-4}$ for $g=0.056\to0.117$.
+            Above: $\langle n\rangle=6$--$8$, and the current is $I^\star=\hw\Phi^\star/2g$ of the
+            \emph{symmetric} cat state ($0.0138$, $0.0137$, $0.0112$ at $g=0.137$, $0.158$, $0.194$).
+      \item Why not $\langle I\rangle$ of a seeded DMRG run? $\delta$ is below the DMRG resolution, so the
+            $\chi=256$ state is only partly polarized ($\langle X\rangle=1.8$ vs $\sqrt{\langle X^2\rangle}=5.4$ at $g=0.145$).
     \end{itemize}
     \begin{calcbox}[title={Sanity check with the formulas}]
-      \small $I_c=2E_J=0.0148\,et/\hbar$ $\Rightarrow$ $I_{\max}\simeq0.93\,I_c$.\\
-      Tail: $\langle I\rangle=\hw\varphi^\star/2g^2$; at $g=0.4$, $\varphi^\star\to\pi/2$:
-      $\;7.6\cdot10^{-4}\cdot1.57/0.32=3.7\times10^{-3}$ \checkmark
+      \footnotesize $I_c=2E_2=0.0148\,et/\hbar$ $\Rightarrow$ $I^\star=0.0138=0.93\,I_c$.
+      Tail at $g=0.4$: $\beta=8g^2\cdot10=12.8$, $\theta^\star=\beta\sin\theta^\star\Rightarrow\varphi^\star=1.45$,
+      $\langle I\rangle=\hw\varphi^\star/2g^2=3.4\times10^{-3}$ (BO: $3.43\times10^{-3}$) \checkmark
     \end{calcbox}
   \end{columns}
 \end{frame}
 
 % ------------------------------------------------------------------
-\begin{frame}{The $(U,g)$ phase diagram: exact vs mean field}
+\begin{frame}{The $(U,g)$ phase diagram: adiabatic theory on DMRG $E(\varphi;U)$ vs mean field}
   \begin{columns}[c]
     \column{0.6\textwidth}
-    \includegraphics[width=\textwidth]{main_bc.pdf}
-    \par\scriptsize Black: $|\langle I\rangle|=2\times10^{-3}\,et/\hbar$ (exact); orange dashed: same contour from MF; arrows: $U$ values computed by DMRG.
+    \includegraphics[width=0.9\textwidth]{main_bc.pdf}
+    \begin{warnbox}[title={How the left panel was made (not full DMRG)},top=0.5mm,bottom=0.5mm]
+      \scriptsize DMRG $E(\varphi;U)$ of the ring, both parity sectors, at 12 values of $U$ (arrows);
+      cosine fit ($m\le6$); harmonics interpolated in $U$ (PCHIP, step $0.1t$); photon exact in $H_{\rm BO}$, seed $10^{-3}$.
+      Only approximation: adiabaticity ($\hw/E_A\sim10^{-3}$), checked against full DMRG at $U=2t$ only.
+      Black: $|\langle I\rangle|=2\times10^{-3}\,et/\hbar$; orange dashed: same contour from MF.
+    \end{warnbox}
     \column{0.4\textwidth}
     \small
     \begin{itemize}\small
@@ -728,28 +737,30 @@
     \centering\scriptsize
     \begin{tabular}{@{}ccccc@{}}
       \toprule
-      $U/t$ & $g_c$ ex. & $g_c$ MF & $I_{\max}$ ex. & MF \\ \midrule
+      $U/t$ & $g_c$ BO & $g_c$ MF & $I_{\max}$ BO & MF \\ \midrule
       2 & 0.13 & 0.13 & 0.0141 & 0.0128\\
       4 & 0.19 & 0.19 & 0.0070 & 0.0057\\
       6 & 0.32 & 0.27 & 0.0023 & 0.0031\\
       7 & \alert{none} & 0.32 & $6\!\cdot\!10^{-4}$ & 0.0024\\
-      8 & \alert{none} & 0.4 & $2\!\cdot\!10^{-4}$ & 0.0019\\ \bottomrule
+      8 & \alert{none} & $\approx0.4$ & $2\!\cdot\!10^{-4}$ & 0.0019\\ \bottomrule
     \end{tabular}
-    \par\raggedright\small MF fine for $E_J\gtrsim3\hw$; for $U\gtrsim6t$ it invents an ordered phase.
+    \par\raggedright\small ($g_c$: $|\langle I\rangle|>2\cdot10^{-3}$.) MF fine for $E_J\gtrsim3\hw$; for $U\gtrsim6t$ it invents an ordered phase.
   \end{columns}
 \end{frame}
 
 % ------------------------------------------------------------------
 \begin{frame}{Route A: weak link biased by $\Phi_0/2$ ($E_J/\hw=10$)}
   \centering
-  \includegraphics[width=\textwidth]{fig_weaklink_halfflux.pdf}
+  \includegraphics[width=0.92\textwidth]{fig_weaklink_halfflux.pdf}
+  \par{\scriptsize $\beta=2g^2|E''(\pi/2)|/\hw$ with the full curvature ($E_4\neq0$): $1.13\times8g^2|E_2|/\hw$.
+  $I_c\equiv2E_J$. Full DMRG at $\chi=256$, $N_{\rm ph}=40$.}
   \begin{columns}[T]
     \column{0.36\textwidth}
     \small (a) Current rises at $\beta\simeq1.1$, peaks at $0.97I_c$. MF: $3\times$ too large near threshold
     ($0.71$ vs $0.21\,I_c$ at $\beta=1.13$), $0.2$--$0.4\hw$ too high in energy.
     \column{0.32\textwidth}
-    \small (b) Splitting saturates at $\sim0.15\hw$: it is the \alert{tilt}
-    $2|E_1|\sin\varphi^\star\approx0.2\hw$, not tunnelling. Without $E_1$: $\delta<10^{-6}\hw$ at $\beta=2$.
+    \small (b) Splitting saturates at $0.14$--$0.17\hw$: it is the \alert{tilt}
+    $2|E_1|\sin\varphi^\star\approx0.15\hw$, not tunnelling. Without $E_1$: $\delta<10^{-6}\hw$ at $\beta=2$.
     \column{0.32\textwidth}
     \small (c) $P(\Phi)$ from the photon reduced density matrix: a \emph{single} displaced peak --- direction
     \emph{selected}, not spontaneous.
@@ -800,7 +811,8 @@
   \centering
   \includegraphics[width=0.85\textwidth]{fig_notebook_omega.pdf}
   \par\small At $\hw=0.02$ the exact ground state carries no current at any $g$. At $\hw=0.002$ the same model
-  orders: exact $g_c\simeq0.21$, MF $g_c\simeq0.30$. \alert{The control parameter is $E_J/\hw$}, not $g$ alone.
+  orders: adiabatic theory $g_c\simeq0.21$, MF $g_c\simeq0.30$; full DMRG (circles, $\langle n\rangle$ only)
+  jumps $0.22\to3.9\to7.9$ between $g=0.18$ and $0.30$. \alert{The control parameter is $E_J/\hw$}, not $g$ alone.
 \end{frame}
 
 % ------------------------------------------------------------------
@@ -868,8 +880,9 @@
           \alert{cat state} with $\delta\sim\hw\,e^{-(E_J/\hw)s(\beta)}$. Sharp only for $E_J/\hw\to\infty$.
     \item An \emph{interacting} dot ($U>U_c\simeq0.9t$) gives a TRS-protected $\pi$ loop: current direction
           chosen spontaneously, no flux bias to stabilize; fourfold spin$\otimes$current multiplet.
-    \item Full electron--photon DMRG confirms it for $E_J\gg\hw$ and shows that MF \alert{invents} the effect when
-          $E_J\sim\hw$. BO with an exact photon is the reliable cheap tool.
+    \item Full electron--photon DMRG confirms it at $E_J/\hw=10$ ($U=2t$ dot, weak link) and shows that MF \alert{invents}
+          the effect when $E_J\sim\hw$. The $(U,g)$ and $\delta$ maps are adiabatic theory built on DMRG $E(\varphi;U)$,
+          the reliable cheap tool.
   \end{enumerate}
 \end{frame}
 
@@ -940,7 +953,7 @@
   \small
   \begin{columns}[T]
     \column{0.5\textwidth}
-    \textbf{Weak link $+\Phi_0/2$}, $E_J/\hw=10$, $\chi=256$, $N_{\rm ph}=40$\\[1mm]
+    \textbf{Weak link $+\Phi_0/2$}, $E_J/\hw=10$, $\chi=256$, $N_{\rm ph}=40$ ($\beta$ curvature-based; nominal $8g^2|E_2|/\hw=\beta/1.13$)\\[1mm]
     \scriptsize
     \begin{tabular}{@{}cccccc@{}}
       \toprule
