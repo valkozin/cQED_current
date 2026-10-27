@@ -73,7 +73,8 @@
     \begin{itemize}
       \item A superconducting loop closed by a \alert{$\pi$ junction}: a quantum dot with one unpaired electron
             (doublet), energy $+E_J\cos\theta$ instead of $-E_J\cos\theta$.
-      \item The loop shares its inductance $L$ with a microwave $LC$ mode of impedance $Z=\sqrt{L/C}$.
+      \item The loop \emph{shares} its inductance $L$ with a microwave $LC$ mode of impedance $Z=\sqrt{L/C}$
+            (galvanic coupling; the inductively coupled case is discussed later).
       \item No external flux.
     \end{itemize}
     \begin{keybox}
@@ -111,6 +112,34 @@
   \end{columns}
 \end{frame}
 
+
+% ------------------------------------------------------------------
+\begin{frame}{Galvanic or inductive coupling? What the one-mode model assumes}
+  \begin{columns}[T]
+    \column{0.54\textwidth}
+    \footnotesize\textbf{Loop inductively coupled to a detached $LC$ circuit} -- two modes, the loop's own flux mode $b$ and the resonator $a$:
+    \[
+      H=E_CN^2+E_L\big(\varphi-g_r(a+a^\dagger)\big)^2+E_J\cos\varphi+\hbar\omega_ra^\dagger a
+    \]
+    $\varphi$: pair phase of the junction; $E_L=(\Phi_0/2\pi)^2/2L_r(1-k^2)$: loop inductance screened by the resonator;
+    $g_r(a+a^\dagger)=2\pi MI^{\rm res}/\Phi_0$: resonator flux through the loop; $k=M/\sqrt{L_rL_c}$.
+    \begin{keybox}[title={Static threshold: minimize over the resonator flux}]
+      \footnotesize $\dfrac1{E_L^{\rm eff}}=\dfrac1{E_L}+\dfrac{4g_r^2}{\hbar\omega_r}\ \Leftrightarrow\ L_{\rm eff}=L_r(1-k^2)+\dfrac{M^2}{L_c}=L_r$.\\
+      $\beta=2\pi L_rI_c/\Phi_0$ is set by the loop's \emph{own} inductance; the detached resonator does not lower it,
+      it is \emph{displaced} ($\langle a+a^\dagger\rangle\propto MI_r$) once the current flows.
+    \end{keybox}
+    \column{0.44\textwidth}
+    \begin{keybox}[title={One-mode model = $k\to1$}]
+      \footnotesize All of $L_r$ is the resonator inductor (galvanic, fluxonium-like): $E_L\to\infty$ locks
+      $\varphi=g_r(a+a^\dagger)$, $H\to\hw a^\dagger a+E_J\cos[2g(a+a^\dagger)]$, $\beta=8g^2E_J/\hw=2\pi LI_c/\Phi_0$;
+      the loop mode $b$ ($\omega_{rf}=2\sqrt{E_CE_L}$) is frozen out.
+    \end{keybox}
+    \begin{warnbox}[title={What changes for $k<1$}]
+      \footnotesize Same classical threshold ($L\to L_r$) and cat physics, but two zero-point fluxes: $\delta$, photon
+      numbers and the flux-driven $0$--$\pi$ shift are shared between $a$ and $b$ (second bosonic site in DMRG; not yet computed).
+    \end{warnbox}
+  \end{columns}
+\end{frame}
 % ------------------------------------------------------------------
 \begin{frame}{Classical picture: a double well and a pitchfork}
   \centering
