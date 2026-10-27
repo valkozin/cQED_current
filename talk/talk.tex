@@ -56,7 +56,7 @@
 \graphicspath{{../figs/}{figs/}}
 
 \title{Zero-point flux fluctuations switch a quantum-dot Josephson loop from $0$ to $\pi$}
-\subtitle{An exact electron--photon solution of a $\pi$ loop sharing its inductance with a cavity mode}
+\subtitle{From the rf-SQUID + quantum $LC$ circuit model to an exact electron--photon solution}
 \author{Group seminar}
 \date{}
 
@@ -197,6 +197,93 @@
     \end{keybox}
   \end{columns}
 \end{frame}
+
+% ==================================================================
+\section{The original circuit model: rf-SQUID + quantum $LC$ circuit}
+% ------------------------------------------------------------------
+\begin{frame}{The circuit: an rf-SQUID and a detached $LC$ circuit}
+  \begin{columns}[c]
+    \column{0.5\textwidth}
+    \centering
+    \begin{circuitikz}[scale=0.95,transform shape]
+      % LC circuit
+      \draw[blue!70!black,line width=1.1pt] (0,0) to[C,l_=$C_r$] (0,2.4) -- (1.5,2.4) to[L,l_=$L_c$] (1.5,0) -- (0,0);
+      \node[blue!70!black] at (0.75,2.9) {$\hbar\omega_r\,a^\dagger a$};
+      % mutual
+      \draw[<->,dashed,thick,purp] (1.75,0.45) -- (2.95,0.45) node[midway,above,purp] {$M$};
+      % SQUID loop
+      \draw[line width=1.6pt] (3.2,0) to[L,l=$L_r$] (3.2,2.4) -- (5.4,2.4) -- (5.4,1.6);
+      \draw[line width=1.6pt] (5.4,0.8) -- (5.4,0) -- (3.2,0);
+      \draw[thick,fill=white] (5.1,0.8) rectangle (5.7,1.6);
+      \draw[thick] (5.1,0.8) -- (5.7,1.6); \draw[thick] (5.1,1.6) -- (5.7,0.8);
+      \node[right] at (5.75,1.45) {$E_J$};
+      \node[right] at (5.75,0.95) {$E_C$};
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (4.75,1.7) arc (60:120:0.8);
+      \draw[-{Stealth[length=2.5mm]},thick,ink!70] (3.95,0.7) arc (240:300:0.8);
+      \node at (4.35,1.2) {$\pm I$};
+      \node at (4.3,2.9) {$\varphi,\ N$};
+    \end{circuitikz}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item \textbf{Loop:} a Josephson junction ($E_J$, charging energy $E_C$) closing an inductance $L_r$
+            ($E_L$). Biased at half a flux quantum, $\varphi_{\rm ext}=\pi$ -- or closed by an intrinsic $\pi$ junction --
+            it is a \alert{$\pi$ loop}.
+      \item \textbf{$LC$ circuit}, galvanically detached, mode $a$ at $\omega_r$: its flux $MI_c\propto a+a^\dagger$ threads the loop.
+      \item No current drive, only a seed $\varphi_{\rm ext}=\pi-10^{-3}$ to pick a direction.
+    \end{itemize}
+    \begin{keybox}
+      \textbf{Question:} does the quantum flux of the $LC$ circuit make the loop carry a persistent current?
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The two-mode Hamiltonian (original notebook)}
+  \vspace{-1mm}
+  {\small\[
+    H=E_C\,N^2+E_L\big(\varphi-\varphi_{\rm ext}-g\,(a+a^\dagger)\big)^2-E_J\cos\varphi+\hbar\omega_r\,a^\dagger a,
+    \qquad \varphi=\tfrac{1}{\sqrt2}\big(\tfrac{E_C}{E_L}\big)^{1/4}(b+b^\dagger),\ \ [\varphi,N]=i
+  \]}
+  \vspace{-4mm}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \begin{keybox}[title={Resonator seen statically (minimize over $a+a^\dagger$)}]
+      \footnotesize $\dfrac{1}{E_L^{\rm eff}}=\dfrac{1}{E_L}+\dfrac{4g^2}{\hbar\omega_r}$: the $LC$ circuit \emph{adds inductance}
+      to the loop ($M^2/L_c$).\ Screening parameter
+      $\beta_{\rm eff}=\dfrac{E_J}{2E_L^{\rm eff}}=\dfrac{E_J}{2E_L}(1+4g_1^2)$, $g_1^2\equiv g^2E_L/\hbar\omega_r$:
+      the only combination the static problem knows.
+    \end{keybox}
+    \footnotesize Notebook ($E_C=1$): $E_L=0.5$, $E_J=2$: $\beta_{\rm loop}=2$, but the bare well ($0.84E_C$) lies below
+    $\omega_{rf}=2\sqrt{E_CE_L}=1.4$ -- no polarization without the resonator.
+    \column{0.5\textwidth}
+    \begin{keybox}[title={Mean field of the notebook: $|{\rm GS}\rangle=|\psi_{rf}\rangle|\psi_{ph}\rangle$}]
+      \footnotesize Resonator in a coherent state $\alpha\propto\langle\varphi\rangle$, SQUID mode $b$ exact (200 Fock states):
+      \[
+        H^{\rm mf}_{rf}=E_CN^2+E_L\varphi^2-E_J\cos\varphi-\frac{2E_Lg_1^2}{\tfrac14+g_1^2}\,\langle\varphi\rangle\,\varphi
+      \]
+      ($\varphi\to\varphi-\varphi_{\rm ext}$), self-consistent in $\langle\varphi\rangle$ = Hartree linearization of the exact
+      static term. The resonator's zero-point motion is gone: mean field depends on $g_1$ only, the exact problem on $g$ and $\omega_r$.
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{What the notebook predicts, and what the exact two-mode solution says}
+  \centering
+  \includegraphics[width=0.8\textwidth]{rfsquid_mf.pdf}
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+    \footnotesize Mean field (reproduced to all digits): the loop polarizes at $g_1\simeq0.15$--$0.3$, the current peaks at
+    $0.69\,I_c$ and then falls as the loop lets in half a flux quantum ($\langle\varphi\rangle\to0$).
+    \alert{Caveat:} the notebook evaluates $J$ with $(1-2c)$ instead of $(1-c)$, $c=g_1^2/(\frac14+g_1^2)$;
+    the correct $-\partial E/\partial\varphi_{\rm ext}$ equals $E_J\langle\sin\varphi\rangle$ (solid).
+    \column{0.5\textwidth}
+    \footnotesize Exact ground state of both modes (seed $10^{-3}$): for a slow resonator ($\omega_r=0.1E_C$) it follows the
+    mean field; for $\omega_r=0.5E_C$ the state stays a \alert{cat} and the current is $\le0.24\,I_c$.
+    Zero-point motion of the resonator opposes the polarization -- exactly what the microscopic model will show.
+  \end{columns}
+\end{frame}
+
 
 % ==================================================================
 \section{The microscopic model}
@@ -357,32 +444,32 @@
 
 
 % ------------------------------------------------------------------
-\begin{frame}{Galvanic or inductive coupling? What the one-mode model assumes}
+\begin{frame}{The limit we then solve exactly: loop flux locked to the $LC$ flux}
   \begin{columns}[T]
-    \column{0.54\textwidth}
-    \footnotesize\textbf{Loop inductively coupled to a detached $LC$ circuit} -- two modes, the loop's own flux mode $b$ and the resonator $a$:
+    \column{0.52\textwidth}
+    \small Take $E_L\to\infty$ ($k=M/\sqrt{L_rL_c}\to1$): $E_L(\varphi-g(a+a^\dagger))^2$ locks $\varphi=g(a+a^\dagger)$ and the
+    loop mode $b$ ($\omega_{rf}\to\infty$) freezes out:
+    \begin{keybox}
+      \centering$\displaystyle H\;\to\;\hbar\omega\,a^\dagger a+E_J\cos\!\big[2g\,(a+a^\dagger)\big]$
+    \end{keybox}
+    \footnotesize for a $\pi$ junction ($+E_J\cos$; $2g$ = pair-phase coupling, $g^2=\pi Z/4R_Q$). This is the circuit of the
+    manuscript: the loop \emph{is} the inductor of the mode (fluxonium-like, galvanic). In the pair phase $\theta=2gX$:
     \[
-      H=E_CN^2+E_L\big(\varphi-g_r(a+a^\dagger)\big)^2+E_J\cos\varphi+\hbar\omega_ra^\dagger a
+      H=4E_C\,n^2+\tfrac12E_L\theta^2+E_J\cos\theta,\quad E_L=\frac{\hbar\omega}{8g^2},\ E_C=\hbar\omega g^2,
     \]
-    $\varphi$: pair phase of the junction; $E_L=(\Phi_0/2\pi)^2/2L_r(1-k^2)$: loop inductance screened by the resonator;
-    $g_r(a+a^\dagger)=2\pi MI^{\rm res}/\Phi_0$: resonator flux through the loop; $k=M/\sqrt{L_rL_c}$.
-    \begin{keybox}[title={Static threshold: minimize over the resonator flux}]
-      \footnotesize $\dfrac1{E_L^{\rm eff}}=\dfrac1{E_L}+\dfrac{4g_r^2}{\hbar\omega_r}\ \Leftrightarrow\ L_{\rm eff}=L_r(1-k^2)+\dfrac{M^2}{L_c}=L_r$.\\
-      $\beta=2\pi L_rI_c/\Phi_0$ is set by the loop's \emph{own} inductance; the detached resonator does not lower it,
-      it is \emph{displaced} ($\langle a+a^\dagger\rangle\propto MI_r$) once the current flows.
+    \footnotesize $\beta=E_J/E_L=8g^2E_J/\hbar\omega=2\pi LI_c/\Phi_0$: the $4g_1^2$ term of the two-mode model alone.
+    \column{0.46\textwidth}
+    \begin{keybox}[title={Why this limit}]
+      \footnotesize It keeps the mechanism (the resonator's inductance and zero-point flux act on the junction) with one
+      bosonic mode, so that the junction can be replaced by the \emph{microscopic} interacting ring and solved by DMRG.
     \end{keybox}
-    \column{0.44\textwidth}
-    \begin{keybox}[title={One-mode model = $k\to1$}]
-      \footnotesize All of $L_r$ is the resonator inductor (galvanic, fluxonium-like): $E_L\to\infty$ locks
-      $\varphi=g_r(a+a^\dagger)$, $H\to\hw a^\dagger a+E_J\cos[2g(a+a^\dagger)]$, $\beta=8g^2E_J/\hw=2\pi LI_c/\Phi_0$;
-      the loop mode $b$ ($\omega_{rf}=2\sqrt{E_CE_L}$) is frozen out.
-    \end{keybox}
-    \begin{warnbox}[title={What changes for $k<1$}]
-      \footnotesize Same classical threshold ($L\to L_r$) and cat physics, but two zero-point fluxes: $\delta$, photon
-      numbers and the flux-driven $0$--$\pi$ shift are shared between $a$ and $b$ (second bosonic site in DMRG; not yet computed).
+    \begin{warnbox}[title={What the inductive case ($k<1$) adds}]
+      \footnotesize Same classical threshold ($L\to L_r^{\rm total}$) and cat physics, but two zero-point fluxes sharing
+      $\delta$, the photon numbers and the flux-driven $0$--$\pi$ shift: a second bosonic site in the DMRG, not yet computed.
     \end{warnbox}
   \end{columns}
 \end{frame}
+
 % ------------------------------------------------------------------
 \begin{frame}{Landau theory of the condensate: $\beta>1$}
   \begin{columns}[T]
@@ -548,6 +635,33 @@
     mean field is the ansatz used in the literature for this circuit.
   \end{keybox}
 \end{frame}
+
+% ------------------------------------------------------------------
+\begin{frame}{The mean-field approach of the ring notebook}
+  \begin{columns}[T]
+    \column{0.52\textwidth}
+    \small Same product-state idea, now for the microscopic ring (\texttt{Optimised\_SC\_ring\_with\_JJ\_cavity\_mean\_field.nb}):
+    one dot + $10$ BCS sites ($t_0=2$, $\Delta_0=0.6$, $t_R=t_L=0.5$), the dot \emph{Zeeman-polarized}
+    ($\epsilon_\uparrow=-0.3$, $\epsilon_\downarrow=3.7$: a magnetic dot = Hartree--Fock image of a large-$U$ dot),
+    one mode $\hbar\omega=0.02$, seed $\varphi_{\rm cl}=10^{-3}$, $g=0$--$1.2$.
+    \begin{align*}
+      \text{electrons:}&\ \ \text{BdG with the junction bond } t_R\to t_R\,\alpha,\quad \alpha=\langle\psi_{ph}|e^{igX}|\psi_{ph}\rangle\\
+      \text{photon:}&\ \ \hbar\omega a^\dagger a-\big(\eta\,e^{igX}+\text{h.c.}\big),\quad
+      \eta=t_Re^{i\varphi_{\rm cl}}\langle c^\dagger_1c_0\rangle\\
+      E&=E_{\rm el}+E_{\rm ph}+2\,\mathrm{Re}(\eta\alpha),\qquad I=-2\,\mathrm{Im}(\eta\alpha)
+    \end{align*}
+    \column{0.46\textwidth}
+    \begin{keybox}[title={What it predicts}]
+      \small A current-carrying phase for $g\gtrsim0.75$: $|I|\approx0.02$, $\langle a^\dagger a\rangle\simeq1$--$1.4$,
+      $\langle X\rangle\neq0$ -- the ``photon condensate'' of the circuit model, now from a microscopic ring.
+    \end{keybox}
+    \begin{keybox}[title={Checks}]
+      \small The Python port reproduces all five notebook curves to machine precision; the algebra (Nambu convention,
+      double counting, $I=-\partial E/\partial\varphi$) is correct. The question is only the \emph{ansatz}.
+    \end{keybox}
+  \end{columns}
+\end{frame}
+
 
 % ------------------------------------------------------------------
 \begin{frame}{Mean field and its hidden assumptions}
@@ -782,23 +896,24 @@
 \end{frame}
 
 % ------------------------------------------------------------------
-\begin{frame}{Where the product state fails: a cautionary tale ($E_J\simeq\hw$)}
+\begin{frame}{Caveat: with exactly these parameters, DMRG finds nothing -- and why}
   \begin{columns}[c]
-    \column{0.4\textwidth}
+    \column{0.36\textwidth}
     \includegraphics[width=\textwidth]{fig_notebook_model.pdf}
-  \column{0.58\textwidth}
-    \footnotesize Short ring ($L=11$), Zeeman-polarized dot, $\hw=0.02$: the ansatz of \cite{Varrica 2026; Andolina 2020}
-    (and of our own first treatment).
-    \begin{itemize}\footnotesize
-      \item MF: current-carrying phase for $g\gtrsim0.75$, $\langle n\rangle\simeq1.4$.
-      \item DMRG: \alert{no current} (linear response $7\times10^{-5}$), energy $1.8\hw$ \emph{below} MF, gap stays
-            $0.33\hw$, $\langle n\rangle\simeq0.36$. Circuit model = DMRG.
-    \end{itemize}
+    \column{0.62\textwidth}
+    \footnotesize Full DMRG (electrons $\otimes$ photon, same $H$, same seed): \alert{no current} at any $g$, only a linear response
+    $7\times10^{-5}$; exact energy $1.8\hbar\omega$ \emph{below} mean field, gap stays $0.33\hbar\omega$, $\langle a^\dagger a\rangle\simeq0.36$.
+    The circuit model (exact photon) agrees with DMRG.
     \begin{warnbox}[title={Three reasons}]
-      \footnotesize (1) product state not gauge covariant; (2) $E_J\simeq\hw$: double well shallower than the zero-point
-      energy, $P(X)$ unimodal; (3) $L\lesssim\xi$: $E_1\gg E_2$, the instability would be of the \emph{normal} $h/e$ current.
+      \footnotesize (1) $E_J\simeq\hbar\omega$: the double well ($g>0.58$) is shallower than the zero-point energy; the ground
+      state is a cat, which a product state cannot be -- it \emph{self-traps} in one well.\\
+      (2) The product state is not gauge covariant: it shrinks the junction bond by $|\langle e^{igX}\rangle|<1$ and loses
+      phase-independent kinetic energy that the exact state recovers by following the flux.\\
+      (3) $L=11\lesssim\xi$: $E(\varphi)$ is dominated by the $h/e$ harmonic ($E_1=2.1\times10^{-2}\gg E_2=2\times10^{-3}$):
+      the ``instability'' would be of the normal persistent current, not of the junction.
     \end{warnbox}
-    \footnotesize Same model at $\hw=0.002$: it does order, $g_c=0.21$ (MF: $0.30$). \alert{The control parameter is $E_J/\hw$.}
+    \footnotesize Same model at $\hbar\omega=0.002$: it \emph{does} order ($g_c=0.21$; mean field $0.30$). The control parameter is
+    $E_J/\hbar\omega$ -- hence the manuscript's $E_J/\hbar\omega=10$ and $L\gg\xi$.
   \end{columns}
 \end{frame}
 

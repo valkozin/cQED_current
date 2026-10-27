@@ -6,7 +6,7 @@ and the body of a PRL draft.
 
 | Path | Contents |
 |---|---|
-| `notebooks/` | Original Mathematica mean-field notebook |
+| `notebooks/` | Original Mathematica notebooks: `rfSQUID_with_quantum_LC_circuit.nb` (rf-SQUID + quantum LC circuit, two modes, resonator in mean field; the starting point of the project) and `Optimised_SC_ring_with_JJ_cavity_mean_field.nb` (microscopic ring, product-state mean field) |
 | `docs/01_review_ru.md` | Review of the approach, the physics and the mean-field solution (in Russian) |
 | `docs/02_dmrg_results_ru.md` | DMRG results and comparison with mean field (in Russian) |
 | `docs/03_phase_diagram_U_g_ru.md` | First (adiabatic) (U,g) diagram, L=14 (in Russian) |
@@ -16,7 +16,7 @@ and the body of a PRL draft.
 | `docs/10_prl_revision_ru.md` | PRL revision: novelty audit with prior art, the new flux-driven 0–π switch, list of fixes (in Russian) |
 | `paper/` | PRL manuscript (`main.tex` → `body.tex`, `cavity0pi.tex`, `phase_diagram.tex`, `results.tex`, `feasibility.tex`, `supplement.tex`; `refs.bib`); `main.pdf` (main text + Supplemental Material) |
 | `figs/` | Figures (pdf/png), produced by `code/make_figures.py` and `code/make_phase_figs.py` (`fig_main_phase_diagram` is the superseded L=14 adiabatic diagram, kept for reference) |
-| `talk/` | Beamer seminar talks: full version `talk.tex` → `talk.pdf`, short version `talk_short.tex` → `talk_short.pdf`; teaching figures from `make_talk_figs.py`, `make_short_figs.py` |
+| `talk/` | Beamer seminar talks: full version `talk.tex` → `talk.pdf`, short version `talk_short.tex` → `talk_short.pdf`; teaching figures from `make_talk_figs.py`, `make_short_figs.py`, `make_rfsquid_fig.py` (notebook mean field vs exact two-mode solution) |
 | `data/` | All numerical results (json/npy) and run logs; `data/full/` the full-DMRG (U,g) grid, `data/rerun/` the beta scans with the two-start protocol, `data/nonadiabatic/` the flux-driven 0–π switch (full DMRG at ħω = 0.01–1 Δ, both parity sectors, plus the Lang–Firsov reference), `data/om0.003_tJ1.0/`, `data/tJ1.0/` the strong junction |
 
 ## Code (`code/`)
