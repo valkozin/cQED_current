@@ -1,0 +1,5 @@
+tJ=0.70 Delta=1.00 U=1.50  E2=+0.02784 E4=+0.000700 EJ=0.03064 Ic=0.05595  E_odd-E_even(0)=+0.1202  -  t=75s
+tJ=0.70 Delta=1.00 U=2.00  E2=+0.02412 E4=+0.000500 EJ=0.02612 Ic=0.04841  E_odd-E_even(0)=+0.0303  -  t=74s
+tJ=0.70 Delta=1.00 U=2.50  E2=+0.02097 E4=+0.000361 EJ=0.02241 Ic=0.04204  E_odd-E_even(0)=-0.0541  pi (doublet ground)  t=74s
+tJ=0.70 Delta=1.00 U=3.00  E2=+0.01831 E4=+0.000263 EJ=0.01936 Ic=0.03667  E_odd-E_even(0)=-0.1323  pi (doublet ground)  t=73s
+tJ=0.70 Delta=1.00 U=4.00  E2=+0.01415 E4=+0.000145 EJ=0.01473 Ic=0.02832  E_odd-E_even(0)=-0.2696  pi (doublet ground)  t=74s

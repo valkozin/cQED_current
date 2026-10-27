@@ -1,135 +1,114 @@
 % ------------------------------------------------------------------
-%  Main body (PRL format) -- no title/abstract/intro/conclusion yet.
-%  Compile with paper/main.tex (revtex4-2).
+%  PRL version.  Order: intro -> model (circuit statement, not gauge) -> current and sum rule
+%  -> two limits (adiabatic rf-SQUID, anti-adiabatic Lang-Firsov) -> methods (short; details in the SM)
+%  -> cavity0pi.tex (new: flux-driven 0-pi switch) -> phase_diagram.tex -> results.tex (cat, MF) -> feasibility.tex
 % ------------------------------------------------------------------
 
 \begin{figure}[t]
   \includegraphics[width=\columnwidth]{../figs/fig_overview.pdf}
   \caption{\label{fig:overview}%
-  (a) A superconducting loop closed by a $\pi$ junction (here an interacting dot
-  with charging energy $U$) shares its inductance $L$ with an LC mode; the two
+  (a) A superconducting loop closed by an interacting quantum dot (charging energy $U$) shares its
+  inductance $L$ with an $LC$ mode. In the doublet state of the dot the loop is a $\pi$ loop and its two
   degenerate states carry opposite persistent currents $\pm I$.
-  (b) Tunnel splitting $\delta$ between the two current-carrying states in the
-  plane of the screening parameter $\beta$ and the quantum parameter $E_J/\hbar\omega$
-  [Eq.~\eqref{eq:BO} with the DMRG $E(\varphi)$ of the $U=2t$ junction]. White
-  lines: $\delta/\hbar\omega=10^{-6},10^{-3},10^{-1}$; dashed: classical threshold $\beta=1$.
-  Labels: typical regimes of the platforms discussed in the text.}
+  (b) Tunnel splitting $\delta$ between the two current states in the plane of the screening parameter
+  $\beta=2\pi LI_c/\Phi_0$ and $E_J/\hbar\omega$ [Eq.~\eqref{eq:BO} with the DMRG $E(\varphi)$ of the
+  $U=2\Delta$ junction]. White lines: $\delta/\hbar\omega=10^{-6},10^{-3},10^{-1}$; dashed: $\beta=1$.}
 \end{figure}
 
+A superconducting loop closed by a $\pi$ junction carries a spontaneous persistent current when its
+inductance exceeds $\Phi_0/2\pi I_c$~\cite{BKS1977,Tsuei2000,Ryazanov2001,Bauer2004}, and with a small
+capacitance the two current directions form a flux qubit that needs no external
+field~\cite{Ioffe1999,Yamashita2005,Yamashita2006,Kawabata2006,Feofanov2010,Kim2024}. The same circuit is the
+counter-example to the no-go theorem for superradiance: a mode that couples through its magnetic flux can
+condense a static field $\langle a\rangle\neq0$~\cite{NatafCiuti2010,Viehmann2011,Bamba2016,Jaako2016,Nataf2019,Guerci2020,Andolina2020,RomanRoche2021},
+the condition being the magnetostatic instability of the matter~\cite{Andolina2020,Mercurio2024}. In all
+of these descriptions the junction is a fixed function $E(\varphi)$, or electrons and mode are decoupled
+in a product state~\cite{Varrica2026}. A quantum-dot Josephson junction is not a fixed $E(\varphi)$: it is a
+$\pi$ junction in its doublet
+state~\cite{GlazmanMatveev1989,SpivakKivelson1991,Vecino2003,Karrasch2008,MengFlorensSimon2009,vanDam2006,Cleuziou2006,Delagrange2015},
+its singlet--doublet transition is read out through the frequency of a transmon or
+resonator~\cite{Bargerbos2022,Hays2021,PitaVidal2023}, shunted by a superinductor it is a protected spin
+qubit~\cite{delOlmo2026,Padurariu2010}, and whether it is $0$ or $\pi$ is decided by $U$, the level width
+$\Gamma$ and $\Delta$ on a scale of a few GHz, comparable to the mode frequency. Here we treat the electrons
+of the junction and the quantized flux on the same footing and solve the electron--photon problem exactly
+by DMRG, as done for normal chains~\cite{Passetti2023,Eckhardt2022} and ladders~\cite{Bacciconi2023} in a
+cavity. The zero-point flux of the mode turns out to be a control parameter of the $0$--$\pi$ transition;
+deep in the adiabatic regime the loop is exactly a fluxonium with the microscopic $E(\varphi)$; and the
+product-state mean field fails where $E_J\lesssim\hbar\omega$ or $U\simeq U_c$.
+
 \paragraph*{Model.}
-We consider a superconducting (SC) loop of $L$ sites closed by an interacting
-quantum dot (site $0$) and threaded by the magnetic flux of a single lumped LC mode
-[Fig.~\ref{fig:overview}(a)]. The full microscopic Hamiltonian is
+The circuit of Fig.~\ref{fig:overview}(a) is an $s$-wave BCS chain of $L-1$ sites (hopping $t$, pairing
+$\Delta$) closed by an Anderson impurity (site $0$; $\epsilon_d=-U/2$, repulsion $U$, tunnelling $t_J$
+to both ends) and threaded by the flux of one lumped $LC$ mode:
 \begin{align}
   H &= \hbar\omega\, a^\dagger a
      -t\sum_{r=1}^{L-2}\sum_\sigma\left(c^\dagger_{r+1\sigma}c_{r\sigma}+{\rm h.c.}\right)
-     +\Delta\sum_{r=1}^{L-1}\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
      \nonumber\\
-    &\quad +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
-     -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
+    &\quad +\Delta\sum_{r=1}^{L-1}\left(c^\dagger_{r\uparrow}c^\dagger_{r\downarrow}+{\rm h.c.}\right)
+     +\epsilon_d\, n_0 + U n_{0\uparrow}n_{0\downarrow}
+     \nonumber\\
+    &\quad -t_J\sum_\sigma\left(c^\dagger_{0\sigma}c_{L-1\,\sigma}+{\rm h.c.}\right)
      \nonumber\\
     &\quad -t_J\sum_\sigma\left(e^{i\varphi_{\rm cl}}\,e^{ig(a+a^\dagger)}\,c^\dagger_{1\sigma}c_{0\sigma}+{\rm h.c.}\right).
   \label{eq:H}
 \end{align}
-The first line is the resonator and an $s$-wave BCS chain (hopping $t$, pairing $\Delta$);
-the second line is the Anderson impurity (level $\epsilon_d=-U/2$, on-site
-repulsion $U$) tunnel-coupled ($t_J$) to the two ends of the chain; the third line
-carries the total Peierls phase of the loop, which by a gauge choice is placed on a
-single bond. The vector potential of the mode enters through the gauge-invariant
-displacement operator $D=e^{ig(a+a^\dagger)}$, so diamagnetic ($A^2$) terms are
-included to all orders; $g=2\pi\Phi_{\rm zpf}/(h/e)$ is the electron phase generated
-by the zero-point flux of the mode, and $\varphi_{\rm cl}$ is a static external
-flux. An electron phase $\varphi=\pi$ corresponds to one superconducting flux
-quantum $\Phi_0=h/2e$. For a lumped resonator of impedance $Z$, galvanically sharing
-its inductance with the loop, $(2g)^2=\pi Z/R_Q$ with $R_Q=h/4e^2$. Unless stated
-otherwise we take $t=1$, $\Delta=t$, $t_J=0.5t$, $L=14$ ($L\gg\xi$), $\hbar\omega=7.6\times10^{-4}t$
-and \emph{no} external flux, $\varphi_{\rm cl}\to0^+$ (a seed $\varphi_{\rm cl}=10^{-3}$ is
-used to select one of the degenerate states). Two auxiliary versions are also
-used: a weak link ($U=0$, dot replaced by a bond $t_J$) biased by $\Phi_0/2$, and the
-short ring with a Zeeman-polarized dot of Ref.~\cite{notebook}.
-We write Eq.~\eqref{eq:H} compactly as
-$H=\hbar\omega a^\dagger a+H_{\rm ring}[\varphi_{\rm cl}+g(a+a^\dagger)]$.
+The mode enters through the displacement operator $D=e^{ig(a+a^\dagger)}$, so diamagnetic terms are kept
+to all orders~\cite{Li2020,Dmytruk2021}; $g=2\pi\Phi_{\rm zpf}/(h/e)$ is the single-electron phase of the
+zero-point flux, $\varphi=\pi$ is one flux quantum $\Phi_0=h/2e$, and for a mode of impedance $Z$ sharing
+its inductance with the loop, $g^2=\pi Z/4R_Q$ ($R_Q=h/4e^2$). $\varphi_{\rm cl}$ is a static flux, used
+as the $\Phi_0/2$ bias of a weak link or as an infinitesimal seed. Placing the whole phase on the dot
+bond is a statement about the circuit, not a gauge choice: a static phase can be spread along the ring by
+a gauge transformation with the pairing transformed covariantly~\cite{Dmytruk2021} (Supplemental Material,
+SM), but the quantum part cannot~\cite{DmytrukTrifSimon2016}, since moving a fraction $\lambda$ of $gX$ onto
+other bonds generates $\hbar\omega(\lambda NP+\lambda^2N^2)$, a capacitive coupling of the displaced charge $N$
+to the charge $P$ of the mode. Eq.~\eqref{eq:H} is the circuit in which the voltage of the mode drops across
+the junction, the only high-impedance element of the loop; the omitted terms are of relative order
+$\hbar\omega g^2/E_A$, negligible for $\hbar\omega\lesssim0.1\Delta$ (SM). Unless stated otherwise, $\Delta=t$ (energies in $\Delta$, currents in $e\Delta/\hbar$),
+$t_J=0.5\Delta$ ($\Gamma=2t_J^2/t=\Delta/2$), $L=10>\xi\simeq t/\Delta$ (finite-size and $h/e$
+corrections~\cite{LossGoldbart1991} are $\le2\%$, SM), $\varphi_{\rm cl}=0$.
 
-The only property of $H_{\rm ring}$ that enters below is its ground-state
-energy at fixed phase,
-\begin{equation}
-  E(\varphi)=\sum_{m\ge 0}E_m\cos m\varphi .
-  \label{eq:harm}
-\end{equation}
-Even harmonics ($m=2,4,\dots$) describe Cooper-pair tunnelling ($h/2e$
-periodicity). The $m=1$ term is the single-electron ($h/e$) persistent
-current of a mesoscopic ring~\cite{LossGoldbart1991} and is suppressed as $e^{-L/\xi}$. A
-$0$-junction has $E_2<0$ and a $\pi$-junction has $E_2>0$. When a $0$-junction
-is biased by $\Phi_0/2$, $\varphi_{\rm cl}=\pi/2$ maps $E_2\cos2\varphi\to-E_2\cos2\varphi$.
-The two routes to a $\pi$ loop are therefore equivalent up to the odd harmonics,
-which turn into an explicit symmetry-breaking term
-$-E_1\sin\varphi$. In contrast, an intrinsic $\pi$-junction keeps
-$E(\varphi)=E(-\varphi)$ exactly, since $H_{\rm ring}[0]$ is real
-(time-reversal symmetry).
+Fermion parity $s$ is conserved, so the ground-state energy of the ring at fixed phase,
+$E_s(\varphi)=\sum_mE^{(s)}_m\cos m\varphi$, is defined sector by sector: the singlet (even) sector has
+$E_2<0$ (a $0$ junction), the doublet (odd) sector $E_2>0$ (a $\pi$ junction), and $E_s(\varphi)=E_s(-\varphi)$
+exactly because $H[\varphi_{\rm cl}=0]$ is real. The persistent current is
+$I=-(e/\hbar)\partial H/\partial\varphi_{\rm cl}$, the particle current through the dot bond dressed by $D$,
+and $\langle[H,P]\rangle=0$ gives the sum rule $\langle I\rangle=(e/\hbar)(\hbar\omega/2g)\langle a+a^\dagger\rangle$
+in every eigenstate: the current \emph{is} the static displacement of the mode, and the difference of the two
+sides is our acceptance test for every DMRG state.
 
-\paragraph*{Adiabatic reduction and Landau theory.}
-For $\hbar\omega$ well below the Andreev gap $E_A$, the electrons follow the
-flux adiabatically. To leading order in $\hbar\omega/E_A$, Eq.~\eqref{eq:H}
-reduces to a single-particle problem for the dimensionless flux $X=a+a^\dagger$,
+\paragraph*{Two limits.}
+If $\hbar\omega$ is small compared with the excitation gap $E_A$ of the ring at fixed phase and parity,
+the electrons follow the flux adiabatically and, in each sector,
 \begin{equation}
-  H_{\rm BO}=\frac{\hbar\omega}{4}\left(P^2+X^2\right)+E(\varphi_{\rm cl}+gX),
-  \qquad [X,P]=2i .
+  H^{(s)}_{\rm BO}=\frac{\hbar\omega}{4}\left(P^2+X^2\right)+E_s(\varphi_{\rm cl}+gX),\qquad [X,P]=2i,
   \label{eq:BO}
 \end{equation}
-Equation~\eqref{eq:BO} is the Hamiltonian of an rf-SQUID~\cite{Friedman2000} whose inductive energy
-is supplied by the mode. Writing it in the Cooper-pair phase
-$\theta=2gX$ gives $4E_C n^2+\tfrac12E_L\theta^2+E(\theta/2)$ with
-$E_L=\hbar\omega/8g^2$ and $E_C=\hbar\omega g^2$. A static field ($\langle a\rangle\neq0$),
-i.e.\ a photon condensate carrying a persistent current
-$I=-(2e/\hbar)\partial_\varphi E$, appears classically when the orbital response of the
-ring at the symmetric point is paramagnetic and exceeds the stiffness of the mode,
+which in the Cooper-pair phase $\theta=2gX$ is $4E_Cn^2+\tfrac12E_L\theta^2+E_s(\theta/2)$ with
+$E_L=\hbar\omega/8g^2$, $E_C=\hbar\omega g^2$: the rf-SQUID of Refs.~\cite{Friedman2000,Kawabata2006}, a
+fluxonium~\cite{Manucharyan2009} whose Josephson element is the dot. A static displacement appears
+classically when the paramagnetic response of a $\pi$ loop exceeds the stiffness of the mode,
 \begin{equation}
-  \beta\equiv\frac{2g^2\,|E''(\varphi_0)|}{\hbar\omega}>1,
-  \qquad E''(\varphi_0)<0 .
+  \beta\equiv\frac{2g^2|E''(0)|}{\hbar\omega}=\frac{8g^2E_J}{\hbar\omega}=\frac{2\pi LI_c}{\Phi_0}>1,
   \label{eq:beta}
 \end{equation}
-For a pure $\pi$-junction, $\beta=8g^2E_J/\hbar\omega=2\pi L I_c/\Phi_0$, the
-familiar screening parameter of the loop \cite{BKS1977,Tsuei2000}.
-Equation~\eqref{eq:beta} is the single-loop form of the
-photon-condensation criterion of Andolina \emph{et al.}~\cite{Andolina2020}: the no-go theorem
-for a uniform cavity field~\cite{Andolina2019,Nataf2019} does not apply, because the mode couples to the
-flux (curl of $\mathbf A$), and the instability requires a \emph{paramagnetic}
-orbital response, which here comes from the $\pi$ shift.
-Above threshold, the Landau free energy
-$\mathcal F(X)=\hbar\omega X^2/4+E(gX)$ has two degenerate minima
-$\pm X^\star$ carrying opposite currents $\pm I^\star$.
-
-Two remarks fix the physical content of Eq.~\eqref{eq:beta}. First,
-for a loop with its own geometric inductance $L_r$ and mutual inductance
-$M\le\sqrt{L_rL_c}$ to the resonator, minimizing the static energy over the
-resonator flux gives $\Phi_r^2/2L_r$: the static threshold is set by the
-total loop inductance, and Eq.~\eqref{eq:H} is the $k=M/\sqrt{L_rL_c}\to1$
-(galvanic) limit. Second, zero-point fluctuations of the mode do not
-drive the transition; they oppose it. At finite $E_J/\hbar\omega$ the
-ground state of Eq.~\eqref{eq:BO} is the symmetric superposition of the two
-current-carrying states, split from its partner by a tunnelling gap
-$\delta\sim\hbar\omega\,e^{-S}$ with an instanton action
-$S\propto (E_J/\hbar\omega)\,s(\beta)$. A sharp quantum phase transition
-with mean-field exponents is recovered in the scaling limit
-$E_J/\hbar\omega\to\infty$ at fixed $\beta$, in which
-$E_C/E_J=\beta(\hbar\omega)^2/(8E_J^2)\to0$. This is the analogue of the
-classical-oscillator limit of the quantum Rabi model~\cite{Hwang2015}.
+the screening condition of Refs.~\cite{BKS1977,Tsuei2000}, the superradiance condition of the circuit of
+Bamba \emph{et al.}~\cite{Bamba2016} and the single-loop form of the magnetostatic criterion of
+Refs.~\cite{Andolina2020,RomanRoche2021,Mercurio2024}. Zero-point fluctuations oppose the
+condensation~\cite{BambaImoto2017}: at finite $E_J/\hbar\omega$ the ground state is the symmetric
+superposition of the two current states, split by $\delta\sim\hbar\omega e^{-S}$ with $S\propto E_J/\hbar\omega$,
+and a sharp transition exists only for $E_J/\hbar\omega\to\infty$ at fixed $\beta$~\cite{Hwang2015}. In the
+opposite limit, $\hbar\omega\gg E_A$, the mode averages the Peierls factor over its vacuum: a Lang--Firsov
+transformation~\cite{LangFirsov1963} gives $H_{\rm ring}$ with $t_J\to t_Je^{-g^2/2}$ plus $O(t_J^2/\hbar\omega)$,
+i.e.\ the zero-point flux reduces the level width of the dot by the Franck--Condon factor $e^{-g^2}$.
+Neither limit is assumed below.
 
 \paragraph*{Methods.}
-We solve Eq.~\eqref{eq:H} without approximation by DMRG
-(TeNPy~\cite{TeNPy}) on the full electron--photon Hilbert space. The ring is stored in folded
-order next to a bosonic site (Fock cutoff $N_{\rm ph}$). Fermion parity and $S^z$
-are conserved, and the electron--photon vertex is a three-site operator
-$D\,c^\dagger_{1\sigma}c_{0\sigma}$. Benchmarks against exact BdG energies of the
-non-interacting ring at $g=0$ agree to $10^{-14}$ at full bond dimension
-($\chi=1024$). In production ($\chi=256$--$320$, $N_{\rm ph}=30$--$50$, discarded
-Fock weight $<10^{-7}$) the ground-state energy error is $\lesssim3\times10^{-6}t$.
-For a $4$-site ring with a photon, DMRG reproduces exact diagonalization and the identity
-$\langle I\rangle=\hbar\omega\langle X\rangle/2g$ to $10^{-7}$. Excited states are obtained by DMRG
-orthogonal to the ground state. We compare with (i) the self-consistent
-electron$\times$photon product state (mean field, MF), and (ii) the adiabatic
-Hamiltonian~\eqref{eq:BO}, with $E(\varphi)$ from BdG or from DMRG at fixed
-$\varphi$, diagonalized exactly.
-
-% RESULTS PARAGRAPHS ARE IN results.tex
-\input{results}
+We solve Eq.~\eqref{eq:H} by two-site DMRG (TeNPy~\cite{TeNPy}) on the full electron--photon space: the
+ring in folded order next to a bosonic site (Fock cutoff $20$--$62$, last Fock weight $<10^{-7}$), parity
+and $S^z$ conserved, $\chi=200$--$400$; benchmarks against BdG ($10^{-14}$) and against exact diagonalization
+of a four-site ring with a photon, sum rule included ($10^{-7}$). Seeded scans use two initial states
+(vacuum side, polarized side) and seed annealing, because the two current states are split only by
+$\delta$ and by $2I^\star\varphi_{\rm cl}\sim10^{-5}\Delta$ (SM). We compare with (i) Eq.~\eqref{eq:BO}
+diagonalized exactly with the DMRG $E_s(\varphi)$ (``circuit model''), (ii) the Lang--Firsov ring, and
+(iii) the self-consistent electron$\times$photon product state (Hartree--Fock BdG electrons times a photon
+state, ``mean field'', MF), the ansatz of Refs.~\cite{Varrica2026,Andolina2020} for this circuit.

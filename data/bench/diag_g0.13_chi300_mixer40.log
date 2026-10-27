@@ -1,0 +1,14 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+sw= 5 E=-15.74629045349 var=1.16e-06 S_ph=0.0773 X=0.4041 X2=17.840 n=4.144 I_bond=1.8240e-03 I_vir=1.1487e-03 dev=6.8e-04 chi=299 t=42s
+sw=10 E=-15.74630123666 var=1.90e-07 S_ph=0.0898 X=0.9730 X2=22.969 n=5.416 I_bond=2.8750e-03 I_vir=2.7656e-03 dev=1.1e-04 chi=298 t=114s
+sw=15 E=-15.74630187897 var=1.87e-07 S_ph=0.0899 X=1.0968 X2=23.274 n=5.496 I_bond=3.1799e-03 I_vir=3.1175e-03 dev=6.2e-05 chi=298 t=171s
+sw=20 E=-15.74630231666 var=1.93e-07 S_ph=0.0896 X=1.1882 X2=23.423 n=5.535 I_bond=3.4767e-03 I_vir=3.3773e-03 dev=9.9e-05 chi=298 t=226s
+sw=25 E=-15.74630266658 var=1.85e-07 S_ph=0.0890 X=1.3089 X2=23.555 n=5.569 I_bond=3.7729e-03 I_vir=3.7202e-03 dev=5.3e-05 chi=298 t=261s
+sw=30 E=-15.74630301328 var=1.83e-07 S_ph=0.0882 X=1.4254 X2=23.635 n=5.590 I_bond=4.1013e-03 I_vir=4.0513e-03 dev=5.0e-05 chi=298 t=297s
+sw=35 E=-15.74630326157 var=1.82e-07 S_ph=0.0874 X=1.5130 X2=23.675 n=5.601 I_bond=4.3475e-03 I_vir=4.3005e-03 dev=4.7e-05 chi=298 t=330s
+sw=40 E=-15.74630357229 var=1.82e-07 S_ph=0.0864 X=1.6247 X2=23.710 n=5.610 I_bond=4.6625e-03 I_vir=4.6180e-03 dev=4.5e-05 chi=298 t=366s
+sw=45 E=-15.74630388024 var=1.82e-07 S_ph=0.0854 X=1.7234 X2=23.730 n=5.615 I_bond=4.9781e-03 I_vir=4.8984e-03 dev=8.0e-05 chi=298 t=402s
+sw=50 E=-15.74630410341 var=1.84e-07 S_ph=0.0843 X=1.8183 X2=23.744 n=5.619 I_bond=5.2076e-03 I_vir=5.1681e-03 dev=3.9e-05 chi=298 t=438s
+sw=55 E=-15.74630444147 var=1.84e-07 S_ph=0.0830 X=1.9278 X2=23.755 n=5.622 I_bond=5.5578e-03 I_vir=5.4794e-03 dev=7.8e-05 chi=298 t=474s
+sw=60 E=-15.74630481545 var=1.81e-07 S_ph=0.0812 X=2.0632 X2=23.765 n=5.625 I_bond=5.9430e-03 I_vir=5.8641e-03 dev=7.9e-05 chi=298 t=508s

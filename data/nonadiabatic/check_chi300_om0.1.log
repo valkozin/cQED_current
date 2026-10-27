@@ -1,0 +1,6 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+om=0.1000 U=0.900 g=0.600 E_even=-15.226244252 E_odd=-15.252430957 odd-even=-0.026187 n=0.091/0.027 S_ph=0.1166/0.1183 |D|=0.892/0.822 pn_last=1.9e-14 sw=17/11 t=109s
+om=0.1000 U=0.900 g=1.000 E_even=-15.187263454 E_odd=-15.252372086 odd-even=-0.065109 n=0.238/0.063 S_ph=0.1680/0.2022 |D|=0.789/0.583 pn_last=2.0e-09 sw=12/11 t=100s

@@ -1,0 +1,14 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+sw= 5 E=-15.74629396293 var=1.29e-05 S_ph=0.0773 X=0.4046 X2=17.847 n=4.146 I_bond=2.0011e-03 I_vir=1.1500e-03 dev=8.5e-04 chi=200 t=18s
+sw=10 E=-15.74630026477 var=5.13e-06 S_ph=0.0900 X=0.8938 X2=22.848 n=5.385 I_bond=2.6220e-03 I_vir=2.5404e-03 dev=8.2e-05 chi=200 t=40s
+sw=15 E=-15.74630196884 var=5.01e-06 S_ph=0.0898 X=1.2285 X2=23.604 n=5.582 I_bond=3.4993e-03 I_vir=3.4918e-03 dev=7.5e-06 chi=200 t=59s
+sw=20 E=-15.74630197454 var=5.01e-06 S_ph=0.0898 X=1.2298 X2=23.605 n=5.582 I_bond=3.5029e-03 I_vir=3.4955e-03 dev=7.5e-06 chi=200 t=78s
+sw=25 E=-15.74630197942 var=5.01e-06 S_ph=0.0898 X=1.2312 X2=23.605 n=5.583 I_bond=3.5068e-03 I_vir=3.4994e-03 dev=7.4e-06 chi=200 t=97s
+sw=30 E=-15.74630198402 var=5.00e-06 S_ph=0.0898 X=1.2326 X2=23.606 n=5.583 I_bond=3.5108e-03 I_vir=3.5035e-03 dev=7.4e-06 chi=200 t=115s
+sw=35 E=-15.74630198843 var=5.00e-06 S_ph=0.0897 X=1.2340 X2=23.607 n=5.583 I_bond=3.5148e-03 I_vir=3.5075e-03 dev=7.3e-06 chi=200 t=135s
+sw=40 E=-15.74630199276 var=5.00e-06 S_ph=0.0897 X=1.2355 X2=23.608 n=5.583 I_bond=3.5188e-03 I_vir=3.5115e-03 dev=7.3e-06 chi=200 t=153s
+sw=45 E=-15.74630199703 var=5.00e-06 S_ph=0.0897 X=1.2369 X2=23.609 n=5.583 I_bond=3.5228e-03 I_vir=3.5156e-03 dev=7.2e-06 chi=200 t=171s
+sw=50 E=-15.74630200126 var=5.00e-06 S_ph=0.0897 X=1.2383 X2=23.609 n=5.584 I_bond=3.5268e-03 I_vir=3.5196e-03 dev=7.2e-06 chi=200 t=190s
+sw=55 E=-15.74630200543 var=5.00e-06 S_ph=0.0897 X=1.2397 X2=23.610 n=5.584 I_bond=3.5307e-03 I_vir=3.5236e-03 dev=7.2e-06 chi=200 t=208s
+sw=60 E=-15.74630200961 var=5.00e-06 S_ph=0.0897 X=1.2411 X2=23.611 n=5.584 I_bond=3.5347e-03 I_vir=3.5276e-03 dev=7.1e-06 chi=200 t=225s

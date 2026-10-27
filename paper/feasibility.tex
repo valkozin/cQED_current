@@ -1,28 +1,40 @@
-\paragraph*{Experimental scales.}
-The two control parameters are
-$\beta=2\pi L I_c/\Phi_0$ and $E_J/\hbar\omega$, related by
-$\beta=2\pi(Z/R_Q)(E_J/\hbar\omega)$, with $E_J/h\simeq0.5\,{\rm GHz}\times I_c[{\rm nA}]$.
-Three classes of $\pi$ elements span the phase diagram
-[Fig.~\ref{fig:overview}(b)]:
-(i) SFS junctions ($I_c\sim1$--$100\,\mu$A) reach $\beta>1$ with geometric
-inductances of a few to a few hundred pH and $E_J/\hbar\omega\sim10^2$--$10^4$.
-This is the classical limit, where the half-flux state is fully polarized,
-consistent with the spontaneous currents observed in SFS
-and $d$-wave $\pi$ loops~\cite{Tsuei2000,Ryazanov2001,Bauer2004}.
-(ii) Quantum-dot $\pi$ junctions in the doublet regime
-($I_c^\pi\sim0.1$--$10$\,nA) require $L\sim0.03$--$3\,\mu$H, i.e.\ superinductances
-(Josephson-junction arrays, granular Al) as in fluxonium circuits~\cite{Manucharyan2009,Grunhaupt2019}; this is the $\pi$-qubit regime of Refs.~\cite{Ioffe1999,Yamashita2005,Feofanov2010}. These give
-$E_J/\hbar\omega\sim1$: the ground state is the
-cat state $(|{\circlearrowright}\rangle+|{\circlearrowleft}\rangle)/\sqrt2$ with
-$\delta\sim0.1\hbar\omega$, and the transition appears as a dip in the
-$|0\rangle\to|1\rangle$ frequency and a jump in the transition matrix element
-$\langle0|\Phi|1\rangle$, accessible in two-tone spectroscopy.
-(iii) Multichannel or gate-tunable $\pi$ junctions with
-$I_c\sim50$--$200$\,nA in a high-kinetic-inductance loop ($L\sim2$--$10$\,nH,
-$\omega/2\pi\sim2$--$5$\,GHz) give $\beta\sim1$--$3$ and $E_J/\hbar\omega\sim10$--$30$.
-This is the regime of Figs.~\ref{fig:halfflux} and~\ref{fig:udot}: a well-defined
-current-carrying state whose residual tunnelling $\delta/\hbar\omega\sim10^{-4}$--$10^{-8}$
-remains a measurable macroscopic-quantum-tunnelling signature.
-In the externally biased realization, the half-flux bias must be stable to
-$|\delta\Phi|\ll\delta/2I^\star$, i.e.\ $\lesssim10^{-6}\Phi_0$ for the parameters above.
-The interaction-driven realization has no such requirement.
+% ------------------------------------------------------------------
+%  Section: physical units and observables (table in the SM)
+% ------------------------------------------------------------------
+\paragraph*{Where to look.}
+The flux-driven $0$--$\pi$ switch of Fig.~\ref{fig:cavity0pi} needs $\hbar\omega=0.03$--$0.3\Delta$ and
+$g=0.3$--$0.6$: for Al ($\Delta=180\,\mu$eV) a mode at $1$--$13$\,GHz sharing its inductance with the loop
+and an impedance $Z=4R_Qg^2/\pi=0.7$--$3\,{\rm k}\Omega$, the range of granular-Al or junction-array
+superinductors~\cite{Manucharyan2009,Grunhaupt2019}, with the dot gate tuned to within $\sim0.1\Delta$ of
+its singlet--doublet boundary as in Refs.~\cite{Bargerbos2022,PitaVidal2023}. It is read out as the jump
+of the resonator frequency between the stiffened $0$ phase and the softened $\pi$ phase, and its
+signature is that it is driven by the impedance (the superinductor length) at fixed gate voltage. In gate
+voltage the effect is a widening of the doublet window: at $U=1.1\Delta$ its half-width in $\epsilon_d$ grows
+from $0.23\Delta$ to $0.31\Delta$ at $g=0.6$ (SM), i.e.\ by $29\,\mu$eV, or $0.1$--$0.3$\,mV of gate voltage,
+for an Al dot. The switch survives spin--orbit coupling, which locks the two current directions to the two
+spin states (SM).
+
+The persistent-current phase and the cat state require $E_J/\hbar\omega\gtrsim5$ and $\hbar\omega>k_BT$,
+which is restrictive: the junction of the phase diagram ($U=2\Delta$, $\Gamma=\Delta/2$,
+$E_J=7.4\times10^{-3}\Delta$) has $E_J/h=0.3$\,GHz and $I_c=0.65$\,nA in Al, so $\hbar\omega=E_J/10$ would be
+$32$\,MHz, far below the electron temperature. A stronger junction ($\Gamma=2\Delta$, $U=6\Delta$,
+$E_J=0.034\Delta$, SM) in NbTiN or Nb ($\Delta\simeq1.2$--$1.4$\,meV) gives $E_J/h\simeq10$\,GHz,
+$I_c\simeq20$\,nA, a $\simeq1$\,GHz mode ($50$\,mK) at $E_J/\hbar\omega=10$, $L\simeq17$\,nH and
+$Z\simeq160\,\Omega$ at $\beta=1$: a $\pi$-rf-SQUID at zero applied flux, for which the full DMRG gives a
+condensate of $9.6$ photons and $0.94I_c$ (SM). A nA dot junction with a GHz superinductor has
+$E_J/\hbar\omega\lesssim3$ and no current-carrying phase for $g\le0.4$ (the $U=8\Delta$ line of
+Fig.~\ref{fig:phasemain}): its ground state is the cat state with $\delta\sim\hbar\omega$, visible as a dip of
+the $|0\rangle\to|1\rangle$ frequency and a jump of $\langle0|\Phi|1\rangle$ in two-tone spectroscopy, where mean
+field predicts a current of $0.6I_c$. SFS junctions ($E_J/\hbar\omega\sim10^2$--$10^4$) are the classical
+limit~\cite{Ryazanov2001,Bauer2004}.
+
+\paragraph*{Conclusion.}
+Treating the electrons of a quantum-dot Josephson junction and the quantized flux of its loop on the
+same footing, we find that the vacuum of the mode controls the junction: its zero-point flux converts a
+$0$ junction into a $\pi$ junction, adiabatically through the curvatures of the singlet and doublet
+surfaces and non-adiabatically through the Franck--Condon reduction of the level width. Deep in the
+adiabatic regime the loop is exactly a fluxonium with the microscopic $E(\varphi)$, the ``photon
+condensate'' is the screening instability of a $\pi$ loop, and the exact ground state is the cat state of
+the two current directions; the product-state mean field fails at small $E_J/\hbar\omega$ and at the
+$0$--$\pi$ boundary. The method extends to Andreev spin qubits with spin--orbit coupling, to multi-dot
+junctions, and to a mode coupled to a transmission line.

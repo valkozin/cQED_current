@@ -1,0 +1,47 @@
+resuming, 31 points left
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+U=2.500 g=0.0500 E0=-15.9772858840 X=0.0035 X2=1.099 n=0.002 I_bond=2.9741e-05 I_vir=2.5779e-05 dev=4.0e-06 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=2.1e-10 sw=12 dE=3.3e-13 pmax=1.0e-66 Nph=50 t=49s
+U=2.500 g=0.0600 E0=-15.9773014872 X=0.0052 X2=1.151 n=0.005 I_bond=3.3138e-05 I_vir=3.2065e-05 dev=1.1e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=2.2e-10 sw=11 dE=3.8e-12 pmax=1.2e-20 Nph=50 t=61s
+U=2.500 g=0.0700 E0=-15.9773208920 X=0.0070 X2=1.224 n=0.010 I_bond=3.7482e-05 I_vir=3.6969e-05 dev=5.1e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=2.2e-10 sw=12 dE=2.5e-12 pmax=2.2e-11 Nph=50 t=68s
+U=2.500 g=0.0800 E0=-15.9773448271 X=0.0093 X2=1.327 n=0.020 I_bond=4.3715e-05 I_vir=4.3141e-05 dev=5.7e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=2.3e-10 sw=14 dE=1.1e-12 pmax=3.5e-11 Nph=50 t=86s
+U=2.500 g=0.0900 E0=-15.9773744656 X=0.0130 X2=1.481 n=0.039 I_bond=5.3902e-05 I_vir=5.3378e-05 dev=5.2e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=2.4e-10 sw=12 dE=2.1e-12 pmax=6.4e-13 Nph=50 t=71s
+U=2.500 g=0.1000 E0=-15.9774118726 X=0.0192 X2=1.727 n=0.077 I_bond=7.1669e-05 I_vir=7.0815e-05 dev=8.5e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.02 | chi=300 terr=2.6e-10 sw=12 dE=9.1e-13 pmax=2.2e-12 Nph=50 t=72s
+U=2.500 g=0.1100 E0=-15.9774612535 X=0.0318 X2=2.182 n=0.161 I_bond=1.0871e-04 I_vir=1.0696e-04 dev=1.8e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.03 | chi=300 terr=2.7e-10 sw=14 dE=2.1e-12 pmax=1.1e-11 Nph=50 t=86s
+U=2.500 g=0.1200 E0=-15.9775335769 X=0.0752 X2=3.300 n=0.403 I_bond=2.3365e-04 I_vir=2.3150e-04 dev=2.2e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.08 | chi=300 terr=2.9e-10 sw=34 dE=2.8e-12 pmax=8.6e-12 Nph=50 t=222s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=4.60e-04
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.98e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.56e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.63e-03
+U=2.500 g=0.1300 E0=-15.9776711476 X=0.6043 X2=7.633 n=1.467 I_bond=1.7126e-03 I_vir=1.7175e-03 dev=4.9e-06 | Xcl=3.35 start=C dE_starts=2.2e-08 X_starts=0.33,0.60 | chi=300 terr=3.4e-10 sw=41 dE=7.8e-09 pmax=9.4e-11 Nph=50 t=963s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=4.11e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.49e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=8.40e-04
+U=2.500 g=0.1400 E0=-15.9780092023 X=4.0096 X2=18.237 n=4.226 I_bond=1.0582e-02 I_vir=1.0583e-02 dev=1.0e-06 | Xcl=4.48 start=C dE_starts=1.3e-06 X_starts=2.33,4.01 | chi=300 terr=2.6e-10 sw=41 dE=2.2e-09 pmax=2.0e-09 Nph=50 t=906s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.14e-04
+U=2.500 g=0.1500 E0=-15.9785349723 X=4.7530 X2=24.082 n=5.745 I_bond=1.1709e-02 I_vir=1.1708e-02 dev=5.2e-07 | Xcl=5.05 start=A dE_starts=0.0e+00 X_starts=4.75 | chi=300 terr=2.4e-10 sw=41 dE=3.0e-10 pmax=1.5e-10 Nph=50 t=255s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.60e-04
+U=2.500 g=0.1600 E0=-15.9791282347 X=5.1155 X2=27.343 n=6.601 I_bond=1.1814e-02 I_vir=1.1814e-02 dev=1.9e-07 | Xcl=5.34 start=A dE_starts=0.0e+00 X_starts=5.12 | chi=300 terr=2.2e-10 sw=41 dE=2.9e-10 pmax=2.5e-10 Nph=50 t=266s
+U=2.500 g=0.1700 E0=-15.9797366471 X=5.2981 X2=29.049 n=7.062 I_bond=1.1516e-02 I_vir=1.1516e-02 dev=5.2e-07 | Xcl=5.48 start=A dE_starts=0.0e+00 X_starts=5.30 | chi=300 terr=2.1e-10 sw=28 dE=6.1e-12 pmax=3.0e-11 Nph=50 t=179s
+U=2.500 g=0.1800 E0=-15.9803322684 X=5.3744 X2=29.742 n=7.267 I_bond=1.1035e-02 I_vir=1.1033e-02 dev=2.9e-06 | Xcl=5.53 start=A dE_starts=0.0e+00 X_starts=5.37 | chi=300 terr=2.0e-10 sw=14 dE=6.1e-12 pmax=5.0e-11 Nph=50 t=79s
+U=2.500 g=0.1900 E0=-15.9809002536 X=5.3872 X2=29.784 n=7.306 I_bond=1.0478e-02 I_vir=1.0477e-02 dev=1.3e-06 | Xcl=5.53 start=A dE_starts=0.0e+00 X_starts=5.39 | chi=300 terr=2.0e-10 sw=17 dE=7.6e-12 pmax=1.3e-11 Nph=50 t=100s
+U=2.500 g=0.2000 E0=-15.9814333143 X=5.3576 X2=29.395 n=7.236 I_bond=9.8956e-03 I_vir=9.8981e-03 dev=2.5e-06 | Xcl=5.48 start=A dE_starts=0.0e+00 X_starts=5.36 | chi=300 terr=1.9e-10 sw=14 dE=1.9e-12 pmax=1.3e-11 Nph=50 t=85s
+U=2.500 g=0.2100 E0=-15.9819285951 X=5.2985 X2=28.714 n=7.091 I_bond=9.3210e-03 I_vir=9.3229e-03 dev=1.8e-06 | Xcl=5.41 start=A dE_starts=0.0e+00 X_starts=5.30 | chi=300 terr=1.8e-10 sw=12 dE=2.1e-12 pmax=6.9e-12 Nph=50 t=75s
+U=2.500 g=0.2200 E0=-15.9823858154 X=5.2213 X2=27.859 n=6.901 I_bond=8.7669e-03 I_vir=8.7694e-03 dev=2.5e-06 | Xcl=5.32 start=A dE_starts=0.0e+00 X_starts=5.22 | chi=300 terr=1.8e-10 sw=11 dE=2.9e-12 pmax=1.6e-11 Nph=50 t=64s
+U=2.500 g=0.2300 E0=-15.9828061547 X=5.1318 X2=26.898 n=6.684 I_bond=8.2426e-03 I_vir=8.2444e-03 dev=1.7e-06 | Xcl=5.22 start=A dE_starts=0.0e+00 X_starts=5.13 | chi=300 terr=1.7e-10 sw=12 dE=2.0e-12 pmax=1.3e-11 Nph=50 t=71s
+U=2.500 g=0.2400 E0=-15.9831915772 X=5.0349 X2=25.883 n=6.454 I_bond=7.7499e-03 I_vir=7.7517e-03 dev=1.8e-06 | Xcl=5.12 start=A dE_starts=0.0e+00 X_starts=5.03 | chi=300 terr=1.7e-10 sw=11 dE=5.1e-12 pmax=2.0e-11 Nph=50 t=62s
+U=2.500 g=0.2500 E0=-15.9835444234 X=4.9340 X2=24.851 n=6.217 I_bond=7.2893e-03 I_vir=7.2924e-03 dev=3.1e-06 | Xcl=5.01 start=A dE_starts=0.0e+00 X_starts=4.93 | chi=300 terr=1.7e-10 sw=13 dE=4.4e-12 pmax=2.3e-11 Nph=50 t=80s
+U=2.500 g=0.2600 E0=-15.9838671626 X=4.8306 X2=23.818 n=5.981 I_bond=6.8619e-03 I_vir=6.8650e-03 dev=3.1e-06 | Xcl=4.90 start=A dE_starts=0.0e+00 X_starts=4.83 | chi=300 terr=1.6e-10 sw=14 dE=3.2e-12 pmax=2.5e-11 Nph=50 t=92s
+U=2.500 g=0.2700 E0=-15.9841622477 X=4.7265 X2=22.803 n=5.748 I_bond=6.4661e-03 I_vir=6.4683e-03 dev=2.1e-06 | Xcl=4.79 start=A dE_starts=0.0e+00 X_starts=4.73 | chi=300 terr=1.6e-10 sw=13 dE=9.0e-13 pmax=1.6e-11 Nph=50 t=87s
+U=2.500 g=0.2800 E0=-15.9844320321 X=4.6231 X2=21.819 n=5.523 I_bond=6.0984e-03 I_vir=6.1008e-03 dev=2.5e-06 | Xcl=4.68 start=A dE_starts=0.0e+00 X_starts=4.62 | chi=300 terr=1.6e-10 sw=12 dE=7.4e-13 pmax=1.1e-12 Nph=50 t=80s
+U=2.500 g=0.2900 E0=-15.9846787261 X=4.5209 X2=20.869 n=5.306 I_bond=5.7582e-03 I_vir=5.7603e-03 dev=2.1e-06 | Xcl=4.58 start=A dE_starts=0.0e+00 X_starts=4.52 | chi=300 terr=1.6e-10 sw=12 dE=4.1e-13 pmax=1.1e-11 Nph=50 t=76s
+U=2.500 g=0.3000 E0=-15.9849043762 X=4.4208 X2=19.958 n=5.099 I_bond=5.4427e-03 I_vir=5.4449e-03 dev=2.2e-06 | Xcl=4.47 start=A dE_starts=0.0e+00 X_starts=4.42 | chi=300 terr=1.6e-10 sw=11 dE=5.1e-12 pmax=3.1e-12 Nph=50 t=69s
+U=2.500 g=0.3200 E0=-15.9852998897 X=4.2274 X2=18.260 n=4.714 I_bond=4.8787e-03 I_vir=4.8813e-03 dev=2.7e-06 | Xcl=4.27 start=A dE_starts=0.0e+00 X_starts=4.23 | chi=300 terr=1.6e-10 sw=12 dE=1.8e-12 pmax=9.8e-12 Nph=50 t=71s
+U=2.500 g=0.3400 E0=-15.9856316570 X=4.0445 X2=16.725 n=4.369 I_bond=4.3938e-03 I_vir=4.3954e-03 dev=1.6e-06 | Xcl=4.08 start=A dE_starts=0.0e+00 X_starts=4.04 | chi=300 terr=1.6e-10 sw=13 dE=1.1e-13 pmax=2.8e-12 Nph=50 t=78s
+U=2.500 g=0.3600 E0=-15.9859104204 X=3.8729 X2=15.346 n=4.063 I_bond=3.9736e-03 I_vir=3.9751e-03 dev=1.5e-06 | Xcl=3.91 start=A dE_starts=0.0e+00 X_starts=3.87 | chi=300 terr=1.6e-10 sw=12 dE=2.4e-12 pmax=2.3e-12 Nph=50 t=68s
+U=2.500 g=0.3800 E0=-15.9861449486 X=3.7123 X2=14.111 n=3.793 I_bond=3.6082e-03 I_vir=3.6097e-03 dev=1.6e-06 | Xcl=3.74 start=A dE_starts=0.0e+00 X_starts=3.71 | chi=300 terr=1.6e-10 sw=12 dE=1.2e-12 pmax=6.2e-12 Nph=50 t=66s
+U=2.500 g=0.4000 E0=-15.9863423925 X=3.5622 X2=13.004 n=3.553 I_bond=3.2897e-03 I_vir=3.2906e-03 dev=9.1e-07 | Xcl=3.59 start=A dE_starts=0.0e+00 X_starts=3.56 | chi=300 terr=1.6e-10 sw=12 dE=2.8e-13 pmax=6.2e-12 Nph=50 t=62s

@@ -1,0 +1,13 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+Nr=14 U=2.00 phi=0.0000 E_even=-22.199167819 E_odd=-22.455868057 odd-even=-0.256700 nd=1.000/1.000 t=177s
+Nr=14 U=2.00 phi=0.3927 E_even=-22.182778044 E_odd=-22.458086844 odd-even=-0.275309 nd=1.000/1.000 t=196s
+Nr=14 U=2.00 phi=0.7854 E_even=-22.134395010 E_odd=-22.463373154 odd-even=-0.328978 nd=1.000/1.000 t=211s
+Nr=14 U=2.00 phi=1.1781 E_even=-22.056460289 E_odd=-22.468567357 odd-even=-0.412107 nd=1.000/1.000 t=199s
+Nr=14 U=2.00 phi=1.5708 E_even=-21.953359366 E_odd=-22.470705460 odd-even=-0.517346 nd=1.000/1.000 t=183s
+Nr=14 U=2.00 phi=1.9635 E_even=-22.050515277 E_odd=-22.468611138 odd-even=-0.418096 nd=1.000/1.000 t=204s
+Nr=14 U=2.00 phi=2.3562 E_even=-22.129430881 E_odd=-22.463452836 odd-even=-0.334022 nd=1.000/1.000 t=192s
+Nr=14 U=2.00 phi=2.7489 E_even=-22.178307842 E_odd=-22.458189143 odd-even=-0.279881 nd=1.000/1.000 t=184s
+Nr=14 U=2.00 phi=3.1416 E_even=-22.194848637 E_odd=-22.455977932 odd-even=-0.261129 nd=1.000/1.000 t=173s

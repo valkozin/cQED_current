@@ -1,0 +1,91 @@
+resuming, 32 points left
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+U=1.250 g=0.0400 E0=-15.4043957063 X=0.0046 X2=1.102 n=0.002 I_bond=4.8055e-05 I_vir=4.2276e-05 dev=5.8e-06 | Xcl=0.00 start=B dE_starts=0.0e+00 X_starts=0.00 | chi=300 terr=3.7e-10 sw=11 dE=9.2e-12 pmax=2.5e-74 Nph=50 t=48s
+U=1.250 g=0.0500 E0=-15.4044164059 X=0.0075 X2=1.173 n=0.007 I_bond=5.5605e-05 I_vir=5.5058e-05 dev=5.5e-07 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=3.8e-10 sw=14 dE=1.5e-12 pmax=1.6e-19 Nph=50 t=75s
+U=1.250 g=0.0600 E0=-15.4044436251 X=0.0103 X2=1.283 n=0.016 I_bond=6.5299e-05 I_vir=6.3411e-05 dev=1.9e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.01 | chi=300 terr=4.0e-10 sw=41 dE=3.2e-11 pmax=5.6e-14 Nph=50 t=175s
+U=1.250 g=0.0700 E0=-15.4044793390 X=0.0157 X2=1.461 n=0.037 I_bond=8.4127e-05 I_vir=8.2643e-05 dev=1.5e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.02 | chi=300 terr=4.2e-10 sw=41 dE=6.5e-11 pmax=5.2e-13 Nph=50 t=181s
+U=1.250 g=0.0800 E0=-15.4045275703 X=0.0262 X2=1.791 n=0.088 I_bond=1.2298e-04 I_vir=1.2081e-04 dev=2.2e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.03 | chi=300 terr=4.4e-10 sw=14 dE=2.9e-12 pmax=4.7e-11 Nph=50 t=87s
+U=1.250 g=0.0900 E0=-15.4045991272 X=0.0574 X2=2.619 n=0.251 I_bond=2.4062e-04 I_vir=2.3586e-04 dev=4.8e-06 | Xcl=0.00 start=A dE_starts=0.0e+00 X_starts=0.06 | chi=300 terr=4.7e-10 sw=16 dE=4.3e-12 pmax=1.9e-12 Nph=50 t=105s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=4.85e-04
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.52e-05
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.68e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=6.49e-04
+U=1.250 g=0.1000 E0=-15.4047526613 X=0.4687 X2=7.799 n=1.498 I_bond=1.7408e-03 I_vir=1.7320e-03 dev=8.8e-06 | Xcl=2.96 start=A dE_starts=5.2e-08 X_starts=0.47,0.83 | chi=300 terr=5.5e-10 sw=41 dE=3.0e-09 pmax=4.4e-10 Nph=50 t=1007s
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.03e-02
+U=1.250 g=0.1100 E0=-15.4054032931 X=4.9843 X2=28.898 n=6.901 I_bond=1.6743e-02 I_vir=1.6743e-02 dev=2.0e-07 | Xcl=5.42 start=A dE_starts=0.0e+00 X_starts=4.98 | chi=300 terr=4.9e-10 sw=41 dE=7.7e-08 pmax=6.4e-11 Nph=50 t=376s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=6.58e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=7.86e-04
+U=1.250 g=0.1200 E0=-15.4064923791 X=6.1969 X2=39.463 n=9.605 I_bond=1.9078e-02 I_vir=1.9081e-02 dev=3.1e-06 | Xcl=6.36 start=C dE_starts=2.1e-06 X_starts=5.52,6.20 | chi=300 terr=3.9e-10 sw=14 dE=4.4e-12 pmax=2.4e-11 Nph=52 t=757s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.35e-02
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.06e-04
+U=1.250 g=0.1300 E0=-15.4077139416 X=6.6170 X2=44.668 n=10.953 I_bond=1.8808e-02 I_vir=1.8807e-02 dev=7.1e-07 | Xcl=6.77 start=C dE_starts=3.7e-06 X_starts=5.33,6.62 | chi=300 terr=3.6e-10 sw=12 dE=4.1e-12 pmax=1.5e-11 Nph=54 t=736s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.07e-02
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=6.72e-04
+U=1.250 g=0.1400 E0=-15.4089377487 X=6.7841 X2=46.800 n=11.526 I_bond=1.7903e-02 I_vir=1.7905e-02 dev=1.6e-06 | Xcl=6.93 start=C dE_starts=5.3e-06 X_starts=4.78,6.78 | chi=300 terr=3.5e-10 sw=11 dE=9.7e-12 pmax=9.6e-12 Nph=55 t=707s
+U=1.250 g=0.1500 E0=-15.4101020626 X=6.8094 X2=47.066 n=11.628 I_bond=1.6774e-02 I_vir=1.6774e-02 dev=1.4e-07 | Xcl=6.94 start=A dE_starts=0.0e+00 X_starts=6.81 | chi=300 terr=3.3e-10 sw=11 dE=9.2e-12 pmax=1.4e-10 Nph=55 t=67s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.14e-02
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.91e-04
+U=1.250 g=0.1600 E0=-15.4111802245 X=6.7525 X2=46.236 n=11.454 I_bond=1.5593e-02 I_vir=1.5594e-02 dev=1.0e-06 | Xcl=6.87 start=C dE_starts=6.5e-06 X_starts=3.95,6.75 | chi=300 terr=3.2e-10 sw=16 dE=9.3e-12 pmax=6.8e-12 Nph=54 t=676s
+U=1.250 g=0.1700 E0=-15.4121636878 X=6.6466 X2=44.770 n=11.118 I_bond=1.4442e-02 I_vir=1.4447e-02 dev=4.7e-06 | Xcl=6.75 start=A dE_starts=0.0e+00 X_starts=6.65 | chi=300 terr=3.1e-10 sw=12 dE=7.4e-12 pmax=3.0e-11 Nph=54 t=68s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.45e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=5.66e-03
+U=1.250 g=0.1800 E0=-15.4130531327 X=6.5100 X2=42.934 n=10.689 I_bond=1.3364e-02 I_vir=1.3364e-02 dev=3.0e-08 | Xcl=6.60 start=C dE_starts=9.7e-06 X_starts=1.78,6.51 | chi=300 terr=3.0e-10 sw=13 dE=8.1e-12 pmax=3.0e-11 Nph=53 t=689s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.40e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.94e-03
+U=1.250 g=0.1900 E0=-15.4138537304 X=6.3573 X2=40.938 n=10.219 I_bond=1.2363e-02 I_vir=1.2363e-02 dev=2.9e-07 | Xcl=6.44 start=C dE_starts=1.0e-05 X_starts=1.25,6.36 | chi=300 terr=2.9e-10 sw=11 dE=5.6e-12 pmax=4.1e-12 Nph=52 t=672s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.06e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=3.35e-03
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.34e-04
+U=1.250 g=0.2000 E0=-15.4145725964 X=6.1949 X2=38.887 n=9.734 I_bond=1.1444e-02 I_vir=1.1445e-02 dev=1.4e-06 | Xcl=6.27 start=C dE_starts=9.7e-06 X_starts=0.96,6.19 | chi=300 terr=2.9e-10 sw=11 dE=7.3e-12 pmax=2.7e-12 Nph=51 t=646s
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=2.30e-03
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+final DMRG state not in canonical form up to norm_tol=1.00e-05: norm_err=1.86e-03
+U=1.250 g=0.2100 E0=-15.4152174404 X=6.0308 X2=36.848 n=9.251 I_bond=1.0610e-02 I_vir=1.0611e-02 dev=1.2e-06 | Xcl=6.10 start=C dE_starts=8.7e-06 X_starts=1.10,6.03 | chi=300 terr=2.8e-10 sw=11 dE=5.9e-12 pmax=1.4e-11 Nph=50 t=620s
+U=1.250 g=0.2200 E0=-15.4157958394 X=5.8669 X2=34.871 n=8.784 I_bond=9.8498e-03 I_vir=9.8537e-03 dev=3.8e-06 | Xcl=5.93 start=A dE_starts=0.0e+00 X_starts=5.87 | chi=300 terr=2.8e-10 sw=12 dE=2.4e-12 pmax=4.8e-12 Nph=50 t=72s
+U=1.250 g=0.2300 E0=-15.4163149075 X=5.7047 X2=32.972 n=8.335 I_bond=9.1616e-03 I_vir=9.1647e-03 dev=3.2e-06 | Xcl=5.76 start=A dE_starts=0.0e+00 X_starts=5.70 | chi=300 terr=2.7e-10 sw=11 dE=4.3e-12 pmax=9.4e-12 Nph=50 t=68s
+U=1.250 g=0.2400 E0=-15.4167811405 X=5.5462 X2=31.170 n=7.910 I_bond=8.5364e-03 I_vir=8.5389e-03 dev=2.5e-06 | Xcl=5.60 start=A dE_starts=0.0e+00 X_starts=5.55 | chi=300 terr=2.7e-10 sw=11 dE=5.6e-12 pmax=1.0e-12 Nph=50 t=67s
+U=1.250 g=0.2500 E0=-15.4172003760 X=5.3924 X2=29.470 n=7.511 I_bond=7.9672e-03 I_vir=7.9700e-03 dev=2.8e-06 | Xcl=5.44 start=A dE_starts=0.0e+00 X_starts=5.39 | chi=300 terr=2.7e-10 sw=11 dE=5.8e-12 pmax=4.0e-11 Nph=50 t=63s
+U=1.250 g=0.2600 E0=-15.4175778091 X=5.2436 X2=27.873 n=7.136 I_bond=7.4504e-03 I_vir=7.4520e-03 dev=1.6e-06 | Xcl=5.29 start=A dE_starts=0.0e+00 X_starts=5.24 | chi=300 terr=2.6e-10 sw=11 dE=4.1e-12 pmax=1.7e-11 Nph=50 t=64s
+U=1.250 g=0.2700 E0=-15.4179180353 X=5.1004 X2=26.378 n=6.787 I_bond=6.9778e-03 I_vir=6.9800e-03 dev=2.3e-06 | Xcl=5.14 start=A dE_starts=0.0e+00 X_starts=5.10 | chi=300 terr=2.6e-10 sw=11 dE=6.6e-12 pmax=6.2e-12 Nph=50 t=68s
+U=1.250 g=0.2800 E0=-15.4182251069 X=4.9628 X2=24.980 n=6.463 I_bond=6.5457e-03 I_vir=6.5492e-03 dev=3.5e-06 | Xcl=5.00 start=A dE_starts=0.0e+00 X_starts=4.96 | chi=300 terr=2.6e-10 sw=11 dE=9.5e-12 pmax=1.0e-11 Nph=50 t=67s
+U=1.250 g=0.2900 E0=-15.4185025908 X=4.8308 X2=23.676 n=6.161 I_bond=6.1503e-03 I_vir=6.1551e-03 dev=4.8e-06 | Xcl=4.86 start=A dE_starts=0.0e+00 X_starts=4.83 | chi=300 terr=2.6e-10 sw=13 dE=8.1e-12 pmax=7.1e-12 Nph=50 t=75s
+U=1.250 g=0.3000 E0=-15.4187536252 X=4.7040 X2=22.456 n=5.881 I_bond=5.7895e-03 I_vir=5.7938e-03 dev=4.3e-06 | Xcl=4.73 start=A dE_starts=0.0e+00 X_starts=4.70 | chi=300 terr=2.6e-10 sw=11 dE=7.5e-12 pmax=2.7e-12 Nph=50 t=63s
+U=1.250 g=0.3200 E0=-15.4191870605 X=4.4663 X2=20.256 n=5.380 I_bond=5.1533e-03 I_vir=5.1571e-03 dev=3.8e-06 | Xcl=4.49 start=A dE_starts=0.0e+00 X_starts=4.47 | chi=300 terr=2.6e-10 sw=12 dE=6.0e-12 pmax=2.6e-12 Nph=50 t=70s
+U=1.250 g=0.3400 E0=-15.4195437957 X=4.2481 X2=18.338 n=4.948 I_bond=4.6132e-03 I_vir=4.6167e-03 dev=3.5e-06 | Xcl=4.27 start=A dE_starts=0.0e+00 X_starts=4.25 | chi=300 terr=2.6e-10 sw=12 dE=4.2e-12 pmax=1.3e-11 Nph=50 t=70s
+U=1.250 g=0.3600 E0=-15.4198381640 X=4.0479 X2=16.662 n=4.577 I_bond=4.1518e-03 I_vir=4.1547e-03 dev=2.9e-06 | Xcl=4.07 start=A dE_starts=0.0e+00 X_starts=4.05 | chi=300 terr=2.6e-10 sw=13 dE=3.5e-12 pmax=1.7e-12 Nph=50 t=73s
+U=1.250 g=0.3800 E0=-15.4200814167 X=3.8639 X2=15.193 n=4.257 I_bond=3.7556e-03 I_vir=3.7571e-03 dev=1.5e-06 | Xcl=3.88 start=A dE_starts=0.0e+00 X_starts=3.86 | chi=300 terr=2.7e-10 sw=12 dE=4.3e-13 pmax=3.0e-11 Nph=50 t=67s
+U=1.250 g=0.4000 E0=-15.4202824527 X=3.6947 X2=13.902 n=3.982 I_bond=3.4099e-03 I_vir=3.4130e-03 dev=3.1e-06 | Xcl=3.71 start=A dE_starts=0.0e+00 X_starts=3.69 | chi=300 terr=2.7e-10 sw=13 dE=3.9e-12 pmax=2.6e-11 Nph=50 t=75s

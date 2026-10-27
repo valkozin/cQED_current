@@ -1,0 +1,15 @@
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+/usr/local/lib/python3.13/dist-packages/tenpy/networks/mps.py:1629: UserWarning: unit_cell_width is a new argument for MPS and similar classes. It is optional for now, but will become mandatory in a future release. The default value (unit_cell_width=len(sites)) is correct, iff the lattice is a Chain. For other lattices, it is incorrect. It is used for dipolar charges and correlation_function2.
+  super().__init__(sites, bc, unit_cell_width)
+U=2.00 alpha=0.00 phi=+0.0000 E_even=-15.81668033 E_up=-15.92556042 E_dn=-15.92556042 up-even=-0.10888 up-dn=-1.12e-09 na/nb(up)=1.00/0.07 t=74s
+U=2.00 alpha=0.00 phi=+0.3927 E_even=-15.79585800 E_up=-15.92686628 E_dn=-15.92686628 up-even=-0.13101 up-dn=-5.86e-14 na/nb(up)=1.00/0.07 t=86s
+U=2.00 alpha=0.00 phi=+0.7854 E_even=-15.73472801 E_up=-15.93034363 E_dn=-15.93034363 up-even=-0.19562 up-dn=+1.78e-14 na/nb(up)=0.99/0.06 t=131s
+U=2.00 alpha=0.00 phi=+1.1781 E_even=-15.63776835 E_up=-15.93425566 E_dn=-15.93425566 up-even=-0.29649 up-dn=+3.73e-14 na/nb(up)=0.99/0.06 t=105s
+U=2.00 alpha=0.00 phi=+1.5708 E_even=-15.52140255 E_up=-15.93598212 E_dn=-15.93598212 up-even=-0.41458 up-dn=+2.31e-14 na/nb(up)=0.98/0.06 t=99s
+U=2.00 alpha=0.00 phi=+1.9635 E_even=-15.60603498 E_up=-15.93415822 E_dn=-15.93415822 up-even=-0.32812 up-dn=+7.11e-15 na/nb(up)=0.98/0.06 t=131s
+U=2.00 alpha=0.00 phi=+2.3562 E_even=-15.70613166 E_up=-15.93003010 E_dn=-15.93003010 up-even=-0.22390 up-dn=-1.62e-13 na/nb(up)=0.99/0.06 t=92s
+U=2.00 alpha=0.00 phi=+2.7489 E_even=-15.76916104 E_up=-15.92627656 E_dn=-15.92627656 up-even=-0.15712 up-dn=+7.11e-15 na/nb(up)=1.00/0.06 t=82s
+U=2.00 alpha=0.00 phi=+3.1416 E_even=-15.79059692 E_up=-15.92484032 E_dn=-15.92484032 up-even=-0.13424 up-dn=+6.57e-14 na/nb(up)=1.00/0.07 t=68s
